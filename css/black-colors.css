@@ -1,0 +1,385 @@
+/*============================================================================================*/
+/* Black & Monochrome Color Palette for Digintag */
+/*============================================================================================*/
+
+:root {
+  /* Black & Gray Scale Palette */
+  --black-50: #ffffff;
+  --black-100: #fafafa;
+  --black-200: #f5f5f5;
+  --black-300: #e5e5e5;
+  --black-400: #d4d4d4;
+  --black-500: #a3a3a3;
+  --black-600: #737373;
+  --black-700: #525252;
+  --black-800: #404040;
+  --black-900: #262626;
+  --black-950: #171717;
+  --black-1000: #000000;
+
+  /* Semantic Color Variables */
+  --primary: var(--black-900);
+  --primary-hover: var(--black-1000);
+  --primary-light: var(--black-200);
+  --secondary: var(--black-700);
+  --secondary-hover: var(--black-800);
+  --accent: var(--black-800);
+  --accent-hover: var(--black-900);
+  --text-primary: var(--black-1000);
+  --text-secondary: var(--black-700);
+  --text-muted: var(--black-600);
+  --background: var(--black-50);
+  --surface: var(--black-50);
+  --border: var(--black-300);
+}
+
+/* Apply Black & Gray Colors to Existing Classes */
+body {
+  background-color: var(--background) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Update primary buttons and links */
+a.btn_1,
+.btn_1 {
+  background: var(--primary) !important;
+  color: var(--black-50) !important;
+  border-color: var(--primary) !important;
+  box-shadow: 0px 10px 40px -10px rgba(0, 0, 0, 0.3) !important;
+}
+
+a.btn_1:hover,
+.btn_1:hover {
+  background: var(--primary-hover) !important;
+  border-color: var(--primary-hover) !important;
+}
+
+/* Update links */
+a {
+  color: var(--primary) !important;
+}
+
+a:hover, a:focus {
+  color: var(--primary-hover) !important;
+}
+
+/* Update navigation */
+a.btn_nav:hover {
+  color: var(--primary) !important;
+}
+
+a.btn_help:hover {
+  background-color: var(--primary) !important;
+  color: var(--black-50) !important;
+}
+
+/* Update animated links */
+a.animated_link:before {
+  background-color: var(--primary) !important;
+}
+
+/* Update social links */
+#social ul li a:hover {
+  color: var(--primary) !important;
+}
+
+/* Update form controls */
+input.form-control:focus,
+.form-select:focus,
+textarea.form-control:focus {
+  border-color: rgba(0, 0, 0, 0.2) !important;
+  box-shadow: 0 0 0 0.3rem rgba(0, 0, 0, 0.05) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Update checkboxes and radios */
+.container_radio input:checked ~ .radio {
+  background-color: var(--primary) !important;
+}
+
+.container_check input:checked ~ .checkmark {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+
+/* Update date picker */
+.daterangepicker td.active, .daterangepicker td.active:hover {
+  background-color: var(--primary) !important;
+}
+
+/* Update headings */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary) !important;
+}
+
+/* Update background colors */
+.bg_color_gray {
+  background-color: var(--background) !important;
+}
+
+/* Update footer */
+footer {
+  background-color: var(--surface) !important;
+  border-top: 1px solid var(--border) !important;
+}
+
+footer a {
+  color: var(--text-secondary) !important;
+}
+
+/* Update cards and boxes */
+.box_style_2 {
+  background-color: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+}
+
+/* Update buttons with different colors */
+.btn-primary {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+  color: var(--black-50) !important;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover) !important;
+  border-color: var(--primary-hover) !important;
+  color: var(--black-50) !important;
+}
+
+.btn-success {
+  background-color: var(--secondary) !important;
+  border-color: var(--secondary) !important;
+  color: var(--black-50) !important;
+}
+
+.btn-success:hover {
+  background-color: var(--secondary-hover) !important;
+  border-color: var(--secondary-hover) !important;
+  color: var(--black-50) !important;
+}
+
+.btn-warning {
+  background-color: var(--accent) !important;
+  border-color: var(--accent) !important;
+  color: var(--black-50) !important;
+}
+
+.btn-warning:hover {
+  background-color: var(--accent-hover) !important;
+  border-color: var(--accent-hover) !important;
+  color: var(--black-50) !important;
+}
+
+.btn-outline-primary {
+  color: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+  color: var(--black-50) !important;
+}
+
+.btn-outline-success {
+  color: var(--secondary) !important;
+  border-color: var(--secondary) !important;
+}
+
+.btn-outline-success:hover {
+  background-color: var(--secondary) !important;
+  border-color: var(--secondary) !important;
+  color: var(--black-50) !important;
+}
+
+.btn-outline-warning {
+  color: var(--accent) !important;
+  border-color: var(--accent) !important;
+}
+
+.btn-outline-warning:hover {
+  background-color: var(--accent) !important;
+  border-color: var(--accent) !important;
+  color: var(--black-50) !important;
+}
+
+.btn-outline-light {
+  color: var(--text-primary) !important;
+  border-color: var(--black-400) !important;
+}
+
+.btn-outline-light:hover {
+  background-color: var(--text-primary) !important;
+  border-color: var(--text-primary) !important;
+  color: var(--background) !important;
+}
+
+/* Update card components */
+.card {
+  background-color: var(--surface) !important;
+  border-color: var(--border) !important;
+}
+
+.card.bg-light {
+  background-color: var(--black-100) !important;
+}
+
+.card.bg-primary {
+  background-color: var(--primary) !important;
+  color: var(--black-50) !important;
+}
+
+.card.text-white {
+  color: var(--black-50) !important;
+}
+
+/* Update text colors */
+.text-primary {
+  color: var(--primary) !important;
+}
+
+.text-success {
+  color: var(--secondary) !important;
+}
+
+.text-warning {
+  color: var(--accent) !important;
+}
+
+/* Update feature icons */
+.feature-icon i {
+  color: var(--primary) !important;
+}
+
+/* Update smile ratings */
+.container_smile .radio.smile_1:hover {
+  background-color: var(--black-800) !important;
+  color: var(--black-50) !important;
+}
+
+.container_smile .radio.smile_2:hover {
+  background-color: var(--black-700) !important;
+  color: var(--black-50) !important;
+}
+
+.container_smile .radio.smile_3:hover {
+  background-color: var(--black-600) !important;
+  color: var(--black-50) !important;
+}
+
+.container_smile .radio.smile_4:hover {
+  background-color: var(--black-500) !important;
+  color: var(--black-50) !important;
+}
+
+.container_smile .radio.smile_5:hover {
+  background-color: var(--black-400) !important;
+  color: var(--black-50) !important;
+}
+
+.container_smile input[type="radio"]:checked ~ .radio.smile_1 {
+  background-color: var(--black-800) !important;
+  color: var(--black-50) !important;
+}
+
+.container_smile input[type="radio"]:checked ~ .radio.smile_2 {
+  background-color: var(--black-700) !important;
+  color: var(--black-50) !important;
+}
+
+.container_smile input[type="radio"]:checked ~ .radio.smile_3 {
+  background-color: var(--black-600) !important;
+  color: var(--black-50) !important;
+}
+
+.container_smile input[type="radio"]:checked ~ .radio.smile_4 {
+  background-color: var(--black-500) !important;
+  color: var(--black-50) !important;
+}
+
+.container_smile input[type="radio"]:checked ~ .radio.smile_5 {
+  background-color: var(--black-400) !important;
+  color: var(--black-50) !important;
+}
+
+/* Update error messages */
+span.error {
+  background-color: var(--black-900) !important;
+  color: var(--black-50) !important;
+}
+
+span.error:after {
+  border-color: transparent var(--black-900) !important;
+}
+
+/* Update success message */
+#success h4 {
+  color: var(--secondary) !important;
+}
+
+/* Update modal close button */
+.custom-modal .mfp-close:hover {
+  color: var(--primary) !important;
+}
+
+/* Update progress bar */
+.ui-widget-header {
+  background: var(--secondary) !important;
+}
+
+/* Update backward button */
+button.backward:hover {
+  background-color: var(--black-300) !important;
+}
+
+/* Update header */
+header {
+  background-color: var(--surface) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+/* Update offcanvas */
+.offcanvas-start#offcanvasNav {
+  background-color: var(--surface) !important;
+}
+
+/* Update form inputs */
+input.form-control,
+.form-select,
+textarea.form-control {
+  background-color: var(--surface) !important;
+  border-color: var(--border) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Update help button */
+a.btn_help {
+  background-color: var(--black-200) !important;
+  color: var(--text-secondary) !important;
+}
+
+/* Update loader */
+#loader_form {
+  background-color: rgba(250, 250, 250, 0.9) !important;
+}
+
+/* Update map iframe */
+#iframe {
+  border: 1px solid var(--border) !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  header {
+    background-color: var(--surface) !important;
+  }
+  
+  footer {
+    background-color: var(--surface) !important;
+  }
+}
+
+/* Smooth transitions for all color changes */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
