@@ -1,28 +1,58 @@
 export default function ServicesPage() {
   const packages = [
     {
-      title: 'Logo Design',
-      description: 'Unique wordmarks and icons with 2–3 concepts and revisions.',
-      highlights: ['Discovery & moodboard', 'Primary + secondary logos', 'Color palette & typography'],
+      title: 'Wedding Invites',
+      description: 'Signature save-the-date, main day, and reception layouts with premium typography.',
+      highlights: ['Multiple style explorations', 'QR RSVP + schedule', 'Print + digital exports'],
       accent: '#F6BCCE'
     },
     {
-      title: 'Wedding Card Design',
-      description: 'Digital invite + print-ready files in elegant themes.',
-      highlights: ['Multiple concepts', 'RSVP & schedule layout', 'QR code placement'],
+      title: 'Engagement Cards',
+      description: 'Elegant formal announcements with photo treatments and monograms.',
+      highlights: ['Photo retouch & framing', 'Custom monogram lockups', 'Gold foil-ready files'],
       accent: '#F9CFC3'
     },
     {
-      title: 'Business Card Design',
-      description: 'Minimal, premium business cards with on-brand details.',
-      highlights: ['Front/back variants', 'Foil/emboss mockups', 'Print-ready export'],
+      title: 'Festival Invites',
+      description: 'Navratri, Diwali, Eid, and seasonal greetings tailored for family or corporate lists.',
+      highlights: ['Regional language support', 'Animated + static options', 'Share-ready links & PDFs'],
       accent: '#FFE0D0'
     },
     {
-      title: 'Brand Guidelines',
-      description: 'A handy PDF with logo usage, colors, and type scales.',
-      highlights: ['Typography', 'Color codes', 'Imagery direction'],
+      title: 'Video Invitations',
+      description: 'Cinematic motion invites with your music, script, and transitions synced perfectly.',
+      highlights: ['Storyboard assistance', 'Up to 5 event slides', 'HD MP4 + reel cuts'],
       accent: '#E9D3C2'
+    },
+    {
+      title: 'Puja Invites',
+      description: 'Traditional pooja and havan cards with sacred motifs and Sanskrit verse placement.',
+      highlights: ['Temple illustration options', 'Prasad & dress code blocks', 'High-contrast print files'],
+      accent: '#FCD9B8'
+    },
+    {
+      title: 'Party Invites',
+      description: 'Birthdays, cocktails, and milestones with bold layouts and RSVP tracking cues.',
+      highlights: ['Spotify/YouTube embeds', 'Guest QR check-in', 'Animated stickers add-on'],
+      accent: '#FEE5CB'
+    },
+    {
+      title: 'Baby & Kids',
+      description: 'Birth announcements, mundan, and naming ceremonies with playful illustration.',
+      highlights: ['Custom mascot artwork', 'Photo grid variations', 'Thank-you card set'],
+      accent: '#F5E0FF'
+    },
+    {
+      title: 'Path / Welcome Boards',
+      description: 'Directional signage, welcome arches, and itinerary boards for venue decor.',
+      highlights: ['Large-format sizing', 'Foam/LED print specs', 'Venue map integration'],
+      accent: '#FFE7E0'
+    },
+    {
+      title: 'Digital Art & Bhog Invites',
+      description: 'Custom devotional artworks with bhog / prasad schedules in printable posters.',
+      highlights: ['Hand-illustrated deity art', 'High-res PNG & PDF', 'Framing suggestions'],
+      accent: '#F2D3FF'
     }
   ];
 

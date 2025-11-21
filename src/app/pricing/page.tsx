@@ -1,3 +1,36 @@
+import Link from "next/link";
+
+const featuredTemplates = [
+  {
+    id: "royal-affair",
+    tag: "Wedding Invitation",
+    title: "Dhruv & Harshi",
+    subtitle: "Tuesday, Feb 11 · 06:00 PM",
+    accent: "#FF6B92",
+  },
+  {
+    id: "silver-jubilee",
+    tag: "25th Anniversary",
+    title: "Sanjay & Payal",
+    subtitle: "Monday, March 15 · 07:00 PM",
+    accent: "#8B6CFF",
+  },
+  {
+    id: "golden-bash",
+    tag: "Birthday Gala",
+    title: "Yogesh Pathak",
+    subtitle: "Sunday, July 20 · 09:00 AM",
+    accent: "#F2B647",
+  },
+  {
+    id: "neon-launch",
+    tag: "Brand Launch",
+    title: "Studio Flux",
+    subtitle: "Monday, Jan 08 · 07:30 PM",
+    accent: "#FF5BD6",
+  },
+];
+
 export default function PricingPage() {
   const videoPackages = [
     {
@@ -81,6 +114,53 @@ export default function PricingPage() {
           <p className="text-base text-[#3B1F1F]/70">
             Flexible packages for cinematic video invites and richly designed PDFs. Upgrade or extend anytime.
           </p>
+        </section>
+
+        <section className="rounded-3xl border border-[#FFE0D0] bg-white/90 p-6 shadow-lg space-y-6">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <p className="text-xs uppercase tracking-[0.4em] text-[#3B1F1F]/60">Featured invites</p>
+              <h2 className="mt-2 text-2xl font-semibold text-[#3B1F1F]">Handpicked templates customers love</h2>
+            </div>
+            <a
+              href="/shop"
+              className="rounded-full border border-[#3B1F1F] px-4 py-2 text-xs font-semibold uppercase tracking-[0.4em] text-[#3B1F1F] hover:bg-[#3B1F1F] hover:text-[#FFE0D0]"
+            >
+              See all
+            </a>
+          </div>
+          <p className="text-sm text-[#3B1F1F]/70">
+            Browse 20+ cinematic card styles from weddings to corporate launches. Tap any template to preview and continue from your dashboard.
+          </p>
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {featuredTemplates.map((template) => (
+              <article key={template.id} className="rounded-2xl border border-[#FFE0D0] bg-white p-4 shadow-sm">
+                <div className="flex items-center justify-between text-xs uppercase tracking-[0.3em] text-[#3B1F1F]/60">
+                  <span>{template.tag}</span>
+                  <span className="rounded-full bg-[#FFF1EB] px-2 py-1 text-[10px] font-semibold" style={{ color: template.accent }}>
+                    Featured
+                  </span>
+                </div>
+                <h3 className="mt-4 text-xl font-semibold text-[#3B1F1F]">{template.title}</h3>
+                <p className="text-sm text-[#3B1F1F]/70">{template.subtitle}</p>
+                <div className="mt-4 flex items-center justify-between">
+                  <Link
+                    href="/login"
+                    className="text-xs font-semibold uppercase tracking-[0.3em]"
+                    style={{ color: template.accent }}
+                  >
+                    Preview
+                  </Link>
+                  <span
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-full text-base font-bold text-white"
+                    style={{ backgroundColor: template.accent }}
+                  >
+                    →
+                  </span>
+                </div>
+              </article>
+            ))}
+          </div>
         </section>
 
         <section className="space-y-8">

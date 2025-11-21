@@ -1,42 +1,24 @@
-import { Heart, Calendar, MapPin, Images, QrCode, BarChart3 } from "lucide-react";
+import { Award, Wallet, Timer } from "lucide-react";
 import { motion } from 'framer-motion';
 
 const features = [
   {
-    icon: Heart,
-    title: "RSVP & Guest Management",
-    description: "Easily collect responses, meal preferences, and special notes from your guests.",
+    icon: Award,
+    title: "High-quality craft",
+    description: "Senior designers obsess over typography, illustration, and motion so every invite feels premium.",
     accent: '#F6BCCE'
   },
   {
-    icon: Calendar,
-    title: "Event Schedule",
-    description: "Create a detailed timeline of your event with multiple ceremonies and activities.",
+    icon: Wallet,
+    title: "Affordable packages",
+    description: "Transparent pricing tiers keep bespoke experiences within reach for every celebration.",
     accent: '#F9CFC3'
   },
   {
-    icon: MapPin,
-    title: "Interactive Maps",
-    description: "Help guests find their way with embedded maps and custom directions.",
+    icon: Timer,
+    title: "Fast delivery",
+    description: "Streamlined workflows mean final PNG, JPEG, and PDF files land in your inbox quickly.",
     accent: '#FFE0D0'
-  },
-  {
-    icon: Images,
-    title: "Photo Gallery",
-    description: "Share your love story and event photos in a beautiful gallery format.",
-    accent: '#F6EBCC'
-  },
-  {
-    icon: QrCode,
-    title: "QR Code & Links",
-    description: "Share your digital invitation with a simple link or printable QR code.",
-    accent: '#F6BCCE'
-  },
-  {
-    icon: BarChart3,
-    title: "Real-time Analytics",
-    description: "Track who's viewed your invitation and monitor engagement in real-time.",
-    accent: '#E9D3C2'
   }
 ];
 
@@ -57,14 +39,14 @@ export default function Features() {
           className="text-center"
         >
           <h2 className="text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl md:text-4xl">
-            Everything You Need for Your Special Event
+            Premium quality, honest pricing, lightning delivery
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-zinc-600">
-            Powerful features to make your event planning seamless and memorable
+            Three reasons clients keep coming back—craft, affordability, and timelines you can trust.
           </p>
         </motion.div>
 
-        <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-3">
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
