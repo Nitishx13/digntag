@@ -37,7 +37,7 @@ export default function CTA() {
               Get Started for Free
             </a>
             <a
-              href="/templates"
+              href="/shop"
               className="rounded-lg border border-[#FFE0D0] bg-[#F6EBCC]/80 px-6 py-3.5 text-sm font-semibold text-[#3B1F1F] shadow-sm transition-all duration-300 hover:bg-[#F6BCCE] hover:shadow-md"
             >
               Browse Templates <span aria-hidden="true">→</span>
