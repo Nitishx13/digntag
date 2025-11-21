@@ -1,35 +1,78 @@
 "use client";
-import { useCards } from "@/store/cards";
-import { CardTile } from "@/components/card-tile";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
 
-const shopTemplates = [
-  {
-    id: "wedding-classic",
-    name: "Wedding Classic",
-    category: "Wedding",
-    description: "Elegant blush tones with RSVP, schedule, venue map, and links.",
-    media: { type: "video", src: "/reel1.mp4", label: "Wedding reel" },
-  },
-  {
-    id: "business-minimal",
-    name: "Business Minimal",
-    category: "Business",
-    description: "Clean typographic layout for founders and freelancers.",
-    media: { type: "image", src: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80", label: "Business preview" },
-  },
-  {
-    id: "creator-bio",
-    name: "Creator Bio",
-    category: "Creator",
-    description: "Bold profile and social callouts for creators and artists.",
-    media: { type: "image", src: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80", label: "Creator preview" },
-  },
-];
+type UniversalCategory = "all" | "wedding" | "business" | "creator" | "personal";
 
-const purchasedTemplates = [
-  { title: "Lakshmi & Arjun", status: "Delivered", date: "Dec 2, 2025" },
-  { title: "Rise Studio", status: "In design", date: "Nov 28, 2025" },
+const universalFormConfig: Record<UniversalCategory, {
+  title: string;
+  subtitle: string;
+  checklist: string[];
+  accent: string;
+  fields: { label: string; placeholder: string; type?: "text" | "textarea" | "date" | "number" }[];
+}> = {
+  all: {
+    title: "Universal project brief",
+    subtitle: "Capture essentials for weddings, launches, creators, or personal events in one place.",
+    accent: "#FF6B92",
+    checklist: ["Primary contact details", "Event timeline", "Deliverables & links"],
+    fields: [
+      { label: "Project / Event name", placeholder: "Eg. Aarav & Siya Wedding" },
+      { label: "Primary contact email", placeholder: "name@brand.com" },
+      { label: "Key goals", placeholder: "Describe success metrics", type: "textarea" },
+    ],
+  },
+  wedding: {
+    title: "Wedding invitation brief",
+    subtitle: "Guests, rituals, and hospitality details in a single submission.",
+    accent: "#DD4477",
+    checklist: ["Couple story", "Ceremony schedule", "Accommodation"],
+    fields: [
+      { label: "Couple names", placeholder: "Aarav & Siya" },
+      { label: "Wedding date", placeholder: "2026-02-11", type: "date" },
+      { label: "Venue & rituals", placeholder: "List venues, pheras, sangeet", type: "textarea" },
+    ],
+  },
+  business: {
+    title: "Business profile brief",
+    subtitle: "Share the elevator pitch and assets for your brand card.",
+    accent: "#3B82F6",
+    checklist: ["USP & tagline", "Offerings", "Call-to-action"],
+    fields: [
+      { label: "Company / Studio name", placeholder: "Rise Studio" },
+      { label: "Website or portfolio", placeholder: "https://" },
+      { label: "Services overview", placeholder: "What do you offer?", type: "textarea" },
+    ],
+  },
+  creator: {
+    title: "Creator media brief",
+    subtitle: "Map your socials, content pillars, and collaborations.",
+    accent: "#8B5CF6",
+    checklist: ["Primary platform", "Audience bio", "Featured collaborations"],
+    fields: [
+      { label: "Creator handle", placeholder: "@designwithzara" },
+      { label: "Primary platform", placeholder: "Instagram / YouTube / Behance" },
+      { label: "Collab brief", placeholder: "Share preferred brand categories", type: "textarea" },
+    ],
+  },
+  personal: {
+    title: "Personal card brief",
+    subtitle: "Collect hobbies, links, and introductions for a personal profile.",
+    accent: "#0EA5E9",
+    checklist: ["Intro paragraph", "Hobbies", "Important links"],
+    fields: [
+      { label: "Full name", placeholder: "Harini Gupta" },
+      { label: "Preferred greeting", placeholder: "Eg. Designer · Traveller" },
+      { label: "About you", placeholder: "Share a short bio", type: "textarea" },
+    ],
+  },
+};
+
+const formCategories: { key: UniversalCategory; label: string }[] = [
+  { key: "all", label: "All" },
+  { key: "wedding", label: "Wedding" },
+  { key: "business", label: "Business" },
+  { key: "creator", label: "Creator" },
+  { key: "personal", label: "Personal" },
 ];
 
 const payments = [
@@ -38,32 +81,7 @@ const payments = [
 ];
 
 export default function DashboardPage() {
-  const { cards, add } = useCards();
-  const router = useRouter();
-
-  function slugify(input: string) {
-    return input.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)+/g, "");
-  }
-
-  function handleSelectTemplate(template: typeof shopTemplates[number]) {
-    const id = crypto.randomUUID();
-    const title = template.name;
-    const slug = slugify(`${template.name}-${id.slice(0, 6)}`);
-    add({
-      id,
-      title,
-      slug,
-      template: template.category.toLowerCase() as any,
-      theme: { primary: "#3B1F1F", background: "#fff", foreground: "#111" },
-      sections: [
-        { type: "hero", data: { heading: template.name, sub: template.category } },
-        { type: "media", data: template.media },
-        { type: "links", data: [{ label: "View template", url: "#" }] },
-      ],
-      stats: { views: 0, clicks: 0 },
-    });
-    router.push("/dashboard");
-  }
+  const [formCategory, setFormCategory] = useState<UniversalCategory>("all");
 
   return (
     <main className="bg-[#fff7f2] min-h-screen py-12">
@@ -74,96 +92,108 @@ export default function DashboardPage() {
             <h1 className="text-3xl font-bold text-[#3B1F1F]">Your creative HQ</h1>
             <p className="mt-2 text-sm text-[#3B1F1F]/70">See templates, creations, purchases, and payments all in one place.</p>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3">
+            <button className="rounded-full border border-[#3B1F1F]/40 px-4 py-2 text-sm font-semibold text-[#3B1F1F] hover:border-[#3B1F1F]">
+              Download
+            </button>
+            <button className="rounded-full border border-[#3B1F1F]/40 px-4 py-2 text-sm font-semibold text-[#3B1F1F] hover:border-[#3B1F1F]">
+              Orders
+            </button>
+            <button className="rounded-full border border-[#3B1F1F]/40 px-4 py-2 text-sm font-semibold text-[#3B1F1F] hover:border-[#3B1F1F]">
+              Live tracking
+            </button>
             <button className="rounded-full border border-[#3B1F1F] px-4 py-2 text-sm font-semibold text-[#3B1F1F]">Help</button>
             <button className="rounded-full bg-[#3B1F1F] px-4 py-2 text-sm font-semibold text-[#FFE0D0]">Logout</button>
           </div>
         </header>
 
-        <section className="space-y-4">
-          <div className="flex items-center justify-between">
-            <h2 className="text-xl font-semibold text-[#3B1F1F]">Shop templates</h2>
-            <span className="text-xs uppercase tracking-[0.3em] text-[#F6BCCE]">Live</span>
-          </div>
-          <div className="grid gap-4 md:grid-cols-3">
-            {shopTemplates.map((template) => (
-              <article key={template.id} className="flex flex-col gap-3 rounded-2xl border border-[#FFE0D0] bg-white p-4 shadow">
-                <div className="text-sm text-[#3B1F1F]/80">{template.category}</div>
-                <h3 className="text-lg font-semibold text-[#3B1F1F]">{template.name}</h3>
-                <p className="text-sm text-[#3B1F1F]/70">{template.description}</p>
-                <div className="rounded-xl border border-dashed border-[#F6BCCE] bg-[#FFF0F5] p-1">
-                  {template.media.type === "video" ? (
-                    <video
-                      className="h-32 w-full rounded-xl object-cover"
-                      src={template.media.src}
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      controls={false}
-                    />
-                  ) : (
-                    <img
-                      src={template.media.src}
-                      alt={template.media.label}
-                      className="h-32 w-full rounded-xl object-cover"
-                    />
-                  )}
-                </div>
-                <button
-                  onClick={() => handleSelectTemplate(template)}
-                  className="mt-2 rounded-full bg-gradient-to-r from-[#F6BCCE] to-[#F9CFC3] px-4 py-2 text-sm font-semibold text-[#3B1F1F] shadow-inner"
-                >
-                  I want this
-                </button>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="grid gap-6 md:grid-cols-[2fr_1fr]">
-          <article className="rounded-3xl border border-[#FFE0D0] bg-white p-6 shadow-lg">
-            <div className="flex items-center justify-between">
-              <h2 className="text-xl font-semibold text-[#3B1F1F]">My templates</h2>
-              <span className="text-xs uppercase tracking-[0.3em] text-[#F6BCCE]">Saved</span>
-            </div>
-            <div className="mt-4 space-y-4">
-              {cards.map((card) => (
-                <CardTile key={card.id} card={card} />
-              ))}
-            </div>
-          </article>
-
-          <article className="rounded-3xl border border-[#F6BCCE] bg-[#ffece5] p-6 shadow-lg space-y-6">
+        <section className="rounded-3xl border border-[#FFE0D0] bg-white p-6 shadow-lg">
+          <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
             <div>
-              <h3 className="text-lg font-semibold text-[#3B1F1F]">Purchased templates</h3>
-              <p className="text-sm text-[#3B1F1F]/70">Recent orders you’ve requested.</p>
-            </div>
-            <div className="space-y-3">
-              {purchasedTemplates.map((item) => (
-                <div key={item.title} className="rounded-2xl border border-[#F6BCCE] bg-white/90 p-3 text-sm">
-                  <div className="flex items-center justify-between">
-                    <p className="font-semibold text-[#3B1F1F]">{item.title}</p>
-                    <span className="text-xs uppercase tracking-[0.3em] text-[#F6BCCE]">{item.status}</span>
-                  </div>
-                  <p className="text-xs text-[#3B1F1F]/70">{item.date}</p>
-                </div>
-              ))}
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-[#3B1F1F]">Payment details</h3>
-              <div className="mt-3 space-y-3 text-sm text-[#3B1F1F]/70">
-                {payments.map((payment) => (
-                  <div key={payment.label} className="flex items-center justify-between text-[#3B1F1F]">
-                    <span>{payment.label}</span>
-                    <span className="font-semibold">{payment.amount}</span>
-                    <span className="text-xs uppercase tracking-[0.3em] text-[#F6BCCE]">{payment.status}</span>
-                  </div>
+              <div className="flex flex-wrap gap-2">
+                {formCategories.map((category) => (
+                  <button
+                    key={category.key}
+                    onClick={() => setFormCategory(category.key)}
+                    className={`rounded-full border px-4 py-2 text-sm font-semibold transition ${
+                      formCategory === category.key
+                        ? "border-[#3B1F1F] bg-[#3B1F1F] text-[#FFE0D0]"
+                        : "border-[#F6BCCE] text-[#3B1F1F] hover:border-[#3B1F1F] hover:bg-[#FFF4EE]"
+                    }`}
+                  >
+                    {category.label}
+                  </button>
                 ))}
               </div>
+              <div className="mt-6">
+                <p className="text-xs uppercase tracking-[0.4em] text-[#F6BCCE]">Universal form</p>
+                <h2 className="mt-2 text-2xl font-semibold text-[#3B1F1F]">{universalFormConfig[formCategory].title}</h2>
+                <p className="mt-2 text-sm text-[#3B1F1F]/70">{universalFormConfig[formCategory].subtitle}</p>
+              </div>
+              <form className="mt-6 space-y-4">
+                {universalFormConfig[formCategory].fields.map((field) => (
+                  <div key={field.label}>
+                    <label className="text-sm font-medium text-[#3B1F1F]">{field.label}</label>
+                    {field.type === "textarea" ? (
+                      <textarea
+                        placeholder={field.placeholder}
+                        className="mt-2 w-full rounded-2xl border border-[#F6BCCE] px-5 py-3 text-sm text-[#3B1F1F] placeholder:text-[#C8A8A8] focus:border-[#FF6B92] focus:outline-none"
+                        rows={4}
+                      />
+                    ) : (
+                      <input
+                        type={field.type ?? "text"}
+                        placeholder={field.placeholder}
+                        className="mt-2 w-full rounded-full border border-[#F6BCCE] px-5 py-3 text-sm text-[#3B1F1F] placeholder:text-[#C8A8A8] focus:border-[#FF6B92] focus:outline-none"
+                      />
+                    )}
+                  </div>
+                ))}
+                <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
+                  <button
+                    type="button"
+                    className="rounded-full border border-[#FF8FB1] px-6 py-2 text-sm font-semibold text-[#FF6B92]"
+                  >
+                    Save draft
+                  </button>
+                  <button
+                    type="button"
+                    className="rounded-full bg-gradient-to-r from-[#FF8FB1] to-[#FF6B92] px-8 py-2 text-sm font-semibold text-white shadow-lg"
+                  >
+                    Share brief →
+                  </button>
+                </div>
+              </form>
             </div>
-          </article>
+            <div className="rounded-3xl border border-[#FFE0D0] bg-[#FFF7F3] p-6">
+              <p className="text-xs uppercase tracking-[0.4em] text-[#3B1F1F]/60">Checklist</p>
+              <h3 className="mt-2 text-xl font-semibold text-[#3B1F1F]">What we’ll organise</h3>
+              <ul className="mt-6 space-y-3 text-sm text-[#3B1F1F]/80">
+                {universalFormConfig[formCategory].checklist.map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <span
+                      className="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full text-xs font-semibold"
+                      style={{ backgroundColor: `${universalFormConfig[formCategory].accent}15`, color: universalFormConfig[formCategory].accent }}
+                    >
+                      ✓
+                    </span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-8 rounded-2xl border border-dashed border-[#F6BCCE] bg-white/80 p-4 text-sm text-[#3B1F1F]/80">
+                <p className="font-semibold" style={{ color: universalFormConfig[formCategory].accent }}>
+                  Tip
+                </p>
+                <p className="mt-2">
+                  Switch categories to auto-adjust the questions. Each brief is optimised for {formCategory} needs.
+                </p>
+              </div>
+            </div>
+          </div>
         </section>
+
+        
       </div>
     </main>
   );

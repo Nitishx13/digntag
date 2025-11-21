@@ -18,16 +18,20 @@ const navLinks: NavLinkProps[] = [
     href: "/",
   },
   {
-    label: "Features",
-    href: "/features",
+    label: "About",
+    href: "/about",
   },
   {
     label: "Services",
     href: "/services",
   },
   {
-    label: "About",
-    href: "/about",
+    label: "Features",
+    href: "/features",
+  },
+  {
+    label: "Pricing",
+    href: "/pricing",
   },
   {
     label: "Contact",
