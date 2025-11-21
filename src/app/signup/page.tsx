@@ -3,14 +3,36 @@
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 
+import { api } from '@/lib/api';
+
 export default function SignupPage() {
   const router = useRouter();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    router.push("/dashboard");
+    setError(null);
+    setIsLoading(true);
+    try {
+      await api.post<{ user: { id: string } }>(
+        '/api/auth/signup',
+        {
+          fullName: name,
+          email,
+          password,
+        }
+      );
+      router.push('/dashboard');
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Unable to sign up';
+      setError(message);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -42,11 +64,24 @@ export default function SignupPage() {
               className="w-full rounded-2xl border border-[#F6BCCE] px-3 py-2 text-sm focus:border-[#3B1F1F] focus:outline-none"
             />
           </label>
+          <label className="space-y-1 text-sm">
+            <span className="text-[#3B1F1F]/80">Password</span>
+            <input
+              type="password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              required
+              minLength={6}
+              className="w-full rounded-2xl border border-[#F6BCCE] px-3 py-2 text-sm focus:border-[#3B1F1F] focus:outline-none"
+            />
+          </label>
+          {error && <p className="text-sm text-red-600">{error}</p>}
           <button
             type="submit"
-            className="w-full rounded-2xl bg-gradient-to-r from-[#F6BCCE] to-[#F9CFC3] px-4 py-2 text-sm font-semibold text-[#3B1F1F] shadow-inner"
+            disabled={isLoading}
+            className="w-full rounded-2xl bg-gradient-to-r from-[#F6BCCE] to-[#F9CFC3] px-4 py-2 text-sm font-semibold text-[#3B1F1F] shadow-inner disabled:opacity-60"
           >
-            Create account
+            {isLoading ? 'Creating account…' : 'Create account'}
           </button>
         </form>
         <p className="mt-6 text-center text-xs text-[#3B1F1F]/70">

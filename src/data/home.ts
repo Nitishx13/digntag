@@ -1,8 +1,4 @@
-export const homeSliderImages = [
-  'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=2000&q=80',
-  'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=2000&q=80',
-  'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=2000&q=80',
-];
+export const homeSliderImages = ['/herobanner.png'];
 
 export const homeFeaturedTemplates = [
   {

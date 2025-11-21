@@ -1,30 +1,32 @@
 import { Metadata } from 'next';
 import { Mail, MapPin, Phone } from 'lucide-react';
 
+import ContactForm from './ContactForm';
+
 export const metadata: Metadata = {
   title: 'Contact Us - Digntag',
   description: 'Get in touch with the Digntag team. We\'re here to help with any questions about our digital identity solutions.',
 };
 
-export default function ContactPage() {
-  const info = [
-    {
-      title: 'Our Office',
-      description: '123 Business Avenue, New York, NY 10001',
-      icon: MapPin
-    },
-    {
-      title: 'Email Us',
-      description: 'info@digntag.com\nsupport@digntag.com',
-      icon: Mail
-    },
-    {
-      title: 'Call Us',
-      description: '+1 (555) 123-4567\nMon – Fri, 9am – 6pm EST',
-      icon: Phone
-    }
-  ];
+const info = [
+  {
+    title: 'Our Office',
+    description: '123 Business Avenue, New York, NY 10001',
+    icon: MapPin
+  },
+  {
+    title: 'Email Us',
+    description: 'info@digntag.com\nsupport@digntag.com',
+    icon: Mail
+  },
+  {
+    title: 'Call Us',
+    description: '+1 (555) 123-4567\nMon – Fri, 9am – 6pm EST',
+    icon: Phone
+  }
+];
 
+export default function ContactPage() {
   return (
     <main className="bg-[#FFE0D0] py-24">
       <div className="mx-auto flex max-w-6xl flex-col gap-12 px-4 sm:px-6 lg:px-8">
@@ -55,56 +57,7 @@ export default function ContactPage() {
             ))}
           </div>
 
-          <div className="rounded-3xl border border-[#FFE0D0] bg-[#F9CFC3]/60 p-6 shadow-inner">
-            <h2 className="text-2xl font-semibold text-[#3B1F1F]">Send us a Message</h2>
-            <form className="mt-6 space-y-4">
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                {['First name', 'Last name'].map((label) => (
-                  <div key={label}>
-                    <label className="block text-xs font-semibold uppercase tracking-wide text-[#3B1F1F]/70">
-                      {label}
-                    </label>
-                    <input
-                      className="mt-1 w-full rounded-2xl border border-[#FFE0D0] bg-white/70 px-3 py-2 text-sm text-[#3B1F1F] shadow-sm focus:border-[#F6BCCE] focus:ring-2 focus:ring-[#F6BCCE]/50"
-                      type="text"
-                      placeholder={label}
-                    />
-                  </div>
-                ))}
-              </div>
-
-              {['Email', 'Subject'].map((label) => (
-                <div key={label}>
-                  <label className="block text-xs font-semibold uppercase tracking-wide text-[#3B1F1F]/70">
-                    {label}
-                  </label>
-                  <input
-                    className="mt-1 w-full rounded-2xl border border-[#FFE0D0] bg-white/70 px-3 py-2 text-sm text-[#3B1F1F] shadow-sm focus:border-[#F6BCCE] focus:ring-2 focus:ring-[#F6BCCE]/50"
-                    type={label === 'Email' ? 'email' : 'text'}
-                    placeholder={label}
-                  />
-                </div>
-              ))}
-
-              <div>
-                <label className="block text-xs font-semibold uppercase tracking-wide text-[#3B1F1F]/70">
-                  Message
-                </label>
-                <textarea
-                  rows={4}
-                  className="mt-1 w-full rounded-2xl border border-[#FFE0D0] bg-white/70 px-3 py-2 text-sm text-[#3B1F1F] shadow-sm focus:border-[#F6BCCE] focus:ring-2 focus:ring-[#F6BCCE]/50"
-                  placeholder="Share your project details"
-                ></textarea>
-              </div>
-
-              <button
-                type="submit"
-                className="w-full rounded-2xl bg-[#3B1F1F] px-4 py-3 text-sm font-semibold text-[#FFE0D0] shadow-lg transition hover:bg-[#4A1D1D]"
-              >
-                Send Message
-              </button>
-            </form>
-          </div>
+          <ContactForm />
         </section>
       </div>
     </main>

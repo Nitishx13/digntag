@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { CreditCard, Share2, Activity, Download } from 'lucide-react';
 
-import { homeSliderImages, homeFeaturedTemplates } from '@/data/home';
+import { homeSliderImages } from '@/data/home';
 
 // Import Components
 import Features from '@/components/sections/Features';
@@ -12,7 +12,49 @@ import Testimonials from '@/components/sections/Testimonials';
 import CTA from '@/components/sections/CTA';
 
 const sliderImages = homeSliderImages;
-const featuredTemplates = homeFeaturedTemplates;
+
+const featuredInviteCards = [
+  {
+    id: 'radha-krishna',
+    badge: '3 Pages',
+    topLine: 'Save the date',
+    dateLine: 'Sunday · July 28 · 2025',
+    names: 'Dhruv & Harshi',
+    caption: 'Digital Radha Krishna Wedding Card — Editable Online Invitation',
+    gradient: 'from-[#FFF3EA] via-[#FFE8DC] to-[#FFE0D0]',
+    art: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=60',
+  },
+  {
+    id: 'lotus-floral',
+    badge: '1 Page',
+    topLine: 'Save the date',
+    dateLine: 'Wednesday · Dec 20 · 2028',
+    names: 'Kapil & Sapna',
+    caption: 'Lotus Floral Wedding E-Invite — Editable Digital Template',
+    gradient: 'from-[#FFF3EA] via-[#FFE8DC] to-[#FFE0D0]',
+    art: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=800&q=60',
+  },
+  {
+    id: 'modern-minimal',
+    badge: '1 Page',
+    topLine: 'Wedding Invitation',
+    dateLine: 'Tuesday · Feb 11 · 2025',
+    names: 'Dhruv & Harshi',
+    caption: 'Modern Minimalist Wedding Invitation — Digital Download',
+    gradient: 'from-[#FFF3EA] via-[#FFE8DC] to-[#FFE0D0]',
+    art: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=800&q=60',
+  },
+  {
+    id: 'pink-card',
+    badge: '3 Pages',
+    topLine: 'Wedding Invitation',
+    dateLine: 'Tuesday · Aug 05 · 2025',
+    names: 'Agarwal & Anaisha',
+    caption: 'Pink Wedding Invitation Card — Editable Digital Template',
+    gradient: 'from-[#FFF3EA] via-[#FFE8DC] to-[#FFE0D0]',
+    art: 'https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=800&q=60',
+  },
+];
 
 export default function Home() {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -62,12 +104,12 @@ export default function Home() {
       </section>
 
       {/* Featured invites */}
-      <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 mt-14">
-        <div className="rounded-3xl border border-[#FFE0D0] bg-white/90 p-6 shadow-lg space-y-6">
+      <section className="w-full px-4 sm:px-8 lg:px-16 mt-14">
+        <div className="rounded-3xl border border-[#FFE0D0] bg-white/90 p-8 shadow-lg space-y-6">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
               <p className="text-xs uppercase tracking-[0.4em] text-[#3B1F1F]/60">Featured invites</p>
-              <h2 className="mt-2 text-2xl font-semibold text-[#3B1F1F]">Handpicked templates customers love</h2>
+              <h2 className="mt-2 text-2xl font-semibold text-[#3B1F1F]">Browse wedding reels like these</h2>
             </div>
             <Link
               href="/shop"
@@ -76,38 +118,17 @@ export default function Home() {
               See all
             </Link>
           </div>
-          <p className="text-sm text-[#3B1F1F]/70">
-            Browse cinematic wedding, anniversary, and business layouts. Each template is crafted with premium gradients and typography for instant wow.
-          </p>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {featuredTemplates.map((template) => (
-              <article key={template.id} className="rounded-2xl border border-[#FFE0D0] bg-white p-4 shadow-sm">
-                <div className="flex items-center justify-between text-xs uppercase tracking-[0.3em] text-[#3B1F1F]/60">
-                  <span>{template.tag}</span>
-                  <span
-                    className="rounded-full bg-[#FFF1EB] px-2 py-1 text-[10px] font-semibold"
-                    style={{ color: template.accent }}
-                  >
-                    Featured
-                  </span>
+
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {featuredInviteCards.map((card) => (
+              <article
+                key={card.id}
+                className={`flex flex-col rounded-[32px] border border-[#FFE0D0] bg-gradient-to-b ${card.gradient} p-4 text-center shadow-[0_20px_40px_rgba(59,31,31,0.15)]`}
+              >
+                <div className="w-full overflow-hidden rounded-[28px] border border-white/60 bg-white/30">
+                  <img src={card.art} alt={card.names} className="h-[320px] w-full object-cover" />
                 </div>
-                <h3 className="mt-4 text-xl font-semibold text-[#3B1F1F]">{template.title}</h3>
-                <p className="text-sm text-[#3B1F1F]/70">{template.subtitle}</p>
-                <div className="mt-4 flex items-center justify-between">
-                  <Link
-                    href="/login"
-                    className="text-xs font-semibold uppercase tracking-[0.3em]"
-                    style={{ color: template.accent }}
-                  >
-                    Preview
-                  </Link>
-                  <span
-                    className="inline-flex h-9 w-9 items-center justify-center rounded-full text-base font-bold text-white"
-                    style={{ backgroundColor: template.accent }}
-                  >
-                    →
-                  </span>
-                </div>
+                <p className="mt-4 text-[13px] font-medium text-[#3B1F1F]">{card.caption}</p>
               </article>
             ))}
           </div>
@@ -115,7 +136,7 @@ export default function Home() {
       </section>
 
       {/* Select / Share / Track callouts */}
-      <section className="mx-auto mt-14 max-w-6xl px-4 sm:px-6 lg:px-8 pb-14">
+      <section className="w-full mt-14 px-4 sm:px-8 lg:px-16 pb-14">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-4 md:gap-8">
           {[
             {
@@ -169,15 +190,15 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="w-full">
+      <div className="w-full px-0">
         <Features />
       </div>
 
-      <div className="w-full">
+      <div className="w-full px-0">
         <Testimonials />
       </div>
 
-      <div className="w-full">
+      <div className="w-full px-0 pb-10">
         <CTA />
       </div>
 

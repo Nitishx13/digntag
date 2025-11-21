@@ -81,9 +81,9 @@ export function Nav() {
             </a>
             <a
               href="/shop"
-              className="px-4 py-2 bg-[#F6BCCE] hover:bg-[#F9CFC3] text-[#3B1F1F] text-sm font-medium rounded-md transition-colors"
+              className="px-5 py-2 text-sm font-semibold rounded-full bg-gradient-to-r from-[#FF9A8B] via-[#FAD0C4] to-[#FF9A8B] text-[#3B1F1F] shadow-[0_10px_25px_rgba(250,160,150,0.45)] hover:scale-105 transition-all"
             >
-              Store
+              ★ Store
             </a>
           </div>
 
@@ -122,9 +122,9 @@ export function Nav() {
               </a>
               <a
                 href="/shop"
-                className="block w-full text-center px-3 py-2 bg-[#F6BCCE] text-[#3B1F1F] font-medium rounded-md hover:bg-[#F9CFC3]"
+                className="block w-full text-center px-3 py-2 text-[#3B1F1F] font-semibold rounded-full bg-gradient-to-r from-[#FF9A8B] via-[#FAD0C4] to-[#FF9A8B] shadow hover:scale-[1.02] transition"
               >
-                Store
+                ★ Store
               </a>
             </div>
           </div>

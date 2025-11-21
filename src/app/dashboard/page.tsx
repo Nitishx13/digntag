@@ -1,5 +1,9 @@
 "use client";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
+import { useRouter } from "next/navigation";
+
+import { auth } from '@/lib/auth';
+import { api } from '@/lib/api';
 
 type UniversalCategory = "all" | "wedding" | "business" | "creator" | "personal";
 
@@ -80,8 +84,67 @@ const payments = [
   { label: "Business Minimal", amount: "₹2,199", date: "Oct 12, 2025", status: "Paid" },
 ];
 
+const createInitialFormValues = (): Record<UniversalCategory, Record<string, string>> => {
+  const initial = {} as Record<UniversalCategory, Record<string, string>>;
+  formCategories.forEach(({ key }) => {
+    const fields = universalFormConfig[key].fields;
+    initial[key] = fields.reduce((acc, field) => {
+      acc[field.label] = "";
+      return acc;
+    }, {} as Record<string, string>);
+  });
+  return initial;
+};
+
 export default function DashboardPage() {
+  const router = useRouter();
   const [formCategory, setFormCategory] = useState<UniversalCategory>("all");
+  const [formValues, setFormValues] = useState<Record<UniversalCategory, Record<string, string>>>(createInitialFormValues);
+  const [submitMessage, setSubmitMessage] = useState<string | null>(null);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleLogout = () => {
+    auth.clear();
+    router.push('/login');
+  };
+
+  const handleFieldChange = (label: string, value: string) => {
+    setFormValues((prev) => ({
+      ...prev,
+      [formCategory]: {
+        ...prev[formCategory],
+        [label]: value,
+      },
+    }));
+  };
+
+  const handleBriefSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setSubmitError(null);
+    setSubmitMessage(null);
+    setIsSubmitting(true);
+    try {
+      const payload = formValues[formCategory];
+      await api.post<{ brief: { id: string } }>(
+        '/api/briefs',
+        {
+          category: formCategory,
+          payload,
+        }
+      );
+      setFormValues((prev) => ({
+        ...prev,
+        [formCategory]: { ...createInitialFormValues()[formCategory] },
+      }));
+      router.push('/thank-you');
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Unable to submit brief';
+      setSubmitError(message);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <main className="bg-[#fff7f2] min-h-screen py-12">
@@ -103,7 +166,12 @@ export default function DashboardPage() {
               Live tracking
             </button>
             <button className="rounded-full border border-[#3B1F1F] px-4 py-2 text-sm font-semibold text-[#3B1F1F]">Help</button>
-            <button className="rounded-full bg-[#3B1F1F] px-4 py-2 text-sm font-semibold text-[#FFE0D0]">Logout</button>
+            <button
+              onClick={handleLogout}
+              className="rounded-full bg-[#3B1F1F] px-4 py-2 text-sm font-semibold text-[#FFE0D0]"
+            >
+              Logout
+            </button>
           </div>
         </header>
 
@@ -130,13 +198,15 @@ export default function DashboardPage() {
                 <h2 className="mt-2 text-2xl font-semibold text-[#3B1F1F]">{universalFormConfig[formCategory].title}</h2>
                 <p className="mt-2 text-sm text-[#3B1F1F]/70">{universalFormConfig[formCategory].subtitle}</p>
               </div>
-              <form className="mt-6 space-y-4">
+              <form className="mt-6 space-y-4" onSubmit={handleBriefSubmit}>
                 {universalFormConfig[formCategory].fields.map((field) => (
                   <div key={field.label}>
                     <label className="text-sm font-medium text-[#3B1F1F]">{field.label}</label>
                     {field.type === "textarea" ? (
                       <textarea
                         placeholder={field.placeholder}
+                        value={formValues[formCategory][field.label] ?? ""}
+                        onChange={(event) => handleFieldChange(field.label, event.target.value)}
                         className="mt-2 w-full rounded-2xl border border-[#F6BCCE] px-5 py-3 text-sm text-[#3B1F1F] placeholder:text-[#C8A8A8] focus:border-[#FF6B92] focus:outline-none"
                         rows={4}
                       />
@@ -144,6 +214,8 @@ export default function DashboardPage() {
                       <input
                         type={field.type ?? "text"}
                         placeholder={field.placeholder}
+                        value={formValues[formCategory][field.label] ?? ""}
+                        onChange={(event) => handleFieldChange(field.label, event.target.value)}
                         className="mt-2 w-full rounded-full border border-[#F6BCCE] px-5 py-3 text-sm text-[#3B1F1F] placeholder:text-[#C8A8A8] focus:border-[#FF6B92] focus:outline-none"
                       />
                     )}
@@ -157,12 +229,15 @@ export default function DashboardPage() {
                     Save draft
                   </button>
                   <button
-                    type="button"
-                    className="rounded-full bg-gradient-to-r from-[#FF8FB1] to-[#FF6B92] px-8 py-2 text-sm font-semibold text-white shadow-lg"
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="rounded-full bg-gradient-to-r from-[#FF8FB1] to-[#FF6B92] px-8 py-2 text-sm font-semibold text-white shadow-lg disabled:opacity-60"
                   >
-                    Share brief →
+                    {isSubmitting ? 'Sharing…' : 'Share brief →'}
                   </button>
                 </div>
+                {submitMessage && <p className="text-sm text-green-600">{submitMessage}</p>}
+                {submitError && <p className="text-sm text-red-600">{submitError}</p>}
               </form>
             </div>
             <div className="rounded-3xl border border-[#FFE0D0] bg-[#FFF7F3] p-6">
