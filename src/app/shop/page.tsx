@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useCards } from "@/store/cards";
+import { CardTile } from "@/components/card-tile";
 
 const templates = [
   {
@@ -40,7 +41,7 @@ const templates = [
 
 export default function ShopPage() {
   const [filter, setFilter] = useState<string>("all");
-  const { add } = useCards();
+  const { add, cards } = useCards();
   const router = useRouter();
 
   const filtered = filter === "all" ? templates : templates.filter((t) => t.category === filter);
@@ -61,6 +62,7 @@ export default function ShopPage() {
       theme: t.theme,
       sections: [
         { type: "hero", data: { heading: t.name, sub: t.category === "wedding" ? "Our Wedding" : "" } },
+        { type: "media", data: { type: "video", src: "/reel1.mp4", label: "Wedding rehearsal" } },
         { type: "links", data: [{ label: "Primary", url: "#" }] },
       ],
       stats: { views: 0, clicks: 0 },
@@ -103,6 +105,38 @@ export default function ShopPage() {
         </div>
       </section>
 
+
+
+      <section className="mx-auto mt-10 max-w-6xl">
+        <div className="rounded-3xl border border-[#FFE0D0] bg-white/90 p-6 shadow-lg">
+          <div className="flex items-center justify-between">
+            <h2 className="text-lg font-semibold text-[#3B1F1F]">My templates</h2>
+            <span className="text-xs uppercase tracking-[0.3em] text-[#F6BCCE]">
+              {cards.length} saved
+            </span>
+          </div>
+          <div className="mt-4 grid grid-cols-1 gap-4">
+            {cards.length === 0 ? (
+              <div className="rounded-2xl border border-dashed border-[#F6BCCE]/50 bg-[#fff5ef] p-5 text-sm text-[#3B1F1F]/70">
+                You haven’t selected a template yet. Click “I want this” below to save one.
+              </div>
+            ) : (
+              cards.map((card) => (
+                <div key={card.id} className="rounded-2xl border border-[#F6BCCE]/60 bg-white p-4 shadow-sm">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-semibold text-[#3B1F1F]">{card.title}</p>
+                      <p className="text-xs text-[#3B1F1F]/60">/{card.slug}</p>
+                    </div>
+                    <span className="text-xs uppercase tracking-[0.3em] text-[#F6BCCE]">{card.template}</span>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+      </section>
+
       <section className="mx-auto mt-10 max-w-6xl">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           {filtered.map((t) => (
@@ -122,15 +156,29 @@ export default function ShopPage() {
                 </div>
                 <p className="mt-3 text-sm text-[#3B1F1F]/70">{t.description}</p>
               </div>
-              <div className="mt-6 rounded-2xl border border-[#F6BCCE] bg-gradient-to-br from-[#F6EBCC] to-[#FFF0F5] p-4">
-                <div className={`h-24 w-full rounded-md bg-gradient-to-br ${t.previewClass}`} />
+              <div className="mt-6 rounded-2xl border border-[#F6BCCE] bg-white/80 p-1">
+                <div className="relative h-44 w-full overflow-hidden rounded-[20px] bg-gradient-to-br">
+                  {t.id === "wedding-classic" ? (
+                    <video
+                      className="absolute inset-0 h-full w-full object-cover"
+                      src="/reel1.mp4"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      controls={false}
+                    />
+                  ) : (
+                    <div className={`h-full w-full bg-gradient-to-br ${t.previewClass}`} />
+                  )}
+                </div>
               </div>
               <div className="mt-6 flex items-center justify-between">
                 <button
                   onClick={() => useTemplate(t)}
                   className="rounded-full bg-[#3B1F1F] px-4 py-2 text-sm font-semibold text-[#FFE0D0] shadow-lg transition hover:bg-[#4A1D1D]"
                 >
-                  Use template
+                  I want this
                 </button>
                 <span className="text-xs font-semibold uppercase tracking-[0.4em] text-[#F6BCCE]">Instant</span>
               </div>
