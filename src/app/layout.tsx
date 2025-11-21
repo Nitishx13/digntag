@@ -34,7 +34,7 @@ export default function RootLayout({
         suppressHydrationWarning={suppressHydrationWarning}
       >
         <Nav />
-        <main className="w-full pt-20">
+        <main className="w-full pt-16">
           {children}
         </main>
         <Footer />
