@@ -14,7 +14,7 @@ export default function Header() {
               <li><Link href="/features" className="text-sm font-medium text-zinc-700 hover:text-zinc-900">Features</Link></li>
               <li><Link href="/pricing" className="text-sm font-medium text-zinc-700 hover:text-zinc-900">Pricing</Link></li>
               <li><Link href="/login" className="text-sm font-medium text-zinc-700 hover:text-zinc-900">Login</Link></li>
-              <li><Link href="/signup" className="rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800">Get Started</Link></li>
+              <li><Link href="/signup" className="rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800">Store</Link></li>
             </ul>
           </nav>
         </div>
