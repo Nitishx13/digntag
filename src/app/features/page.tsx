@@ -9,102 +9,76 @@ export default function FeaturesPage() {
   const features = [
     {
       title: 'Digital ID Cards',
-      description: 'Create professional digital business cards that you can share with anyone, anywhere. Update your information in real-time without reprinting.',
-      icon: (
-        <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-        </svg>
-      ),
-      link: '/#digital-id'
+      description:
+        'Share your identity with a pastel-first digital card that stays up to date automatically.',
+      highlight: '#F6BCCE'
     },
     {
       title: 'Business Profiles',
-      description: 'Showcase your business with a professional profile that includes all your important information, services, and contact details in one place.',
-      icon: (
-        <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-        </svg>
-      ),
-      link: '/#business-profiles'
+      description:
+        'Create a beautifully curated profile that showcases services, socials, and contact details in one place.',
+      highlight: '#F9CFC3'
     },
     {
       title: 'Networking Tools',
-      description: 'Connect with other professionals, exchange digital cards, and grow your network with our powerful networking tools.',
-      icon: (
-        <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-        </svg>
-      ),
-      link: '/#networking'
+      description:
+        'Exchange cards, schedule follow-ups, and keep track of new relationships using Digntag networking tools.',
+      highlight: '#FFE0D0'
     },
     {
       title: 'Analytics',
-      description: 'Track who views your profile, which links get the most clicks, and gain valuable insights to grow your professional presence.',
-      icon: (
-        <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-        </svg>
-      ),
-      link: '/#analytics'
+      description:
+        'See who viewed you, which links convert, and what to focus on next with gentle visual reports.',
+      highlight: '#F6EBCC'
     }
   ];
 
   return (
-    <main className="min-h-screen pt-24 pb-16 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
-            Powerful <span className="text-blue-600">Features</span>
-          </h1>
-          <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-500">
-            Everything you need to manage your digital identity and grow your professional network
-          </p>
-        </div>
-
-        <div className="mt-16 grid grid-cols-1 gap-12 md:grid-cols-2">
-          {features.map((feature, index) => (
-            <div key={index} className="relative">
-              <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-blue-100 text-white">
-                {feature.icon}
-              </div>
-              <div className="ml-16">
-                <h3 className="text-lg font-medium text-gray-900">
-                  <a href={feature.link} className="hover:text-blue-600 transition-colors">
-                    {feature.title}
-                    <span className="absolute inset-0" aria-hidden="true"></span>
-                  </a>
-                </h3>
-                <p className="mt-2 text-base text-gray-500">
-                  {feature.description}
-                </p>
-                <div className="mt-3">
-                  <a href={feature.link} className="text-sm font-medium text-blue-600 hover:text-blue-500">
-                    Learn more <span aria-hidden="true">→</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-16 bg-blue-50 rounded-2xl p-8 md:p-12">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-              Ready to get started?
-            </h2>
-            <p className="mt-4 text-lg text-gray-600">
-              Join thousands of professionals who trust Digntag for their digital identity needs.
+    <main className="bg-[#FFE0D0] py-24">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-4 sm:px-6 lg:px-8">
+        <section className="rounded-3xl border border-[#F6BCCE]/60 bg-white/90 p-10 shadow-xl backdrop-blur">
+          <div className="text-center">
+            <p className="text-sm uppercase tracking-[0.4em] text-[#3B1F1F]/60">Features</p>
+            <h1 className="mt-4 text-4xl font-extrabold text-[#3B1F1F] sm:text-5xl lg:text-6xl">
+              Everything you need for your digital identity
+            </h1>
+            <p className="mx-auto mt-4 max-w-3xl text-lg text-[#3B1F1F]/80">
+              Digntag helps you share a cohesive identity across cards, profiles, and networks with a pastel polish.
             </p>
-            <div className="mt-8 flex justify-center">
-              <a
-                href="/signup"
-                className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-              >
-                Get Started Today
-              </a>
-            </div>
           </div>
-        </div>
+        </section>
+
+        <section className="grid gap-6 rounded-3xl border border-[#FFE0D0] bg-white p-8 shadow-lg md:grid-cols-2">
+          {features.map((feature) => (
+            <article
+              key={feature.title}
+              className="relative flex h-full flex-col rounded-2xl border border-[#F6BCCE] bg-white p-6 shadow transition hover:-translate-y-1"
+            >
+              <div
+                className="mb-4 h-12 w-12 rounded-xl"
+                style={{ backgroundColor: feature.highlight, color: '#3B1F1F' }}
+              ></div>
+              <h2 className="text-2xl font-semibold text-[#3B1F1F]">{feature.title}</h2>
+              <p className="mt-2 text-sm text-[#3B1F1F]/80 flex-1">{feature.description}</p>
+              <div className="mt-6 text-sm font-semibold text-[#F6BCCE]">Learn more →</div>
+            </article>
+          ))}
+        </section>
+
+        <section className="rounded-3xl border border-[#3B1F1F] bg-[#3B1F1F] p-10 text-[#FFE0D0] shadow-2xl">
+          <div className="text-center">
+            <h2 className="text-3xl font-semibold">Ready to explore?</h2>
+            <p className="mt-4 text-[#F9CFC3]">
+              Start using Digntag for all your cards, profiles, and networking needs.
+            </p>
+            <a
+              href="/signup"
+              className="mt-6 inline-flex rounded-lg bg-[#F6BCCE] px-6 py-3 text-sm font-semibold text-[#3B1F1F] shadow-lg transition hover:bg-[#F9CFC3]"
+            >
+              Get Started Today
+            </a>
+          </div>
+        </section>
       </div>
     </main>
   );

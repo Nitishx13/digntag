@@ -7,98 +7,87 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
+  const values = [
+    {
+      name: 'Innovation',
+      description: 'We push boundaries to deliver cutting-edge solutions that feel personal and intentional.'
+    },
+    {
+      name: 'Simplicity',
+      description: 'Complex technology becomes effortless with thoughtful interactions and design.'
+    },
+    {
+      name: 'Integrity',
+      description: 'We build trust through transparency and by always putting you first.'
+    }
+  ];
+
   return (
-    <main className="min-h-screen pt-24 pb-16 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
-            About <span className="text-blue-600">Digntag</span>
-          </h1>
-          <p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-            Empowering your digital presence with innovative solutions
-          </p>
-        </div>
-
-        <div className="mt-16">
-          <div className="lg:grid lg:grid-cols-2 lg:gap-8">
-            <div className="mb-12 lg:mb-0">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Story</h2>
-              <div className="prose prose-lg text-gray-500 space-y-6">
-                <p>
-                  Founded in 2023, Digntag was born from a simple idea: to make digital identity management 
-                  accessible to everyone. We believe that in today's digital world, your online presence 
-                  should be as unique and professional as you are.
-                </p>
-                <p>
-                  Our team of passionate developers and designers work tirelessly to create tools that help 
-                  individuals and businesses establish a strong, cohesive digital identity across all platforms.
-                </p>
-              </div>
-            </div>
-
-            <div className="lg:mt-0">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Mission</h2>
-              <div className="prose prose-lg text-gray-500 space-y-6">
-                <p>
-                  At Digntag, we're on a mission to simplify digital identity management. We want to help 
-                  you create a professional online presence that truly represents who you are and what you do.
-                </p>
-                <p>
-                  Whether you're an individual professional, a small business, or a large enterprise, our 
-                  tools are designed to help you stand out in the digital landscape.
-                </p>
-              </div>
-            </div>
+    <main className="bg-[#FFE0D0] py-24">
+      <div className="mx-auto flex max-w-6xl flex-col gap-12 px-4 sm:px-6 lg:px-8">
+        <section className="rounded-3xl border border-[#F6BCCE]/60 bg-white/80 p-10 shadow-xl backdrop-blur">
+          <div className="text-center">
+            <p className="text-sm uppercase tracking-[0.4em] text-[#3B1F1F]/60">About</p>
+            <h1 className="mt-4 text-4xl font-extrabold text-[#3B1F1F] sm:text-5xl lg:text-6xl">
+              Digntag <span className="text-[#F6BCCE]">in Detail</span>
+            </h1>
+            <p className="mx-auto mt-4 max-w-3xl text-lg text-[#3B1F1F]/80">
+              We’re building a pastel-first digital identity studio where everything from id cards to networking tools
+              feels intentional, vibrant, and ready for your brand story.
+            </p>
           </div>
+        </section>
 
-          <div className="mt-20">
-            <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">Our Values</h2>
-            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {[
-                {
-                  name: 'Innovation',
-                  description: 'We constantly push boundaries to deliver cutting-edge solutions that set new standards in digital identity management.'
-                },
-                {
-                  name: 'Simplicity',
-                  description: 'We believe in making complex technology simple and accessible to everyone, regardless of technical expertise.'
-                },
-                {
-                  name: 'Integrity',
-                  description: 'We build trust through transparency, honesty, and by always putting our users first in every decision we make.'
-                }
-              ].map((value) => (
-                <div key={value.name} className="pt-6
-                ">
-                  <div className="flow-root bg-gray-50 rounded-lg px-6 pb-8 h-full">
-                    <div className="-mt-6">
-                      <div className="flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white">
-                        <span className="text-xl font-bold">{value.name[0]}</span>
-                      </div>
-                      <h3 className="mt-8 text-lg font-medium text-gray-900">{value.name}</h3>
-                      <p className="mt-5 text-base text-gray-500">
-                        {value.description}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+        <section className="grid gap-10 rounded-3xl border border-[#FFE0D0] bg-white p-8 shadow-xl md:grid-cols-2">
+          <div>
+            <h2 className="text-3xl font-bold text-[#3B1F1F]">Our Story</h2>
+            <p className="mt-4 text-[#3B1F1F]/80">
+              Founded in 2023, Digntag was born from a simple idea: make digital identity management accessible to
+              everyone. Your online presence should be as unique, beautiful, and professional as you are.
+            </p>
+            <p className="mt-4 text-[#3B1F1F]/80">
+              Our team of designers and engineers craft experiences that feel thoughtful and effortless so you can
+              share your brand confidently.
+            </p>
           </div>
+          <div>
+            <h2 className="text-3xl font-bold text-[#3B1F1F]">Our Mission</h2>
+            <p className="mt-4 text-[#3B1F1F]/80">
+              We simplify digital identity so you can focus on what matters—building connections and growing your
+              presence.
+            </p>
+            <p className="mt-4 text-[#3B1F1F]/80">
+              Whether you’re a freelancer or a growing business, our platform keeps every touchpoint aligned and on brand.
+            </p>
+          </div>
+        </section>
 
-          <div className="mt-20 text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">Ready to get started?</h2>
-            <p className="text-xl text-gray-500 max-w-2xl mx-auto mb-8">
-              Join thousands of satisfied users who trust Digntag for their digital identity needs.
+        <section className="grid gap-6 rounded-3xl border border-[#F6BCCE]/60 bg-[#fff] p-8 shadow-lg md:grid-cols-3">
+          {values.map((value) => (
+            <div key={value.name} className="rounded-2xl border border-[#FFE0D0] bg-white p-6 text-center shadow-sm">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[#F6BCCE] text-xl font-bold text-[#3B1F1F]">
+                {value.name[0]}
+              </div>
+              <h3 className="mb-2 text-xl font-semibold text-[#3B1F1F]">{value.name}</h3>
+              <p className="text-sm text-[#3B1F1F]/80">{value.description}</p>
+            </div>
+          ))}
+        </section>
+
+        <section className="rounded-3xl border border-[#3B1F1F] bg-[#3B1F1F] p-10 text-[#FFE0D0] shadow-2xl">
+          <div className="text-center">
+            <h2 className="text-3xl font-semibold">Ready to craft your pastel identity?</h2>
+            <p className="mt-4 text-[#F9CFC3]">
+              Join thousands of creators trusting Digntag for beautiful, memorable digital experiences.
             </p>
             <Link
               href="/"
-              className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              className="mt-6 inline-flex rounded-lg bg-[#F6BCCE] px-6 py-3 text-sm font-semibold text-[#3B1F1F] shadow-lg transition hover:bg-[#F9CFC3]"
             >
               Get Started Today
             </Link>
           </div>
-        </div>
+        </section>
       </div>
     </main>
   );

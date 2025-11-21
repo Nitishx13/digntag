@@ -6,37 +6,37 @@ const features = [
     icon: Heart,
     title: "RSVP & Guest Management",
     description: "Easily collect responses, meal preferences, and special notes from your guests.",
-    color: { bg: 'bg-pink-100', text: 'text-pink-600' }
+    accent: '#F6BCCE'
   },
   {
     icon: Calendar,
     title: "Event Schedule",
     description: "Create a detailed timeline of your event with multiple ceremonies and activities.",
-    color: { bg: 'bg-amber-100', text: 'text-amber-600' }
+    accent: '#F9CFC3'
   },
   {
     icon: MapPin,
     title: "Interactive Maps",
     description: "Help guests find their way with embedded maps and custom directions.",
-    color: { bg: 'bg-blue-100', text: 'text-blue-600' }
+    accent: '#FFE0D0'
   },
   {
     icon: Images,
     title: "Photo Gallery",
     description: "Share your love story and event photos in a beautiful gallery format.",
-    color: { bg: 'bg-purple-100', text: 'text-purple-600' }
+    accent: '#F6EBCC'
   },
   {
     icon: QrCode,
     title: "QR Code & Links",
     description: "Share your digital invitation with a simple link or printable QR code.",
-    color: { bg: 'bg-indigo-100', text: 'text-indigo-600' }
+    accent: '#F6BCCE'
   },
   {
     icon: BarChart3,
     title: "Real-time Analytics",
     description: "Track who's viewed your invitation and monitor engagement in real-time.",
-    color: { bg: 'bg-emerald-100', text: 'text-emerald-600' }
+    accent: '#E9D3C2'
   }
 ];
 
@@ -73,13 +73,16 @@ export default function Features() {
               whileInView="show"
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: index * 0.1 }}
-              className="group relative overflow-hidden rounded-2xl border border-zinc-100 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+              className="group relative overflow-hidden rounded-2xl border border-[#FFE0D0] bg-[#FFFFFF] p-6 shadow-lg transition-all duration-300 hover:-translate-y-1"
             >
-              <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-opacity-10 ${feature.color.bg} ${feature.color.text}`}>
+              <div
+                className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl"
+                style={{ backgroundColor: feature.accent, color: '#3B1F1F' }}
+              >
                 <feature.icon className="h-6 w-6" />
               </div>
-              <h3 className="mb-2 text-lg font-semibold text-zinc-900">{feature.title}</h3>
-              <p className="text-sm text-zinc-600">{feature.description}</p>
+              <h3 className="mb-2 text-lg font-semibold text-[#3B1F1F]">{feature.title}</h3>
+              <p className="text-sm text-[#3B1F1F]/80">{feature.description}</p>
             </motion.div>
           ))}
         </div>

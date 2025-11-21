@@ -68,53 +68,76 @@ export default function ShopPage() {
     router.push("/dashboard");
   }
 
+  const filters = [
+    { key: "all", label: "All" },
+    { key: "wedding", label: "Wedding" },
+    { key: "business", label: "Business" },
+    { key: "creator", label: "Creator" },
+    { key: "personal", label: "Personal" },
+  ];
+
   return (
-    <main>
-      <div className="mb-6">
-        <h1 className="text-2xl font-semibold tracking-tight">Shop cards</h1>
-        <p className="text-zinc-600 text-sm mt-1">Browse and select a template to start your card.</p>
-      </div>
+    <main className="bg-[#FFE0D0] py-12">
+      <section className="mx-auto max-w-6xl rounded-3xl border border-[#F6BCCE]/60 bg-white/80 p-10 shadow-xl backdrop-blur">
+        <div className="text-center">
+          <p className="text-sm uppercase tracking-[0.4em] text-[#3B1F1F]/60">Shop</p>
+          <h1 className="mt-4 text-4xl font-bold text-[#3B1F1F]">Curated card templates</h1>
+          <p className="mx-auto mt-4 max-w-3xl text-lg text-[#3B1F1F]/70">
+            Pick a layout, customize the colors, and publish your digital ID in minutes.
+          </p>
+        </div>
+        <div className="mt-8 flex flex-wrap justify-center gap-2">
+          {filters.map((f) => (
+            <button
+              key={f.key}
+              onClick={() => setFilter(f.key)}
+              className={`rounded-full border px-4 py-2 text-sm font-medium transition ${
+                filter === f.key
+                  ? "border-[#3B1F1F] bg-[#3B1F1F] text-[#FFE0D0]"
+                  : "border-[#F6BCCE] text-[#3B1F1F] hover:border-[#3B1F1F] hover:bg-[#F9CFC3]"
+              }`}
+            >
+              {f.label}
+            </button>
+          ))}
+        </div>
+      </section>
 
-      <div className="mb-4 flex flex-wrap items-center gap-2 text-sm">
-        {[
-          { key: "all", label: "All" },
-          { key: "wedding", label: "Wedding" },
-          { key: "business", label: "Business" },
-          { key: "creator", label: "Creator" },
-          { key: "personal", label: "Personal" },
-        ].map((f) => (
-          <button
-            key={f.key}
-            onClick={() => setFilter(f.key)}
-            className={`rounded-md border px-3 py-1.5 ${
-              filter === f.key ? "bg-zinc-900 text-white border-zinc-900" : "hover:bg-zinc-50"
-            }`}
-          >
-            {f.label}
-          </button>
-        ))}
-      </div>
-
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        {filtered.map((t) => (
-          <div key={t.id} className="rounded-xl border bg-white p-5">
-            <div className="flex items-center justify-between">
+      <section className="mx-auto mt-10 max-w-6xl">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          {filtered.map((t) => (
+            <article
+              key={t.id}
+              className="flex h-full flex-col justify-between rounded-3xl border border-[#FFE0D0] bg-white p-6 shadow-lg transition hover:-translate-y-1"
+            >
               <div>
-                <h3 className="text-base font-semibold tracking-tight">{t.name}</h3>
-                <p className="text-xs capitalize text-zinc-500">{t.category}</p>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="text-xl font-semibold text-[#3B1F1F]">{t.name}</h3>
+                    <p className="text-xs uppercase tracking-[0.4em] text-[#3B1F1F]/60">{t.category}</p>
+                  </div>
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-[#FFE0D0] text-sm font-bold text-[#3B1F1F]">
+                    {t.category.charAt(0).toUpperCase()}
+                  </span>
+                </div>
+                <p className="mt-3 text-sm text-[#3B1F1F]/70">{t.description}</p>
               </div>
-              <button
-                onClick={() => useTemplate(t)}
-                className="rounded-md bg-zinc-900 px-3 py-1.5 text-sm text-white hover:bg-zinc-800"
-              >
-                Use template
-              </button>
-            </div>
-            <p className="mt-2 text-sm text-zinc-600">{t.description}</p>
-            <div className={`mt-4 h-28 rounded-md bg-gradient-to-br ${t.previewClass}`} />
-          </div>
-        ))}
-      </div>
+              <div className="mt-6 rounded-2xl border border-[#F6BCCE] bg-gradient-to-br from-[#F6EBCC] to-[#FFF0F5] p-4">
+                <div className={`h-24 w-full rounded-md bg-gradient-to-br ${t.previewClass}`} />
+              </div>
+              <div className="mt-6 flex items-center justify-between">
+                <button
+                  onClick={() => useTemplate(t)}
+                  className="rounded-full bg-[#3B1F1F] px-4 py-2 text-sm font-semibold text-[#FFE0D0] shadow-lg transition hover:bg-[#4A1D1D]"
+                >
+                  Use template
+                </button>
+                <span className="text-xs font-semibold uppercase tracking-[0.4em] text-[#F6BCCE]">Instant</span>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
     </main>
   );
 }

@@ -8,7 +8,6 @@ import { Sparkles, ChevronDown } from 'lucide-react';
 import Features from '@/components/sections/Features';
 import Testimonials from '@/components/sections/Testimonials';
 import CTA from '@/components/sections/CTA';
-import Footer from '@/components/layout/Footer';
 
 export default function Home() {
   const [isMounted, setIsMounted] = useState(false);
@@ -22,10 +21,10 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-white w-full">
+    <div className="min-h-screen bg-[#FFE0D0] w-full">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-b from-gray-900 to-gray-800 w-full min-h-screen flex items-center overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/dark-stripes.png')] opacity-5"></div>
+      <section className="relative w-full min-h-screen flex items-center overflow-hidden bg-[linear-gradient(180deg,#F6BCCE,#FFE0D0)]">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/diagmonds.png')] opacity-20"></div>
         
         <div className="relative w-full px-4 sm:px-6 lg:px-16 py-16 mx-auto max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -34,14 +33,14 @@ export default function Home() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="text-white space-y-8 max-w-2xl"
+              className="text-[#3B1F1F] space-y-8 max-w-2xl"
             >
               <div className="space-y-6">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                  Welcome to <span className="text-blue-400">DIGNTAG</span>
+                  Welcome to <span className="text-[#F6BCCE]">DIGNTAG</span>
                 </h1>
                 
-                <p className="text-lg md:text-xl text-gray-300">
+                <p className="text-lg md:text-xl text-[#3B1F1F]/90">
                   Your one-stop solution for digital identity and business growth. 
                   Create, manage, and share your professional presence with ease.
                 </p>
@@ -50,13 +49,13 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <a
                   href="#get-started"
-                  className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 text-lg"
+                  className="px-8 py-4 bg-[#3B1F1F] hover:bg-[#4A1D1D] text-[#FFE0D0] font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 text-lg"
                 >
                   Get Started
                 </a>
                 <a
                   href="#google-play"
-                  className="px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-lg border border-white/20 transition-all duration-300 flex items-center justify-center gap-2 text-lg"
+                  className="px-8 py-4 bg-white/80 hover:bg-[#F9CFC3] text-[#3B1F1F] font-semibold rounded-lg border border-[#F6BCCE] transition-all duration-300 flex items-center justify-center gap-2 text-lg"
                 >
                   <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm.921 18.615L12 13.33l7.47 7.099A1.8 1.8 0 0 1 18 22H6a1.8 1.8 0 0 1-1.47-.571zM21 20.5v-17a1 1 0 0 0-1.6-.8L12 10.5 4.6 2.7a1 1 0 0 0-1.6.8v17a1 1 0 0 0 1.6.8l7.4-7.8 7.4 7.8a1 1 0 0 0 1.6-.8z"/>
@@ -76,8 +75,8 @@ export default function Home() {
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="relative w-full h-full max-w-md">
                   {/* Phone Frame */}
-                  <div className="absolute inset-0 bg-gray-800 rounded-[40px] p-2 shadow-2xl border-8 border-gray-900">
-                    <div className="relative w-full h-full bg-white rounded-[32px] overflow-hidden">
+                  <div className="absolute inset-0 bg-[#3B1F1F] rounded-[40px] p-2 shadow-2xl border-8 border-[#F6BCCE]/70">
+                    <div className="relative w-full h-full bg-[#FFE0D0] rounded-[32px] overflow-hidden">
                       {/* Phone Content - PDF ID Card with Image Background */}
                       <div className="absolute inset-0">
                         {/* Image Background */}
@@ -87,7 +86,7 @@ export default function Home() {
                             alt="ID Card Background"
                             className="w-full h-full object-cover"
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#3B1F1F]/70 to-transparent"></div>
                         </div>
                         
                         {/* Content Overlay */}
@@ -108,7 +107,7 @@ export default function Home() {
                               <h3 className="text-2xl font-bold mb-1">PDF Id Card</h3>
                               <p className="text-sm opacity-90">Create your digital ID in seconds</p>
                             </div>
-                            <button className="w-full py-3 bg-white text-blue-600 font-semibold rounded-lg shadow-md hover:bg-gray-100 transition-all flex items-center justify-center gap-2">
+                            <button className="w-full py-3 bg-[#FFE0D0] text-[#3B1F1F] font-semibold rounded-lg shadow-md hover:bg-[#F9CFC3] transition-all flex items-center justify-center gap-2">
                               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4"></path>
                               </svg>
@@ -169,8 +168,6 @@ export default function Home() {
         <CTA />
       </div>
 
-      {/* Footer */}
-      <Footer />
     </div>
   );
 }

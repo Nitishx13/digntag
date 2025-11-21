@@ -43,7 +43,7 @@ export function Nav() {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-900 text-white">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#3B1F1F] text-[#FFE0D0] shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           {/* Logo */}
@@ -73,13 +73,13 @@ export function Nav() {
           <div className="hidden md:flex items-center space-x-4">
             <a
               href="#signup"
-              className="px-4 py-2 text-sm font-medium text-white hover:text-gray-300 transition-colors"
+              className="px-4 py-2 text-sm font-medium text-[#FFE0D0] hover:text-[#F6BCCE] transition-colors"
             >
               Sign Up Free
             </a>
             <a
               href="#getstarted"
-              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-md transition-colors"
+              className="px-4 py-2 bg-[#F6BCCE] hover:bg-[#F9CFC3] text-[#3B1F1F] text-sm font-medium rounded-md transition-colors"
             >
               Get Started
             </a>
@@ -99,28 +99,28 @@ export function Nav() {
 
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-gray-800">
+        <div className="md:hidden bg-[#3B1F1F]">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navLinks.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="block px-3 py-2 text-base font-medium text-white hover:bg-gray-700 rounded-md"
+                className="block px-3 py-2 text-base font-medium text-[#FFE0D0] hover:text-[#F6BCCE] rounded-md"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.label}
               </Link>
             ))}
-            <div className="pt-4 pb-2 border-t border-gray-700">
+            <div className="pt-4 pb-2 border-t border-[#F6BCCE]/70">
               <a
                 href="#signup"
-                className="block w-full text-left px-3 py-2 text-base font-medium text-white hover:bg-gray-700 rounded-md mb-2"
+                className="block w-full text-left px-3 py-2 text-base font-medium text-[#FFE0D0] hover:text-[#F6BCCE] rounded-md mb-2"
               >
                 Sign Up Free
               </a>
               <a
                 href="#getstarted"
-                className="block w-full text-center px-3 py-2 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700"
+                className="block w-full text-center px-3 py-2 bg-[#F6BCCE] text-[#3B1F1F] font-medium rounded-md hover:bg-[#F9CFC3]"
               >
                 Get Started
               </a>

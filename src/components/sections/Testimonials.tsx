@@ -29,7 +29,7 @@ const item = {
 
 export default function Testimonials() {
   return (
-    <section className="py-16 sm:py-24">
+    <section className="py-16 sm:py-24 bg-[#FFE0D0]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -38,10 +38,10 @@ export default function Testimonials() {
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <h2 className="text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl md:text-4xl">
+          <h2 className="text-2xl font-bold tracking-tight text-[#3B1F1F] sm:text-3xl md:text-4xl">
             Loved by Couples & Event Planners
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-zinc-600">
+          <p className="mx-auto mt-4 max-w-2xl text-[#3B1F1F]/80">
             Don't just take our word for it. Here's what our users say
           </p>
         </motion.div>
@@ -55,20 +55,20 @@ export default function Testimonials() {
               whileInView="show"
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: index * 0.1 }}
-              className="group relative overflow-hidden rounded-2xl bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-lg"
+              className="group relative overflow-hidden rounded-2xl bg-white/90 p-6 shadow-lg transition-all duration-300 hover:-translate-y-1"
             >
               <div className="relative z-10">
-                <div className="flex text-amber-400">
+                <div className="flex text-[#F6BCCE]">
                   {[...Array(testimonial.stars)].map((_, i) => (
                     <Star key={i} className="h-5 w-5 fill-current" />
                   ))}
                 </div>
                 <blockquote className="mt-4">
-                  <p className="text-zinc-700">"{testimonial.quote}"</p>
+                  <p className="text-[#3B1F1F]">"{testimonial.quote}"</p>
                 </blockquote>
                 <div className="mt-6">
-                  <p className="font-medium text-zinc-900">{testimonial.author}</p>
-                  <p className="text-sm text-zinc-500">{testimonial.role}</p>
+                  <p className="font-medium text-[#3B1F1F]">{testimonial.author}</p>
+                  <p className="text-sm text-[#3B1F1F]/70">{testimonial.role}</p>
                 </div>
               </div>
             </motion.div>
