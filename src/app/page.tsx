@@ -21,9 +21,9 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-[#FFE0D0] w-full">
+    <div className="min-h-screen bg-[#f5668d] w-full">
       {/* Hero Section */}
-      <section className="relative w-full min-h-screen flex items-center overflow-hidden bg-[linear-gradient(180deg,#F6BCCE,#FFE0D0)]">
+      <section className="relative w-full min-h-screen flex items-center overflow-hidden bg-[linear-gradient(180deg,#f5668d,#FFD1E3)]">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/diagmonds.png')] opacity-20"></div>
         
         <div className="relative w-full px-4 sm:px-6 lg:px-16 py-16 mx-auto max-w-7xl">
@@ -55,7 +55,7 @@ export default function Home() {
                 </a>
                 <a
                   href="#google-play"
-                  className="px-8 py-4 bg-white/80 hover:bg-[#F9CFC3] text-[#3B1F1F] font-semibold rounded-lg border border-[#F6BCCE] transition-all duration-300 flex items-center justify-center gap-2 text-lg"
+                  className="px-8 py-4 bg-white/80 hover:bg-[#F9CFC3] text-[#3B1F1F] font-semibold rounded-lg border border-[#FFD1E3] transition-all duration-300 flex items-center justify-center gap-2 text-lg"
                 >
                   <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm.921 18.615L12 13.33l7.47 7.099A1.8 1.8 0 0 1 18 22H6a1.8 1.8 0 0 1-1.47-.571zM21 20.5v-17a1 1 0 0 0-1.6-.8L12 10.5 4.6 2.7a1 1 0 0 0-1.6.8v17a1 1 0 0 0 1.6.8l7.4-7.8 7.4 7.8a1 1 0 0 0 1.6-.8z"/>
@@ -75,7 +75,7 @@ export default function Home() {
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="relative w-full h-full max-w-md">
                   {/* Phone Frame */}
-                  <div className="absolute inset-0 bg-[#3B1F1F] rounded-[40px] p-2 shadow-2xl border-8 border-[#F6BCCE]/70">
+                  <div className="absolute inset-0 bg-[#3B1F1F] rounded-[40px] p-2 shadow-2xl border-8 border-[#FFD1E3]/70">
                     <div className="relative w-full h-full bg-[#FFE0D0] rounded-[32px] overflow-hidden">
                       {/* Phone Content - PDF ID Card with Image Background */}
                       <div className="absolute inset-0">
