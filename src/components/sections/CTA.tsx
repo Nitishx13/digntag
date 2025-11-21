@@ -31,7 +31,7 @@ export default function CTA() {
             className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
           >
             <a
-              href="/signup"
+              href="/shop"
               className="rounded-lg bg-[#FFE0D0] px-6 py-3.5 text-sm font-semibold text-[#3B1F1F] shadow-sm transition-all duration-300 hover:bg-[#F6EBCC] hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3B1F1F]"
             >
               Get Started for Free
