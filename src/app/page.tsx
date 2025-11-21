@@ -50,7 +50,7 @@ export default function Home() {
                   href="/shop"
                   className="px-8 py-4 bg-[#3B1F1F] hover:bg-[#4A1D1D] text-[#FFE0D0] font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 text-lg"
                 >
-                  Select your design
+                  Select design
                 </a>
                 <a
                   href="/features"
