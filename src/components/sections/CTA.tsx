@@ -34,7 +34,7 @@ export default function CTA() {
               href="/shop"
               className="rounded-lg bg-[#FFE0D0] px-6 py-3.5 text-sm font-semibold text-[#3B1F1F] shadow-sm transition-all duration-300 hover:bg-[#F6EBCC] hover:shadow-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3B1F1F]"
             >
-              Get Started for Free
+              Store
             </a>
             <a
               href="/shop"

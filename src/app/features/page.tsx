@@ -72,10 +72,10 @@ export default function FeaturesPage() {
               Start using Digntag for all your cards, profiles, and networking needs.
             </p>
             <a
-              href="/signup"
+              href="/shop"
               className="mt-6 inline-flex rounded-lg bg-[#F6BCCE] px-6 py-3 text-sm font-semibold text-[#3B1F1F] shadow-lg transition hover:bg-[#F9CFC3]"
             >
-              Get Started Today
+              Store
             </a>
           </div>
         </section>

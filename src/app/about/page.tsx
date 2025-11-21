@@ -81,10 +81,10 @@ export default function AboutPage() {
               Join thousands of creators trusting Digntag for beautiful, memorable digital experiences.
             </p>
             <Link
-              href="/"
+              href="/shop"
               className="mt-6 inline-flex rounded-lg bg-[#F6BCCE] px-6 py-3 text-sm font-semibold text-[#3B1F1F] shadow-lg transition hover:bg-[#F9CFC3]"
             >
-              Get Started Today
+              Store
             </Link>
           </div>
         </section>

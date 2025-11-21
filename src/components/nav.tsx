@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown, Menu } from "lucide-react";
@@ -44,8 +45,9 @@ export function Nav() {
         <div className="flex justify-between h-16 items-center">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <Link href="/" className="text-xl font-bold text-white hover:text-gray-300 transition-colors">
-              DIGNTAG
+            <Link href="/" className="flex items-center">
+              <span className="sr-only">Digntag</span>
+              <Image src="/digntag_logo.png" alt="Digntag" width={120} height={32} priority />
             </Link>
           </div>
 
@@ -118,7 +120,7 @@ export function Nav() {
                 href="/shop"
                 className="block w-full text-center px-3 py-2 bg-[#F6BCCE] text-[#3B1F1F] font-medium rounded-md hover:bg-[#F9CFC3]"
               >
-                Get Started
+                Store
               </a>
             </div>
           </div>
