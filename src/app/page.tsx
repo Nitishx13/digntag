@@ -47,16 +47,16 @@ export default function Home() {
               
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <a
-                  href="#get-started"
+                  href="/shop"
                   className="px-8 py-4 bg-[#3B1F1F] hover:bg-[#4A1D1D] text-[#FFE0D0] font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 text-lg"
                 >
-                  Start Selection
+                  Select your design
                 </a>
                 <a
-                  href="#google-play"
+                  href="/features"
                   className="px-8 py-4 bg-white/80 hover:bg-[#F9CFC3] text-[#3B1F1F] font-semibold rounded-lg border border-[#F6BCCE] transition-all duration-300 flex items-center justify-center gap-2 text-lg"
                 >
-                  Share & Track
+                  Features
                 </a>
               </div>
             </motion.div>
