@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, ChevronDown } from 'lucide-react';
+import { Sparkles, ChevronDown, CreditCard, Share2, Activity } from 'lucide-react';
 
 // Import Components
 import Features from '@/components/sections/Features';
@@ -21,9 +21,9 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f5668d] w-full">
+    <div className="min-h-screen bg-[#FFE0D0] w-full">
       {/* Hero Section */}
-      <section className="relative w-full min-h-screen flex items-center overflow-hidden bg-[linear-gradient(180deg,#f5668d,#FFD1E3)]">
+      <section className="relative w-full min-h-screen flex items-center overflow-hidden bg-[linear-gradient(180deg,#F6BCCE,#FFE0D0)]">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/diagmonds.png')] opacity-20"></div>
         
         <div className="relative w-full px-4 sm:px-6 lg:px-16 py-16 mx-auto max-w-7xl">
@@ -37,12 +37,11 @@ export default function Home() {
             >
               <div className="space-y-6">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                  Welcome to <span className="text-[#F6BCCE]">DIGNTAG</span>
+                  Best digital tag platform in India
                 </h1>
                 
                 <p className="text-lg md:text-xl text-[#3B1F1F]/90">
-                  Your one-stop solution for digital identity and business growth. 
-                  Create, manage, and share your professional presence with ease.
+                  Curate the perfect card, send it instantly, and stay informed about every interaction that follows.
                 </p>
               </div>
               
@@ -51,16 +50,13 @@ export default function Home() {
                   href="#get-started"
                   className="px-8 py-4 bg-[#3B1F1F] hover:bg-[#4A1D1D] text-[#FFE0D0] font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 text-lg"
                 >
-                  Get Started
+                  Start Selection
                 </a>
                 <a
                   href="#google-play"
-                  className="px-8 py-4 bg-white/80 hover:bg-[#F9CFC3] text-[#3B1F1F] font-semibold rounded-lg border border-[#FFD1E3] transition-all duration-300 flex items-center justify-center gap-2 text-lg"
+                  className="px-8 py-4 bg-white/80 hover:bg-[#F9CFC3] text-[#3B1F1F] font-semibold rounded-lg border border-[#F6BCCE] transition-all duration-300 flex items-center justify-center gap-2 text-lg"
                 >
-                  <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm.921 18.615L12 13.33l7.47 7.099A1.8 1.8 0 0 1 18 22H6a1.8 1.8 0 0 1-1.47-.571zM21 20.5v-17a1 1 0 0 0-1.6-.8L12 10.5 4.6 2.7a1 1 0 0 0-1.6.8v17a1 1 0 0 0 1.6.8l7.4-7.8 7.4 7.8a1 1 0 0 0 1.6-.8z"/>
-                  </svg>
-                  Google play
+                  Share & Track
                 </a>
               </div>
             </motion.div>
@@ -75,7 +71,7 @@ export default function Home() {
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="relative w-full h-full max-w-md">
                   {/* Phone Frame */}
-                  <div className="absolute inset-0 bg-[#3B1F1F] rounded-[40px] p-2 shadow-2xl border-8 border-[#FFD1E3]/70">
+                  <div className="absolute inset-0 bg-[#3B1F1F] rounded-[40px] p-2 shadow-2xl border-8 border-[#F6BCCE]/70">
                     <div className="relative w-full h-full bg-[#FFE0D0] rounded-[32px] overflow-hidden">
                       {/* Phone Content - PDF ID Card with Image Background */}
                       <div className="absolute inset-0">
@@ -153,6 +149,50 @@ export default function Home() {
               </div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* Select / Share / Track callouts */}
+      <section className="mx-auto mt-14 max-w-6xl px-4 sm:px-6 lg:px-8 pb-14">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
+          {[
+            {
+              title: 'Select Card',
+              copy: 'Browse curated templates and pick the perfect digital ID in seconds.',
+              accent: '#F6BCCE',
+              icon: <CreditCard className="h-6 w-6" />
+            },
+            {
+              title: 'Share',
+              copy: 'Instantly send your profile to colleagues, clients, or guests via link or QR.',
+              accent: '#F9CFC3',
+              icon: <Share2 className="h-6 w-6" />
+            },
+            {
+              title: 'Track',
+              copy: 'See who opened your card, which links were clicked, and stay in the know.',
+              accent: '#FFE0D0',
+              icon: <Activity className="h-6 w-6" />
+            },
+          ].map((item) => (
+            <article
+              key={item.title}
+              className="flex h-full flex-col rounded-3xl border border-[#FFE0D0] bg-white p-6 shadow-lg transition hover:-translate-y-1"
+            >
+              <div className="flex items-center justify-between">
+                <div
+                  className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white"
+                  style={{ boxShadow: `0 10px 20px -10px ${item.accent}` }}
+                >
+                  <span className="text-[#3B1F1F]">{item.icon}</span>
+                </div>
+                <span className="text-xs font-semibold uppercase tracking-[0.4em] text-[#3B1F1F]/60">Fast</span>
+              </div>
+              <h3 className="mt-6 text-xl font-semibold text-[#3B1F1F]">{item.title}</h3>
+              <p className="mt-2 text-sm text-[#3B1F1F]/80 flex-1">{item.copy}</p>
+              <div className="mt-6 text-sm font-semibold text-[#F6BCCE]">Learn more →</div>
+            </article>
+          ))}
         </div>
       </section>
 

@@ -6,7 +6,7 @@ const features = [
     icon: Heart,
     title: "RSVP & Guest Management",
     description: "Easily collect responses, meal preferences, and special notes from your guests.",
-    accent: '#FFD1E3'
+    accent: '#F6BCCE'
   },
   {
     icon: Calendar,
@@ -30,7 +30,7 @@ const features = [
     icon: QrCode,
     title: "QR Code & Links",
     description: "Share your digital invitation with a simple link or printable QR code.",
-    accent: '#FFD1E3'
+    accent: '#F6BCCE'
   },
   {
     icon: BarChart3,
@@ -73,7 +73,7 @@ export default function Features() {
               whileInView="show"
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: index * 0.1 }}
-              className="group relative flex h-full flex-col rounded-2xl border border-[#FFD1E3] bg-white p-6 shadow transition hover:-translate-y-1"
+              className="group relative overflow-hidden rounded-2xl border border-[#FFE0D0] bg-[#FFFFFF] p-6 shadow-lg transition-all duration-300 hover:-translate-y-1"
             >
               <div
                 className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl"
@@ -81,7 +81,7 @@ export default function Features() {
               >
                 <feature.icon className="h-6 w-6" />
               </div>
-              <div className="mt-6 text-sm font-semibold text-[#FFD1E3]">Learn more →</div>
+              <h3 className="mb-2 text-lg font-semibold text-[#3B1F1F]">{feature.title}</h3>
               <p className="text-sm text-[#3B1F1F]/80">{feature.description}</p>
             </motion.div>
           ))}

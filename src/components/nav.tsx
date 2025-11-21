@@ -25,10 +25,6 @@ const navLinks: NavLinkProps[] = [
     href: "/services",
   },
   {
-    label: "Shop",
-    href: "/shop",
-  },
-  {
     label: "About",
     href: "/about",
   },
@@ -73,15 +69,15 @@ export function Nav() {
           <div className="hidden md:flex items-center space-x-4">
             <a
               href="#signup"
-              className="px-4 py-2 text-sm font-medium text-[#FFE0D0] hover:text-[#FFD1E3] transition-colors"
+              className="px-4 py-2 text-sm font-medium text-[#FFE0D0] hover:text-[#F6BCCE] transition-colors"
             >
               Sign Up Free
             </a>
             <a
-              href="#getstarted"
-              className="px-4 py-2 bg-[#FFD1E3] hover:bg-[#F9CFC3] text-[#3B1F1F] text-sm font-medium rounded-md transition-colors"
+              href="/shop"
+              className="px-4 py-2 bg-[#F6BCCE] hover:bg-[#F9CFC3] text-[#3B1F1F] text-sm font-medium rounded-md transition-colors"
             >
-              Get Started
+              Store
             </a>
           </div>
 
@@ -105,22 +101,22 @@ export function Nav() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="block px-3 py-2 text-base font-medium text-[#FFE0D0] hover:text-[#FFD1E3] rounded-md"
+                className="block px-3 py-2 text-base font-medium text-[#FFE0D0] hover:text-[#F6BCCE] rounded-md"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.label}
               </Link>
             ))}
-            <div className="pt-4 pb-2 border-t border-[#FFD1E3]/70">
+            <div className="pt-4 pb-2 border-t border-[#F6BCCE]/70">
               <a
                 href="#signup"
-                className="block w-full text-left px-3 py-2 text-base font-medium text-[#FFE0D0] hover:text-[#FFD1E3] rounded-md mb-2"
+                className="block w-full text-left px-3 py-2 text-base font-medium text-[#FFE0D0] hover:text-[#F6BCCE] rounded-md mb-2"
               >
                 Sign Up Free
               </a>
               <a
-                href="#getstarted"
-                className="block w-full text-center px-3 py-2 bg-[#FFD1E3] text-[#3B1F1F] font-medium rounded-md hover:bg-[#F9CFC3]"
+                href="/shop"
+                className="block w-full text-center px-3 py-2 bg-[#F6BCCE] text-[#3B1F1F] font-medium rounded-md hover:bg-[#F9CFC3]"
               >
                 Get Started
               </a>
