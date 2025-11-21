@@ -68,10 +68,10 @@ export function Nav() {
           {/* Action Buttons - Desktop */}
           <div className="hidden md:flex items-center space-x-4">
             <a
-              href="#signup"
+              href="/login"
               className="px-4 py-2 text-sm font-medium text-[#FFE0D0] hover:text-[#F6BCCE] transition-colors"
             >
-              Sign Up Free
+              Login
             </a>
             <a
               href="/shop"
@@ -109,10 +109,10 @@ export function Nav() {
             ))}
             <div className="pt-4 pb-2 border-t border-[#F6BCCE]/70">
               <a
-                href="#signup"
+                href="/login"
                 className="block w-full text-left px-3 py-2 text-base font-medium text-[#FFE0D0] hover:text-[#F6BCCE] rounded-md mb-2"
               >
-                Sign Up Free
+                Login
               </a>
               <a
                 href="/shop"

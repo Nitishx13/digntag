@@ -132,3 +132,22 @@
 .animation-delay-4000 {
   animation-delay: 4s;
 }
+
+.logo-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 30% 30%, #ff9fc7, #ff7bb9 45%, #ff5cb4 65%, #f96ca4);
+  padding: 0.25rem;
+}
+
+.logo-mark {
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #ff7bb9, #f967a2 55%, #ffb3c8 75%);
+  box-shadow: 0 20px 40px rgba(255, 109, 163, 0.35);
+}

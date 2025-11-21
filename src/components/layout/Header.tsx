@@ -5,8 +5,9 @@ export default function Header() {
     <header className="bg-white shadow-sm">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <Link href="/" className="text-xl font-bold text-zinc-900">
-            Digital Tag
+          <Link href="/" className="logo-link">
+            <span className="sr-only">Digntag</span>
+            <div className="logo-mark" aria-hidden="true" />
           </Link>
           <nav className="hidden md:block">
             <ul className="flex space-x-8">
