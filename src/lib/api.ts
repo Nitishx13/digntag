@@ -1,17 +1,34 @@
 import { auth } from './auth';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
+const API_BASE_URL = (() => {
+  if (process.env.NEXT_PUBLIC_API_URL) {
+    return process.env.NEXT_PUBLIC_API_URL.replace(/\/$/, '');
+  }
+
+  if (process.env.NODE_ENV === 'development') {
+    return 'http://localhost:4000';
+  }
+
+  return 'https://www.digntag.in';
+})();
 
 async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
   const token = auth.getToken();
-  const response = await fetch(`${API_BASE_URL}${path}`, {
-    headers: {
-      'Content-Type': 'application/json',
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
-      ...(options.headers || {}),
-    },
-    ...options,
-  });
+  const endpoint = `${API_BASE_URL}${path}`;
+
+  let response: Response;
+  try {
+    response = await fetch(endpoint, {
+      headers: {
+        'Content-Type': 'application/json',
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        ...(options.headers || {}),
+      },
+      ...options,
+    });
+  } catch (error) {
+    throw new Error('Unable to reach the server. Please confirm the API URL is correct and accessible.');
+  }
 
   if (!response.ok) {
     const errorText = await response.text();
