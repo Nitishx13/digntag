@@ -1,206 +1,169 @@
 'use client';
 
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { CreditCard, Share2, Activity, Download } from 'lucide-react';
+type Card = {
+  image: string;
+  title: string;
+  subtitle?: string;
+  cta?: string;
+  badge?: string;
+  note?: string;
+};
 
-import { homeSliderImages } from '@/data/home';
-
-// Import Components
-import Features from '@/components/sections/Features';
-import Testimonials from '@/components/sections/Testimonials';
-import CTA from '@/components/sections/CTA';
-
-const sliderImages = homeSliderImages;
-
-const featuredInviteCards = [
+const digitalInvites: Card[] = [
   {
-    id: 'radha-krishna',
-    badge: '3 Pages',
-    topLine: 'Save the date',
-    dateLine: 'Sunday · July 28 · 2025',
-    names: 'Dhruv & Harshi',
-    caption: 'Digital Radha Krishna Wedding Card — Editable Online Invitation',
-    gradient: 'from-[#FFF3EA] via-[#FFE8DC] to-[#FFE0D0]',
-    art: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=60',
+    image: 'https://images.unsplash.com/photo-1519791883280-d1eaffa5ae5c?auto=format&fit=crop&w=1200&q=60',
+    title: 'Royal Wedding Invite',
+    subtitle: 'Digital invitation • 3 pages',
+    cta: 'Shop invite',
   },
   {
-    id: 'lotus-floral',
-    badge: '1 Page',
-    topLine: 'Save the date',
-    dateLine: 'Wednesday · Dec 20 · 2028',
-    names: 'Kapil & Sapna',
-    caption: 'Lotus Floral Wedding E-Invite — Editable Digital Template',
-    gradient: 'from-[#FFF3EA] via-[#FFE8DC] to-[#FFE0D0]',
-    art: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=800&q=60',
+    image: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1200&q=60',
+    title: 'Floral Light Pink',
+    subtitle: 'Digital invitation • Download only',
+    cta: 'Shop invite',
   },
   {
-    id: 'modern-minimal',
-    badge: '1 Page',
-    topLine: 'Wedding Invitation',
-    dateLine: 'Tuesday · Feb 11 · 2025',
-    names: 'Dhruv & Harshi',
-    caption: 'Modern Minimalist Wedding Invitation — Digital Download',
-    gradient: 'from-[#FFF3EA] via-[#FFE8DC] to-[#FFE0D0]',
-    art: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=800&q=60',
+    image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=60',
+    title: 'Gulabi Heritage',
+    subtitle: 'Digital invitation • QR shareable',
+    cta: 'Shop invite',
+  },
+];
+
+const complements: Card[] = [
+  {
+    image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1000&q=60',
+    title: 'Custom Favor Tags',
+    subtitle: 'Tie-on tags that match every suite',
+    cta: 'Shop now',
   },
   {
-    id: 'pink-card',
-    badge: '3 Pages',
-    topLine: 'Wedding Invitation',
-    dateLine: 'Tuesday · Aug 05 · 2025',
-    names: 'Agarwal & Anaisha',
-    caption: 'Pink Wedding Invitation Card — Editable Digital Template',
-    gradient: 'from-[#FFF3EA] via-[#FFE8DC] to-[#FFE0D0]',
-    art: 'https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=800&q=60',
+    image: 'https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1000&q=60',
+    title: 'Thank You Stationery',
+    subtitle: 'Luxury paper stock & foil',
+    cta: 'Shop now',
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1000&q=60',
+    title: 'Small Menu / Program Cards',
+    subtitle: '60 lb uncoated, double-sided',
+    cta: 'Shop now',
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1456428199391-1d72e1b7d6a9?auto=format&fit=crop&w=1000&q=60',
+    title: 'Custom Envelope Seals',
+    subtitle: 'Matte gold, blush, or white seals',
+    cta: 'Shop now',
+  },
+];
+
+const giftPicks: Card[] = [
+  {
+    image: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1000&q=60',
+    title: 'For the Couple',
+    subtitle: 'Trio of blush stationery sets',
+    cta: 'See pick',
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1506089676908-3592f7389d4d?auto=format&fit=crop&w=1000&q=60',
+    title: 'For Her Table',
+    subtitle: 'Soft neutrals & ribbon',
+    cta: 'See pick',
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1505253758473-11c28f7246a1?auto=format&fit=crop&w=1000&q=60',
+    title: 'For Fine Friends',
+    subtitle: 'Personalized thank you cards',
+    cta: 'See pick',
+  },
+];
+
+const packagingEssentials: Card[] = [
+  {
+    image: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1000&q=60',
+    title: 'Custom Tissue Paper',
+    subtitle: 'Blush & cream stock',
+    cta: 'Browse this pack',
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1484704849700-f032a568e944?auto=format&fit=crop&w=1000&q=60',
+    title: 'Ribbon & Twine',
+    subtitle: 'Three cord textures',
+    cta: 'Browse this pack',
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1455146634373-84e1f163b6c7?auto=format&fit=crop&w=1000&q=60',
+    title: 'Gift Boxes',
+    subtitle: 'Custom embossing available',
+    cta: 'Browse this pack',
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1493666438817-866a91353ca9?auto=format&fit=crop&w=1000&q=60',
+    title: 'Stamps & Stickers',
+    subtitle: 'Gold foil or matte',
+    cta: 'Browse this pack',
+  },
+];
+
+const reviews = [
+  {
+    text: '"Digntag took our wedding stationery to another level—without the stress."',
+    author: 'Ananya & Karan',
+  },
+  {
+    text: '"Every package was curated beautifully. Guests took photos before opening."',
+    author: 'Riya & Soham',
+  },
+  {
+    text: '"The custom favors and gift boxes arrived looking like they belonged in a magazine."',
+    author: 'Saanvi',
   },
 ];
 
 export default function Home() {
-  const [activeSlide, setActiveSlide] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveSlide((prev) => (prev + 1) % sliderImages.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, []);
-
   return (
-    <div className="min-h-screen bg-[#FFE0D0] w-full">
-      {/* Shared gallery slider */}
-      <section className="relative w-full bg-[#FFF5F1] py-0">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/diagmonds.png')] opacity-30"></div>
-        <div className="relative flex w-full flex-col gap-0 px-0">
-
-          <div className="relative w-full rounded-none border-y border-[#FFE0D0] bg-white/90 shadow-2xl">
-            <div className="relative h-[80vh] overflow-hidden">
-              {sliderImages.map((src, index) => (
-                <div
-                  key={index}
-                  className={`absolute inset-0 transition-opacity duration-700 ${index === activeSlide ? 'opacity-100 z-10' : 'opacity-0'} bg-[#1a1a1a]`}
+    <div className="bg-gradient-to-b from-white to-[#F3F3F3] min-h-screen pb-16">
+      <section className="relative bg-white">
+        <div className="mx-auto max-w-6xl px-6 py-12 sm:py-16">
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+            <div className="space-y-6">
+              <p className="text-sm uppercase tracking-[0.6em] text-gray-500">Limited drop</p>
+              <h1 className="text-4xl font-semibold leading-tight tracking-tight text-gray-900 sm:text-5xl">
+                What do you want to design?
+              </h1>
+              <p className="text-lg text-gray-700">
+                From digital invites to luxe event complements, we craft stationery that feels like you—every hue,
+                every fold.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <a
+                  href="/shop"
+                  className="inline-flex items-center justify-center rounded-full bg-gray-900 px-8 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-white shadow-lg"
                 >
-                  <img
-                    src={src}
-                    alt="Invitation design"
-                    className="h-full w-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-br from-black/30 via-black/10 to-transparent"></div>
-                </div>
-              ))}
+                  Get started
+                </a>
+                <button className="inline-flex items-center justify-center rounded-full border border-gray-900 px-8 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-gray-900">
+                  Book a chat
+                </button>
+              </div>
             </div>
-            <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 gap-2">
-              {sliderImages.map((_, index) => (
-                <button
-                  key={index}
-                  aria-label={`Go to slide ${index + 1}`}
-                  onClick={() => setActiveSlide(index)}
-                  className={`h-2.5 rounded-full transition-all ${index === activeSlide ? 'w-8 bg-[#3B1F1F]' : 'w-3 bg-[#E7C5BB]'}`}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured invites */}
-      <section className="w-full px-4 sm:px-8 lg:px-16 mt-14">
-        <div className="rounded-3xl border border-[#FFE0D0] bg-white/90 p-8 shadow-lg space-y-6">
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <div>
-              <p className="text-xs uppercase tracking-[0.4em] text-[#3B1F1F]/60">Featured invites</p>
-              <h2 className="mt-2 text-2xl font-semibold text-[#3B1F1F]">Browse wedding reels like these</h2>
-            </div>
-            <Link
-              href="/shop"
-              className="rounded-full border border-[#3B1F1F] px-4 py-2 text-xs font-semibold uppercase tracking-[0.4em] text-[#3B1F1F] hover:bg-[#3B1F1F] hover:text-[#FFE0D0]"
-            >
-              See all
-            </Link>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {featuredInviteCards.map((card) => (
-              <article
-                key={card.id}
-                className={`flex flex-col rounded-[32px] border border-[#FFE0D0] bg-gradient-to-b ${card.gradient} p-4 text-center shadow-[0_20px_40px_rgba(59,31,31,0.15)]`}
+            <div className="h-[370px] w-full rounded-[32px] border pink-border bg-[var(--pink-5)] shadow-lg">
+              <div
+                className="h-full w-full rounded-[32px] bg-cover bg-center"
+                style={{
+                  backgroundImage:
+                    "url('https://images.unsplash.com/photo-1493666438817-866a91353ca9?auto=format&fit=crop&w=1200&q=60')",
+                }}
               >
-                <div className="w-full overflow-hidden rounded-[28px] border border-white/60 bg-white/30">
-                  <img src={card.art} alt={card.names} className="h-[320px] w-full object-cover" />
+                <div className="flex h-full w-full flex-col items-start justify-end rounded-[32px] bg-gradient-to-t from-[rgba(205,94,119,0.85)] to-transparent p-6 text-pink-5">
+                  <p className="text-xs font-semibold uppercase tracking-[0.4em] text-pink-5">Digntag</p>
+                  <p className="text-sm font-normal text-pink-5">Handmade embellishment</p>
                 </div>
-                <p className="mt-4 text-[13px] font-medium text-[#3B1F1F]">{card.caption}</p>
-              </article>
-            ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
-
-      {/* Select / Share / Track callouts */}
-      <section className="w-full mt-14 px-4 sm:px-8 lg:px-16 pb-14">
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-4 md:gap-8">
-          {[
-            {
-              title: "Book Your Design",
-              copy: "Select a curated design or brief us for something custom—either way you’re ready in seconds.",
-              accent: "from-[#F6BCCE] to-[#F9CFC3]",
-              icon: <CreditCard className="h-6 w-6" />,
-              cta: "Learn more →",
-            },
-            {
-              title: "Download",
-              copy: "Deliver assets instantly—export in PNG, JPEG, or PDF so clients always get the right format.",
-              accent: "from-[#FFE0D0] to-[#FDF1E4]",
-              icon: <Download className="h-6 w-6" />,
-              cta: "Deliver files →",
-            },
-            {
-              title: "Share",
-              copy: "Send links or QR codes so colleagues, clients, and guests can access designs on any device.",
-              accent: "from-[#F9CFC3] to-[#FFE0D0]",
-              icon: <Share2 className="h-6 w-6" />,
-              cta: "Share what matters →",
-            },
-            {
-              title: "Track",
-              copy: "See who opened your card, which links were clicked, and when downloads happened.",
-              accent: "from-[#FFE0D0] to-[#F6EBCC]",
-              icon: <Activity className="h-6 w-6" />,
-              cta: "View insights →",
-            },
-          ].map((item) => (
-            <article
-              key={item.title}
-              className="flex h-full flex-col rounded-3xl border border-[#FFE0D0] bg-white p-6 shadow-lg transition-all hover:-translate-y-1 hover:shadow-xl"
-            >
-              <div className="flex items-center justify-between">
-                <div
-                  className={`flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br ${item.accent}`}
-                >
-                  <span className="text-[#3B1F1F]">{item.icon}</span>
-                </div>
-                <span className="text-xs font-semibold uppercase tracking-[0.4em] text-[#3B1F1F]/60">Fast</span>
-              </div>
-              <h3 className="mt-6 text-xl font-semibold text-[#3B1F1F]">{item.title}</h3>
-              <p className="mt-2 text-sm text-[#3B1F1F]/80 flex-1 leading-relaxed">{item.copy}</p>
-              <div className="mt-6 text-sm font-semibold text-[#F6BCCE] hover:text-[#3B1F1F] transition-colors">
-                {item.cta}
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <div className="w-full px-0">
-        <Features />
-      </div>
-
-      <div className="w-full px-0">
-        <Testimonials />
-      </div>
-
-      <div className="w-full px-0 pb-10">
-        <CTA />
-      </div>
 
     </div>
   );

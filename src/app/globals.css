@@ -45,63 +45,68 @@
 
 :root {
   --radius: 0.625rem;
-  --background: #FFE0D0;
-  --foreground: #3B1F1F;
-  --card: #F9CFC3;
-  --card-foreground: #3B1F1F;
-  --popover: #F6EBCC;
-  --popover-foreground: #3B1F1F;
-  --primary: #F6BCCE;
-  --primary-foreground: #3B1F1F;
-  --secondary: #F9CFC3;
-  --secondary-foreground: #3B1F1F;
-  --muted: #FFE0D0;
-  --muted-foreground: #3B1F1F;
-  --accent: #E9D3C2;
-  --accent-foreground: #3B1F1F;
-  --destructive: #F288AB;
+  --pink-1: #CD5E77;
+  --pink-2: #E17F93;
+  --pink-3: #EE959E;
+  --pink-4: #EBA7AC;
+  --pink-5: #F4C2C2;
+  --background: #ffffff;
+  --foreground: var(--pink-1);
+  --card: var(--pink-4);
+  --card-foreground: var(--pink-1);
+  --popover: var(--pink-3);
+  --popover-foreground: var(--pink-1);
+  --primary: var(--pink-1);
+  --primary-foreground: var(--pink-5);
+  --secondary: var(--pink-2);
+  --secondary-foreground: var(--pink-1);
+  --muted: var(--pink-4);
+  --muted-foreground: var(--pink-1);
+  --accent: var(--pink-3);
+  --accent-foreground: var(--pink-1);
+  --destructive: #ff6ba0;
   --border: rgba(59, 31, 31, 0.15);
   --input: rgba(59, 31, 31, 0.1);
   --ring: rgba(59, 31, 31, 0.2);
-  --chart-1: #F6BCCE;
-  --chart-2: #F9CFC3;
-  --chart-3: #FFE0D0;
-  --chart-4: #F6EBCC;
-  --chart-5: #E9D3C2;
-  --sidebar: #FFE0D0;
-  --sidebar-foreground: #3B1F1F;
-  --sidebar-primary: #F6BCCE;
-  --sidebar-primary-foreground: #3B1F1F;
-  --sidebar-accent: #F9CFC3;
-  --sidebar-accent-foreground: #3B1F1F;
+  --chart-1: #ffafc7;
+  --chart-2: #ffd9e5;
+  --chart-3: #ffe6f1;
+  --chart-4: #ffeef5;
+  --chart-5: #ffc3d9;
+  --sidebar: #ffe6f1;
+  --sidebar-foreground: #3b1f1f;
+  --sidebar-primary: #ffafc7;
+  --sidebar-primary-foreground: #3b1f1f;
+  --sidebar-accent: #ffd9e5;
+  --sidebar-accent-foreground: #3b1f1f;
   --sidebar-border: rgba(59, 31, 31, 0.15);
   --sidebar-ring: rgba(59, 31, 31, 0.2);
 }
 
 .dark {
-  --background: #3B1F1F;
-  --foreground: #FFE0D0;
-  --card: #4A1D1D;
-  --card-foreground: #FFE0D0;
-  --popover: #4A1D1D;
-  --popover-foreground: #FFE0D0;
-  --primary: #F6BCCE;
-  --primary-foreground: #3B1F1F;
-  --secondary: #F9CFC3;
-  --secondary-foreground: #3B1F1F;
-  --muted: #4A1D1D;
-  --muted-foreground: #FFE0D0;
-  --accent: #E9D3C2;
-  --accent-foreground: #3B1F1F;
+  --background: #3b1f1f;
+  --foreground: #ffe6f1;
+  --card: #4a1d1d;
+  --card-foreground: #ffe6f1;
+  --popover: #4a1d1d;
+  --popover-foreground: #ffe6f1;
+  --primary: #ffafc7;
+  --primary-foreground: #ffe6f1;
+  --secondary: #ffd9e5;
+  --secondary-foreground: #ffe6f1;
+  --muted: #4a1d1d;
+  --muted-foreground: #ffe6f1;
+  --accent: #ffc3d9;
+  --accent-foreground: #ffe6f1;
   --border: rgba(255, 224, 208, 0.2);
-  --input: rgba(255, 224, 208, 0.2);
-  --ring: rgba(255, 224, 208, 0.25);
-  --sidebar: #4A1D1D;
-  --sidebar-foreground: #FFE0D0;
-  --sidebar-primary: #F6BCCE;
-  --sidebar-primary-foreground: #3B1F1F;
-  --sidebar-accent: #F9CFC3;
-  --sidebar-accent-foreground: #3B1F1F;
+  --input: rgba(255, 197, 197, 0.2);
+  --ring: rgba(255, 197, 197, 0.25);
+  --sidebar: #4a1d1d;
+  --sidebar-foreground: #ffe6f1;
+  --sidebar-primary: #ffafc7;
+  --sidebar-primary-foreground: #ffe6f1;
+  --sidebar-accent: #ffd9e5;
+  --sidebar-accent-foreground: #ffe6f1;
   --sidebar-border: rgba(255, 224, 208, 0.2);
   --sidebar-ring: rgba(255, 224, 208, 0.25);
 }
@@ -150,4 +155,61 @@
   border-radius: 9999px;
   background: linear-gradient(135deg, #ff7bb9, #f967a2 55%, #ffb3c8 75%);
   box-shadow: 0 20px 40px rgba(255, 109, 163, 0.35);
+}
+
+.pink-bg-1 {
+  background-color: var(--pink-1);
+}
+
+.pink-bg-2 {
+  background-color: var(--pink-2);
+}
+
+.pink-bg-3 {
+  background-color: var(--pink-3);
+}
+
+.pink-bg-4 {
+  background-color: var(--pink-4);
+}
+
+.pink-bg-5 {
+  background-color: var(--pink-5);
+}
+
+.pink-border {
+  border-color: var(--pink-1);
+}
+
+.pink-border-light {
+  border-color: var(--pink-4);
+}
+
+.text-pink-1 {
+  color: var(--pink-1);
+}
+
+.text-pink-2 {
+  color: var(--pink-2);
+}
+
+.text-pink-3 {
+  color: var(--pink-3);
+}
+
+.text-pink-4 {
+  color: var(--pink-4);
+}
+
+.pink-button {
+  background-color: var(--pink-1);
+  color: var(--pink-5);
+}
+
+.pink-button:hover {
+  background-color: var(--pink-2);
+}
+
+.pink-section {
+  background-color: var(--pink-5);
 }
