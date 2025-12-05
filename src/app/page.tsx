@@ -57,66 +57,51 @@ const complements: Card[] = [
   },
 ];
 
-const giftPicks: Card[] = [
+const services = [
+  'Custom digital invitations that animate on any device.',
+  'Full wedding suite design with print + digital versions.',
+  'Luxe packaging guidance and fulfillment support.',
+];
+
+const products = [
+  'Editable templates ready for instant download.',
+  'Tailored design help with color, typography, and wording.',
+  'High-resolution PDFs plus print-ready assets.',
+];
+
+const featuresList = [
+  'Live editing with instant preview and QR sharing.',
+  'Automated RSVP tracking and messaging.',
+  'Secure hosting so every invite stays online for guests.',
+];
+
+const happyCustomers = [
   {
-    image: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1000&q=60',
-    title: 'For the Couple',
-    subtitle: 'Trio of blush stationery sets',
-    cta: 'See pick',
+    quote: 'Digntag delivered our invites within 48 hours and guests swooned over the motion graphics.',
+    name: 'Ananya & Karan',
   },
   {
-    image: 'https://images.unsplash.com/photo-1506089676908-3592f7389d4d?auto=format&fit=crop&w=1000&q=60',
-    title: 'For Her Table',
-    subtitle: 'Soft neutrals & ribbon',
-    cta: 'See pick',
+    quote: 'The packaging team matched the blush palette perfectly—no detail was missed.',
+    name: 'Riya & Soham',
   },
   {
-    image: 'https://images.unsplash.com/photo-1505253758473-11c28f7246a1?auto=format&fit=crop&w=1000&q=60',
-    title: 'For Fine Friends',
-    subtitle: 'Personalized thank you cards',
-    cta: 'See pick',
+    quote: 'Our RSVP dashboard made following guest replies effortless.',
+    name: 'Saanvi',
   },
 ];
 
-const packagingEssentials: Card[] = [
+const faqs = [
   {
-    image: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1000&q=60',
-    title: 'Custom Tissue Paper',
-    subtitle: 'Blush & cream stock',
-    cta: 'Browse this pack',
+    question: 'How quickly can we launch an invite?',
+    answer: 'Most couples go live within a week; rush timelines are supported with express artwork.',
   },
   {
-    image: 'https://images.unsplash.com/photo-1484704849700-f032a568e944?auto=format&fit=crop&w=1000&q=60',
-    title: 'Ribbon & Twine',
-    subtitle: 'Three cord textures',
-    cta: 'Browse this pack',
+    question: 'Can we still order printed versions?',
+    answer: 'Yes, we coordinate with trusted printers and handle proofs to keep the palette perfect.',
   },
   {
-    image: 'https://images.unsplash.com/photo-1455146634373-84e1f163b6c7?auto=format&fit=crop&w=1000&q=60',
-    title: 'Gift Boxes',
-    subtitle: 'Custom embossing available',
-    cta: 'Browse this pack',
-  },
-  {
-    image: 'https://images.unsplash.com/photo-1493666438817-866a91353ca9?auto=format&fit=crop&w=1000&q=60',
-    title: 'Stamps & Stickers',
-    subtitle: 'Gold foil or matte',
-    cta: 'Browse this pack',
-  },
-];
-
-const reviews = [
-  {
-    text: '"Digntag took our wedding stationery to another level—without the stress."',
-    author: 'Ananya & Karan',
-  },
-  {
-    text: '"Every package was curated beautifully. Guests took photos before opening."',
-    author: 'Riya & Soham',
-  },
-  {
-    text: '"The custom favors and gift boxes arrived looking like they belonged in a magazine."',
-    author: 'Saanvi',
+    question: 'Is there a consultation before design starts?',
+    answer: 'Always—book a virtual call so we can capture your tone, theme, and delivery preferences.',
   },
 ];
 
@@ -128,10 +113,10 @@ export default function Home() {
           <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
             <div className="space-y-6">
               <p className="text-sm uppercase tracking-[0.6em] text-gray-500">Limited drop</p>
-              <h1 className="text-4xl font-semibold leading-tight tracking-tight text-gray-900 sm:text-5xl">
+              <h1 className="text-4xl font-semibold leading-tight tracking-tight text-black sm:text-5xl">
                 What do you want to design?
               </h1>
-              <p className="text-lg text-gray-700">
+              <p className="text-lg text-gray-500">
                 From digital invites to luxe event complements, we craft stationery that feels like you—every hue,
                 every fold.
               </p>
@@ -162,6 +147,64 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="py-16 bg-white">
+        <div className="mx-auto max-w-6xl px-6 space-y-10">
+          <article className="text-center space-y-4 bg-white p-8 rounded-[28px] border border-pink-border-light shadow-sm">
+            <p className="text-xs uppercase tracking-[0.4em] text-pink-1">About</p>
+            <h2 className="text-3xl font-semibold text-pink-1">We choreograph unforgettable stationery experiences</h2>
+            <p className="text-lg text-pink-2">
+              Digntag is the studio that pairs cinematic digital invites with hand-finished packaging so your guests
+              feel the narrative before they even arrive.
+            </p>
+          </article>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            {[{ title: 'Services', items: services }, { title: 'Products', items: products }, { title: 'Features', items: featuresList }].map(
+              (block) => (
+                <article
+                  key={block.title}
+                  className="space-y-2 rounded-[28px] border border-pink-border-light bg-white p-6 text-center shadow-lg"
+                >
+                  <h3 className="text-xl font-semibold text-pink-1">{block.title}</h3>
+                  <ul className="space-y-2 text-sm text-pink-2">
+                    {block.items.map((item) => (
+                      <li key={item} className="relative pl-6">
+                        <span className="absolute left-0 top-1 h-2 w-2 rounded-full bg-pink-1" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              ),
+            )}
+          </div>
+
+          <article className="rounded-[32px] border border-pink-border bg-white p-10 text-center shadow-[0_20px_45px_rgba(205,94,119,0.15)]">
+            <p className="text-xs uppercase tracking-[0.4em] text-pink-1">Happy customers</p>
+            <div className="mt-6 grid gap-6 md:grid-cols-3">
+              {happyCustomers.map((cust) => (
+                <blockquote key={cust.name} className="space-y-2">
+                  <p className="text-sm italic text-pink-3">“{cust.quote}”</p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.4em] text-pink-1">{cust.name}</p>
+                </blockquote>
+              ))}
+            </div>
+          </article>
+
+          <article className="space-y-4 rounded-[32px] border border-pink-border bg-white p-10 shadow-lg">
+            <p className="text-xs uppercase tracking-[0.4em] text-pink-1">FAQ</p>
+            <div className="space-y-4">
+              {faqs.map((faq) => (
+                <details className="rounded-2xl border border-pink-border-light bg-white p-4" key={faq.question}>
+                  <summary className="cursor-pointer text-sm font-semibold text-pink-1">{faq.question}</summary>
+                  <p className="mt-2 text-sm text-pink-2">{faq.answer}</p>
+                </details>
+              ))}
+            </div>
+          </article>
         </div>
       </section>
 
