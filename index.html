@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digntag| Custom Design Platform</title>
+    
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Load Owl Carousel CSS (REQUIRED FOR STYLING) -->
+    <link rel="stylesheet" href="./assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="./assets/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
+</head>
+<body class="text-gray-800">
+
+    <!-- Mobile Menu Drawer (Hidden by default) -->
+    <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-primary z-50 transform -translate-x-full transition-transform duration-300 md:hidden">
+        <div class="p-6">
+            <button onclick="toggleMenu()" class="text-white text-3xl absolute top-4 right-4 focus:outline-none" aria-label="Close Menu">
+                &times;
+            </button>
+            <nav class="mt-16 flex flex-col space-y-4">
+                <a href="#" class="text-white text-xl font-medium hover:text-cta transition duration-150 p-2 rounded-lg">Home</a>
+                <a href="#" class="text-white text-xl font-medium hover:text-cta transition duration-150 p-2 rounded-lg">Templates</a>
+                <a href="#" class="text-white text-xl font-medium hover:text-cta transition duration-150 p-2 rounded-lg">About Us</a>
+                <a href="#" class="text-white text-xl font-medium hover:text-cta transition duration-150 p-2 rounded-lg">Contact</a>
+                <a href="#" class="text-primary bg-white font-bold transition duration-150 p-2 rounded-lg">Design</a>
+            </nav>
+            <div class="mt-8">
+                <button class="w-full py-3 bg-cta text-white font-bold rounded-full shadow-lg hover:bg-cta/80 transition duration-150">Sign In</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 z-40 bg-white shadow-md">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="text-2xl font-black text-primary tracking-wider">
+                Dignlay
+            </div>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex space-x-6 lg:space-x-10 items-center">
+                <a href="#" class="text-primary text-cta duration-150 font-bold">Home</a>
+                <a href="#" class="text-gray-600 hover:text-primary transition duration-150 font-medium">Templates</a>
+                <a href="#" class="text-gray-600 hover:text-primary transition duration-150 font-medium">About Us</a>
+                <a href="#" class="text-gray-600 hover:text-primary transition duration-150 font-medium">Contact</a>
+                <a href="#" class="text-gray-600 hover:text-primary transition duration-150 font-medium">Design</a>
+            </nav>
+
+            <!-- Sign In / Hamburger Menu -->
+            <div class="flex items-center space-x-4">
+                <button class="hidden md:block px-6 py-2 bg-cta text-white font-bold rounded-full shadow-xl hover:bg-cta/90 transition duration-150">
+                    Sign In
+                </button>
+
+                <!-- Hamburger Icon (Mobile) -->
+                <button onclick="toggleMenu()" class="md:hidden text-primary focus:outline-none" aria-label="Open Menu">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 2. Hero Section -->
+        <section class="relative pt-16 pb-24 md:pt-24 md:pb-32 overflow-hidden bg-[url('./assets/img/herosection.jpg')] h-96 w-full bg-cover bg-center">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between">
+                <!-- Text Content -->
+                <div class="md:w-1/2 lg:w-2/5 z-10 text-center md:text-left mb-10 md:mb-0">
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-primary mb-8 leading-tight">
+                        What do you want to design?
+                    </h1>
+                    <button class="px-10 py-4 bg-cta text-white font-bold text-lg rounded-full shadow-xl hover:bg-cta/90 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-cta/50">
+                        Start Your Design
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Digital Invitation Section (Owl Carousel 1) -->
+        <section class="py-16 md:py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center text-primary mb-12">Digital Invitation</h2>
+                
+                <div id="invitation-carousel" class="owl-carousel owl-theme relative px-8">
+                    
+                    <!-- Item 1 -->
+                    <div class="item block bg-white rounded-xl overflow-hidden shadow-lg  transition duration-300 cursor-pointer">
+                        <img src="https://placehold.co/300x400/FFF4F7/34161E?text=Invite+1" alt="Digital Invitation Design 1" class="w-full h-auto object-cover">
+                        <div class="p-3 text-center">
+                            <p class="text-sm font-medium text-gray-700">Minimalist</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 2 -->
+                    <div class="item block bg-white rounded-xl overflow-hidden shadow-lg  transition duration-300 cursor-pointer">
+                        <img src="https://placehold.co/300x400/F5668D/34161E?text=Invite+2" alt="Digital Invitation Design 2" class="w-full h-auto object-cover">
+                        <div class="p-3 text-center">
+                            <p class="text-sm font-medium text-gray-700">Floral Script</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 3 -->
+                    <div class="item block bg-white rounded-xl overflow-hidden shadow-lg  transition duration-300 cursor-pointer">
+                        <img src="https://placehold.co/300x400/34161E/FFF4F7?text=Invite+3" alt="Digital Invitation Design 3" class="w-full h-auto object-cover">
+                        <div class="p-3 text-center">
+                            <p class="text-sm font-medium text-gray-700">Art Deco</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 4 -->
+                    <div class="item block bg-white rounded-xl overflow-hidden shadow-lg  transition duration-300 cursor-pointer">
+                        <img src="https://placehold.co/300x400/D9ECF2/34161E?text=Invite+4" alt="Digital Invitation Design 4" class="w-full h-auto object-cover">
+                        <div class="p-3 text-center">
+                            <p class="text-sm font-medium text-gray-700">Watercolor</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Item 5 -->
+                    <div class="item block bg-white rounded-xl overflow-hidden shadow-lg  transition duration-300 cursor-pointer">
+                        <img src="https://placehold.co/300x400/C7D3F4/34161E?text=Invite+5" alt="Digital Invitation Design 5" class="w-full h-auto object-cover">
+                        <div class="p-3 text-center">
+                            <p class="text-sm font-medium text-gray-700">Modern Text</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Wedding/Event Complements Section (Bento Grid) -->
+        <section class="py-16 md:py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+                <h2 class="text-3xl font-bold text-center text-primary mb-12">Wedding/Event Complements</h2>
+                
+                <!-- Central Dignlay Logo (Hidden on mobile) -->
+                <!-- <div id="bento-center-logo" class="absolute hidden md:flex items-center justify-center w-48 h-48 rounded-full bg-white/70 backdrop-blur-sm border-4 border-primary/20">
+                    <div class="text-4xl font-extrabold text-primary opacity-80 tracking-widest">Dignlay</div>
+                </div> -->
+
+                <div class="bento-grid">
+                    
+                    
+                    
+                    <!-- Item 2: Thank You & RSVP Stationary Cards (Standard) -->
+                    <div class="bg-white rounded-xl shadow-xl overflow-hidden p-6 md:p-8 flex flex-col justify-end h-64 md:h-72 relative transition hover:scale-[1.02] duration-300" style="background-image: url('./assets/img/wed2.png'); background-size: cover; background-position: center;">
+                         <div class="absolute inset-0 bg-primary/40 rounded-xl"></div>
+                         <p class="relative z-10 text-xl font-semibold text-white">Thank You & RSVP Stationary Cards</p>
+                    </div>
+
+                    <!-- Item 3: Small Manual Program Cards (Tall) -->
+                    <div class="bento-item-tall bg-white rounded-xl shadow-xl overflow-hidden p-6 md:p-8 flex flex-col justify-end h-64 md:h-auto relative transition hover:scale-[1.02] duration-300" style="background-image: url('./assets/img/wed3.png'); background-size:cover; background-position: center;">
+                         <div class="absolute inset-0 bg-primary/40 rounded-xl"></div>
+                         <p class="relative z-10 text-xl font-semibold text-white">Small Manual Program Cards</p>
+                    </div>
+                    
+                    <!-- Item 4: Small Manual Program Cards (Standard) -->
+                    <div class="bg-white rounded-xl shadow-xl overflow-hidden p-6 md:p-8 flex flex-col justify-end h-64 md:h-72 relative transition hover:scale-[1.02] duration-300" style="background-image: url('./assets/img/wed4.png'); background-size: cover; background-position: center;">
+                         <div class="absolute inset-0 bg-primary/40 rounded-xl"></div>
+                         <p class="relative z-10 text-xl font-semibold text-white">Small Manual Program Cards</p>
+                    </div>
+
+                    <!-- Item 5: Custom Envelope Liners (Standard) -->
+                    <div class="bg-white rounded-xl shadow-xl overflow-hidden p-6 md:p-8 flex flex-col justify-end h-64 md:h-72 relative transition hover:scale-[1.02] duration-300" style="background-image: url('./assets/img/wed5.png'); background-size: cover; background-position: center;">
+                         <div class="absolute inset-0 bg-primary/40 rounded-xl"></div>
+                         <p class="relative z-10 text-xl font-semibold text-white">Custom Envelope Liners</p>
+                    </div>
+                    <!-- Item 5: Custom Envelope Liners (Standard) -->
+                    <div class="bg-white rounded-xl shadow-xl overflow-hidden p-6 md:p-8 flex flex-col justify-end h-64 md:h-72 relative transition hover:scale-[1.02] duration-300" style="background-image: url('./assets/img/wed1.png'); background-size: cover; background-position: center;">
+                         <div class="absolute inset-0 bg-primary/40 rounded-xl"></div>
+                         <p class="relative z-10 text-xl font-semibold text-white">Custom Envelope Liners</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Need a Gift? Our Top Picks Section -->
+        <!-- <section class="py-16 md:py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center text-primary mb-4">Need a Gift?</h2>
+                <p class="text-xl text-center text-gray-600 mb-12">Our Top Picks</p>
+
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                   
+                    <div class="col-span-1 bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden cursor-pointer">
+                        <img src="https://placehold.co/400x300/F5668D/FFF4F7?text=Pink+Gift+Box" alt="Luxury Pink Gift Box" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <p class="text-base font-medium text-gray-700 truncate">Luxury Box Set</p>
+                            <p class="text-sm text-primary font-bold mt-1">$49.99</p>
+                        </div>
+                    </div>
+
+                  
+                    <div class="col-span-1 bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden cursor-pointer">
+                        <img src="https://placehold.co/400x300/FFD700/34161E?text=Gold+Chain" alt="Gold Chain Necklace" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <p class="text-base font-medium text-gray-700 truncate">Delicate Gold Chain</p>
+                            <p class="text-sm text-primary font-bold mt-1">$199.00</p>
+                        </div>
+                    </div>
+
+                 
+                    <div class="col-span-1 bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden cursor-pointer">
+                        <img src="https://placehold.co/400x300/FFD700/34161E?text=Gold+Earrings" alt="Gold Hoop Earrings" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <p class="text-base font-medium text-gray-700 truncate">Hoop Earrings</p>
+                            <p class="text-sm text-primary font-bold mt-1">$120.00</p>
+                        </div>
+                    </div>
+
+                   
+                    <div class="col-span-1 bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden cursor-pointer">
+                        <img src="https://placehold.co/400x300/C0C0C0/34161E?text=Sleek+Watch" alt="Sleek Silver Watch" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <p class="text-base font-medium text-gray-700 truncate">Classic Wrist Watch</p>
+                            <p class="text-sm text-primary font-bold mt-1">$350.00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+
+        <!-- 7. Gift Packaging Essentials (Owl Carousel 2) -->
+        <section class="py-16 md:py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center text-primary mb-12">Gift Packaging Essentials</h2>
+
+                <div id="packaging-carousel" class="owl-carousel owl-theme relative px-8">
+                    <!-- Item 1: Ribbons -->
+                    <div class="item group block bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden cursor-pointer">
+                        <img src="./assets/img/img2.png" alt="Silk Ribbons" class="w-full h-60 object-cover">
+                        <div class="p-4 text-center">
+                            <p class="text-base text-gray-700">Silk Ribbons</p>
+                        </div>
+                    </div>
+                    <!-- Item 2: Custom Wrapping Paper -->
+                    <div class="item group block bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden cursor-pointer">
+                        <img src="./assets/img/img5.png" alt="Custom Wrapping Paper" class="w-full h-60 object-cover">
+                        <div class="p-4 text-center">
+                            <p class="text-base text-gray-700">Custom Wrapping Paper</p>
+                        </div>
+                    </div>
+                    <!-- Item 3: Boutique Gift Bags -->
+                    <div class="item group block bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden cursor-pointer">
+                        <img src="./assets/img/image 3.png" alt="Boutique Gift Bags" class="w-full h-60 object-cover">
+                        <div class="p-4 text-center">
+                            <p class="text-base text-gray-700">Boutique Gift Bags</p>
+                        </div>
+                    </div>
+                    <!-- Item 4: Sealing Stickers -->
+                    <div class="item group block bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden cursor-pointer">
+                        <img src="./assets/img/img3.png" alt="Sealing Stickers" class="w-full h-60 object-cover">
+                        <div class="p-4 text-center">
+                            <p class="text-base text-gray-700">Sealing Stickers</p>
+                        </div>
+                    </div>
+                    <!-- Item 5: Custom Boxes -->
+                    <div class="item group block bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden cursor-pointer">
+                        <img src="./assets/img/img.png" alt="Custom Boxes" class="w-full h-60 object-cover">
+                        <div class="p-4 text-center">
+                            <p class="text-base text-gray-700">Custom Boxes</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 5: Custom Boxes -->
+                    <div class="item group block bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden cursor-pointer">
+                        <img src="./assets/img/img4.png" alt="Custom Boxes" class="w-full h-60 object-cover">
+                        <div class="p-4 text-center">
+                            <p class="text-base text-gray-700">Mini Gift Tags Small hang-tags</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 8. Corporate Gifting Section -->
+        <section class="py-16 md:py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center text-primary mb-4">Corporate Gifting</h2>
+                <p class="text-xl text-center text-gray-600 mb-12">Office Essentials Gift</p>
+
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Gift Card 1: Notebook -->
+                    <div class="col-span-1 bg-white rounded-xl shadow-lg p-3 text-center hover:shadow-xl transition duration-300 cursor-pointer">
+                        <img src="./assets/img/cop1.png" alt="Sleek Notebook" class="w-full h-48 object-cover rounded-lg mb-3">
+                        <p class="text-sm font-medium text-gray-700">Sleek Notebook</p>
+                    </div>
+                    <!-- Gift Card 2: Pens -->
+                    <div class="col-span-1 bg-white rounded-xl shadow-lg p-3 text-center hover:shadow-xl transition duration-300 cursor-pointer">
+                        <img src="./assets/img/cop2.png" alt="Premium Pens" class="w-full h-48 object-cover rounded-lg mb-3">
+                        <p class="text-sm font-medium text-gray-700">Premium Pen Set</p>
+                    </div>
+                    <!-- Gift Card 3: Planner -->
+                    <div class="col-span-1 bg-white rounded-xl shadow-lg p-3 text-center hover:shadow-xl transition duration-300 cursor-pointer">
+                        <img src="./assets/img/cop3.png" alt="Custom Planner" class="w-full h-48 object-cover rounded-lg mb-3">
+                        <p class="text-sm font-medium text-gray-700">Custom Planner</p>
+                    </div>
+                    <!-- Gift Card 4: Tech Accessory -->
+                    <div class="col-span-1 bg-white rounded-xl shadow-lg p-3 text-center hover:shadow-xl transition duration-300 cursor-pointer">
+                        <img src="./assets/img/cop4.png" alt="Sleek Tech Accessory" class="w-full h-48 object-cover rounded-lg mb-3">
+                        <p class="text-sm font-medium text-gray-700">Sleek Tech Accessory</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. Testimonials Slider/Section (Using a flexible scrollable layout for simplicity) -->
+        <section class="py-16 md:py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center text-primary mb-12">Customer Love</h2>
+
+                <div class="flex overflow-x-auto pb-4 space-x-6 md:grid md:grid-cols-3 md:gap-6">
+                    <!-- Review Card 1 -->
+                    <div class="flex-shrink-0 w-80 md:w-full bg-white p-6 rounded-xl shadow-lg border-t-4 border-cta/70">
+                        <div class="flex items-center mb-4">
+                            <span class="text-yellow-500 text-xl mr-2">★★★★★</span>
+                            <p class="text-sm font-semibold text-gray-700">A life-saver!</p>
+                        </div>
+                        <p class="text-gray-600 italic line-clamp-3">
+                            "The design process was incredibly smooth. They captured my vision perfectly and the final print quality for the invitations was stunning. Highly recommended for any special event."
+                        </p>
+                        <p class="mt-4 text-sm font-bold text-primary">- Sarah K.</p>
+                    </div>
+
+                    <!-- Review Card 2 -->
+                    <div class="flex-shrink-0 w-80 md:w-full bg-white p-6 rounded-xl shadow-lg border-t-4 border-cta/70">
+                        <div class="flex items-center mb-4">
+                            <span class="text-yellow-500 text-xl mr-2">★★★★★</span>
+                            <p class="text-sm font-semibold text-gray-700">Excellent Service</p>
+                        </div>
+                        <p class="text-gray-600 italic line-clamp-3">
+                            "I used Dignlay for all my wedding stationery and the gift packaging. Everything was cohesive, high-quality, and arrived ahead of schedule. Truly a professional experience."
+                        </p>
+                        <p class="mt-4 text-sm font-bold text-primary">- Michael A.</p>
+                    </div>
+
+                    <!-- Review Card 3 -->
+                    <div class="flex-shrink-0 w-80 md:w-full bg-white p-6 rounded-xl shadow-lg border-t-4 border-cta/70">
+                        <div class="flex items-center mb-4">
+                            <span class="text-yellow-500 text-xl mr-2">★★★★★</span>
+                            <p class="text-sm font-semibold text-gray-700">Best Quality Prints</p>
+                        </div>
+                        <p class="text-gray-600 italic line-clamp-3">
+                            "The colors on the digital invitations were vibrant and the paper stock for the complement cards felt luxurious. Their attention to detail sets them apart."
+                        </p>
+                        <p class="mt-4 text-sm font-bold text-primary">- Jennifer L.</p>
+                    </div>
+
+                     <!-- Review Card 3 -->
+                    <div class="flex-shrink-0 w-80 md:w-full bg-white p-6 rounded-xl shadow-lg border-t-4 border-cta/70">
+                        <div class="flex items-center mb-4">
+                            <span class="text-yellow-500 text-xl mr-2">★★★★★</span>
+                            <p class="text-sm font-semibold text-gray-700">Best Quality Prints</p>
+                        </div>
+                        <p class="text-gray-600 italic line-clamp-3">
+                            "The colors on the digital invitations were vibrant and the paper stock for the complement cards felt luxurious. Their attention to detail sets them apart."
+                        </p>
+                        <p class="mt-4 text-sm font-bold text-primary">- Jennifer L.</p>
+                    </div>
+
+                     <!-- Review Card 3 -->
+                    <div class="flex-shrink-0 w-80 md:w-full bg-white p-6 rounded-xl shadow-lg border-t-4 border-cta/70">
+                        <div class="flex items-center mb-4">
+                            <span class="text-yellow-500 text-xl mr-2">★★★★★</span>
+                            <p class="text-sm font-semibold text-gray-700">Best Quality Prints</p>
+                        </div>
+                        <p class="text-gray-600 italic line-clamp-3">
+                            "The colors on the digital invitations were vibrant and the paper stock for the complement cards felt luxurious. Their attention to detail sets them apart."
+                        </p>
+                        <p class="mt-4 text-sm font-bold text-primary">- Jennifer L.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 10. Footer -->
+    <footer class="bg-primary text-white py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-8 border-b border-white/20 pb-8 mb-8">
+                <!-- Logo/Brand -->
+                <div class="col-span-2 md:col-span-1">
+                    <div class="tracking-wider mb-4"> <img src="./assets/img/digntag_logo 1.png " alt="" srcset=""></div>
+                    <p class="text-sm text-white/80">Designing moments, crafted for you.</p>
+                </div>
+
+                <!-- Footer Links 1 -->
+                <div>
+                    <h5 class="text-lg font-bold mb-4">Company</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-cta transition duration-150">About Us</a></li>
+                        <li><a href="#" class="hover:text-cta transition duration-150">Careers</a></li>
+                        <li><a href="#" class="hover:text-cta transition duration-150">Press</a></li>
+                        <li><a href="#" class="hover:text-cta transition duration-150">Blog</a></li>
+                    </ul>
+                </div>
+
+                <!-- Footer Links 2 -->
+                <div>
+                    <h5 class="text-lg font-bold mb-4">Products</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-cta transition duration-150">Invitations</a></li>
+                        <li><a href="#" class="hover:text-cta transition duration-150">Stationery</a></li>
+                        <li><a href="#" class="hover:text-cta transition duration-150">Packaging</a></li>
+                        <li><a href="#" class="hover:text-cta transition duration-150">Gift Registry</a></li>
+                    </ul>
+                </div>
+
+                <!-- Footer Links 3 -->
+                <div>
+                    <h5 class="text-lg font-bold mb-4">Support</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-cta transition duration-150">FAQ</a></li>
+                        <li><a href="#" class="hover:text-cta transition duration-150">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-cta transition duration-150">Shipping</a></li>
+                        <li><a href="#" class="hover:text-cta transition duration-150">Terms</a></li>
+                    </ul>
+                </div>
+
+                <!-- Social Icons Placeholder -->
+                <div class="col-span-2 md:col-span-1">
+                    <h5 class="text-lg font-bold mb-4">Connect</h5>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white hover:text-cta transition duration-150" aria-label="Facebook">
+                                
+                        </a>
+                        <a href="#" class="text-white hover:text-cta transition duration-150" aria-label="Instagram">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.92.058 1.265.068 1.645.068 4.849 0 3.204-.01 3.584-.068 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.068-4.849.068-3.204 0-3.584-.01-4.849-.068-3.254-.148-4.771-1.691-4.919-4.92-.058-1.265-.068-1.645-.068-4.849 0-3.204.01-3.583.068-4.848.149-3.256 1.691-4.771 4.92-4.919 1.266-.057 1.645-.068 4.849-.068zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.213-6.463 2.318-6.67 6.67-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.213 4.358 2.318 6.463 6.67 6.67.058 1.28.072 1.689.072 4.948 0 3.259-.014 3.668-.072 4.947-.213 4.358-2.318-6.463-6.67-6.67-1.28-.059-1.689-.073-4.948-.073zm0 5.838c-3.4 0-6.162 2.762-6.162 6.162s2.762 6.162 6.162 6.162 6.162-2.762 6.162-6.162-2.762-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.442.646-1.442 1.442s.646 1.442 1.442 1.442 1.442-.646 1.442-1.442-.646-1.442-1.442-1.442z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright and Legal -->
+            <div class="text-center text-sm text-white/60 pt-8">
+                &copy; <span id="current-year"></span> Dignlay. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery and Owl Carousel JS must be loaded before the initialization script -->
+    <script src="./assets/js/jquery.min.js"></script>
+    <script src="./assets/js/owl.carousel.min.js"></script>
+   <script src="./assets/js/main.js"></script>
+</body>
+</html>
