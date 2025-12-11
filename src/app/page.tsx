@@ -20,39 +20,27 @@ const packagingSlides = [
   { image: '/assets/img/img4.png', label: 'Mini Gift Tags' },
 ];
 
-const bentoCards = [
-  {
-    title: 'Thank You & RSVP Stationary Cards',
-    image: '/assets/img/wed2.png',
-    classes: '',
-  },
-  {
-    title: 'Small Manual Program Cards',
-    image: '/assets/img/wed3.png',
-    classes: 'bento-item-tall',
-  },
-  {
-    title: 'Small Manual Program Cards',
-    image: '/assets/img/wed4.png',
-    classes: '',
-  },
-  {
-    title: 'Custom Envelope Liners',
-    image: '/assets/img/wed5.png',
-    classes: '',
-  },
-  {
-    title: 'Custom Envelope Liners',
-    image: '/assets/img/wed1.png',
-    classes: '',
-  },
+const weddingComplements = [
+  { title: 'Thank You & RSVP Stationery Cards', image: '/assets/img/wed2.png', description: 'Soft florals and polished curves' },
+  { title: 'Small Manual Program Cards', image: '/assets/img/wed3.png', description: 'Tall layout for layered schedules' },
+  { title: 'Mini Manual Program Cards', image: '/assets/img/wed4.png', description: 'Compact + tactile finish' },
+  { title: 'Envelope Liners', image: '/assets/img/wed5.png', description: 'Printed foils on velvet stock' },
+  { title: 'Custom Envelope Liners', image: '/assets/img/wed1.png', description: 'Personalized lettering inside' },
+];
+
+const digitalInvitationTemplates = [
+  { label: 'Invite 4', tone: 'Refined Balance', color: '#E8F0FF' },
+  { label: 'Invite 5', tone: 'Modern Luxe', color: '#D6D8FF' },
+  { label: 'Invite 1', tone: 'Minimal Warmth', color: '#FFF0F7' },
+  { label: 'Invite 2', tone: 'Blush Contrast', color: '#FEE2E9' },
+  { label: 'Invite 3', tone: 'Moody Elegance', color: '#2F0F17' },
 ];
 
 const corporateCards = [
-  { title: 'Sleek Notebook', image: '/assets/img/cop1.png' },
-  { title: 'Premium Pens', image: '/assets/img/cop2.png' },
-  { title: 'Custom Planner', image: '/assets/img/cop3.png' },
-  { title: 'Sleek Tech Accessory', image: '/assets/img/cop4.png' },
+  { title: 'Sleek Notebook', image: '/assets/img/cop1.png', tag: 'Executive-ready' },
+  { title: 'Premium Pens', image: '/assets/img/cop2.png', tag: 'Handcrafted metal' },
+  { title: 'Custom Planner', image: '/assets/img/cop3.png', tag: 'Embed your logo' },
+  { title: 'Sleek Tech Accessory', image: '/assets/img/cop4.png', tag: 'Gift-worthy + useful' },
 ];
 
 const testimonials = [
@@ -68,30 +56,13 @@ const testimonials = [
   },
   {
     title: 'Best Quality Prints',
-    quote: 'The colors on the digital invitations were vibrant and the paper stock for the complement cards felt luxurious.',
+    quote: 'Vibrant colors, luxurious stock, and the cards felt tailor-made for our story.',
     author: 'Jennifer L.',
   },
-  {
-    title: 'Best Quality Prints',
-    quote: 'The colors on the digital invitations were vibrant and the paper stock for the complement cards felt luxurious.',
-    author: 'Jennifer L.',
-  },
-  {
-    title: 'Best Quality Prints',
-    quote: 'The colors on the digital invitations were vibrant and the paper stock for the complement cards felt luxurious.',
-    author: 'Jennifer L.',
-  },
-];
-
-const invitationCards = [
-  { label: 'Minimalist', palette: '/assets/img/digntag_slider_1.png' },
-  { label: 'Floral Script', palette: '/assets/img/digntag_slider_2.png' },
-  { label: 'Art Deco', palette: '/assets/img/digntag_slider_3.png' },
-  { label: 'Watercolor', palette: '/assets/img/digntag_slider_4.png' },
-  { label: 'Modern Text', palette: '/assets/img/digntag_slider_5.png' },
 ];
 
 export default function Home() {
+  const heroTiles = invitationSlides.map((item) => ({ image: item.image, label: item.label }));
   const handleToggle = () => {
     if (typeof window !== 'undefined') {
       const nav = window as Window & typeof globalThis & { toggleMenu?: () => void };
@@ -105,7 +76,7 @@ export default function Home() {
       <Script src="/assets/js/owl.carousel.min.js" strategy="beforeInteractive" />
       <Script src="/assets/js/main.js" strategy="afterInteractive" />
 
-      <div className="text-gray-800">
+      <div className="page-wrapper text-gray-800">
         <div
           id="mobile-menu"
           className="fixed top-0 left-0 w-full h-full bg-primary z-50 transform -translate-x-full transition-transform duration-300 md:hidden"
@@ -137,12 +108,12 @@ export default function Home() {
           </div>
         </div>
 
-        <header className="sticky top-0 z-40 bg-white shadow-md">
+        <header className="sticky top-0 z-40 bg-white/90 backdrop-blur shadow">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <div className="text-2xl font-black text-primary tracking-wider">Dignlay</div>
-            <nav className="hidden md:flex space-x-6 lg:space-x-10 items-center">
+            <nav className="hidden md:flex space-x-6 lg:space-x-10 items-center text-sm font-medium">
               {['Home', 'Templates', 'About Us', 'Contact', 'Design'].map((link) => (
-                <a key={link} href="#" className="text-gray-600 hover:text-primary transition duration-150 font-medium">
+                <a key={link} href="#" className="text-gray-600 hover:text-primary transition duration-150">
                   {link}
                 </a>
               ))}
@@ -160,101 +131,151 @@ export default function Home() {
           </div>
         </header>
 
-        <main>
-          <section
-            className="relative pt-16 pb-24 md:pt-24 md:pb-32 overflow-hidden h-96 w-full bg-cover bg-center"
-            style={{ backgroundImage: "url('/assets/img/herosection.jpg')" }}
-          >
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between">
-              <div className="md:w-1/2 lg:w-2/5 z-10 text-center md:text-left mb-10 md:mb-0">
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-primary mb-8 leading-tight">
-                  What do you want to design?
-                </h1>
-                <button className="px-10 py-4 bg-cta text-white font-bold text-lg rounded-full shadow-xl hover:bg-cta/90 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-cta/50">
-                  Start Your Design
-                </button>
+        <main className="space-y-16 md:space-y-24">
+          <section className="hero-section rounded-b-[4rem]">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="hero-content grid gap-8 lg:grid-cols-[1fr,0.9fr] items-center">
+                <div>
+                  <p className="text-sm uppercase tracking-[0.4em] text-primary/70 mb-4">Digital atelier</p>
+                  <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-primary leading-tight">
+                    What do you want to design?
+                  </h1>
+                  <p className="text-base text-gray-700 mt-4 max-w-xl">
+                    Invitations, keepsakes, or gifting experiences—Dignlay elevates every detail in a palette of
+                    curated textures.
+                  </p>
+                  <div className="mt-6 flex flex-wrap gap-3">
+                    <button className="px-10 py-3 bg-cta text-white font-bold rounded-full shadow-xl hover:bg-cta/90 transition duration-300 transform hover:translate-y-0.5">
+                      Start Your Design
+                    </button>
+                    <button className="px-8 py-3 border border-primary text-primary font-semibold rounded-full hover:bg-primary/10 transition duration-300">
+                      Explore Templates
+                    </button>
+                  </div>
+                </div>
+                <div className="hero-tiles">
+                  {heroTiles.map((tile) => (
+                    <article
+                      key={tile.label}
+                      className="hero-tile"
+                      style={{ backgroundImage: `url('${tile.image}')` }}
+                    >
+                      <span>{tile.label}</span>
+                    </article>
+                  ))}
+                </div>
               </div>
             </div>
           </section>
 
-          <section className="py-16 md:py-24">
+          <section className="py-6 md:py-12">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-              <h2 className="text-3xl font-bold text-center text-primary mb-12">Digital Invitation</h2>
-              <div id="invitation-carousel" className="owl-carousel owl-theme relative px-8">
-                {invitationSlides.map((item) => (
-                  <div key={item.label} className="item block bg-white rounded-xl overflow-hidden shadow-lg transition duration-300 cursor-pointer">
-                    <img src={item.image} alt={`Digital Invitation Design ${item.label}`} className="w-full h-auto object-cover" />
-                    <div className="p-3 text-center">
-                      <p className="text-sm font-medium text-gray-700">{item.label}</p>
-                    </div>
-                  </div>
+              <div className="section-header text-center">
+                <p className="text-sm uppercase tracking-[0.4em] text-primary/70 mb-2">Palette</p>
+                <h2 className="text-3xl font-bold text-primary">Digital Invitation</h2>
+                <p className="text-base text-gray-600 mt-3 max-w-2xl mx-auto">
+                  Choose a preset mood board and then personalize the typography, shimmer, and pacing of your RSVP.
+                </p>
+              </div>
+              <div className="invitation-grid mt-12">
+                {digitalInvitationTemplates.map((card) => (
+                  <article key={card.label} className="invitation-card" style={{ backgroundColor: card.color }}>
+                    <span className="text-sm text-gray-500 uppercase tracking-[0.3em]">{card.label}</span>
+                    <p className="mt-6 text-xl font-semibold text-primary">{card.tone}</p>
+                    <div className="mt-4 h-14 bg-white/60 rounded-2xl shadow-inner"></div>
+                  </article>
                 ))}
               </div>
             </div>
           </section>
 
-          <section className="py-16 md:py-24">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-              <h2 className="text-3xl font-bold text-center text-primary mb-12">Wedding/Event Complements</h2>
-              <div className="bento-grid">
-                {bentoCards.map((card) => (
-                  <div
+          <section className="py-6 md:py-12">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="section-header text-center">
+                <p className="text-sm uppercase tracking-[0.4em] text-primary/70 mb-2">Complements</p>
+                <h2 className="text-3xl font-bold text-primary">Wedding/Event Complements</h2>
+                <p className="text-base text-gray-600 mt-3 max-w-2xl mx-auto">
+                  Build a cohesive suite from thank-you notes to envelopes and program cards that match your palette.
+                </p>
+              </div>
+              <div className="bento-grid mt-10">
+                {weddingComplements.map((card) => (
+                  <article
                     key={card.title}
-                    className={`${card.classes} bg-white rounded-xl shadow-xl overflow-hidden p-6 md:p-8 flex flex-col justify-end h-64 md:h-72 relative transition hover:scale-[1.02] duration-300`}
-                    style={{ backgroundImage: `url('${card.image}')`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+                    className="wedding-card"
+                    style={{ backgroundImage: `url('${card.image}')` }}
                   >
-                    <div className="absolute inset-0 bg-primary/40 rounded-xl"></div>
-                    <p className="relative z-10 text-xl font-semibold text-white">{card.title}</p>
-                  </div>
+                    <div className="wedding-card-overlay"></div>
+                    <div className="wedding-card-content">
+                      <h3 className="text-xl font-semibold">{card.title}</h3>
+                      <p className="text-sm text-white/80 mt-2">{card.description}</p>
+                    </div>
+                  </article>
                 ))}
               </div>
             </div>
           </section>
 
-          <section className="py-16 md:py-24">
+          <section className="py-6 md:py-12">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-              <h2 className="text-3xl font-bold text-center text-primary mb-12">Gift Packaging Essentials</h2>
-              <div id="packaging-carousel" className="owl-carousel owl-theme relative px-8">
+              <div className="section-header text-center">
+                <p className="text-sm uppercase tracking-[0.4em] text-primary/70 mb-2">Packaging</p>
+                <h2 className="text-3xl font-bold text-primary">Gift Packaging Essentials</h2>
+                <p className="text-base text-gray-600 mt-3 max-w-2xl mx-auto">
+                  Handpicked ribbons, wraps, and tags keep your gifting rituals memorable—delivered ready to style.
+                </p>
+              </div>
+              <div className="packaging-row mt-10">
                 {packagingSlides.map((item) => (
-                  <div key={item.label} className="item group block bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden cursor-pointer">
-                    <img src={item.image} alt={item.label} className="w-full h-60 object-cover" />
-                    <div className="p-4 text-center">
-                      <p className="text-base text-gray-700">{item.label}</p>
-                    </div>
-                  </div>
+                  <article key={item.label} className="packaging-card">
+                    <img src={item.image} alt={item.label} className="packaging-image" />
+                    <p className="text-sm font-semibold text-gray-800 mt-4">{item.label}</p>
+                  </article>
                 ))}
               </div>
             </div>
           </section>
 
-          <section className="py-16 md:py-24">
+          <section className="py-6 md:py-12">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-              <h2 className="text-3xl font-bold text-center text-primary mb-4">Corporate Gifting</h2>
-              <p className="text-xl text-center text-gray-600 mb-12">Office Essentials Gift</p>
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="section-header text-center">
+                <p className="text-sm uppercase tracking-[0.4em] text-primary/70 mb-2">Corporate</p>
+                <h2 className="text-3xl font-bold text-primary">Corporate Gifting</h2>
+                <p className="text-base text-gray-600 mt-3 max-w-2xl mx-auto">
+                  Bespoke desk and stationery sets with logo embossing options to impress your clients or teams.
+                </p>
+              </div>
+              <div className="grid gap-6 grid-cols-2 lg:grid-cols-4 mt-10">
                 {corporateCards.map((card) => (
-                  <div key={card.title} className="bg-white rounded-xl shadow-lg p-3 text-center hover:shadow-xl transition duration-300 cursor-pointer">
-                    <img src={card.image} alt={card.title} className="w-full h-48 object-cover rounded-lg mb-3" />
-                    <p className="text-sm font-medium text-gray-700">{card.title}</p>
-                  </div>
+                  <article key={card.title} className="corporate-card">
+                    <img src={card.image} alt={card.title} className="corporate-image" />
+                    <div className="mt-4">
+                      <h3 className="text-lg font-semibold text-primary">{card.title}</h3>
+                      <p className="text-sm text-gray-500">{card.tag}</p>
+                    </div>
+                  </article>
                 ))}
               </div>
             </div>
           </section>
 
-          <section className="py-16 md:py-24">
+          <section className="py-6 md:py-12">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-              <h2 className="text-3xl font-bold text-center text-primary mb-12">Customer Love</h2>
-              <div className="flex overflow-x-auto pb-4 space-x-6 md:grid md:grid-cols-3 md:gap-6">
-                {testimonials.map((item, index) => (
-                  <div key={`${item.author}-${index}`} className="flex-shrink-0 w-80 md:w-full bg-white p-6 rounded-xl shadow-lg border-t-4 border-cta/70">
-                    <div className="flex items-center mb-4">
-                      <span className="text-yellow-500 text-xl mr-2">★★★★★</span>
-                      <p className="text-sm font-semibold text-gray-700">{item.title}</p>
-                    </div>
-                    <p className="text-gray-600 italic line-clamp-3">{item.quote}</p>
+              <div className="section-header text-center">
+                <p className="text-sm uppercase tracking-[0.4em] text-primary/70 mb-2">Kind words</p>
+                <h2 className="text-3xl font-bold text-primary">Customer Love</h2>
+                <p className="text-base text-gray-600 mt-3 max-w-2xl mx-auto">
+                  Every review is a love letter to the papers, inks, and people who bring your vision to print.
+                </p>
+              </div>
+              <div className="testimonial-grid mt-10">
+                {testimonials.map((item) => (
+                  <article key={item.title} className="testimonial-card">
+                    <div className="text-yellow-500 text-lg mb-2">★★★★★</div>
+                    <p className="text-lg font-semibold text-gray-800">{item.title}</p>
+                    <p className="text-gray-600 italic mt-3">{item.quote}</p>
                     <p className="mt-4 text-sm font-bold text-primary">- {item.author}</p>
-                  </div>
+                  </article>
                 ))}
               </div>
             </div>
