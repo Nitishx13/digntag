@@ -1,213 +1,330 @@
 'use client';
 
-type Card = {
-  image: string;
-  title: string;
-  subtitle?: string;
-  cta?: string;
-  badge?: string;
-  note?: string;
-};
+import Script from 'next/script';
+import './website.css';
 
-const digitalInvites: Card[] = [
+const invitationSlides = [
+  { title: 'Minimalist', image: '/assets/img/digntag_slider_1.png', label: 'Minimalist' },
+  { title: 'Floral Script', image: '/assets/img/digntag_slider_2.png', label: 'Floral Script' },
+  { title: 'Art Deco', image: '/assets/img/digntag_slider_3.png', label: 'Art Deco' },
+  { title: 'Watercolor', image: '/assets/img/digntag_slider_4.png', label: 'Watercolor' },
+  { title: 'Modern Text', image: '/assets/img/digntag_slider_5.png', label: 'Modern Text' },
+];
+
+const packagingSlides = [
+  { image: '/assets/img/img2.png', label: 'Silk Ribbons' },
+  { image: '/assets/img/img5.png', label: 'Custom Wrapping Paper' },
+  { image: '/assets/img/image 3.png', label: 'Boutique Gift Bags' },
+  { image: '/assets/img/img3.png', label: 'Sealing Stickers' },
+  { image: '/assets/img/img.png', label: 'Custom Boxes' },
+  { image: '/assets/img/img4.png', label: 'Mini Gift Tags' },
+];
+
+const bentoCards = [
   {
-    image: 'https://images.unsplash.com/photo-1519791883280-d1eaffa5ae5c?auto=format&fit=crop&w=1200&q=60',
-    title: 'Royal Wedding Invite',
-    subtitle: 'Digital invitation • 3 pages',
-    cta: 'Shop invite',
+    title: 'Thank You & RSVP Stationary Cards',
+    image: '/assets/img/wed2.png',
+    classes: '',
   },
   {
-    image: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1200&q=60',
-    title: 'Floral Light Pink',
-    subtitle: 'Digital invitation • Download only',
-    cta: 'Shop invite',
+    title: 'Small Manual Program Cards',
+    image: '/assets/img/wed3.png',
+    classes: 'bento-item-tall',
   },
   {
-    image: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=60',
-    title: 'Gulabi Heritage',
-    subtitle: 'Digital invitation • QR shareable',
-    cta: 'Shop invite',
+    title: 'Small Manual Program Cards',
+    image: '/assets/img/wed4.png',
+    classes: '',
+  },
+  {
+    title: 'Custom Envelope Liners',
+    image: '/assets/img/wed5.png',
+    classes: '',
+  },
+  {
+    title: 'Custom Envelope Liners',
+    image: '/assets/img/wed1.png',
+    classes: '',
   },
 ];
 
-const complements: Card[] = [
+const corporateCards = [
+  { title: 'Sleek Notebook', image: '/assets/img/cop1.png' },
+  { title: 'Premium Pens', image: '/assets/img/cop2.png' },
+  { title: 'Custom Planner', image: '/assets/img/cop3.png' },
+  { title: 'Sleek Tech Accessory', image: '/assets/img/cop4.png' },
+];
+
+const testimonials = [
   {
-    image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1000&q=60',
-    title: 'Custom Favor Tags',
-    subtitle: 'Tie-on tags that match every suite',
-    cta: 'Shop now',
+    title: 'A life-saver!',
+    quote: 'The design process was incredibly smooth. They captured my vision perfectly and the final print quality for the invitations was stunning.',
+    author: 'Sarah K.',
   },
   {
-    image: 'https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1000&q=60',
-    title: 'Thank You Stationery',
-    subtitle: 'Luxury paper stock & foil',
-    cta: 'Shop now',
+    title: 'Excellent Service',
+    quote: 'I used Dignlay for all my wedding stationery and the gift packaging. Everything was cohesive, high-quality, and arrived ahead of schedule.',
+    author: 'Michael A.',
   },
   {
-    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1000&q=60',
-    title: 'Small Menu / Program Cards',
-    subtitle: '60 lb uncoated, double-sided',
-    cta: 'Shop now',
+    title: 'Best Quality Prints',
+    quote: 'The colors on the digital invitations were vibrant and the paper stock for the complement cards felt luxurious.',
+    author: 'Jennifer L.',
   },
   {
-    image: 'https://images.unsplash.com/photo-1456428199391-1d72e1b7d6a9?auto=format&fit=crop&w=1000&q=60',
-    title: 'Custom Envelope Seals',
-    subtitle: 'Matte gold, blush, or white seals',
-    cta: 'Shop now',
+    title: 'Best Quality Prints',
+    quote: 'The colors on the digital invitations were vibrant and the paper stock for the complement cards felt luxurious.',
+    author: 'Jennifer L.',
+  },
+  {
+    title: 'Best Quality Prints',
+    quote: 'The colors on the digital invitations were vibrant and the paper stock for the complement cards felt luxurious.',
+    author: 'Jennifer L.',
   },
 ];
 
-const services = [
-  'Custom digital invitations that animate on any device.',
-  'Full wedding suite design with print + digital versions.',
-  'Luxe packaging guidance and fulfillment support.',
-];
-
-const products = [
-  'Editable templates ready for instant download.',
-  'Tailored design help with color, typography, and wording.',
-  'High-resolution PDFs plus print-ready assets.',
-];
-
-const featuresList = [
-  'Live editing with instant preview and QR sharing.',
-  'Automated RSVP tracking and messaging.',
-  'Secure hosting so every invite stays online for guests.',
-];
-
-const happyCustomers = [
-  {
-    quote: 'Digntag delivered our invites within 48 hours and guests swooned over the motion graphics.',
-    name: 'Ananya & Karan',
-  },
-  {
-    quote: 'The packaging team matched the blush palette perfectly—no detail was missed.',
-    name: 'Riya & Soham',
-  },
-  {
-    quote: 'Our RSVP dashboard made following guest replies effortless.',
-    name: 'Saanvi',
-  },
-];
-
-const faqs = [
-  {
-    question: 'How quickly can we launch an invite?',
-    answer: 'Most couples go live within a week; rush timelines are supported with express artwork.',
-  },
-  {
-    question: 'Can we still order printed versions?',
-    answer: 'Yes, we coordinate with trusted printers and handle proofs to keep the palette perfect.',
-  },
-  {
-    question: 'Is there a consultation before design starts?',
-    answer: 'Always—book a virtual call so we can capture your tone, theme, and delivery preferences.',
-  },
+const invitationCards = [
+  { label: 'Minimalist', palette: '/assets/img/digntag_slider_1.png' },
+  { label: 'Floral Script', palette: '/assets/img/digntag_slider_2.png' },
+  { label: 'Art Deco', palette: '/assets/img/digntag_slider_3.png' },
+  { label: 'Watercolor', palette: '/assets/img/digntag_slider_4.png' },
+  { label: 'Modern Text', palette: '/assets/img/digntag_slider_5.png' },
 ];
 
 export default function Home() {
+  const handleToggle = () => {
+    if (typeof window !== 'undefined') {
+      const nav = window as Window & typeof globalThis & { toggleMenu?: () => void };
+      nav.toggleMenu?.();
+    }
+  };
+
   return (
-    <div className="bg-gradient-to-b from-white to-[#F3F3F3] min-h-screen pb-16">
-      <section className="relative bg-white">
-        <div className="mx-auto max-w-6xl px-6 py-12 sm:py-16">
-          <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
-            <div className="space-y-6">
-              <p className="text-sm uppercase tracking-[0.6em] text-gray-500">Limited drop</p>
-              <h1 className="text-4xl font-semibold leading-tight tracking-tight text-black sm:text-5xl">
-                What do you want to design?
-              </h1>
-              <p className="text-lg text-gray-500">
-                From digital invites to luxe event complements, we craft stationery that feels like you—every hue,
-                every fold.
-              </p>
-              <div className="flex flex-wrap gap-4">
+    <>
+      <Script src="/assets/js/jquery.min.js" strategy="beforeInteractive" />
+      <Script src="/assets/js/owl.carousel.min.js" strategy="beforeInteractive" />
+      <Script src="/assets/js/main.js" strategy="afterInteractive" />
+
+      <div className="text-gray-800">
+        <div
+          id="mobile-menu"
+          className="fixed top-0 left-0 w-full h-full bg-primary z-50 transform -translate-x-full transition-transform duration-300 md:hidden"
+        >
+          <div className="p-6">
+            <button
+              onClick={handleToggle}
+              className="text-white text-3xl absolute top-4 right-4 focus:outline-none"
+              aria-label="Close Menu"
+            >
+              &times;
+            </button>
+            <nav className="mt-16 flex flex-col space-y-4">
+              {['Home', 'Templates', 'About Us', 'Contact', 'Design'].map((link) => (
                 <a
-                  href="/shop"
-                  className="inline-flex items-center justify-center rounded-full bg-gray-900 px-8 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-white shadow-lg"
+                  key={link}
+                  href="#"
+                  className="text-white text-xl font-medium hover:text-cta transition duration-150 p-2 rounded-lg"
                 >
-                  Get started
+                  {link}
                 </a>
-                <button className="inline-flex items-center justify-center rounded-full border border-gray-900 px-8 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-gray-900">
-                  Book a chat
+              ))}
+            </nav>
+            <div className="mt-8">
+              <button className="w-full py-3 bg-cta text-white font-bold rounded-full shadow-lg hover:bg-cta/80 transition duration-150">
+                Sign In
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <header className="sticky top-0 z-40 bg-white shadow-md">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div className="text-2xl font-black text-primary tracking-wider">Dignlay</div>
+            <nav className="hidden md:flex space-x-6 lg:space-x-10 items-center">
+              {['Home', 'Templates', 'About Us', 'Contact', 'Design'].map((link) => (
+                <a key={link} href="#" className="text-gray-600 hover:text-primary transition duration-150 font-medium">
+                  {link}
+                </a>
+              ))}
+            </nav>
+            <div className="flex items-center space-x-4">
+              <button className="hidden md:block px-6 py-2 bg-cta text-white font-bold rounded-full shadow-xl hover:bg-cta/90 transition duration-150">
+                Sign In
+              </button>
+              <button onClick={handleToggle} className="md:hidden text-primary focus:outline-none" aria-label="Open Menu">
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </header>
+
+        <main>
+          <section className="relative pt-16 pb-24 md:pt-24 md:pb-32 overflow-hidden bg-[url('/assets/img/herosection.jpg')] h-96 w-full bg-cover bg-center">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between">
+              <div className="md:w-1/2 lg:w-2/5 z-10 text-center md:text-left mb-10 md:mb-0">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-primary mb-8 leading-tight">
+                  What do you want to design?
+                </h1>
+                <button className="px-10 py-4 bg-cta text-white font-bold text-lg rounded-full shadow-xl hover:bg-cta/90 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-cta/50">
+                  Start Your Design
                 </button>
               </div>
             </div>
-            <div className="h-[370px] w-full rounded-[32px] border pink-border bg-[var(--pink-5)] shadow-lg">
-              <div
-                className="h-full w-full rounded-[32px] bg-cover bg-center"
-                style={{
-                  backgroundImage:
-                    "url('https://images.unsplash.com/photo-1493666438817-866a91353ca9?auto=format&fit=crop&w=1200&q=60')",
-                }}
-              >
-                <div className="flex h-full w-full flex-col items-start justify-end rounded-[32px] bg-gradient-to-t from-[rgba(205,94,119,0.85)] to-transparent p-6 text-pink-5">
-                  <p className="text-xs font-semibold uppercase tracking-[0.4em] text-pink-5">Digntag</p>
-                  <p className="text-sm font-normal text-pink-5">Handmade embellishment</p>
+          </section>
+
+          <section className="py-16 md:py-24">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <h2 className="text-3xl font-bold text-center text-primary mb-12">Digital Invitation</h2>
+              <div id="invitation-carousel" className="owl-carousel owl-theme relative px-8">
+                {invitationSlides.map((item) => (
+                  <div key={item.label} className="item block bg-white rounded-xl overflow-hidden shadow-lg transition duration-300 cursor-pointer">
+                    <img src={item.image} alt={`Digital Invitation Design ${item.label}`} className="w-full h-auto object-cover" />
+                    <div className="p-3 text-center">
+                      <p className="text-sm font-medium text-gray-700">{item.label}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section className="py-16 md:py-24">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+              <h2 className="text-3xl font-bold text-center text-primary mb-12">Wedding/Event Complements</h2>
+              <div className="bento-grid">
+                {bentoCards.map((card) => (
+                  <div
+                    key={card.title}
+                    className={`${card.classes} bg-white rounded-xl shadow-xl overflow-hidden p-6 md:p-8 flex flex-col justify-end h-64 md:h-72 relative transition hover:scale-[1.02] duration-300`}
+                    style={{ backgroundImage: `url('${card.image}')`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+                  >
+                    <div className="absolute inset-0 bg-primary/40 rounded-xl"></div>
+                    <p className="relative z-10 text-xl font-semibold text-white">{card.title}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section className="py-16 md:py-24">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <h2 className="text-3xl font-bold text-center text-primary mb-12">Gift Packaging Essentials</h2>
+              <div id="packaging-carousel" className="owl-carousel owl-theme relative px-8">
+                {packagingSlides.map((item) => (
+                  <div key={item.label} className="item group block bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden cursor-pointer">
+                    <img src={item.image} alt={item.label} className="w-full h-60 object-cover" />
+                    <div className="p-4 text-center">
+                      <p className="text-base text-gray-700">{item.label}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section className="py-16 md:py-24">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <h2 className="text-3xl font-bold text-center text-primary mb-4">Corporate Gifting</h2>
+              <p className="text-xl text-center text-gray-600 mb-12">Office Essentials Gift</p>
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                {corporateCards.map((card) => (
+                  <div key={card.title} className="bg-white rounded-xl shadow-lg p-3 text-center hover:shadow-xl transition duration-300 cursor-pointer">
+                    <img src={card.image} alt={card.title} className="w-full h-48 object-cover rounded-lg mb-3" />
+                    <p className="text-sm font-medium text-gray-700">{card.title}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section className="py-16 md:py-24">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <h2 className="text-3xl font-bold text-center text-primary mb-12">Customer Love</h2>
+              <div className="flex overflow-x-auto pb-4 space-x-6 md:grid md:grid-cols-3 md:gap-6">
+                {testimonials.map((item, index) => (
+                  <div key={`${item.author}-${index}`} className="flex-shrink-0 w-80 md:w-full bg-white p-6 rounded-xl shadow-lg border-t-4 border-cta/70">
+                    <div className="flex items-center mb-4">
+                      <span className="text-yellow-500 text-xl mr-2">★★★★★</span>
+                      <p className="text-sm font-semibold text-gray-700">{item.title}</p>
+                    </div>
+                    <p className="text-gray-600 italic line-clamp-3">{item.quote}</p>
+                    <p className="mt-4 text-sm font-bold text-primary">- {item.author}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <footer className="bg-primary text-white py-12">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-8 border-b border-white/20 pb-8 mb-8">
+              <div className="col-span-2 md:col-span-1">
+                <div className="tracking-wider mb-4">
+                  <img src="/assets/img/digntag_logo 1.png" alt="Dignlay mark" />
+                </div>
+                <p className="text-sm text-white/80">Designing moments, crafted for you.</p>
+              </div>
+              <div>
+                <h5 className="text-lg font-bold mb-4">Company</h5>
+                <ul className="space-y-2 text-sm">
+                  {['About Us', 'Careers', 'Press', 'Blog'].map((link) => (
+                    <li key={link}>
+                      <a href="#" className="hover:text-cta transition duration-150">
+                        {link}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h5 className="text-lg font-bold mb-4">Products</h5>
+                <ul className="space-y-2 text-sm">
+                  {['Invitations', 'Stationery', 'Packaging', 'Gift Registry'].map((link) => (
+                    <li key={link}>
+                      <a href="#" className="hover:text-cta transition duration-150">
+                        {link}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h5 className="text-lg font-bold mb-4">Support</h5>
+                <ul className="space-y-2 text-sm">
+                  {['FAQ', 'Contact Us', 'Shipping', 'Terms'].map((link) => (
+                    <li key={link}>
+                      <a href="#" className="hover:text-cta transition duration-150">
+                        {link}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="col-span-2 md:col-span-1">
+                <h5 className="text-lg font-bold mb-4">Connect</h5>
+                <div className="flex space-x-4">
+                  {[
+                    { label: 'Facebook', icon: 'M12 2.163...' },
+                    { label: 'Instagram', icon: 'M12 2.163...' },
+                  ].map((social) => (
+                    <a key={social.label} href="#" className="text-white hover:text-cta transition duration-150" aria-label={social.label}>
+                      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d={social.icon} />
+                      </svg>
+                    </a>
+                  ))}
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 bg-white">
-        <div className="mx-auto max-w-6xl px-6 space-y-10">
-          <article className="text-center space-y-4 bg-white p-8 rounded-[28px] border border-pink-border-light shadow-sm">
-            <p className="text-xs uppercase tracking-[0.4em] text-pink-1">About</p>
-            <h2 className="text-3xl font-semibold text-pink-1">We choreograph unforgettable stationery experiences</h2>
-            <p className="text-lg text-pink-2">
-              Digntag is the studio that pairs cinematic digital invites with hand-finished packaging so your guests
-              feel the narrative before they even arrive.
-            </p>
-          </article>
-
-          <div className="grid gap-6 md:grid-cols-3">
-            {[{ title: 'Services', items: services }, { title: 'Products', items: products }, { title: 'Features', items: featuresList }].map(
-              (block) => (
-                <article
-                  key={block.title}
-                  className="space-y-2 rounded-[28px] border border-pink-border-light bg-white p-6 text-center shadow-lg"
-                >
-                  <h3 className="text-xl font-semibold text-pink-1">{block.title}</h3>
-                  <ul className="space-y-2 text-sm text-pink-2">
-                    {block.items.map((item) => (
-                      <li key={item} className="relative pl-6">
-                        <span className="absolute left-0 top-1 h-2 w-2 rounded-full bg-pink-1" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </article>
-              ),
-            )}
-          </div>
-
-          <article className="rounded-[32px] border border-pink-border bg-white p-10 text-center shadow-[0_20px_45px_rgba(205,94,119,0.15)]">
-            <p className="text-xs uppercase tracking-[0.4em] text-pink-1">Happy customers</p>
-            <div className="mt-6 grid gap-6 md:grid-cols-3">
-              {happyCustomers.map((cust) => (
-                <blockquote key={cust.name} className="space-y-2">
-                  <p className="text-sm italic text-pink-3">“{cust.quote}”</p>
-                  <p className="text-xs font-semibold uppercase tracking-[0.4em] text-pink-1">{cust.name}</p>
-                </blockquote>
-              ))}
+            <div className="text-center text-sm text-white/60 pt-8">
+              &copy; <span id="current-year"></span> Dignlay. All rights reserved.
             </div>
-          </article>
-
-          <article className="space-y-4 rounded-[32px] border border-pink-border bg-white p-10 shadow-lg">
-            <p className="text-xs uppercase tracking-[0.4em] text-pink-1">FAQ</p>
-            <div className="space-y-4">
-              {faqs.map((faq) => (
-                <details className="rounded-2xl border border-pink-border-light bg-white p-4" key={faq.question}>
-                  <summary className="cursor-pointer text-sm font-semibold text-pink-1">{faq.question}</summary>
-                  <p className="mt-2 text-sm text-pink-2">{faq.answer}</p>
-                </details>
-              ))}
-            </div>
-          </article>
-        </div>
-      </section>
-
-    </div>
+          </div>
+        </footer>
+      </div>
+    </>
   );
 }
