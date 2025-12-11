@@ -161,7 +161,10 @@ export default function Home() {
         </header>
 
         <main>
-          <section className="relative pt-16 pb-24 md:pt-24 md:pb-32 overflow-hidden bg-[url('/assets/img/herosection.jpg')] h-96 w-full bg-cover bg-center">
+          <section
+            className="relative pt-16 pb-24 md:pt-24 md:pb-32 overflow-hidden h-96 w-full bg-cover bg-center"
+            style={{ backgroundImage: "url('/assets/img/herosection.jpg')" }}
+          >
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between">
               <div className="md:w-1/2 lg:w-2/5 z-10 text-center md:text-left mb-10 md:mb-0">
                 <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-primary mb-8 leading-tight">
