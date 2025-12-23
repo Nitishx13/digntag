@@ -16,7 +16,7 @@
 <body class="text-gray-800">
 
     <!-- Mobile Menu Drawer (Hidden by default) -->
-    <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-primary z-50 transform -translate-x-full transition-transform duration-300 md:hidden">
+    <!-- <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-primary z-50 transform -translate-x-full transition-transform duration-300 md:hidden">
         <div class="p-6">
             <button onclick="toggleMenu()" class="text-white text-3xl absolute top-4 right-4 focus:outline-none" aria-label="Close Menu">
                 &times;
@@ -32,7 +32,7 @@
                 <button class="w-full py-3 bg-cta text-white font-bold rounded-full shadow-lg hover:bg-cta/80 transition duration-150">Sign In</button>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- Header & Navigation -->
     <header class="sticky top-0 z-40 bg-white shadow-md">
@@ -43,23 +43,23 @@
             </a>
 
             <!-- Desktop Navigation -->
-            <nav class="hidden md:flex space-x-6 lg:space-x-10 items-center">
+            <!-- <nav class="hidden md:flex space-x-6 lg:space-x-10 items-center">
                 <a href="./templates.html" class="text-gray-600 hover:text-primary transition duration-150 font-medium">All Invitation</a>
                 <a href="./aboutus.html" class="text-gray-600 hover:text-primary transition duration-150 font-medium">About Us</a>
                 <a href="./contact.html" class="text-gray-600 hover:text-primary transition duration-150 font-medium">Contact</a>
                 <a href="./design.html" class="text-gray-600 hover:text-primary transition duration-150 font-medium">Custom Design</a>
-            </nav>
+            </nav> -->
 
             <!-- Sign In / Hamburger Menu -->
             <div class="flex items-center space-x-4">
-                <button class="hidden md:block px-6 py-2 bg-cta text-white font-bold rounded-full shadow-xl hover:bg-cta/90 transition duration-150">
+                <!-- <button class="hidden md:block px-6 py-2 bg-cta text-white font-bold rounded-full shadow-xl hover:bg-cta/90 transition duration-150">
                     Contact Us
-                </button>
+                </button> -->
 
                 <!-- Hamburger Icon (Mobile) -->
-                <button onclick="toggleMenu()" class="md:hidden text-primary focus:outline-none" aria-label="Open Menu">
+                <!-- <button onclick="toggleMenu()" class="md:hidden text-primary focus:outline-none" aria-label="Open Menu">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                </button>
+                </button> -->
             </div>
         </div>
     </header>
@@ -478,7 +478,7 @@
                 </div>
 
                 <!-- Footer Links 1 -->
-                <div>
+                <!-- <div>
                     <h5 class="text-lg font-bold mb-4">Company</h5>
                     <ul class="space-y-2 text-sm">
                         <li><a href="./company.html" class="hover:text-cta transition duration-150">Company</a></li>
@@ -505,7 +505,7 @@
                         <li><a href="./shipping.html" class="hover:text-cta transition duration-150">Shipping</a></li>
                         <li><a href="./terms.html" class="hover:text-cta transition duration-150">Terms</a></li>
                     </ul>
-                </div>
+                </div> -->
 
                 <!-- Social Icons Placeholder -->
                 <div class="col-span-2 md:col-span-1">
@@ -527,6 +527,12 @@
             </div>
         </div>
     </footer>
+
+    <!-- Sticky WhatsApp Button -->
+    <a href="https://wa.me/918882816805" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-white text-gray-700 font-medium py-3 px-6 rounded-full shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100 group">
+        <span>Contact Us</span>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="w-8 h-8 group-hover:scale-110 transition-transform duration-300">
+    </a>
 
     <!-- jQuery and Owl Carousel JS must be loaded before the initialization script -->
     <script src="./assets/js/jquery.min.js"></script>
