@@ -36,6 +36,11 @@ export default function SiteFooter() {
                 </a>
               </li>
               <li>
+                <a href="/digital-growth-services" className="hover:text-cta transition duration-150">
+                  Digital Growth Services
+                </a>
+              </li>
+              <li>
                 <a href="/gift-finder" className="hover:text-cta transition duration-150">
                   Gift Finder
                 </a>
@@ -79,6 +84,11 @@ export default function SiteFooter() {
               <li>
                 <a href="/events/valentines" className="hover:text-cta transition duration-150">
                   Valentine's Day
+                </a>
+              </li>
+              <li>
+                <a href="/events/custom-website-creation" className="hover:text-cta transition duration-150">
+                  Custom website creation
                 </a>
               </li>
             </ul>

@@ -1,11 +1,188 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 
 export default function SiteHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isEventMegaOpen, setIsEventMegaOpen] = useState(false)
+  const [eventMegaTab, setEventMegaTab] = useState('valentines')
+  const megaCloseTimerRef = useRef(null)
+  const megaTabTimerRef = useRef(null)
   const location = useLocation()
   const whatsappContactUrl = 'https://wa.me/918882816805?text=I%20want%20to%20know%20more'
   const isAdmin = location.pathname.startsWith('/admin')
+
+  useEffect(() => {
+    return () => {
+      if (megaCloseTimerRef.current) clearTimeout(megaCloseTimerRef.current)
+      if (megaTabTimerRef.current) clearTimeout(megaTabTimerRef.current)
+    }
+  }, [])
+
+  const openMega = () => {
+    if (megaCloseTimerRef.current) clearTimeout(megaCloseTimerRef.current)
+    setIsEventMegaOpen(true)
+  }
+
+  const closeMegaSoon = () => {
+    if (megaCloseTimerRef.current) clearTimeout(megaCloseTimerRef.current)
+    megaCloseTimerRef.current = setTimeout(() => {
+      setIsEventMegaOpen(false)
+    }, 160)
+  }
+
+  const setMegaTabSoon = (key) => {
+    if (megaTabTimerRef.current) clearTimeout(megaTabTimerRef.current)
+    megaTabTimerRef.current = setTimeout(() => {
+      setEventMegaTab(key)
+    }, 60)
+  }
+
+  const eventMegaTabs = [
+    { key: 'valentines', label: "Valentine's Day" },
+    { key: 'newyears', label: "New Year's Cards" },
+    { key: 'baby', label: 'Baby' },
+    { key: 'kidsBirthday', label: "Kids' Birthday" },
+    { key: 'adultBirthday', label: 'Adult Birthday' },
+    { key: 'wedding', label: 'Wedding' },
+    { key: 'business', label: 'Business' },
+    { key: 'parties', label: 'Parties' },
+  ]
+
+  const eventMegaContent = {
+    valentines: [
+      {
+        heading: 'Invitations',
+        links: [
+          { label: "Valentine's Day", href: '/events/valentines' },
+          { label: "Galentine's Day", href: '/events/galentines-day' },
+          { label: 'Greeting Cards', href: '/events/greeting-cards' },
+        ],
+      },
+      {
+        heading: 'Upload Your Own',
+        links: [
+          { label: 'Photo', href: '/upload/photo' },
+          { label: 'Design', href: '/upload/design' },
+          { label: 'Logo', href: '/upload/logo' },
+        ],
+      },
+    ],
+    newyears: [
+      {
+        heading: "New Year's Cards",
+        links: [
+          { label: "New Year's Cards", href: '/events/new-years-cards' },
+          { label: 'Greeting Cards', href: '/events/greeting-cards' },
+        ],
+      },
+      {
+        heading: 'Upload Your Own',
+        links: [
+          { label: 'Photo', href: '/upload/photo' },
+          { label: 'Design', href: '/upload/design' },
+          { label: 'Logo', href: '/upload/logo' },
+        ],
+      },
+    ],
+    baby: [
+      {
+        heading: 'Baby',
+        links: [
+          { label: 'Baby', href: '/events/baby' },
+          { label: 'Greeting Cards', href: '/events/greeting-cards' },
+        ],
+      },
+      {
+        heading: 'Digital invitations',
+        links: [
+          { label: 'Digital invitation templates', href: '/invitations/digital' },
+          { label: 'Upload Your Own', href: '/upload' },
+        ],
+      },
+    ],
+    kidsBirthday: [
+      {
+        heading: "Kids' Birthday",
+        links: [
+          { label: "Kids' Birthday", href: '/events/kids-birthday' },
+          { label: 'Birthday', href: '/events/birthday' },
+        ],
+      },
+      {
+        heading: 'Digital invitations',
+        links: [
+          { label: 'Digital invitation templates', href: '/invitations/digital' },
+          { label: 'Upload Your Own', href: '/upload' },
+        ],
+      },
+    ],
+    adultBirthday: [
+      {
+        heading: 'Adult Birthday',
+        links: [
+          { label: 'Adult Birthday', href: '/events/adult-birthday' },
+          { label: 'Birthday', href: '/events/birthday' },
+        ],
+      },
+      {
+        heading: 'Digital invitations',
+        links: [
+          { label: 'Digital invitation templates', href: '/invitations/digital' },
+          { label: 'Upload Your Own', href: '/upload' },
+        ],
+      },
+    ],
+    wedding: [
+      {
+        heading: 'Wedding',
+        links: [
+          { label: 'Wedding', href: '/events/wedding' },
+          { label: 'Save the date', href: '/invitations/save-the-date' },
+        ],
+      },
+      {
+        heading: 'Digital invitations',
+        links: [
+          { label: 'Digital invitation templates', href: '/invitations/digital' },
+          { label: 'Upload Your Own', href: '/upload' },
+        ],
+      },
+    ],
+    business: [
+      {
+        heading: 'Business',
+        links: [
+          { label: 'Business', href: '/events/business' },
+          { label: 'Corporate Events', href: '/events/corporate' },
+          { label: 'Small business website', href: '/services/small-business-website' },
+        ],
+      },
+      {
+        heading: 'Digital invitations',
+        links: [
+          { label: 'Digital invitation templates', href: '/invitations/digital' },
+          { label: 'Upload Your Own', href: '/upload' },
+        ],
+      },
+    ],
+    parties: [
+      {
+        heading: 'Parties',
+        links: [
+          { label: 'Parties', href: '/events/parties' },
+          { label: 'Birthday', href: '/events/birthday' },
+          { label: "New Year's Cards", href: '/events/new-years-cards' },
+        ],
+      },
+      {
+        heading: 'Digital invitations',
+        links: [
+          { label: 'Digital invitation templates', href: '/invitations/digital' },
+          { label: 'Upload Your Own', href: '/upload' },
+        ],
+      },
+    ],
+  }
 
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen ? 'hidden' : ''
@@ -22,8 +199,29 @@ export default function SiteHeader() {
         </a>
 
         <nav className="hidden md:flex items-center gap-6 lg:gap-8">
-          <a href="/features" className="text-gray-600 hover:text-primary transition duration-150 font-medium">Features</a>
           <div className="relative group">
+            <a href="/features" className="inline-flex items-center gap-1 text-gray-600 hover:text-primary transition duration-150 font-medium">
+              <span>Features</span>
+              <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path
+                  fillRule="evenodd"
+                  d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </a>
+            <div className="absolute left-0 mt-2 w-64 rounded-xl bg-white shadow-xl border border-gray-100 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition">
+              <a href="/features" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">All Features</a>
+              <a href="/digital-growth-services" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                Digital Growth Services
+              </a>
+            </div>
+          </div>
+          <div
+            className="relative"
+            onMouseEnter={openMega}
+            onMouseLeave={closeMegaSoon}
+          >
             <a href="/events" className="inline-flex items-center gap-1 text-gray-600 hover:text-primary transition duration-150 font-medium">
               <span>Event Types</span>
               <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -34,12 +232,85 @@ export default function SiteHeader() {
                 />
               </svg>
             </a>
-            <div className="absolute left-0 mt-2 w-48 rounded-xl bg-white shadow-xl border border-gray-100 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition">
-              <a href="/events/wedding" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Wedding</a>
-              <a href="/events/birthday" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Birthday</a>
-              <a href="/events/baby" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Baby Events</a>
-              <a href="/events/corporate" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Corporate Events</a>
-            </div>
+
+            <div
+              className={`absolute left-1/2 -translate-x-1/2 mt-4 w-screen transition duration-200 ease-out ${
+                isEventMegaOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'
+              }`}
+              onMouseEnter={openMega}
+              onMouseLeave={closeMegaSoon}
+            >
+                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                  <div className="rounded-2xl bg-white shadow-2xl border border-gray-100 overflow-hidden ring-1 ring-black/5">
+                    <div className="bg-gradient-to-b from-gray-50 to-white px-4 sm:px-6 py-4 border-b border-gray-100">
+                      <div className="px-4">
+                        <div className="flex items-center gap-2 overflow-x-auto px-2 py-1 scroll-pl-6 scroll-pr-6">
+                          {eventMegaTabs.map((t) => (
+                            <button
+                              key={t.key}
+                              type="button"
+                              onMouseEnter={() => setMegaTabSoon(t.key)}
+                              onFocus={() => setEventMegaTab(t.key)}
+                              className={`shrink-0 px-4 py-2 rounded-full text-sm font-extrabold transition ring-1 ${
+                                eventMegaTab === t.key
+                                  ? 'bg-primary text-white ring-primary shadow-sm'
+                                  : 'bg-white text-primary ring-gray-200 hover:bg-gray-50'
+                              }`}
+                            >
+                              {t.label}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="px-4 sm:px-6 py-7">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                        {(eventMegaContent[eventMegaTab] || []).map((col, idx) => (
+                          <div
+                            key={col.heading}
+                            className={idx === 0 ? '' : 'lg:pl-6 lg:border-l lg:border-gray-100'}
+                          >
+                            <div className="text-xs font-extrabold text-gray-500 tracking-widest uppercase">{col.heading}</div>
+                            <div className="mt-4 space-y-1">
+                              {col.links.map((l) => (
+                                <a
+                                  key={l.href}
+                                  href={l.href}
+                                  className="block rounded-xl px-3 py-2.5 text-[15px] font-semibold text-gray-900 hover:bg-gray-50 hover:text-primary"
+                                >
+                                  {l.label}
+                                </a>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+
+                        <div className="lg:pl-6 lg:border-l lg:border-gray-100">
+                          <div className="text-xs font-extrabold text-gray-500 tracking-widest uppercase">Quick links</div>
+                          <div className="mt-4 space-y-1">
+                            <a href="/events" className="block rounded-xl px-3 py-2.5 text-[15px] font-semibold text-gray-900 hover:bg-gray-50 hover:text-primary">
+                              All event types
+                            </a>
+                            <a
+                              href="/events/custom-website-creation"
+                              className="block rounded-xl px-3 py-2.5 text-[15px] font-semibold text-gray-900 hover:bg-gray-50 hover:text-primary"
+                            >
+                              Custom website creation
+                            </a>
+                            <a
+                              href="/digital-growth-services"
+                              className="block rounded-xl px-3 py-2.5 text-[15px] font-semibold text-gray-900 hover:bg-gray-50 hover:text-primary"
+                            >
+                              Digital Growth Services
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
           </div>
           <a href="/how-it-works" className="text-gray-600 hover:text-primary transition duration-150 font-medium">How It Works</a>
           <a href="/pricing" className="text-gray-600 hover:text-primary transition duration-150 font-medium">Pricing</a>
@@ -133,13 +404,24 @@ export default function SiteHeader() {
               </a>
             ) : null}
             <div className="mt-3 rounded-2xl bg-white ring-1 ring-gray-100 shadow-sm">
-              <a
-                href="/features"
-                className="block px-4 py-3 rounded-2xl text-gray-900 font-semibold hover:bg-gray-50"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Features
-              </a>
+              <div className="px-4 pt-3">
+                <a
+                  href="/features"
+                  className="block px-3 py-2 rounded-xl text-gray-900 font-semibold bg-gray-50 ring-1 ring-gray-100"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Features
+                </a>
+                <div className="mt-2 pl-2 space-y-1 border-l border-gray-100">
+                  <a
+                    href="/digital-growth-services"
+                    className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-gray-50"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Digital Growth Services
+                  </a>
+                </div>
+              </div>
 
               <div className="px-4 pb-3">
                 <a
@@ -151,6 +433,20 @@ export default function SiteHeader() {
                 </a>
 
                 <div className="mt-2 pl-2 space-y-1 border-l border-gray-100">
+                  <a
+                    href="/events/valentines"
+                    className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-gray-50"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Valentine's Day
+                  </a>
+                  <a
+                    href="/events/new-years-cards"
+                    className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-gray-50"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    New Year's Cards
+                  </a>
                   <a
                     href="/events/wedding"
                     className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-gray-50"
@@ -164,6 +460,20 @@ export default function SiteHeader() {
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Birthday
+                  </a>
+                  <a
+                    href="/events/kids-birthday"
+                    className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-gray-50"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Kids' Birthday
+                  </a>
+                  <a
+                    href="/events/adult-birthday"
+                    className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-gray-50"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Adult Birthday
                   </a>
                   <a
                     href="/events/baby"
@@ -180,12 +490,53 @@ export default function SiteHeader() {
                     Corporate Events
                   </a>
                   <a
-                    href="/events/valentines"
+                    href="/events/business"
                     className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-gray-50"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    Valentine's Day
+                    Business
                   </a>
+                  <a
+                    href="/events/parties"
+                    className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-gray-50"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Parties
+                  </a>
+                  <a
+                    href="/events/custom-website-creation"
+                    className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-gray-50"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Custom website creation
+                  </a>
+                </div>
+
+                <div className="mt-4 pl-2 border-l border-gray-100">
+                  <div className="text-xs font-extrabold text-gray-500 tracking-wide uppercase px-3 py-1">Digital invitations</div>
+                  <div className="mt-2 space-y-1">
+                    <a
+                      href="/invitations/digital"
+                      className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-gray-50"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Digital invitation templates
+                    </a>
+                    <a
+                      href="/upload"
+                      className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-gray-50"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Upload Your Own
+                    </a>
+                    <a
+                      href="/services/small-business-website"
+                      className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-gray-50"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Small business website
+                    </a>
+                  </div>
                 </div>
               </div>
 
