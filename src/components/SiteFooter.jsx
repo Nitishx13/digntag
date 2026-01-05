@@ -31,8 +31,8 @@ export default function SiteFooter() {
             <h5 className="text-lg font-bold mb-4">Explore</h5>
             <ul className="space-y-2 text-sm text-white/80">
               <li>
-                <a href="/features" className="hover:text-cta transition duration-150">
-                  Features
+                <a href="/services" className="hover:text-cta transition duration-150">
+                  Services
                 </a>
               </li>
               <li>
@@ -112,16 +112,6 @@ export default function SiteFooter() {
                   Plans
                 </a>
               </li>
-              <li>
-                <a href="/faqs" className="hover:text-cta transition duration-150">
-                  FAQs
-                </a>
-              </li>
-              <li>
-                <a href="/templates" className="hover:text-cta transition duration-150">
-                  Templates
-                </a>
-              </li>
             </ul>
           </div>
 
@@ -169,8 +159,8 @@ export default function SiteFooter() {
             &copy; <span id="current-year"></span> Digntag. All rights reserved.
           </div>
           <div className="flex items-center gap-6">
-            <a href="/features" className="hover:text-white transition duration-150">
-              Features
+            <a href="/services" className="hover:text-white transition duration-150">
+              Services
             </a>
             <a href="/pricing" className="hover:text-white transition duration-150">
               Pricing

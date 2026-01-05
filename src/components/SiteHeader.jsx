@@ -209,7 +209,7 @@ export default function SiteHeader() {
 
         <nav className="hidden md:flex items-center gap-6 lg:gap-8">
           <div className="relative group">
-            <a href="/features" className="inline-flex items-center gap-1 text-gray-600 hover:text-primary transition duration-150 font-medium">
+            <a href="/services" className="inline-flex items-center gap-1 text-gray-600 hover:text-primary transition duration-150 font-medium">
               <span>Services</span>
               <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                 <path
@@ -221,7 +221,7 @@ export default function SiteHeader() {
             </a>
             <div className="absolute left-0 top-full pt-3 w-64 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition duration-200">
               <div className="rounded-xl bg-white shadow-xl border border-gray-100 py-2">
-                <a href="/features" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">All Services</a>
+                <a href="/services" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">All Services</a>
                 <a href="/digital-growth-services" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                   Digital Growth Services
                 </a>
@@ -446,7 +446,7 @@ export default function SiteHeader() {
               </button>
               <div className={`px-4 pb-3 transition-all duration-200 ${mobileSections.features ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
                 <a
-                  href="/features"
+                  href="/services"
                   className="block rounded-xl px-3 py-2 text-sm font-semibold text-gray-800 hover:bg-gray-50"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >

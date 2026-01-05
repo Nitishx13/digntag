@@ -24,7 +24,7 @@ function AdminGuestsRedirect() {
 
 const routes = [
   { path: '/', file: 'index.html' },
-  { path: '/features', file: 'features.html' },
+  { path: '/services', file: 'services.html' },
   { path: '/events', file: 'events.html' },
   { path: '/events/wedding', file: 'events-wedding.html' },
   { path: '/events/birthday', file: 'events-birthday.html' },
@@ -60,6 +60,8 @@ function App() {
     <Routes>
       <Route path="/admin/login" element={<AdminLogin />} />
       <Route path="/admin/dashboard" element={<Navigate to="/admin/events" replace />} />
+
+      <Route path="/features" element={<Navigate to="/services" replace />} />
 
       <Route path="/share/:id" element={<AdminEventSharePage />} />
       <Route path="/guests/:id" element={<AdminEventGuestsPage />} />
