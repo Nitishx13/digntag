@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 
 export default function SiteHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const location = useLocation()
   const whatsappContactUrl = 'https://wa.me/918882816805?text=I%20want%20to%20know%20more'
+  const isAdmin = location.pathname.startsWith('/admin')
 
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen ? 'hidden' : ''
@@ -40,6 +43,12 @@ export default function SiteHeader() {
           </div>
           <a href="/how-it-works" className="text-gray-600 hover:text-primary transition duration-150 font-medium">How It Works</a>
           <a href="/pricing" className="text-gray-600 hover:text-primary transition duration-150 font-medium">Pricing</a>
+
+          {isAdmin ? (
+            <a href="/admin/whatsapp" className="text-gray-600 hover:text-primary transition duration-150 font-medium">
+              WhatsApp notify
+            </a>
+          ) : null}
         
           <a
             href={whatsappContactUrl}
@@ -114,6 +123,15 @@ export default function SiteHeader() {
           </div>
 
           <nav className="px-5 py-5 space-y-2">
+            {isAdmin ? (
+              <a
+                href="/admin/whatsapp"
+                className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-gray-50 font-medium"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                WhatsApp notify
+              </a>
+            ) : null}
             <a href="/features" className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-gray-50 font-medium" onClick={() => setIsMobileMenuOpen(false)}>
               Features
             </a>

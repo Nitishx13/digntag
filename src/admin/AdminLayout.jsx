@@ -85,15 +85,15 @@ export default function AdminLayout() {
           </div>
 
           {mobileOpen ? (
-            <div className="md:hidden fixed inset-0 z-50">
+            <div className="md:hidden fixed inset-0 z-[100]">
               <button
                 type="button"
                 aria-label="Close menu"
                 onClick={() => setMobileOpen(false)}
-                className="absolute inset-0 bg-black/30"
+                className="absolute inset-0 z-40 bg-black/50"
               />
 
-              <div className="absolute left-0 top-0 h-full w-[82%] max-w-sm bg-[#faf7f5] shadow-xl">
+              <div className="absolute left-0 top-0 z-50 h-full w-[82%] max-w-sm bg-white shadow-xl ring-1 ring-black/5">
                 <div className="p-5 flex items-center justify-between">
                   <div className="text-lg font-extrabold text-primary">Menu</div>
                   <button
