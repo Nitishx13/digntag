@@ -61,7 +61,7 @@ export function saveEvents(events) {
   window.dispatchEvent(new Event(EVENTS_UPDATED_EVENT))
 }
 
-export function createEvent({ title, date }) {
+export function createEvent({ title, date, time, deadline, location, receiveContributions, allowCompanions }) {
   const events = loadEvents()
   const publicId = crypto.randomUUID()
   const trackingToken = crypto.randomUUID()
@@ -69,6 +69,11 @@ export function createEvent({ title, date }) {
     id: crypto.randomUUID(),
     title: String(title || '').trim(),
     date: String(date || '').trim(),
+    time: String(time || '').trim(),
+    deadline: String(deadline || '').trim(),
+    location: String(location || '').trim(),
+    receiveContributions: Boolean(receiveContributions),
+    allowCompanions: Boolean(allowCompanions),
     createdAt: Date.now(),
     publicId,
     trackingToken,
@@ -77,6 +82,13 @@ export function createEvent({ title, date }) {
   const next = [event, ...events]
   saveEvents(next)
   return event
+}
+
+export function deleteAccount() {
+  localStorage.removeItem(EVENTS_KEY)
+  localStorage.removeItem(SESSION_KEY)
+  localStorage.removeItem(PASSWORD_KEY)
+  window.dispatchEvent(new Event(EVENTS_UPDATED_EVENT))
 }
 
 export function deleteEvent(publicId) {

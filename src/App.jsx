@@ -1,7 +1,11 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import HtmlPage from './HtmlPage.jsx'
 import AdminLogin from './admin/AdminLogin.jsx'
-import AdminDashboard from './admin/AdminDashboard.jsx'
+import AdminLayout from './admin/AdminLayout.jsx'
+import AdminEventsPage from './admin/AdminEventsPage.jsx'
+import AdminSettingsPage from './admin/AdminSettingsPage.jsx'
+import AdminEventNewPage from './admin/AdminEventNewPage.jsx'
+import AdminEventSharePage from './admin/AdminEventSharePage.jsx'
 import TrackPage from './admin/TrackPage.jsx'
 import RsvpPage from './admin/RsvpPage.jsx'
 
@@ -25,7 +29,14 @@ function App() {
   return (
     <Routes>
       <Route path="/admin/login" element={<AdminLogin />} />
-      <Route path="/admin/dashboard" element={<AdminDashboard />} />
+      <Route path="/admin/dashboard" element={<Navigate to="/admin/events" replace />} />
+      <Route path="/admin" element={<AdminLayout />}>
+        <Route path="events" element={<AdminEventsPage />} />
+        <Route path="events/new" element={<AdminEventNewPage />} />
+        <Route path="events/:id/share" element={<AdminEventSharePage />} />
+        <Route path="settings" element={<AdminSettingsPage />} />
+        <Route index element={<Navigate to="/admin/events" replace />} />
+      </Route>
       <Route path="/track/:id" element={<TrackPage />} />
       <Route path="/rsvp/:id" element={<RsvpPage />} />
       {routes.map((r) => (
