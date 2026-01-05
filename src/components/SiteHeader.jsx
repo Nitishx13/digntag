@@ -15,7 +15,7 @@ export default function SiteHeader() {
   }, [isMobileMenuOpen])
 
   return (
-    <header className="sticky top-0 z-40 bg-white shadow-md">
+    <header className="sticky top-0 z-[200] bg-white shadow-md">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
         <a href="/" className="inline-flex items-center gap-2">
           <img src="/assets/img/digntag_logo 1.png" alt="Digntag logo" className="h-10 w-auto" />
@@ -87,7 +87,7 @@ export default function SiteHeader() {
       </div>
 
       <div
-        className={`fixed inset-0 z-50 md:hidden ${isMobileMenuOpen ? '' : 'pointer-events-none'}`}
+        className={`fixed inset-0 z-[300] md:hidden ${isMobileMenuOpen ? '' : 'pointer-events-none'}`}
         aria-hidden={!isMobileMenuOpen}
       >
         <button
@@ -99,7 +99,7 @@ export default function SiteHeader() {
 
         <div
           id="mobile-menu"
-          className={`absolute left-0 top-0 h-full w-[85%] max-w-sm bg-white shadow-2xl transition-transform duration-300 ${
+          className={`absolute left-0 top-0 z-[310] h-full w-[85%] max-w-sm bg-white shadow-2xl transition-transform duration-300 ${
             isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
           }`}
           role="dialog"
@@ -122,45 +122,88 @@ export default function SiteHeader() {
             </button>
           </div>
 
-          <nav className="px-5 py-5 space-y-2">
+          <nav className="px-5 py-5">
             {isAdmin ? (
               <a
                 href="/admin/whatsapp"
-                className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-gray-50 font-medium"
+                className="block px-4 py-3 rounded-2xl bg-gray-50 text-gray-900 font-semibold ring-1 ring-gray-100 hover:bg-gray-100"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 WhatsApp notify
               </a>
             ) : null}
-            <a href="/features" className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-gray-50 font-medium" onClick={() => setIsMobileMenuOpen(false)}>
-              Features
-            </a>
-            <a href="/events" className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-gray-50 font-medium" onClick={() => setIsMobileMenuOpen(false)}>
-              Event Types
-            </a>
-            <div className="pl-3 space-y-1">
-              <a href="/events/wedding" className="block px-3 py-2 rounded-xl text-gray-600 hover:bg-gray-50" onClick={() => setIsMobileMenuOpen(false)}>
-                Wedding
+            <div className="mt-3 rounded-2xl bg-white ring-1 ring-gray-100 shadow-sm">
+              <a
+                href="/features"
+                className="block px-4 py-3 rounded-2xl text-gray-900 font-semibold hover:bg-gray-50"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Features
               </a>
-              <a href="/events/birthday" className="block px-3 py-2 rounded-xl text-gray-600 hover:bg-gray-50" onClick={() => setIsMobileMenuOpen(false)}>
-                Birthday
+
+              <div className="px-4 pb-3">
+                <a
+                  href="/events"
+                  className="block px-3 py-2 rounded-xl text-gray-900 font-semibold bg-gray-50 ring-1 ring-gray-100"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Event Types
+                </a>
+
+                <div className="mt-2 pl-2 space-y-1 border-l border-gray-100">
+                  <a
+                    href="/events/wedding"
+                    className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-gray-50"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Wedding
+                  </a>
+                  <a
+                    href="/events/birthday"
+                    className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-gray-50"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Birthday
+                  </a>
+                  <a
+                    href="/events/baby"
+                    className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-gray-50"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Baby Events
+                  </a>
+                  <a
+                    href="/events/corporate"
+                    className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-gray-50"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Corporate Events
+                  </a>
+                  <a
+                    href="/events/valentines"
+                    className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-gray-50"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Valentine's Day
+                  </a>
+                </div>
+              </div>
+
+              <a
+                href="/how-it-works"
+                className="block px-4 py-3 rounded-2xl text-gray-900 font-semibold hover:bg-gray-50"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                How It Works
               </a>
-              <a href="/events/baby" className="block px-3 py-2 rounded-xl text-gray-600 hover:bg-gray-50" onClick={() => setIsMobileMenuOpen(false)}>
-                Baby Events
-              </a>
-              <a href="/events/corporate" className="block px-3 py-2 rounded-xl text-gray-600 hover:bg-gray-50" onClick={() => setIsMobileMenuOpen(false)}>
-                Corporate Events
-              </a>
-              <a href="/events/valentines" className="block px-3 py-2 rounded-xl text-gray-600 hover:bg-gray-50" onClick={() => setIsMobileMenuOpen(false)}>
-                Valentine's Day
+              <a
+                href="/pricing"
+                className="block px-4 py-3 rounded-2xl text-gray-900 font-semibold hover:bg-gray-50"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Pricing
               </a>
             </div>
-            <a href="/how-it-works" className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-gray-50 font-medium" onClick={() => setIsMobileMenuOpen(false)}>
-              How It Works
-            </a>
-            <a href="/pricing" className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-gray-50 font-medium" onClick={() => setIsMobileMenuOpen(false)}>
-              Pricing
-            </a>
           </nav>
 
           <div className="px-5 pb-6">
