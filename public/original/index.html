@@ -161,37 +161,123 @@
             </div>
         </section>
 
-        <section class="py-16 md:py-20 bg-white">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <section class="relative py-16 md:py-20 overflow-hidden bg-gradient-to-b from-white via-accent to-white">
+            <div aria-hidden="true" class="pointer-events-none absolute inset-0">
+                <div class="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-cta/10 blur-3xl"></div>
+                <div class="absolute top-10 -right-24 h-80 w-80 rounded-full bg-primary/10 blur-3xl"></div>
+                <div class="absolute bottom-0 left-1/2 -translate-x-1/2 h-64 w-[34rem] rounded-full bg-cta/10 blur-3xl"></div>
+            </div>
+
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative">
                 <div class="max-w-3xl mx-auto text-center">
-                    <h2 class="text-3xl font-bold text-primary">Everything you need to run an event online</h2>
-                    <p class="text-gray-600 mt-3">Digital invites, smart sharing, RSVP tracking, and guest management—paper-free.</p>
+                    <p class="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-sm font-semibold text-primary shadow-sm ring-1 ring-gray-100">
+                        Features that feel effortless
+                    </p>
+                    <h2 class="mt-6 text-3xl sm:text-4xl font-extrabold text-primary tracking-tight">
+                        Everything you need to run an event online
+                    </h2>
+                    <p class="text-gray-600 mt-4 text-base sm:text-lg">
+                        Digital invites, smart sharing, RSVP tracking, and guest management—paper-free.
+                    </p>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
-                    <a href="/features" class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 p-6 border border-gray-100">
-                        <h3 class="text-lg font-bold text-primary">Digital Invitations</h3>
-                        <p class="text-gray-600 mt-2">Templates with photos, videos, maps, schedules, and branding.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+                    <a href="/features" class="group bg-white/90 backdrop-blur rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 border border-gray-100">
+                        <div class="flex items-start gap-4">
+                            <span class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-cta/10 text-cta ring-1 ring-cta/20">
+                                <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M4 7h16" />
+                                    <path d="M7 4h10" />
+                                    <path d="M6 10h12v10H6z" />
+                                </svg>
+                            </span>
+                            <div>
+                                <h3 class="text-lg font-extrabold text-primary group-hover:text-cta transition duration-150">Digital Invitations</h3>
+                                <p class="text-gray-600 mt-2">Templates with photos, videos, maps, schedules, and branding.</p>
+                            </div>
+                        </div>
                     </a>
-                    <a href="/features" class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 p-6 border border-gray-100">
-                        <h3 class="text-lg font-bold text-primary">Smart Delivery</h3>
-                        <p class="text-gray-600 mt-2">Share via WhatsApp links, email, and custom event URLs.</p>
+
+                    <a href="/features" class="group bg-white/90 backdrop-blur rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 border border-gray-100">
+                        <div class="flex items-start gap-4">
+                            <span class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary ring-1 ring-primary/10">
+                                <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M21 15a4 4 0 0 1-4 4H7l-4 3V7a4 4 0 0 1 4-4h8" />
+                                    <path d="M18 2v6" />
+                                    <path d="M15 5h6" />
+                                </svg>
+                            </span>
+                            <div>
+                                <h3 class="text-lg font-extrabold text-primary group-hover:text-cta transition duration-150">Smart Delivery</h3>
+                                <p class="text-gray-600 mt-2">Share via WhatsApp links, email, and custom event URLs.</p>
+                            </div>
+                        </div>
                     </a>
-                    <a href="/features" class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 p-6 border border-gray-100">
-                        <h3 class="text-lg font-bold text-primary">RSVP & Guests</h3>
-                        <p class="text-gray-600 mt-2">Track attending / not attending / maybe with custom questions.</p>
+
+                    <a href="/features" class="group bg-white/90 backdrop-blur rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 border border-gray-100">
+                        <div class="flex items-start gap-4">
+                            <span class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-cta/10 text-cta ring-1 ring-cta/20">
+                                <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                                    <circle cx="9" cy="7" r="4" />
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                                </svg>
+                            </span>
+                            <div>
+                                <h3 class="text-lg font-extrabold text-primary group-hover:text-cta transition duration-150">RSVP & Guests</h3>
+                                <p class="text-gray-600 mt-2">Track attending / not attending / maybe with custom questions.</p>
+                            </div>
+                        </div>
                     </a>
-                    <a href="/features" class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 p-6 border border-gray-100">
-                        <h3 class="text-lg font-bold text-primary">Reminders</h3>
-                        <p class="text-gray-600 mt-2">Follow-ups and reminders so you can host confidently.</p>
+
+                    <a href="/features" class="group bg-white/90 backdrop-blur rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 border border-gray-100">
+                        <div class="flex items-start gap-4">
+                            <span class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary ring-1 ring-primary/10">
+                                <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M12 8v4l3 3" />
+                                    <circle cx="12" cy="12" r="9" />
+                                </svg>
+                            </span>
+                            <div>
+                                <h3 class="text-lg font-extrabold text-primary group-hover:text-cta transition duration-150">Reminders</h3>
+                                <p class="text-gray-600 mt-2">Follow-ups and reminders so you can host confidently.</p>
+                            </div>
+                        </div>
                     </a>
-                    <a href="/features" class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 p-6 border border-gray-100">
-                        <h3 class="text-lg font-bold text-primary">Analytics</h3>
-                        <p class="text-gray-600 mt-2">See RSVP counts, trends, and export guest lists anytime.</p>
+
+                    <a href="/features" class="group bg-white/90 backdrop-blur rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 border border-gray-100">
+                        <div class="flex items-start gap-4">
+                            <span class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-cta/10 text-cta ring-1 ring-cta/20">
+                                <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M3 3v18h18" />
+                                    <path d="M7 14l4-4 4 4 5-7" />
+                                </svg>
+                            </span>
+                            <div>
+                                <h3 class="text-lg font-extrabold text-primary group-hover:text-cta transition duration-150">Analytics</h3>
+                                <p class="text-gray-600 mt-2">See RSVP counts, trends, and export guest lists anytime.</p>
+                            </div>
+                        </div>
                     </a>
-                    <a href="/pricing" class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 p-6 border border-gray-100">
-                        <h3 class="text-lg font-bold text-primary">Ticketing & Payments</h3>
-                        <p class="text-gray-600 mt-2">Sell tickets, accept payments, and set capacity limits.</p>
+
+                    <a href="/pricing" class="group bg-white/90 backdrop-blur rounded-2xl shadow-lg hover:shadow-xl transition duration-300 p-6 border border-gray-100">
+                        <div class="flex items-start gap-4">
+                            <span class="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary ring-1 ring-primary/10">
+                                <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M6 9V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3" />
+                                    <path d="M6 14h12" />
+                                    <path d="M6 20h12" />
+                                    <path d="M8 14v6" />
+                                    <path d="M16 14v6" />
+                                    <path d="M6 9h12v5H6z" />
+                                </svg>
+                            </span>
+                            <div>
+                                <h3 class="text-lg font-extrabold text-primary group-hover:text-cta transition duration-150">Ticketing & Payments</h3>
+                                <p class="text-gray-600 mt-2">Sell tickets, accept payments, and set capacity limits.</p>
+                            </div>
+                        </div>
                     </a>
                 </div>
             </div>
@@ -207,90 +293,138 @@
                     <a href="/events" class="text-primary font-semibold hover:underline">View all</a>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-10">
-                    <a href="/events/wedding" class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 p-6 border border-gray-100">
-                        <h3 class="text-lg font-bold text-primary">Wedding</h3>
-                        <p class="text-gray-600 mt-2">Elegant invites, functions schedule, and RSVP details.</p>
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-10">
+                    <a href="/events/wedding" class="group relative aspect-[9/16] w-full rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 bg-gradient-to-br from-white via-accent to-white">
+                        <div aria-hidden="true" class="absolute inset-0">
+                            <div class="absolute -top-10 -right-10 h-44 w-44 rounded-full bg-cta/20 blur-2xl"></div>
+                            <div class="absolute -bottom-12 -left-12 h-52 w-52 rounded-full bg-primary/15 blur-2xl"></div>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/55 via-primary/10 to-transparent"></div>
+                        <div class="relative h-full p-5 flex flex-col justify-end">
+                            <h3 class="text-lg sm:text-xl font-extrabold text-white">Wedding</h3>
+                            <p class="text-white/85 mt-2 text-sm sm:text-base">Elegant invites, functions schedule, and RSVP details.</p>
+                        </div>
                     </a>
-                    <a href="/events/birthday" class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 p-6 border border-gray-100">
-                        <h3 class="text-lg font-bold text-primary">Birthday</h3>
-                        <p class="text-gray-600 mt-2">Fun themes with quick RSVP for guests.</p>
+
+                    <a href="/events/birthday" class="group relative aspect-[9/16] w-full rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 bg-gradient-to-br from-white via-accent to-white">
+                        <div aria-hidden="true" class="absolute inset-0">
+                            <div class="absolute -top-10 -right-10 h-44 w-44 rounded-full bg-cta/20 blur-2xl"></div>
+                            <div class="absolute -bottom-12 -left-12 h-52 w-52 rounded-full bg-primary/15 blur-2xl"></div>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/55 via-primary/10 to-transparent"></div>
+                        <div class="relative h-full p-5 flex flex-col justify-end">
+                            <h3 class="text-lg sm:text-xl font-extrabold text-white">Birthday</h3>
+                            <p class="text-white/85 mt-2 text-sm sm:text-base">Fun themes with quick RSVP for guests.</p>
+                        </div>
                     </a>
-                    <a href="/events/baby" class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 p-6 border border-gray-100">
-                        <h3 class="text-lg font-bold text-primary">Baby Events</h3>
-                        <p class="text-gray-600 mt-2">Baby shower & naming ceremony templates.</p>
+
+                    <a href="/events/baby" class="group relative aspect-[9/16] w-full rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 bg-gradient-to-br from-white via-accent to-white">
+                        <div aria-hidden="true" class="absolute inset-0">
+                            <div class="absolute -top-10 -right-10 h-44 w-44 rounded-full bg-cta/20 blur-2xl"></div>
+                            <div class="absolute -bottom-12 -left-12 h-52 w-52 rounded-full bg-primary/15 blur-2xl"></div>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/55 via-primary/10 to-transparent"></div>
+                        <div class="relative h-full p-5 flex flex-col justify-end">
+                            <h3 class="text-lg sm:text-xl font-extrabold text-white">Baby Events</h3>
+                            <p class="text-white/85 mt-2 text-sm sm:text-base">Baby shower & naming ceremony templates.</p>
+                        </div>
                     </a>
-                    <a href="/events/corporate" class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 p-6 border border-gray-100">
-                        <h3 class="text-lg font-bold text-primary">Corporate</h3>
-                        <p class="text-gray-600 mt-2">Branding, agenda sections, and attendee fields.</p>
+
+                    <a href="/events/corporate" class="group relative aspect-[9/16] w-full rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 bg-gradient-to-br from-white via-accent to-white">
+                        <div aria-hidden="true" class="absolute inset-0">
+                            <div class="absolute -top-10 -right-10 h-44 w-44 rounded-full bg-cta/20 blur-2xl"></div>
+                            <div class="absolute -bottom-12 -left-12 h-52 w-52 rounded-full bg-primary/15 blur-2xl"></div>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/55 via-primary/10 to-transparent"></div>
+                        <div class="relative h-full p-5 flex flex-col justify-end">
+                            <h3 class="text-lg sm:text-xl font-extrabold text-white">Corporate</h3>
+                            <p class="text-white/85 mt-2 text-sm sm:text-base">Branding, agenda sections, and attendee fields.</p>
+                        </div>
                     </a>
                 </div>
             </div>
         </section>
 
-        <section class="py-16 md:py-20 bg-white">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <section class="relative py-16 md:py-20 overflow-hidden bg-gradient-to-b from-white via-accent to-white">
+            <div aria-hidden="true" class="pointer-events-none absolute inset-0">
+                <div class="absolute -top-20 -left-24 h-72 w-72 rounded-full bg-primary/10 blur-3xl"></div>
+                <div class="absolute top-16 -right-28 h-80 w-80 rounded-full bg-cta/10 blur-3xl"></div>
+            </div>
+
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative">
                 <div class="max-w-3xl mx-auto text-center">
-                    <h2 class="text-3xl font-bold text-primary">How It Works</h2>
-                    <p class="text-gray-600 mt-3">Create, share, and manage your event in minutes.</p>
+                    <p class="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-sm font-semibold text-primary shadow-sm ring-1 ring-gray-100">
+                        Simple steps, beautiful results
+                    </p>
+                    <h2 class="mt-6 text-3xl sm:text-4xl font-extrabold text-primary tracking-tight">How It Works</h2>
+                    <p class="text-gray-600 mt-4 text-base sm:text-lg">Create, share, and manage your event in minutes.</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-10">
-                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
-                        <p class="text-sm font-semibold text-gray-500">Step 1</p>
-                        <h3 class="text-lg font-bold text-primary mt-1">Create Invite</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+                    <div class="group bg-white/90 backdrop-blur rounded-2xl p-6 border border-gray-100 shadow-lg hover:shadow-xl transition duration-300">
+                        <div class="flex items-start justify-between gap-4">
+                            <span class="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-cta/10 text-cta ring-1 ring-cta/20">
+                                <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M8 6h13" />
+                                    <path d="M8 12h13" />
+                                    <path d="M8 18h13" />
+                                    <path d="M3 6h.01" />
+                                    <path d="M3 12h.01" />
+                                    <path d="M3 18h.01" />
+                                </svg>
+                            </span>
+                            <span class="inline-flex items-center rounded-full bg-primary/10 text-primary text-xs font-extrabold px-3 py-1">Step 1</span>
+                        </div>
+                        <h3 class="text-lg font-extrabold text-primary mt-5">Create Invite</h3>
                         <p class="text-gray-600 mt-2">Add name, date/time, and location.</p>
                     </div>
-                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
-                        <p class="text-sm font-semibold text-gray-500">Step 2</p>
-                        <h3 class="text-lg font-bold text-primary mt-1">Customize Invite</h3>
+
+                    <div class="group bg-white/90 backdrop-blur rounded-2xl p-6 border border-gray-100 shadow-lg hover:shadow-xl transition duration-300">
+                        <div class="flex items-start justify-between gap-4">
+                            <span class="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-primary ring-1 ring-primary/10">
+                                <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M12 20h9" />
+                                    <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z" />
+                                </svg>
+                            </span>
+                            <span class="inline-flex items-center rounded-full bg-primary/10 text-primary text-xs font-extrabold px-3 py-1">Step 2</span>
+                        </div>
+                        <h3 class="text-lg font-extrabold text-primary mt-5">Customize Invite</h3>
                         <p class="text-gray-600 mt-2">Choose a template and add media or branding.</p>
                     </div>
-                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
-                        <p class="text-sm font-semibold text-gray-500">Step 3</p>
-                        <h3 class="text-lg font-bold text-primary mt-1">Send Invites</h3>
+
+                    <div class="group bg-white/90 backdrop-blur rounded-2xl p-6 border border-gray-100 shadow-lg hover:shadow-xl transition duration-300">
+                        <div class="flex items-start justify-between gap-4">
+                            <span class="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-cta/10 text-cta ring-1 ring-cta/20">
+                                <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M22 2 11 13" />
+                                    <path d="M22 2 15 22 11 13 2 9Z" />
+                                </svg>
+                            </span>
+                            <span class="inline-flex items-center rounded-full bg-primary/10 text-primary text-xs font-extrabold px-3 py-1">Step 3</span>
+                        </div>
+                        <h3 class="text-lg font-extrabold text-primary mt-5">Send Invites</h3>
                         <p class="text-gray-600 mt-2">Share via WhatsApp, email, or a custom URL.</p>
                     </div>
-                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
-                        <p class="text-sm font-semibold text-gray-500">Step 4</p>
-                        <h3 class="text-lg font-bold text-primary mt-1">Track RSVPs</h3>
+
+                    <div class="group bg-white/90 backdrop-blur rounded-2xl p-6 border border-gray-100 shadow-lg hover:shadow-xl transition duration-300">
+                        <div class="flex items-start justify-between gap-4">
+                            <span class="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-primary ring-1 ring-primary/10">
+                                <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M3 3v18h18" />
+                                    <path d="M7 14l4-4 4 4 5-7" />
+                                </svg>
+                            </span>
+                            <span class="inline-flex items-center rounded-full bg-primary/10 text-primary text-xs font-extrabold px-3 py-1">Step 4</span>
+                        </div>
+                        <h3 class="text-lg font-extrabold text-primary mt-5">Track RSVPs</h3>
                         <p class="text-gray-600 mt-2">See responses live and manage your guest list.</p>
                     </div>
                 </div>
 
-                <div class="text-center mt-10">
+                <div class="text-center mt-12">
                     <a href="/how-it-works" class="inline-flex px-8 py-3 bg-primary text-white font-bold rounded-full shadow-xl hover:opacity-90 transition duration-150">
                         Learn More
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section class="py-16 md:py-20 bg-gray-50">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="max-w-3xl mx-auto text-center">
-                    <h2 class="text-3xl font-bold text-primary">Simple Pricing</h2>
-                    <p class="text-gray-600 mt-3">Start free and upgrade as your event grows.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
-                    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
-                        <h3 class="text-xl font-bold text-primary">Free</h3>
-                        <p class="text-gray-600 mt-2">Small events with essential RSVP.</p>
-                    </div>
-                    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
-                        <h3 class="text-xl font-bold text-primary">Standard</h3>
-                        <p class="text-gray-600 mt-2">More guests, tracking, and reminders.</p>
-                    </div>
-                    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
-                        <h3 class="text-xl font-bold text-primary">Pro</h3>
-                        <p class="text-gray-600 mt-2">Branding, analytics, and ticketing tools.</p>
-                    </div>
-                </div>
-
-                <div class="text-center mt-10">
-                    <a href="/pricing" class="inline-flex px-8 py-3 bg-cta text-white font-bold rounded-full shadow-xl hover:bg-cta/90 transition duration-150">
-                        View Pricing
                     </a>
                 </div>
             </div>
@@ -305,9 +439,11 @@
                     
                     <!-- Item 1 -->
                     <div class="item block bg-white rounded-xl overflow-hidden shadow-lg  transition duration-300 cursor-pointer">
-                        <video class="w-full h-60 object-cover" autoplay loop muted playsinline preload="metadata">
-                            <source src="./assets/img/save%20the%20date.mp4" type="video/mp4">
-                        </video>
+                        <div class="aspect-[9/16] w-full">
+                            <video class="w-full h-full object-cover" autoplay loop muted playsinline preload="metadata">
+                                <source src="./assets/img/save%20the%20date.mp4" type="video/mp4">
+                            </video>
+                        </div>
                         <div class="p-3 text-center">
                             <p class="text-sm font-medium text-gray-700">Save The Date</p>
                         </div>
@@ -315,9 +451,11 @@
                     
                     <!-- Item 2 -->
                     <div class="item block bg-white rounded-xl overflow-hidden shadow-lg  transition duration-300 cursor-pointer">
-                        <video class="w-full h-60 object-cover" autoplay loop muted playsinline preload="metadata">
-                            <source src="./assets/img/wedding.mp4" type="video/mp4">
-                        </video>
+                        <div class="aspect-[9/16] w-full">
+                            <video class="w-full h-full object-cover" autoplay loop muted playsinline preload="metadata">
+                                <source src="./assets/img/wedding.mp4" type="video/mp4">
+                            </video>
+                        </div>
                         <div class="p-3 text-center">
                             <p class="text-sm font-medium text-gray-700">Wedding Invite</p>
                         </div>
@@ -325,9 +463,11 @@
                     
                     <!-- Item 3 -->
                     <div class="item block bg-white rounded-xl overflow-hidden shadow-lg  transition duration-300 cursor-pointer">
-                        <video class="w-full h-60 object-cover" autoplay loop muted playsinline preload="metadata">
-                            <source src="./assets/img/birthday.mp4" type="video/mp4">
-                        </video>
+                        <div class="aspect-[9/16] w-full">
+                            <video class="w-full h-full object-cover" autoplay loop muted playsinline preload="metadata">
+                                <source src="./assets/img/birthday.mp4" type="video/mp4">
+                            </video>
+                        </div>
                         <div class="p-3 text-center">
                             <p class="text-sm font-medium text-gray-700">Birthday</p>
                         </div>
@@ -335,9 +475,11 @@
                     
                     <!-- Item 4 -->
                     <div class="item block bg-white rounded-xl overflow-hidden shadow-lg  transition duration-300 cursor-pointer">
-                        <video class="w-full h-60 object-cover" autoplay loop muted playsinline preload="metadata">
-                            <source src="./assets/img/new%20year.mp4" type="video/mp4">
-                        </video>
+                        <div class="aspect-[9/16] w-full">
+                            <video class="w-full h-full object-cover" autoplay loop muted playsinline preload="metadata">
+                                <source src="./assets/img/new%20year.mp4" type="video/mp4">
+                            </video>
+                        </div>
                         <div class="p-3 text-center">
                             <p class="text-sm font-medium text-gray-700">New Year</p>
                         </div>
@@ -345,9 +487,11 @@
                     
                     <!-- Item 5 -->
                     <div class="item block bg-white rounded-xl overflow-hidden shadow-lg  transition duration-300 cursor-pointer">
-                        <video class="w-full h-60 object-cover" autoplay loop muted playsinline preload="metadata">
-                            <source src="./assets/img/velentine.mp4" type="video/mp4">
-                        </video>
+                        <div class="aspect-[9/16] w-full">
+                            <video class="w-full h-full object-cover" autoplay loop muted playsinline preload="metadata">
+                                <source src="./assets/img/velentine.mp4" type="video/mp4">
+                            </video>
+                        </div>
                         <div class="p-3 text-center">
                             <p class="text-sm font-medium text-gray-700">Valentine</p>
                         </div>
@@ -486,12 +630,13 @@
         <!-- 8. Corporate Gifting Section (Reels Size) -->
         <section class="py-16 md:py-24">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl font-bold text-center text-primary mb-4">
-                    Corporate Gifting
-                </h2>
-                <p class="text-xl text-center text-gray-600 mb-12">
-                    Office Essentials Gift
-                </p>
+                <div class="flex items-end justify-between gap-6 flex-wrap">
+                    <div>
+                        <h2 class="text-3xl font-bold text-primary">Corporate Gifting</h2>
+                        <p class="text-xl text-gray-600 mt-2">Office Essentials Gift</p>
+                    </div>
+                    <a href="/gift-finder" class="text-primary font-semibold hover:underline">View all</a>
+                </div>
 
                 <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
 

@@ -11,6 +11,7 @@ const routes = [
   { path: '/events/corporate', file: 'events-corporate.html' },
   { path: '/how-it-works', file: 'how-it-works.html' },
   { path: '/pricing', file: 'pricing.html' },
+  { path: '/gift-finder', file: 'gift-finder.html' },
 ]
 
 function App() {
