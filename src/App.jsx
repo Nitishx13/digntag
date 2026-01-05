@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes, useParams } from 'react-router-dom'
 import HtmlPage from './HtmlPage.jsx'
 import AdminLogin from './admin/AdminLogin.jsx'
 import AdminLayout from './admin/AdminLayout.jsx'
@@ -6,8 +6,19 @@ import AdminEventsPage from './admin/AdminEventsPage.jsx'
 import AdminSettingsPage from './admin/AdminSettingsPage.jsx'
 import AdminEventNewPage from './admin/AdminEventNewPage.jsx'
 import AdminEventSharePage from './admin/AdminEventSharePage.jsx'
+import AdminEventGuestsPage from './admin/AdminEventGuestsPage.jsx'
 import TrackPage from './admin/TrackPage.jsx'
 import RsvpPage from './admin/RsvpPage.jsx'
+
+function AdminShareRedirect() {
+  const { id } = useParams()
+  return <Navigate to={`/share/${id}`} replace />
+}
+
+function AdminGuestsRedirect() {
+  const { id } = useParams()
+  return <Navigate to={`/guests/${id}`} replace />
+}
 
 const routes = [
   { path: '/', file: 'index.html' },
@@ -30,10 +41,15 @@ function App() {
     <Routes>
       <Route path="/admin/login" element={<AdminLogin />} />
       <Route path="/admin/dashboard" element={<Navigate to="/admin/events" replace />} />
+
+      <Route path="/share/:id" element={<AdminEventSharePage />} />
+      <Route path="/guests/:id" element={<AdminEventGuestsPage />} />
+
       <Route path="/admin" element={<AdminLayout />}>
         <Route path="events" element={<AdminEventsPage />} />
         <Route path="events/new" element={<AdminEventNewPage />} />
-        <Route path="events/:id/share" element={<AdminEventSharePage />} />
+        <Route path="events/:id/guests" element={<AdminGuestsRedirect />} />
+        <Route path="events/:id/share" element={<AdminShareRedirect />} />
         <Route path="settings" element={<AdminSettingsPage />} />
         <Route index element={<Navigate to="/admin/events" replace />} />
       </Route>

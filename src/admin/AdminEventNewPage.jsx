@@ -37,7 +37,7 @@ export default function AdminEventNewPage() {
       receiveContributions,
       allowCompanions,
     })
-    navigate(`/admin/events/${created.publicId}/share`, { replace: true })
+    navigate(`/share/${created.publicId}`, { replace: true })
   }
 
   return (

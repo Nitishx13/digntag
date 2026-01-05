@@ -21,6 +21,7 @@ function formatRelativeDays(dateStr) {
 export default function AdminEventsPage() {
   const navigate = useNavigate()
   const [events, setEvents] = useState([])
+  const [openMenuFor, setOpenMenuFor] = useState(null)
 
   useEffect(() => {
     setEvents(loadEvents())
@@ -55,21 +56,59 @@ export default function AdminEventsPage() {
           <div className="text-gray-600">No events yet.</div>
         ) : (
           sorted.map((e) => (
-            <button
-              key={e.publicId}
-              type="button"
-              onClick={() => navigate(`/admin/events/${e.publicId}/share`)}
-              className="w-full text-left bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition p-6"
-            >
-              <div className="flex items-start justify-between gap-6">
-                <div>
-                  <div className="text-lg font-extrabold text-primary">{e.title}</div>
-                  <div className="mt-1 text-sm text-gray-600">👤 {formatGuestsCount(e)}</div>
-                  <div className="mt-3 text-xs text-gray-500">{formatRelativeDays(e.date)}</div>
+            <div key={e.publicId} className="relative">
+              <button
+                type="button"
+                onClick={() => navigate(`/share/${e.publicId}`)}
+                className="w-full text-left bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition p-6"
+              >
+                <div className="flex items-start justify-between gap-6">
+                  <div>
+                    <div className="text-lg font-extrabold text-primary">{e.title}</div>
+                    <div className="mt-1 text-sm text-gray-600">👤 {formatGuestsCount(e)}</div>
+                    <div className="mt-3 text-xs text-gray-500">{formatRelativeDays(e.date)}</div>
+                  </div>
+
+                  <button
+                    type="button"
+                    aria-label="Event actions"
+                    onClick={(ev) => {
+                      ev.preventDefault()
+                      ev.stopPropagation()
+                      setOpenMenuFor((prev) => (prev === e.publicId ? null : e.publicId))
+                    }}
+                    className="h-9 w-9 inline-flex items-center justify-center rounded-full hover:bg-gray-50 text-gray-500"
+                  >
+                    ⋮
+                  </button>
                 </div>
-                <div className="text-gray-400 text-xl leading-none">⋮</div>
-              </div>
-            </button>
+              </button>
+
+              {openMenuFor === e.publicId ? (
+                <div className="absolute right-4 top-4 mt-10 w-44 rounded-2xl border border-gray-100 bg-white shadow-lg overflow-hidden z-10">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setOpenMenuFor(null)
+                      navigate(`/share/${e.publicId}`)
+                    }}
+                    className="w-full text-left px-4 py-3 text-sm font-semibold text-gray-700 hover:bg-gray-50"
+                  >
+                    Share link
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setOpenMenuFor(null)
+                      navigate(`/guests/${e.publicId}`)
+                    }}
+                    className="w-full text-left px-4 py-3 text-sm font-semibold text-gray-700 hover:bg-gray-50"
+                  >
+                    Guest list
+                  </button>
+                </div>
+              ) : null}
+            </div>
           ))
         )}
       </div>

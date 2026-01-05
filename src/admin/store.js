@@ -2,6 +2,8 @@ const EVENTS_KEY = 'digntag_events'
 const SESSION_KEY = 'digntag_admin_session'
 const PASSWORD_KEY = 'digntag_admin_password'
 
+const SESSION_TTL_MS = 1000 * 60 * 60 * 12
+
 const EVENTS_UPDATED_EVENT = 'digntag_events_updated'
 
 export function ensureDefaultPassword() {
@@ -42,7 +44,15 @@ export function getSession() {
 }
 
 export function isAuthed() {
-  return Boolean(getSession()?.token)
+  const session = getSession()
+  if (!session?.token) return false
+  if (!session?.createdAt) return false
+  const isValid = Date.now() - session.createdAt < SESSION_TTL_MS
+  if (!isValid) {
+    clearSession()
+    return false
+  }
+  return true
 }
 
 export function loadEvents() {
