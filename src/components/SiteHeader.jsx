@@ -401,7 +401,7 @@ export default function SiteHeader() {
 
         <div
           id="mobile-menu"
-          className={`absolute left-0 top-0 z-[310] h-full w-[85%] max-w-sm bg-white shadow-2xl transition-transform duration-300 flex flex-col ${
+          className={`absolute inset-y-0 left-0 z-[310] h-[100dvh] w-[85%] max-w-sm bg-white shadow-2xl transition-transform duration-300 flex flex-col overflow-hidden ${
             isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
           }`}
           role="dialog"
@@ -424,7 +424,7 @@ export default function SiteHeader() {
             </button>
           </div>
 
-          <nav className="px-5 py-5 flex-1 overflow-y-auto">
+          <nav className="px-5 py-5 flex-1 min-h-0 overflow-y-auto">
             {isAdmin ? (
               <a
                 href="/admin/whatsapp"
