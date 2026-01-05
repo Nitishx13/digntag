@@ -5,6 +5,7 @@ export default function SiteHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isEventMegaOpen, setIsEventMegaOpen] = useState(false)
   const [eventMegaTab, setEventMegaTab] = useState('valentines')
+  const [mobileSections, setMobileSections] = useState({ features: true, eventTypes: true, digital: false, tools: false })
   const megaCloseTimerRef = useRef(null)
   const megaTabTimerRef = useRef(null)
   const location = useLocation()
@@ -35,6 +36,10 @@ export default function SiteHeader() {
     megaTabTimerRef.current = setTimeout(() => {
       setEventMegaTab(key)
     }, 60)
+  }
+
+  const toggleMobileSection = (key) => {
+    setMobileSections((prev) => ({ ...prev, [key]: !prev[key] }))
   }
 
   const eventMegaTabs = [
@@ -192,7 +197,11 @@ export default function SiteHeader() {
   }, [isMobileMenuOpen])
 
   return (
-    <header className="sticky top-0 z-[200] bg-white shadow-md">
+    <>
+      <div className="bg-amber-50 text-amber-900 text-center text-sm font-extrabold py-2 px-4 border-b border-amber-200">
+        🚧 Website Under Development - Some features may not be available 🚧
+      </div>
+      <header className="sticky top-0 z-[200] bg-white shadow-md">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
         <a href="/" className="inline-flex items-center gap-2">
           <img src="/assets/img/digntag_logo 1.png" alt="Digntag logo" className="h-10 w-auto" />
@@ -217,6 +226,23 @@ export default function SiteHeader() {
               </a>
             </div>
           </div>
+
+          <div className="relative group">
+            <a href="/gift-finder" className="inline-flex items-center gap-1 text-gray-600 hover:text-primary transition duration-150 font-medium">
+              <span>Tools</span>
+              <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path
+                  fillRule="evenodd"
+                  d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </a>
+            <div className="absolute left-0 mt-2 w-64 rounded-xl bg-white shadow-xl border border-gray-100 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition">
+              <a href="/gift-finder" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Gift Finder</a>
+            </div>
+          </div>
+
           <div
             className="relative"
             onMouseEnter={openMega}
@@ -403,155 +429,119 @@ export default function SiteHeader() {
                 WhatsApp notify
               </a>
             ) : null}
-            <div className="mt-3 rounded-2xl bg-white ring-1 ring-gray-100 shadow-sm">
-              <div className="px-4 pt-3">
+
+            <div className="mt-3 rounded-2xl bg-white ring-1 ring-gray-100 shadow-sm overflow-hidden">
+              <button
+                type="button"
+                onClick={() => toggleMobileSection('features')}
+                className="w-full flex items-center justify-between gap-4 px-4 py-3 text-gray-900 font-extrabold"
+              >
+                <span>Features</span>
+                <span className="text-gray-500">{mobileSections.features ? '−' : '+'}</span>
+              </button>
+              <div className={`px-4 pb-3 transition-all duration-200 ${mobileSections.features ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
                 <a
                   href="/features"
-                  className="block px-3 py-2 rounded-xl text-gray-900 font-semibold bg-gray-50 ring-1 ring-gray-100"
+                  className="block rounded-xl px-3 py-2 text-sm font-semibold text-gray-800 hover:bg-gray-50"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Features
+                  All Features
                 </a>
-                <div className="mt-2 pl-2 space-y-1 border-l border-gray-100">
-                  <a
-                    href="/digital-growth-services"
-                    className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-gray-50"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    Digital Growth Services
-                  </a>
-                </div>
+                <a
+                  href="/digital-growth-services"
+                  className="block rounded-xl px-3 py-2 text-sm font-semibold text-gray-800 hover:bg-gray-50"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Digital Growth Services
+                </a>
               </div>
 
-              <div className="px-4 pb-3">
-                <a
-                  href="/events"
-                  className="block px-3 py-2 rounded-xl text-gray-900 font-semibold bg-gray-50 ring-1 ring-gray-100"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Event Types
-                </a>
+              <div className="border-t border-gray-100" />
 
-                <div className="mt-2 pl-2 space-y-1 border-l border-gray-100">
-                  <a
-                    href="/events/valentines"
-                    className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-gray-50"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
+              <button
+                type="button"
+                onClick={() => toggleMobileSection('eventTypes')}
+                className="w-full flex items-center justify-between gap-4 px-4 py-3 text-gray-900 font-extrabold"
+              >
+                <span>Event Types</span>
+                <span className="text-gray-500">{mobileSections.eventTypes ? '−' : '+'}</span>
+              </button>
+              <div className={`px-4 pb-3 transition-all duration-200 ${mobileSections.eventTypes ? 'max-h-[560px] opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
+                <a href="/events" className="block rounded-xl px-3 py-2 text-sm font-semibold text-gray-800 hover:bg-gray-50" onClick={() => setIsMobileMenuOpen(false)}>
+                  All event types
+                </a>
+                <div className="mt-2 space-y-1">
+                  <a href="/events/valentines" className="block rounded-xl px-3 py-2 text-sm font-semibold text-gray-800 hover:bg-gray-50" onClick={() => setIsMobileMenuOpen(false)}>
                     Valentine's Day
                   </a>
-                  <a
-                    href="/events/new-years-cards"
-                    className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-gray-50"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
+                  <a href="/events/new-years-cards" className="block rounded-xl px-3 py-2 text-sm font-semibold text-gray-800 hover:bg-gray-50" onClick={() => setIsMobileMenuOpen(false)}>
                     New Year's Cards
                   </a>
-                  <a
-                    href="/events/wedding"
-                    className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-gray-50"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    Wedding
+                  <a href="/events/baby" className="block rounded-xl px-3 py-2 text-sm font-semibold text-gray-800 hover:bg-gray-50" onClick={() => setIsMobileMenuOpen(false)}>
+                    Baby
                   </a>
-                  <a
-                    href="/events/birthday"
-                    className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-gray-50"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    Birthday
-                  </a>
-                  <a
-                    href="/events/kids-birthday"
-                    className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-gray-50"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
+                  <a href="/events/kids-birthday" className="block rounded-xl px-3 py-2 text-sm font-semibold text-gray-800 hover:bg-gray-50" onClick={() => setIsMobileMenuOpen(false)}>
                     Kids' Birthday
                   </a>
-                  <a
-                    href="/events/adult-birthday"
-                    className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-gray-50"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
+                  <a href="/events/adult-birthday" className="block rounded-xl px-3 py-2 text-sm font-semibold text-gray-800 hover:bg-gray-50" onClick={() => setIsMobileMenuOpen(false)}>
                     Adult Birthday
                   </a>
-                  <a
-                    href="/events/baby"
-                    className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-gray-50"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    Baby Events
+                  <a href="/events/wedding" className="block rounded-xl px-3 py-2 text-sm font-semibold text-gray-800 hover:bg-gray-50" onClick={() => setIsMobileMenuOpen(false)}>
+                    Wedding
                   </a>
-                  <a
-                    href="/events/corporate"
-                    className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-gray-50"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    Corporate Events
-                  </a>
-                  <a
-                    href="/events/business"
-                    className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-gray-50"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
+                  <a href="/events/business" className="block rounded-xl px-3 py-2 text-sm font-semibold text-gray-800 hover:bg-gray-50" onClick={() => setIsMobileMenuOpen(false)}>
                     Business
                   </a>
-                  <a
-                    href="/events/parties"
-                    className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-gray-50"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
+                  <a href="/events/parties" className="block rounded-xl px-3 py-2 text-sm font-semibold text-gray-800 hover:bg-gray-50" onClick={() => setIsMobileMenuOpen(false)}>
                     Parties
                   </a>
-                  <a
-                    href="/events/custom-website-creation"
-                    className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-gray-50"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    Custom website creation
-                  </a>
-                </div>
-
-                <div className="mt-4 pl-2 border-l border-gray-100">
-                  <div className="text-xs font-extrabold text-gray-500 tracking-wide uppercase px-3 py-1">Digital invitations</div>
-                  <div className="mt-2 space-y-1">
-                    <a
-                      href="/invitations/digital"
-                      className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-gray-50"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      Digital invitation templates
-                    </a>
-                    <a
-                      href="/upload"
-                      className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-gray-50"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      Upload Your Own
-                    </a>
-                    <a
-                      href="/services/small-business-website"
-                      className="block px-3 py-2 rounded-xl text-gray-700 hover:bg-gray-50"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      Small business website
-                    </a>
-                  </div>
                 </div>
               </div>
 
-              <a
-                href="/how-it-works"
-                className="block px-4 py-3 rounded-2xl text-gray-900 font-semibold hover:bg-gray-50"
-                onClick={() => setIsMobileMenuOpen(false)}
+              <div className="border-t border-gray-100" />
+
+              <button
+                type="button"
+                onClick={() => toggleMobileSection('digital')}
+                className="w-full flex items-center justify-between gap-4 px-4 py-3 text-gray-900 font-extrabold"
               >
+                <span>Digital invitations</span>
+                <span className="text-gray-500">{mobileSections.digital ? '−' : '+'}</span>
+              </button>
+              <div className={`px-4 pb-3 transition-all duration-200 ${mobileSections.digital ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
+                <a href="/invitations/digital" className="block rounded-xl px-3 py-2 text-sm font-semibold text-gray-800 hover:bg-gray-50" onClick={() => setIsMobileMenuOpen(false)}>
+                  Digital invitation templates
+                </a>
+                <a href="/upload" className="block rounded-xl px-3 py-2 text-sm font-semibold text-gray-800 hover:bg-gray-50" onClick={() => setIsMobileMenuOpen(false)}>
+                  Upload Your Own
+                </a>
+                <a href="/services/small-business-website" className="block rounded-xl px-3 py-2 text-sm font-semibold text-gray-800 hover:bg-gray-50" onClick={() => setIsMobileMenuOpen(false)}>
+                  Small business website
+                </a>
+              </div>
+
+              <div className="border-t border-gray-100" />
+
+              <button
+                type="button"
+                onClick={() => toggleMobileSection('tools')}
+                className="w-full flex items-center justify-between gap-4 px-4 py-3 text-gray-900 font-extrabold"
+              >
+                <span>Tools</span>
+                <span className="text-gray-500">{mobileSections.tools ? '−' : '+'}</span>
+              </button>
+              <div className={`px-4 pb-3 transition-all duration-200 ${mobileSections.tools ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
+                <a href="/gift-finder" className="block rounded-xl px-3 py-2 text-sm font-semibold text-gray-800 hover:bg-gray-50" onClick={() => setIsMobileMenuOpen(false)}>
+                  Gift Finder
+                </a>
+              </div>
+
+              <div className="border-t border-gray-100" />
+
+              <a href="/how-it-works" className="block px-4 py-3 text-gray-900 font-extrabold hover:bg-gray-50" onClick={() => setIsMobileMenuOpen(false)}>
                 How It Works
               </a>
-              <a
-                href="/pricing"
-                className="block px-4 py-3 rounded-2xl text-gray-900 font-semibold hover:bg-gray-50"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
+              <a href="/pricing" className="block px-4 py-3 text-gray-900 font-extrabold hover:bg-gray-50" onClick={() => setIsMobileMenuOpen(false)}>
                 Pricing
               </a>
             </div>
@@ -571,5 +561,6 @@ export default function SiteHeader() {
         </div>
       </div>
     </header>
+    </>
   )
 }
