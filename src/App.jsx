@@ -9,8 +9,11 @@ const routes = [
   { path: '/events/birthday', file: 'events-birthday.html' },
   { path: '/events/baby', file: 'events-baby.html' },
   { path: '/events/corporate', file: 'events-corporate.html' },
+  { path: '/events/valentines', file: 'events-valentines.html' },
   { path: '/how-it-works', file: 'how-it-works.html' },
   { path: '/pricing', file: 'pricing.html' },
+  { path: '/templates', file: 'templates.html' },
+  { path: '/faqs', file: 'faqs.html' },
   { path: '/gift-finder', file: 'gift-finder.html' },
 ]
 
