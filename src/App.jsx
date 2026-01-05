@@ -1,5 +1,9 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import HtmlPage from './HtmlPage.jsx'
+import AdminLogin from './admin/AdminLogin.jsx'
+import AdminDashboard from './admin/AdminDashboard.jsx'
+import TrackPage from './admin/TrackPage.jsx'
+import RsvpPage from './admin/RsvpPage.jsx'
 
 const routes = [
   { path: '/', file: 'index.html' },
@@ -20,6 +24,10 @@ const routes = [
 function App() {
   return (
     <Routes>
+      <Route path="/admin/login" element={<AdminLogin />} />
+      <Route path="/admin/dashboard" element={<AdminDashboard />} />
+      <Route path="/track/:id" element={<TrackPage />} />
+      <Route path="/rsvp/:id" element={<RsvpPage />} />
       {routes.map((r) => (
         <Route key={r.path} path={r.path} element={<HtmlPage file={r.file} />} />
       ))}
