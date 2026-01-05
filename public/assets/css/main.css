@@ -1,19 +1,94 @@
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #ffffff;
+            background: radial-gradient(900px 500px at 10% 10%, rgba(245, 102, 141, 0.10), rgba(255, 255, 255, 0) 60%),
+                        radial-gradient(900px 500px at 90% 20%, rgba(52, 22, 30, 0.08), rgba(255, 255, 255, 0) 60%),
+                        linear-gradient(180deg, #ffffff 0%, #fff8fb 50%, #ffffff 100%);
+            background-attachment: fixed;
         }
         /* Define custom colors based on prompt */
         :root {
             --color-primary: #34161E; /* Dark Maroon/Burgundy */
-            --color-accent: #FFF4F7; /* Soft Pink Background */
+            --color-accent: #FFF0F5; /* Soft Pink Background */
             --color-cta: #F5668D; /* Pink/Red CTA */
+            --color-cta-2: #FF3D7F;
+            --color-primary-2: #4B1C2A;
+            --color-surface: rgba(255, 255, 255, 0.86);
+            --shadow-soft: 0 12px 30px rgba(17, 24, 39, 0.10);
+            --shadow-strong: 0 18px 45px rgba(17, 24, 39, 0.16);
         }
-        .bg-primary { background-color: var(--color-primary); }
+        .bg-primary {
+            background-color: var(--color-primary);
+            background-image: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-2) 100%);
+        }
         .text-primary { color: var(--color-primary); }
         .bg-accent { background-color: var(--color-accent); }
-        .bg-cta { background-color: var(--color-cta); }
+        .bg-cta { background-color: var(--color-cta); background-image: linear-gradient(135deg, var(--color-cta) 0%, var(--color-cta-2) 100%); }
         .text-cta { color: var(--color-cta); }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        a {
+            text-decoration-thickness: 2px;
+            text-underline-offset: 4px;
+        }
+
+        .border-gray-100 {
+            border-color: rgba(52, 22, 30, 0.08) !important;
+        }
+
+        header.sticky {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        a.bg-cta, button.bg-cta {
+            box-shadow: var(--shadow-soft);
+        }
+        a.bg-cta:hover, button.bg-cta:hover {
+            box-shadow: var(--shadow-strong);
+            transform: translateY(-1px);
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        ::selection {
+            background: rgba(245, 102, 141, 0.25);
+        }
+
+        .bg-gray-50 {
+            background-color: #fff4f8 !important;
+            background-image: radial-gradient(700px 260px at 20% 20%, rgba(245, 102, 141, 0.10), rgba(255, 255, 255, 0) 60%),
+                              radial-gradient(700px 260px at 80% 10%, rgba(52, 22, 30, 0.06), rgba(255, 255, 255, 0) 60%);
+        }
+
+        .shadow-lg {
+            box-shadow: var(--shadow-soft) !important;
+        }
+        .shadow-xl, .shadow-2xl {
+            box-shadow: var(--shadow-strong) !important;
+        }
+
+        .hover\:shadow-xl:hover {
+            box-shadow: var(--shadow-strong) !important;
+        }
+
+        a[class*="shadow"], button[class*="shadow"], div[class*="shadow"] {
+            transition: transform 220ms ease, box-shadow 220ms ease;
+        }
+
+        a.hover\:shadow-xl:hover, a.hover\:shadow-lg:hover, div.hover\:shadow-xl:hover, div.hover\:shadow-lg:hover {
+            transform: translateY(-2px);
+        }
+
+        .ring-gray-100 {
+            --tw-ring-color: rgba(255, 255, 255, 0.55) !important;
+        }
         
         /* --- Custom Styles for Owl Carousel Navigation --- */
 

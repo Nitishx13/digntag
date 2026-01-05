@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digntag| Custom Design Platform</title>
+    <title>Digntag.in | Digital Invitations & RSVP</title>
     
     <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -15,68 +15,284 @@
 </head>
 <body class="text-gray-800">
 
-    <!-- Mobile Menu Drawer (Hidden by default) -->
-    <!-- <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-primary z-50 transform -translate-x-full transition-transform duration-300 md:hidden">
-        <div class="p-6">
-            <button onclick="toggleMenu()" class="text-white text-3xl absolute top-4 right-4 focus:outline-none" aria-label="Close Menu">
-                &times;
-            </button>
-            <nav class="mt-16 flex flex-col space-y-4">
-                <a href="./index.html" class="text-white text-xl font-medium hover:text-cta transition duration-150 p-2 rounded-lg">Home</a>
-                <a href="./templates.html" class="text-white text-xl font-medium hover:text-cta transition duration-150 p-2 rounded-lg">Templates</a>
-                <a href="./aboutus.html" class="text-white text-xl font-medium hover:text-cta transition duration-150 p-2 rounded-lg">About Us</a>
-                <a href="./contact.html" class="text-white text-xl font-medium hover:text-cta transition duration-150 p-2 rounded-lg">Contact</a>
-                <a href="./design.html" class="text-primary bg-white font-bold transition duration-150 p-2 rounded-lg">Design</a>
-            </nav>
-            <div class="mt-8">
-                <button class="w-full py-3 bg-cta text-white font-bold rounded-full shadow-lg hover:bg-cta/80 transition duration-150">Sign In</button>
-            </div>
-        </div>
-    </div> -->
-
     <!-- Header & Navigation -->
     <header class="sticky top-0 z-40 bg-white shadow-md">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <!-- Logo -->
-            <a href="./index.html" class="inline-flex items-center gap-2">
+            <a href="/" class="inline-flex items-center gap-2">
                 <img src="./assets/img/digntag_logo 1.png" alt="Digntag logo" class="h-10 w-auto" />
             </a>
 
-            <!-- Desktop Navigation -->
-            <!-- <nav class="hidden md:flex space-x-6 lg:space-x-10 items-center">
-                <a href="./templates.html" class="text-gray-600 hover:text-primary transition duration-150 font-medium">All Invitation</a>
-                <a href="./aboutus.html" class="text-gray-600 hover:text-primary transition duration-150 font-medium">About Us</a>
-                <a href="./contact.html" class="text-gray-600 hover:text-primary transition duration-150 font-medium">Contact</a>
-                <a href="./design.html" class="text-gray-600 hover:text-primary transition duration-150 font-medium">Custom Design</a>
-            </nav> -->
+            <nav class="hidden md:flex items-center gap-6 lg:gap-8">
+                <a href="/features" class="text-gray-600 hover:text-primary transition duration-150 font-medium">Features</a>
+                <div class="relative group">
+                    <a href="/events" class="inline-flex items-center gap-1 text-gray-600 hover:text-primary transition duration-150 font-medium">
+                        <span>Event Types</span>
+                        <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                    <div class="absolute left-0 mt-2 w-48 rounded-xl bg-white shadow-xl border border-gray-100 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition">
+                        <a href="/events/wedding" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Wedding</a>
+                        <a href="/events/birthday" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Birthday</a>
+                        <a href="/events/baby" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Baby Events</a>
+                        <a href="/events/corporate" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Corporate Events</a>
+                    </div>
+                </div>
+                <a href="/how-it-works" class="text-gray-600 hover:text-primary transition duration-150 font-medium">How It Works</a>
+                <a href="/pricing" class="text-gray-600 hover:text-primary transition duration-150 font-medium">Pricing</a>
+                <a href="https://wa.me/918882816805" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-primary transition duration-150 font-medium">Contact</a>
+            </nav>
 
             <!-- Sign In / Hamburger Menu -->
             <div class="flex items-center space-x-4">
-                <!-- <button class="hidden md:block px-6 py-2 bg-cta text-white font-bold rounded-full shadow-xl hover:bg-cta/90 transition duration-150">
+                <a href="https://wa.me/918882816805" target="_blank" rel="noopener noreferrer" class="hidden md:inline-flex px-6 py-2 bg-cta text-white font-bold rounded-full shadow-xl hover:bg-cta/90 transition duration-150">
                     Contact Us
-                </button> -->
-
-                <!-- Hamburger Icon (Mobile) -->
-                <!-- <button onclick="toggleMenu()" class="md:hidden text-primary focus:outline-none" aria-label="Open Menu">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                </button> -->
+                </a>
             </div>
         </div>
     </header>
 
     <main>
         <!-- 2. Hero Section -->
-        <section class="relative pt-16 pb-24 md:pt-24 md:pb-32 overflow-hidden bg-[url('./assets/img/herobanner.png')] min-h-[320px] sm:min-h-[380px] md:min-h-[520px] lg:min-h-[620px] w-full bg-cover bg-center">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between">
-                <!-- Text Content 
-                <div class="md:w-1/2 lg:w-2/5 z-10 text-center md:text-left mb-10 md:mb-0">
-                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-primary mb-8 leading-tight">
-                        What do you want to design?
-                    </h1>
-                    <button class="px-10 py-4 bg-cta text-white font-bold text-lg rounded-full shadow-xl hover:bg-cta/90 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-cta/50">
-                        Start Your Design
-                    </button>
-                </div>-->
+        <section class="relative overflow-hidden bg-gradient-to-br from-white via-white to-gray-50 w-full">
+            <div aria-hidden="true" class="pointer-events-none absolute inset-0">
+                <div class="absolute -top-28 -left-28 h-80 w-80 rounded-full bg-primary/10 blur-3xl"></div>
+                <div class="absolute top-8 -right-28 h-96 w-96 rounded-full bg-cta/10 blur-3xl"></div>
+                <div class="absolute bottom-0 left-1/2 -translate-x-1/2 h-72 w-[36rem] rounded-full bg-accent/20 blur-3xl"></div>
+            </div>
+
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20 sm:pt-20 sm:pb-24 md:pt-24 md:pb-28">
+                <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-10 lg:gap-14">
+                    <div class="md:col-span-7 lg:col-span-6 z-10 text-center md:text-left">
+                        <p class="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-sm font-semibold text-primary shadow-sm ring-1 ring-gray-100">
+                            Digital Invitations + RSVP Tracking
+                        </p>
+                        <h1 class="mt-6 text-4xl sm:text-5xl lg:text-6xl font-extrabold text-primary leading-[1.05] tracking-tight">
+                            Invite smart.
+                            <span class="block">Host better.</span>
+                        </h1>
+                        <p class="mt-6 text-gray-700 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto md:mx-0">
+                            Create beautiful digital invitations, share instantly on WhatsApp, and track RSVPs in real time—so you can focus on the celebration.
+                        </p>
+
+                        <div class="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
+                            <a href="https://wa.me/918882816805" target="_blank" rel="noopener noreferrer" class="px-8 py-4 bg-cta text-white font-bold text-base rounded-full shadow-xl hover:bg-cta/90 transition duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-cta/50 text-center">
+                                Contact Us
+                            </a>
+                            <a href="/features" class="px-8 py-4 bg-white text-primary font-bold text-base rounded-full shadow-xl hover:bg-gray-50 transition duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-white/50 text-center ring-1 ring-gray-100">
+                                Explore Features
+                            </a>
+                        </div>
+
+                        <div class="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl mx-auto md:mx-0">
+                            <div class="rounded-2xl bg-white/80 backdrop-blur border border-gray-100 p-4 shadow-sm">
+                                <p class="text-sm font-semibold text-gray-500">Share</p>
+                                <p class="mt-1 text-base font-bold text-primary">WhatsApp Ready</p>
+                            </div>
+                            <div class="rounded-2xl bg-white/80 backdrop-blur border border-gray-100 p-4 shadow-sm">
+                                <p class="text-sm font-semibold text-gray-500">Track</p>
+                                <p class="mt-1 text-base font-bold text-primary">Live RSVPs</p>
+                            </div>
+                            <div class="rounded-2xl bg-white/80 backdrop-blur border border-gray-100 p-4 shadow-sm">
+                                <p class="text-sm font-semibold text-gray-500">Manage</p>
+                                <p class="mt-1 text-base font-bold text-primary">Guest Lists</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="md:col-span-5 lg:col-span-6 z-10">
+                        <div class="relative max-w-md mx-auto md:ml-auto">
+                            <div class="absolute -inset-6 rounded-[2rem] bg-gradient-to-tr from-primary/10 via-white to-cta/10 blur-2xl"></div>
+                            <div class="relative rounded-[2rem] bg-white/90 backdrop-blur border border-gray-100 shadow-2xl overflow-hidden">
+                                <div class="p-6 sm:p-7">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <p class="text-xs font-semibold text-gray-500">Preview</p>
+                                            <p class="mt-1 text-lg font-extrabold text-primary">Your Event Invite</p>
+                                        </div>
+                                        <span class="inline-flex items-center rounded-full bg-cta/10 px-3 py-1 text-xs font-bold text-cta">RSVP</span>
+                                    </div>
+
+                                    <div class="mt-6 rounded-2xl bg-gradient-to-br from-primary/5 via-white to-cta/5 border border-gray-100 p-5">
+                                        <p class="text-sm font-semibold text-gray-500">Event</p>
+                                        <p class="mt-1 text-xl font-extrabold text-primary">Celebration Night</p>
+                                        <div class="mt-4 grid grid-cols-2 gap-3">
+                                            <div class="rounded-xl bg-white border border-gray-100 p-3">
+                                                <p class="text-xs font-semibold text-gray-500">Date</p>
+                                                <p class="mt-1 text-sm font-bold text-gray-800">Sat, 7:00 PM</p>
+                                            </div>
+                                            <div class="rounded-xl bg-white border border-gray-100 p-3">
+                                                <p class="text-xs font-semibold text-gray-500">Location</p>
+                                                <p class="mt-1 text-sm font-bold text-gray-800">View Map</p>
+                                            </div>
+                                        </div>
+                                        <div class="mt-5 flex items-center gap-2">
+                                            <span class="inline-flex h-2 w-2 rounded-full bg-green-500"></span>
+                                            <p class="text-sm font-semibold text-gray-700">Live RSVP tracking</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-6 grid grid-cols-3 gap-3">
+                                        <div class="rounded-xl bg-white border border-gray-100 p-3 text-center">
+                                            <p class="text-xs font-semibold text-gray-500">Going</p>
+                                            <p class="mt-1 text-lg font-extrabold text-primary">128</p>
+                                        </div>
+                                        <div class="rounded-xl bg-white border border-gray-100 p-3 text-center">
+                                            <p class="text-xs font-semibold text-gray-500">Maybe</p>
+                                            <p class="mt-1 text-lg font-extrabold text-primary">24</p>
+                                        </div>
+                                        <div class="rounded-xl bg-white border border-gray-100 p-3 text-center">
+                                            <p class="text-xs font-semibold text-gray-500">Not Going</p>
+                                            <p class="mt-1 text-lg font-extrabold text-primary">9</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="px-6 sm:px-7 pb-7">
+                                    <a href="https://wa.me/918882816805" target="_blank" rel="noopener noreferrer" class="w-full inline-flex justify-center px-6 py-3 bg-cta text-white font-bold rounded-xl shadow-lg hover:bg-cta/90 transition duration-150">
+                                        Contact Us
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 md:py-20 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto text-center">
+                    <h2 class="text-3xl font-bold text-primary">Everything you need to run an event online</h2>
+                    <p class="text-gray-600 mt-3">Digital invites, smart sharing, RSVP tracking, and guest management—paper-free.</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+                    <a href="/features" class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 p-6 border border-gray-100">
+                        <h3 class="text-lg font-bold text-primary">Digital Invitations</h3>
+                        <p class="text-gray-600 mt-2">Templates with photos, videos, maps, schedules, and branding.</p>
+                    </a>
+                    <a href="/features" class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 p-6 border border-gray-100">
+                        <h3 class="text-lg font-bold text-primary">Smart Delivery</h3>
+                        <p class="text-gray-600 mt-2">Share via WhatsApp links, email, and custom event URLs.</p>
+                    </a>
+                    <a href="/features" class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 p-6 border border-gray-100">
+                        <h3 class="text-lg font-bold text-primary">RSVP & Guests</h3>
+                        <p class="text-gray-600 mt-2">Track attending / not attending / maybe with custom questions.</p>
+                    </a>
+                    <a href="/features" class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 p-6 border border-gray-100">
+                        <h3 class="text-lg font-bold text-primary">Reminders</h3>
+                        <p class="text-gray-600 mt-2">Follow-ups and reminders so you can host confidently.</p>
+                    </a>
+                    <a href="/features" class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 p-6 border border-gray-100">
+                        <h3 class="text-lg font-bold text-primary">Analytics</h3>
+                        <p class="text-gray-600 mt-2">See RSVP counts, trends, and export guest lists anytime.</p>
+                    </a>
+                    <a href="/pricing" class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 p-6 border border-gray-100">
+                        <h3 class="text-lg font-bold text-primary">Ticketing & Payments</h3>
+                        <p class="text-gray-600 mt-2">Sell tickets, accept payments, and set capacity limits.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 md:py-20 bg-gray-50">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-end justify-between gap-6 flex-wrap">
+                    <div>
+                        <h2 class="text-3xl font-bold text-primary">Event Types</h2>
+                        <p class="text-gray-600 mt-2">Start with a template designed for your event.</p>
+                    </div>
+                    <a href="/events" class="text-primary font-semibold hover:underline">View all</a>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-10">
+                    <a href="/events/wedding" class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 p-6 border border-gray-100">
+                        <h3 class="text-lg font-bold text-primary">Wedding</h3>
+                        <p class="text-gray-600 mt-2">Elegant invites, functions schedule, and RSVP details.</p>
+                    </a>
+                    <a href="/events/birthday" class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 p-6 border border-gray-100">
+                        <h3 class="text-lg font-bold text-primary">Birthday</h3>
+                        <p class="text-gray-600 mt-2">Fun themes with quick RSVP for guests.</p>
+                    </a>
+                    <a href="/events/baby" class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 p-6 border border-gray-100">
+                        <h3 class="text-lg font-bold text-primary">Baby Events</h3>
+                        <p class="text-gray-600 mt-2">Baby shower & naming ceremony templates.</p>
+                    </a>
+                    <a href="/events/corporate" class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 p-6 border border-gray-100">
+                        <h3 class="text-lg font-bold text-primary">Corporate</h3>
+                        <p class="text-gray-600 mt-2">Branding, agenda sections, and attendee fields.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 md:py-20 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto text-center">
+                    <h2 class="text-3xl font-bold text-primary">How It Works</h2>
+                    <p class="text-gray-600 mt-3">Create, share, and manage your event in minutes.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-10">
+                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
+                        <p class="text-sm font-semibold text-gray-500">Step 1</p>
+                        <h3 class="text-lg font-bold text-primary mt-1">Create Invite</h3>
+                        <p class="text-gray-600 mt-2">Add name, date/time, and location.</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
+                        <p class="text-sm font-semibold text-gray-500">Step 2</p>
+                        <h3 class="text-lg font-bold text-primary mt-1">Customize Invite</h3>
+                        <p class="text-gray-600 mt-2">Choose a template and add media or branding.</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
+                        <p class="text-sm font-semibold text-gray-500">Step 3</p>
+                        <h3 class="text-lg font-bold text-primary mt-1">Send Invites</h3>
+                        <p class="text-gray-600 mt-2">Share via WhatsApp, email, or a custom URL.</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
+                        <p class="text-sm font-semibold text-gray-500">Step 4</p>
+                        <h3 class="text-lg font-bold text-primary mt-1">Track RSVPs</h3>
+                        <p class="text-gray-600 mt-2">See responses live and manage your guest list.</p>
+                    </div>
+                </div>
+
+                <div class="text-center mt-10">
+                    <a href="/how-it-works" class="inline-flex px-8 py-3 bg-primary text-white font-bold rounded-full shadow-xl hover:opacity-90 transition duration-150">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 md:py-20 bg-gray-50">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto text-center">
+                    <h2 class="text-3xl font-bold text-primary">Simple Pricing</h2>
+                    <p class="text-gray-600 mt-3">Start free and upgrade as your event grows.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+                    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                        <h3 class="text-xl font-bold text-primary">Free</h3>
+                        <p class="text-gray-600 mt-2">Small events with essential RSVP.</p>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                        <h3 class="text-xl font-bold text-primary">Standard</h3>
+                        <p class="text-gray-600 mt-2">More guests, tracking, and reminders.</p>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                        <h3 class="text-xl font-bold text-primary">Pro</h3>
+                        <p class="text-gray-600 mt-2">Branding, analytics, and ticketing tools.</p>
+                    </div>
+                </div>
+
+                <div class="text-center mt-10">
+                    <a href="/pricing" class="inline-flex px-8 py-3 bg-cta text-white font-bold rounded-full shadow-xl hover:bg-cta/90 transition duration-150">
+                        View Pricing
+                    </a>
+                </div>
             </div>
         </section>
 
@@ -141,260 +357,215 @@
             </div>
         </section>
 
-       <!-- 4. Wedding/Event Complements Section (Bright Images) -->
-<section class="py-16 md:py-24">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <h2 class="text-3xl font-bold text-center text-primary mb-12">
-            Wedding/Event Complements
-        </h2>
+        <!-- 4. Wedding/Event Complements Section (Bright Images) -->
+        <section class="py-16 md:py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+                <h2 class="text-3xl font-bold text-center text-primary mb-12">
+                    Wedding/Event Complements
+                </h2>
 
-        <div class="bento-grid">
+                <div class="bento-grid">
 
-            <!-- Digital RSVP -->
-            <div class="bg-white rounded-xl shadow-xl overflow-hidden p-6 md:p-8 flex flex-col justify-end h-64 md:h-72 relative transition hover:scale-[1.02] duration-300"
-                 style="background-image: url('./assets/img/1 (3).jpeg'); background-size: cover; background-position: center;">
-                <p class="text-xl font-semibold text-white drop-shadow-lg">
-                    Digital RSVP
-                </p>
+                    <!-- Digital RSVP -->
+                    <div class="bg-white rounded-xl shadow-xl overflow-hidden p-6 md:p-8 flex flex-col justify-end h-64 md:h-72 relative transition hover:scale-[1.02] duration-300"
+                         style="background-image: url('./assets/img/1 (3).jpeg'); background-size: cover; background-position: center;">
+                        <p class="text-xl font-semibold text-white drop-shadow-lg">
+                            Digital RSVP
+                        </p>
+                    </div>
+
+                    <!-- Customised Invitation Design & Video (Tall) -->
+                    <div class="bento-item-tall bg-white rounded-xl shadow-xl overflow-hidden p-6 md:p-8 flex flex-col justify-end h-64 md:h-auto relative transition hover:scale-[1.02] duration-300"
+                         style="background-image: url('./assets/img/1 (5).jpeg'); background-size: cover; background-position: center;">
+                        <p class="text-xl font-semibold text-white drop-shadow-lg">
+                            Customised Invitation Design &amp; Video
+                        </p>
+                    </div>
+
+                    <!-- Deliver Your Invites -->
+                    <div class="bg-white rounded-xl shadow-xl overflow-hidden p-6 md:p-8 flex flex-col justify-end h-64 md:h-72 relative transition hover:scale-[1.02] duration-300"
+                         style="background-image: url('./assets/img/1 (1).jpeg'); background-size: cover; background-position: center;">
+                        <p class="text-xl font-semibold text-white drop-shadow-lg">
+                            Deliver Your Invites
+                        </p>
+                    </div>
+
+                    <!-- Personalised Delivery -->
+                    <div class="bg-white rounded-xl shadow-xl overflow-hidden p-6 md:p-8 flex flex-col justify-end h-64 md:h-72 relative transition hover:scale-[1.02] duration-300"
+                         style="background-image: url('./assets/img/1 (4).jpeg'); background-size: cover; background-position: center;">
+                        <p class="text-xl font-semibold text-white drop-shadow-lg">
+                            Personalised Delivery
+                        </p>
+                    </div>
+
+                    <!-- Personalised Wedding Website -->
+                    <div class="bg-white rounded-xl shadow-xl overflow-hidden p-6 md:p-8 flex flex-col justify-end h-64 md:h-72 relative transition hover:scale-[1.02] duration-300"
+                         style="background-image: url('./assets/img/1 (2).jpeg'); background-size: cover; background-position: center;">
+                        <p class="text-xl font-semibold text-white drop-shadow-lg">
+                            Personalised Wedding Website
+                        </p>
+                    </div>
+
+                </div>
             </div>
+        </section>
 
-            <!-- Customised Invitation Design & Video (Tall) -->
-            <div class="bento-item-tall bg-white rounded-xl shadow-xl overflow-hidden p-6 md:p-8 flex flex-col justify-end h-64 md:h-auto relative transition hover:scale-[1.02] duration-300"
-                 style="background-image: url('./assets/img/1 (5).jpeg'); background-size: cover; background-position: center;">
-                <p class="text-xl font-semibold text-white drop-shadow-lg">
-                    Customised Invitation Design &amp; Video
-                </p>
-            </div>
-
-            <!-- Deliver Your Invites -->
-            <div class="bg-white rounded-xl shadow-xl overflow-hidden p-6 md:p-8 flex flex-col justify-end h-64 md:h-72 relative transition hover:scale-[1.02] duration-300"
-                 style="background-image: url('./assets/img/1 (1).jpeg'); background-size: cover; background-position: center;">
-                <p class="text-xl font-semibold text-white drop-shadow-lg">
-                    Deliver Your Invites
-                </p>
-            </div>
-
-            <!-- Personalised Delivery -->
-            <div class="bg-white rounded-xl shadow-xl overflow-hidden p-6 md:p-8 flex flex-col justify-end h-64 md:h-72 relative transition hover:scale-[1.02] duration-300"
-                 style="background-image: url('./assets/img/1 (4).jpeg'); background-size: cover; background-position: center;">
-                <p class="text-xl font-semibold text-white drop-shadow-lg">
-                    Personalised Delivery
-                </p>
-            </div>
-
-            <!-- Personalised Wedding Website -->
-            <div class="bg-white rounded-xl shadow-xl overflow-hidden p-6 md:p-8 flex flex-col justify-end h-64 md:h-72 relative transition hover:scale-[1.02] duration-300"
-                 style="background-image: url('./assets/img/1 (2).jpeg'); background-size: cover; background-position: center;">
-                <p class="text-xl font-semibold text-white drop-shadow-lg">
-                    Personalised Wedding Website
-                </p>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-
-        <!-- 6. Need a Gift? Our Top Picks Section -->
-        <!-- <section class="py-16 md:py-24">
+        <!-- 7. Special Events (Reels Size – 9:16) -->
+        <section class="py-16 md:py-24">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl font-bold text-center text-primary mb-4">Need a Gift?</h2>
-                <p class="text-xl text-center text-gray-600 mb-12">Our Top Picks</p>
+                <h2 class="text-3xl font-bold text-center text-primary mb-12">
+                    Special Events
+                </h2>
+
+                <div id="packaging-carousel" class="owl-carousel owl-theme relative px-8">
+
+                    <!-- Engagement -->
+                    <div class="item bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden cursor-pointer">
+                        <div class="aspect-[9/16] w-full">
+                            <img src="./assets/img/Engagement%20Invitation.jpg"
+                                 alt="Engagement Invitation"
+                                 class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-3 text-center">
+                            <p class="text-base font-medium text-gray-700">Engagement</p>
+                        </div>
+                    </div>
+
+                    <!-- Anniversary -->
+                    <div class="item bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden cursor-pointer">
+                        <div class="aspect-[9/16] w-full">
+                            <img src="./assets/img/Anniversary%20Invitation.jpg"
+                                 alt="Anniversary Invitation"
+                                 class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-3 text-center">
+                            <p class="text-base font-medium text-gray-700">Anniversary</p>
+                        </div>
+                    </div>
+
+                    <!-- Birthday -->
+                    <div class="item bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden cursor-pointer">
+                        <div class="aspect-[9/16] w-full">
+                            <img src="./assets/img/Birthday%20Invitation.jpg"
+                                 alt="Birthday Invitation"
+                                 class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-3 text-center">
+                            <p class="text-base font-medium text-gray-700">Birthday</p>
+                        </div>
+                    </div>
+
+                    <!-- Baby Shower -->
+                    <div class="item bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden cursor-pointer">
+                        <div class="aspect-[9/16] w-full">
+                            <img src="./assets/img/Baby%20Shower%20Invitation.jpg"
+                                 alt="Baby Shower Invitation"
+                                 class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-3 text-center">
+                            <p class="text-base font-medium text-gray-700">Baby Shower</p>
+                        </div>
+                    </div>
+
+                    <!-- Pooja -->
+                    <div class="item bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden cursor-pointer">
+                        <div class="aspect-[9/16] w-full">
+                            <img src="./assets/img/Pooja%20Invitation.jpg"
+                                 alt="Pooja Invitation"
+                                 class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-3 text-center">
+                            <p class="text-base font-medium text-gray-700">Pooja</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Corporate Gifting Section (Reels Size) -->
+        <section class="py-16 md:py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center text-primary mb-4">
+                    Corporate Gifting
+                </h2>
+                <p class="text-xl text-center text-gray-600 mb-12">
+                    Office Essentials Gift
+                </p>
 
                 <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
-                   
-                    <div class="col-span-1 bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden cursor-pointer">
-                        <img src="https://placehold.co/400x300/F5668D/FFF4F7?text=Pink+Gift+Box" alt="Luxury Pink Gift Box" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <p class="text-base font-medium text-gray-700 truncate">Luxury Box Set</p>
-                            <p class="text-sm text-primary font-bold mt-1">$49.99</p>
-                        </div>
+
+                    <!-- Gift Card 1 -->
+                    <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden cursor-pointer">
+                        <a href="https://www.amazon.in/VRB-Dec-Artificial-Crochet-Bouquet/dp/B0DVQ75LVP/"
+                           target="_blank" rel="noopener noreferrer" class="block">
+                            <div class="aspect-[9/16] w-full">
+                                <img src="./assets/img/cop1.png"
+                                     alt="Artificial Crochet Flower Bouquet"
+                                     class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-3 text-center">
+                                <p class="text-sm font-medium text-gray-700">
+                                    Artificial Crochet Flower Bouquet
+                                </p>
+                            </div>
+                        </a>
                     </div>
 
-                  
-                    <div class="col-span-1 bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden cursor-pointer">
-                        <img src="https://placehold.co/400x300/FFD700/34161E?text=Gold+Chain" alt="Gold Chain Necklace" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <p class="text-base font-medium text-gray-700 truncate">Delicate Gold Chain</p>
-                            <p class="text-sm text-primary font-bold mt-1">$199.00</p>
-                        </div>
+                    <!-- Gift Card 2 -->
+                    <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden cursor-pointer">
+                        <a href="https://www.amazon.in/Yardley-London-Luxury-Everyday-Essentials/dp/B0CLS5XVZF/"
+                           target="_blank" rel="noopener noreferrer" class="block">
+                            <div class="aspect-[9/16] w-full">
+                                <img src="./assets/img/cop2.png"
+                                     alt="Yardley Luxury Essentials"
+                                     class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-3 text-center">
+                                <p class="text-sm font-medium text-gray-700">
+                                    Yardley Luxury Essentials
+                                </p>
+                            </div>
+                        </a>
                     </div>
 
-                 
-                    <div class="col-span-1 bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden cursor-pointer">
-                        <img src="https://placehold.co/400x300/FFD700/34161E?text=Gold+Earrings" alt="Gold Hoop Earrings" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <p class="text-base font-medium text-gray-700 truncate">Hoop Earrings</p>
-                            <p class="text-sm text-primary font-bold mt-1">$120.00</p>
-                        </div>
+                    <!-- Gift Card 3 -->
+                    <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden cursor-pointer">
+                        <a href="https://www.amazon.in/gp/aw/d/B07BNJ76LM/"
+                           target="_blank" rel="noopener noreferrer" class="block">
+                            <div class="aspect-[9/16] w-full">
+                                <img src="./assets/img/cop3.png"
+                                     alt="Seven Chakra Tree of Life"
+                                     class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-3 text-center">
+                                <p class="text-sm font-medium text-gray-700">
+                                    Seven Chakra Tree of Life
+                                </p>
+                            </div>
+                        </a>
                     </div>
 
-                   
-                    <div class="col-span-1 bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden cursor-pointer">
-                        <img src="https://placehold.co/400x300/C0C0C0/34161E?text=Sleek+Watch" alt="Sleek Silver Watch" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <p class="text-base font-medium text-gray-700 truncate">Classic Wrist Watch</p>
-                            <p class="text-sm text-primary font-bold mt-1">$350.00</p>
-                        </div>
+                    <!-- Gift Card 4 -->
+                    <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden cursor-pointer">
+                        <a href="https://www.amazon.in/DOODLE-Monogram-Diary-Notebook-Stationery/dp/B0DNR529R4/"
+                           target="_blank" rel="noopener noreferrer" class="block">
+                            <div class="aspect-[9/16] w-full">
+                                <img src="./assets/img/cop4.png"
+                                     alt="DOODLE Monogram Diary Gift Set"
+                                     class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-3 text-center">
+                                <p class="text-sm font-medium text-gray-700">
+                                    DOODLE Monogram Diary Gift Set
+                                </p>
+                            </div>
+                        </a>
                     </div>
+
                 </div>
             </div>
-        </section> -->
-<!-- 7. Special Events (Reels Size – 9:16) -->
-<section class="py-16 md:py-24">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-bold text-center text-primary mb-12">
-            Special Events
-        </h2>
-
-        <div id="packaging-carousel" class="owl-carousel owl-theme relative px-8">
-
-            <!-- Engagement -->
-            <div class="item bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden cursor-pointer">
-                <div class="aspect-[9/16] w-full">
-                    <img src="./assets/img/Engagement%20Invitation.jpg"
-                         alt="Engagement Invitation"
-                         class="w-full h-full object-cover">
-                </div>
-                <div class="p-3 text-center">
-                    <p class="text-base font-medium text-gray-700">Engagement</p>
-                </div>
-            </div>
-
-            <!-- Anniversary -->
-            <div class="item bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden cursor-pointer">
-                <div class="aspect-[9/16] w-full">
-                    <img src="./assets/img/Anniversary%20Invitation.jpg"
-                         alt="Anniversary Invitation"
-                         class="w-full h-full object-cover">
-                </div>
-                <div class="p-3 text-center">
-                    <p class="text-base font-medium text-gray-700">Anniversary</p>
-                </div>
-            </div>
-
-            <!-- Birthday -->
-            <div class="item bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden cursor-pointer">
-                <div class="aspect-[9/16] w-full">
-                    <img src="./assets/img/Birthday%20Invitation.jpg"
-                         alt="Birthday Invitation"
-                         class="w-full h-full object-cover">
-                </div>
-                <div class="p-3 text-center">
-                    <p class="text-base font-medium text-gray-700">Birthday</p>
-                </div>
-            </div>
-
-            <!-- Baby Shower -->
-            <div class="item bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden cursor-pointer">
-                <div class="aspect-[9/16] w-full">
-                    <img src="./assets/img/Baby%20Shower%20Invitation.jpg"
-                         alt="Baby Shower Invitation"
-                         class="w-full h-full object-cover">
-                </div>
-                <div class="p-3 text-center">
-                    <p class="text-base font-medium text-gray-700">Baby Shower</p>
-                </div>
-            </div>
-
-            <!-- Pooja -->
-            <div class="item bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden cursor-pointer">
-                <div class="aspect-[9/16] w-full">
-                    <img src="./assets/img/Pooja%20Invitation.jpg"
-                         alt="Pooja Invitation"
-                         class="w-full h-full object-cover">
-                </div>
-                <div class="p-3 text-center">
-                    <p class="text-base font-medium text-gray-700">Pooja</p>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-<!-- 8. Corporate Gifting Section (Reels Size) -->
-<section class="py-16 md:py-24">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-bold text-center text-primary mb-4">
-            Corporate Gifting
-        </h2>
-        <p class="text-xl text-center text-gray-600 mb-12">
-            Office Essentials Gift
-        </p>
-
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
-
-            <!-- Gift Card 1 -->
-            <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden cursor-pointer">
-                <a href="https://www.amazon.in/VRB-Dec-Artificial-Crochet-Bouquet/dp/B0DVQ75LVP/"
-                   target="_blank" rel="noopener noreferrer" class="block">
-                    <div class="aspect-[9/16] w-full">
-                        <img src="./assets/img/cop1.png"
-                             alt="Artificial Crochet Flower Bouquet"
-                             class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-3 text-center">
-                        <p class="text-sm font-medium text-gray-700">
-                            Artificial Crochet Flower Bouquet
-                        </p>
-                    </div>
-                </a>
-            </div>
-
-            <!-- Gift Card 2 -->
-            <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden cursor-pointer">
-                <a href="https://www.amazon.in/Yardley-London-Luxury-Everyday-Essentials/dp/B0CLS5XVZF/"
-                   target="_blank" rel="noopener noreferrer" class="block">
-                    <div class="aspect-[9/16] w-full">
-                        <img src="./assets/img/cop2.png"
-                             alt="Yardley Luxury Essentials"
-                             class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-3 text-center">
-                        <p class="text-sm font-medium text-gray-700">
-                            Yardley Luxury Essentials
-                        </p>
-                    </div>
-                </a>
-            </div>
-
-            <!-- Gift Card 3 -->
-            <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden cursor-pointer">
-                <a href="https://www.amazon.in/gp/aw/d/B07BNJ76LM/"
-                   target="_blank" rel="noopener noreferrer" class="block">
-                    <div class="aspect-[9/16] w-full">
-                        <img src="./assets/img/cop3.png"
-                             alt="Seven Chakra Tree of Life"
-                             class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-3 text-center">
-                        <p class="text-sm font-medium text-gray-700">
-                            Seven Chakra Tree of Life
-                        </p>
-                    </div>
-                </a>
-            </div>
-
-            <!-- Gift Card 4 -->
-            <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 overflow-hidden cursor-pointer">
-                <a href="https://www.amazon.in/DOODLE-Monogram-Diary-Notebook-Stationery/dp/B0DNR529R4/"
-                   target="_blank" rel="noopener noreferrer" class="block">
-                    <div class="aspect-[9/16] w-full">
-                        <img src="./assets/img/cop4.png"
-                             alt="DOODLE Monogram Diary Gift Set"
-                             class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-3 text-center">
-                        <p class="text-sm font-medium text-gray-700">
-                            DOODLE Monogram Diary Gift Set
-                        </p>
-                    </div>
-                </a>
-            </div>
-
-        </div>
-    </div>
-</section>
+        </section>
 
         <!-- 9. Testimonials Slider/Section (Using a flexible scrollable layout for simplicity) -->
         <section class="py-16 md:py-24">
@@ -438,7 +609,7 @@
                         <p class="mt-4 text-sm font-bold text-primary">- Jennifer L.</p>
                     </div>
 
-                     <!-- Review Card 3 -->
+                    <!-- Review Card 3 -->
                     <div class="flex-shrink-0 w-80 md:w-full bg-white p-6 rounded-xl shadow-lg border-t-4 border-cta/70">
                         <div class="flex items-center mb-4">
                             <span class="text-yellow-500 text-xl mr-2">★★★★★</span>
@@ -450,7 +621,7 @@
                         <p class="mt-4 text-sm font-bold text-primary">- Jennifer L.</p>
                     </div>
 
-                     <!-- Review Card 3 -->
+                    <!-- Review Card 3 -->
                     <div class="flex-shrink-0 w-80 md:w-full bg-white p-6 rounded-xl shadow-lg border-t-4 border-cta/70">
                         <div class="flex items-center mb-4">
                             <span class="text-yellow-500 text-xl mr-2">★★★★★</span>
@@ -468,81 +639,89 @@
     </main>
 
     <!-- 10. Footer -->
-    <footer class="bg-primary text-white py-12">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 md:grid-cols-5 gap-8 border-b border-white/20 pb-8 mb-8">
-                <!-- Logo/Brand -->
-                <div class="col-span-2 md:col-span-1">
-                    <div class="tracking-wider mb-4"> <img src="./assets/img/digntag_logo 1.png " alt="" srcset=""></div>
-                    <p class="text-sm text-white/80">Designing moments, crafted for you.</p>
+    <footer class="bg-primary text-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-14">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 border-b border-white/20 pb-10">
+                <div class="lg:col-span-4">
+                    <div class="tracking-wider">
+                        <img src="./assets/img/digntag_logo 1.png" alt="Digntag" class="h-10 w-auto" />
+                    </div>
+                    <p class="mt-4 text-sm text-white/80 max-w-sm">
+                        Designing moments, crafted for you. Digital invitations, smart sharing, and RSVP tracking for every celebration.
+                    </p>
+                    <div class="mt-6">
+                        <a href="https://wa.me/918882816805" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-6 py-3 bg-cta text-white font-bold rounded-xl shadow-lg hover:bg-cta/90 transition duration-150">
+                            Contact Us
+                        </a>
+                    </div>
                 </div>
 
-                <!-- Footer Links 1 -->
-                <!-- <div>
-                    <h5 class="text-lg font-bold mb-4">Company</h5>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="./company.html" class="hover:text-cta transition duration-150">Company</a></li>
-                        <li><a href="./careers.html" class="hover:text-cta transition duration-150">Careers</a></li>
-                        <li><a href="./press.html" class="hover:text-cta transition duration-150">Press</a></li>
-                        <li><a href="./blog.html" class="hover:text-cta transition duration-150">Blog</a></li>
+                <div class="lg:col-span-2">
+                    <h5 class="text-lg font-bold mb-4">Explore</h5>
+                    <ul class="space-y-2 text-sm text-white/80">
+                        <li><a href="/features" class="hover:text-cta transition duration-150">Features</a></li>
+                        <li><a href="/events" class="hover:text-cta transition duration-150">Event Types</a></li>
+                        <li><a href="/how-it-works" class="hover:text-cta transition duration-150">How It Works</a></li>
+                        <li><a href="/pricing" class="hover:text-cta transition duration-150">Pricing</a></li>
                     </ul>
                 </div>
-                <div>
-                    <h5 class="text-lg font-bold mb-4">Products</h5>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="./invitations.html" class="hover:text-cta transition duration-150">Invitations</a></li>
-                        <li><a href="./stationery.html" class="hover:text-cta transition duration-150">Stationery</a></li>
-                        <li><a href="./packaging.html" class="hover:text-cta transition duration-150">Packaging</a></li>
-                        <li><a href="./gift-registry.html" class="hover:text-cta transition duration-150">Gift Registry</a></li>
+
+                <div class="lg:col-span-2">
+                    <h5 class="text-lg font-bold mb-4">Event Types</h5>
+                    <ul class="space-y-2 text-sm text-white/80">
+                        <li><a href="/events/wedding" class="hover:text-cta transition duration-150">Wedding</a></li>
+                        <li><a href="/events/birthday" class="hover:text-cta transition duration-150">Birthday</a></li>
+                        <li><a href="/events/baby" class="hover:text-cta transition duration-150">Baby Events</a></li>
+                        <li><a href="/events/corporate" class="hover:text-cta transition duration-150">Corporate</a></li>
                     </ul>
                 </div>
-                <div>
+
+                <div class="lg:col-span-2">
                     <h5 class="text-lg font-bold mb-4">Support</h5>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="./support.html" class="hover:text-cta transition duration-150">Support</a></li>
-                        <li><a href="./faq.html" class="hover:text-cta transition duration-150">FAQ</a></li>
-                        <li><a href="./contact.html" class="hover:text-cta transition duration-150">Contact Us</a></li>
-                        <li><a href="./shipping.html" class="hover:text-cta transition duration-150">Shipping</a></li>
-                        <li><a href="./terms.html" class="hover:text-cta transition duration-150">Terms</a></li>
+                    <ul class="space-y-2 text-sm text-white/80">
+                        <li><a href="https://wa.me/918882816805" target="_blank" rel="noopener noreferrer" class="hover:text-cta transition duration-150">Contact</a></li>
+                        <li><a href="/pricing" class="hover:text-cta transition duration-150">Plans</a></li>
+                        <li><a href="/how-it-works" class="hover:text-cta transition duration-150">FAQs</a></li>
+                        <li><a href="/features" class="hover:text-cta transition duration-150">Templates</a></li>
                     </ul>
-                </div> -->
+                </div>
 
-                <!-- Social Icons Placeholder -->
-                <div class="col-span-2 md:col-span-1">
+                <div class="lg:col-span-2">
                     <h5 class="text-lg font-bold mb-4">Connect</h5>
-                   <div class="flex space-x-4">
-    
-    <!-- Facebook (optional – add later if needed) -->
-    <!--
-    <a href="#" class="text-white hover:text-cta transition duration-150" aria-label="Facebook">
-        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 23.403.597 24 1.326 24h11.495v-9.294H9.691v-3.622h3.13V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24h-1.918c-1.504 0-1.796.715-1.796 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.403 24 24 23.403 24 22.674V1.326C24 .597 23.403 0 22.675 0z"/>
-        </svg>
-    </a>
-    -->
+                    <div class="space-y-3">
+                        <a href="https://www.instagram.com/digntag.in/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 text-white/90 hover:text-cta transition duration-150" aria-label="Instagram">
+                            <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white/10">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M7.75 2h8.5C19.42 2 22 4.58 22 7.75v8.5C22 19.42 19.42 22 16.25 22h-8.5C4.58 22 2 19.42 2 16.25v-8.5C2 4.58 4.58 2 7.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5z"/>
+                                    <path d="M12 7a5 5 0 100 10 5 5 0 000-10zm0 1.5a3.5 3.5 0 110 7 3.5 3.5 0 010-7z"/>
+                                    <circle cx="17.5" cy="6.5" r="1"/>
+                                </svg>
+                            </span>
+                            <span class="text-sm font-semibold">Instagram</span>
+                        </a>
 
-    <!-- Instagram -->
-    <a href="https://www.instagram.com/digntag.in/"
-       target="_blank"
-       rel="noopener noreferrer"
-       class="text-white hover:text-cta transition duration-150"
-       aria-label="Instagram">
-
-        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M7.75 2h8.5C19.42 2 22 4.58 22 7.75v8.5C22 19.42 19.42 22 16.25 22h-8.5C4.58 22 2 19.42 2 16.25v-8.5C2 4.58 4.58 2 7.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5z"/>
-            <path d="M12 7a5 5 0 100 10 5 5 0 000-10zm0 1.5a3.5 3.5 0 110 7 3.5 3.5 0 010-7z"/>
-            <circle cx="17.5" cy="6.5" r="1"/>
-        </svg>
-    </a>
-
-</div>
-
+                        <a href="https://wa.me/918882816805" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 text-white/90 hover:text-cta transition duration-150" aria-label="WhatsApp">
+                            <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white/10">
+                                <svg class="w-5 h-5" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+                                    <path d="M19.11 17.53c-.28-.14-1.63-.8-1.88-.89-.25-.09-.43-.14-.61.14-.18.28-.7.89-.86 1.08-.16.18-.32.21-.6.07-.28-.14-1.17-.43-2.23-1.38-.82-.73-1.38-1.64-1.54-1.92-.16-.28-.02-.43.12-.57.12-.12.28-.32.43-.48.14-.16.18-.28.28-.46.09-.18.05-.36-.02-.5-.07-.14-.61-1.47-.84-2.01-.22-.53-.45-.46-.61-.47l-.52-.01c-.18 0-.46.07-.7.36-.25.28-.93.91-.93 2.22s.95 2.58 1.08 2.76c.14.18 1.87 2.85 4.52 3.99.63.27 1.12.43 1.5.55.63.2 1.2.17 1.65.1.5-.07 1.63-.66 1.86-1.3.23-.64.23-1.18.16-1.3-.07-.12-.25-.18-.52-.32z"/>
+                                    <path d="M16.02 3C8.85 3 3.02 8.83 3.02 16c0 2.3.6 4.46 1.64 6.33L3 29l6.86-1.8c1.8.98 3.86 1.54 6.16 1.54 7.17 0 13-5.83 13-13S23.19 3 16.02 3zm0 23.1c-2.09 0-4.03-.6-5.67-1.64l-.41-.25-4.07 1.07 1.09-3.96-.27-.41A10.93 10.93 0 015.09 16c0-6.03 4.9-10.93 10.93-10.93S26.95 9.97 26.95 16 22.05 26.1 16.02 26.1z"/>
+                                </svg>
+                            </span>
+                            <span class="text-sm font-semibold">WhatsApp</span>
+                        </a>
+                    </div>
                 </div>
             </div>
 
-            <!-- Copyright and Legal -->
-            <div class="text-center text-sm text-white/60 pt-8">
-                &copy; <span id="current-year"></span> Digntag. All rights reserved.
+            <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white/70">
+                <div>
+                    &copy; <span id="current-year"></span> Digntag. All rights reserved.
+                </div>
+                <div class="flex items-center gap-6">
+                    <a href="/features" class="hover:text-white transition duration-150">Features</a>
+                    <a href="/pricing" class="hover:text-white transition duration-150">Pricing</a>
+                    <a href="https://wa.me/918882816805" target="_blank" rel="noopener noreferrer" class="hover:text-white transition duration-150">Contact</a>
+                </div>
             </div>
         </div>
     </footer>
