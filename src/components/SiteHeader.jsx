@@ -234,7 +234,7 @@ export default function SiteHeader() {
             </a>
 
             <div
-              className={`absolute left-1/2 -translate-x-1/2 mt-4 w-screen transition duration-200 ease-out ${
+              className={`fixed left-0 right-0 top-[72px] z-[210] transition duration-200 ease-out ${
                 isEventMegaOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'
               }`}
               onMouseEnter={openMega}
