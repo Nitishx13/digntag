@@ -1,6 +1,8 @@
 import React from 'react'
 
 export default function SiteFooter() {
+  const whatsappContactUrl = 'https://wa.me/918882816805?text=I%20want%20to%20know%20more'
+
   return (
     <footer className="bg-primary text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-14">
@@ -15,7 +17,7 @@ export default function SiteFooter() {
             </p>
             <div className="mt-6">
               <a
-                href="https://wa.me/918882816805"
+                href={whatsappContactUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-6 py-3 bg-cta text-white font-bold rounded-xl shadow-lg hover:bg-cta/90 transition duration-150"
@@ -87,7 +89,7 @@ export default function SiteFooter() {
             <ul className="space-y-2 text-sm text-white/80">
               <li>
                 <a
-                  href="https://wa.me/918882816805"
+                  href={whatsappContactUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-cta transition duration-150"
@@ -134,7 +136,7 @@ export default function SiteFooter() {
               </a>
 
               <a
-                href="https://wa.me/918882816805"
+                href={whatsappContactUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 text-white/90 hover:text-cta transition duration-150"
@@ -164,7 +166,7 @@ export default function SiteFooter() {
               Pricing
             </a>
             <a
-              href="https://wa.me/918882816805"
+              href={whatsappContactUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-white transition duration-150"

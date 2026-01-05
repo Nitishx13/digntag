@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 export default function SiteHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const whatsappContactUrl = 'https://wa.me/918882816805?text=I%20want%20to%20know%20more'
 
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen ? 'hidden' : ''
@@ -41,7 +42,7 @@ export default function SiteHeader() {
           <a href="/pricing" className="text-gray-600 hover:text-primary transition duration-150 font-medium">Pricing</a>
         
           <a
-            href="https://wa.me/918882816805"
+            href={whatsappContactUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-600 hover:text-primary transition duration-150 font-medium"
@@ -66,7 +67,7 @@ export default function SiteHeader() {
           </button>
 
           <a
-            href="https://wa.me/918882816805"
+            href={whatsappContactUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="hidden md:inline-flex px-6 py-2 bg-cta text-white font-bold rounded-full shadow-xl hover:bg-cta/90 transition duration-150"
@@ -146,7 +147,7 @@ export default function SiteHeader() {
 
           <div className="px-5 pb-6">
             <a
-              href="https://wa.me/918882816805"
+              href={whatsappContactUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full inline-flex items-center justify-center px-5 py-3 bg-cta text-white font-bold rounded-xl shadow-lg hover:bg-cta/90 transition duration-150"
