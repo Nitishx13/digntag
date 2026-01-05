@@ -46,6 +46,7 @@ const routes = [
   { path: '/upload/design', file: 'upload-design.html' },
   { path: '/upload/logo', file: 'upload-logo.html' },
   { path: '/services/small-business-website', file: 'services-small-business-website.html' },
+  { path: '/tools/caricature-maker', file: 'tools-caricature-maker.html' },
   { path: '/how-it-works', file: 'how-it-works.html' },
   { path: '/pricing', file: 'pricing.html' },
   { path: '/digital-growth-services', file: 'digital-growth-services.html' },
