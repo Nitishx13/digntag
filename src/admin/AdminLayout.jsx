@@ -59,6 +59,7 @@ export default function AdminLayout() {
               <nav className="space-y-1">
                 <SidebarLink to="/admin/settings">Settings</SidebarLink>
                 <SidebarLink to="/admin/events">My events</SidebarLink>
+                <SidebarLink to="/admin/whatsapp">WhatsApp notify</SidebarLink>
                 <button
                   type="button"
                   onClick={onLogout}
@@ -108,6 +109,7 @@ export default function AdminLayout() {
                   <nav className="space-y-1">
                     <SidebarLink to="/admin/settings">Settings</SidebarLink>
                     <SidebarLink to="/admin/events">My events</SidebarLink>
+                    <SidebarLink to="/admin/whatsapp">WhatsApp notify</SidebarLink>
                     <button
                       type="button"
                       onClick={onLogout}

@@ -7,6 +7,7 @@ import AdminSettingsPage from './admin/AdminSettingsPage.jsx'
 import AdminEventNewPage from './admin/AdminEventNewPage.jsx'
 import AdminEventSharePage from './admin/AdminEventSharePage.jsx'
 import AdminEventGuestsPage from './admin/AdminEventGuestsPage.jsx'
+import AdminWhatsappToolPage from './admin/AdminWhatsappToolPage.jsx'
 import TrackPage from './admin/TrackPage.jsx'
 import RsvpPage from './admin/RsvpPage.jsx'
 
@@ -50,6 +51,7 @@ function App() {
         <Route path="events/new" element={<AdminEventNewPage />} />
         <Route path="events/:id/guests" element={<AdminGuestsRedirect />} />
         <Route path="events/:id/share" element={<AdminShareRedirect />} />
+        <Route path="whatsapp" element={<AdminWhatsappToolPage />} />
         <Route path="settings" element={<AdminSettingsPage />} />
         <Route index element={<Navigate to="/admin/events" replace />} />
       </Route>

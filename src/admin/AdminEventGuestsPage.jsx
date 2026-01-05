@@ -16,11 +16,39 @@ function formatStatus(status) {
   return String(status || '').toUpperCase() || '-'
 }
 
+function normalizePhoneForWa(phone) {
+  const raw = String(phone || '').trim()
+  if (!raw) return ''
+  let digits = raw.replace(/\D/g, '')
+  if (!digits) return ''
+  if (digits.length === 10) digits = `91${digits}`
+  return digits
+}
+
+function buildInviteMessage({ guestName, event, rsvpUrl }) {
+  const name = String(guestName || '').trim()
+  const title = String(event?.title || '').trim()
+  const date = String(event?.date || '').trim()
+  const time = String(event?.time || '').trim()
+  const location = String(event?.location || '').trim()
+
+  const parts = []
+  parts.push(name ? `Hi ${name},` : 'Hi,')
+  parts.push(title ? `You're invited to ${title}.` : "You're invited.")
+
+  const when = [date, time].filter(Boolean).join(' ')
+  if (when) parts.push(`When: ${when}`)
+  if (location) parts.push(`Where: ${location}`)
+  if (rsvpUrl) parts.push(`RSVP here: ${rsvpUrl}`)
+  return parts.join('\n')
+}
+
 export default function AdminEventGuestsPage() {
   const navigate = useNavigate()
   const { id } = useParams()
 
   const [query, setQuery] = useState('')
+  const [copied, setCopied] = useState(false)
 
   const [event, setEvent] = useState(() => getEventByPublicId(id))
 
@@ -125,6 +153,27 @@ export default function AdminEventGuestsPage() {
                 placeholder="Search guest name or phone"
               />
             </div>
+
+            <div className="mt-4 flex items-center gap-3 flex-wrap">
+              <button
+                type="button"
+                onClick={async () => {
+                  const origin = window.location.origin
+                  const rsvpUrl = `${origin}/rsvp/${event.publicId}`
+                  const text = buildInviteMessage({ guestName: '', event, rsvpUrl })
+                  await navigator.clipboard.writeText(text)
+                  setCopied(true)
+                  setTimeout(() => setCopied(false), 900)
+                }}
+                className="inline-flex items-center justify-center px-5 py-2 bg-white text-primary font-extrabold rounded-full shadow-sm hover:bg-gray-50 transition duration-150 ring-1 ring-gray-200"
+              >
+                {copied ? 'Copied' : 'Copy invite message'}
+              </button>
+
+              <div className="text-xs text-gray-600">
+                Use WhatsApp button per guest to notify.
+              </div>
+            </div>
           </div>
 
           <div className="p-5 sm:p-6">
@@ -149,12 +198,33 @@ export default function AdminEventGuestsPage() {
                       </div>
                     </div>
 
-                    <div
-                      className={`shrink-0 inline-flex items-center rounded-full px-3 py-1 text-xs font-extrabold ring-1 ${statusBadgeClasses(
-                        g.status,
-                      )}`}
-                    >
-                      {formatStatus(g.status)}
+                    <div className="shrink-0 flex items-center gap-2">
+                      {normalizePhoneForWa(g.phone) ? (
+                        <a
+                          href={(() => {
+                            const origin = window.location.origin
+                            const rsvpUrl = `${origin}/rsvp/${event.publicId}`
+                            const number = normalizePhoneForWa(g.phone)
+                            const msg = buildInviteMessage({ guestName: g.name, event, rsvpUrl })
+                            return `https://wa.me/${number}?text=${encodeURIComponent(msg)}`
+                          })()}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center h-9 w-9 rounded-full bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200 hover:bg-emerald-100"
+                          aria-label="Notify on WhatsApp"
+                          title="Notify on WhatsApp"
+                        >
+                          WA
+                        </a>
+                      ) : null}
+
+                      <div
+                        className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-extrabold ring-1 ${statusBadgeClasses(
+                          g.status,
+                        )}`}
+                      >
+                        {formatStatus(g.status)}
+                      </div>
                     </div>
                   </div>
                 ))}
