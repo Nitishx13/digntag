@@ -247,64 +247,176 @@
 
         <section class="py-16 md:py-20 bg-gray-50">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex items-center justify-between gap-6 flex-wrap">
+                <div class="flex items-end justify-between gap-6 flex-wrap">
                     <div>
-                        <h2 class="text-3xl font-bold text-primary leading-tight">
-                            Event Types
-                        </h2>
+                        <h2 class="text-3xl font-bold text-primary leading-tight">Event Types</h2>
                         <p class="text-gray-600 mt-2">Start with a template designed for your event.</p>
+                        <p class="text-sm text-gray-500 mt-2">Swipe / scroll to explore.</p>
                     </div>
                     <a href="/events" class="text-primary font-semibold hover:underline">View all</a>
                 </div>
 
-                <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-10">
-                    <a href="/events/wedding" class="group relative aspect-[9/16] w-full rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 bg-gradient-to-br from-white via-accent to-white">
-                        <div aria-hidden="true" class="absolute inset-0">
-                            <div class="absolute -top-10 -right-10 h-44 w-44 rounded-full bg-cta/20 blur-2xl"></div>
-                            <div class="absolute -bottom-12 -left-12 h-52 w-52 rounded-full bg-primary/15 blur-2xl"></div>
-                        </div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-primary/55 via-primary/10 to-transparent"></div>
-                        <div class="relative h-full p-5 flex flex-col justify-end">
-                            <h3 class="text-lg sm:text-xl font-extrabold text-white">Wedding</h3>
-                            <p class="text-white/85 mt-2 text-sm sm:text-base">Elegant invites, functions schedule, and RSVP details.</p>
-                        </div>
-                    </a>
+                <div class="relative mt-10">
+                    <div aria-hidden="true" class="pointer-events-none absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-gray-50 to-transparent"></div>
+                    <div aria-hidden="true" class="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-gray-50 to-transparent"></div>
 
-                    <a href="/events/birthday" class="group relative aspect-[9/16] w-full rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 bg-gradient-to-br from-white via-accent to-white">
-                        <div aria-hidden="true" class="absolute inset-0">
-                            <div class="absolute -top-10 -right-10 h-44 w-44 rounded-full bg-cta/20 blur-2xl"></div>
-                            <div class="absolute -bottom-12 -left-12 h-52 w-52 rounded-full bg-primary/15 blur-2xl"></div>
-                        </div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-primary/55 via-primary/10 to-transparent"></div>
-                        <div class="relative h-full p-5 flex flex-col justify-end">
-                            <h3 class="text-lg sm:text-xl font-extrabold text-white">Birthday</h3>
-                            <p class="text-white/85 mt-2 text-sm sm:text-base">Fun themes with quick RSVP for guests.</p>
-                        </div>
-                    </a>
+                    <div class="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scroll-smooth">
+                        <a href="/events/wedding" class="snap-start shrink-0 w-[240px] sm:w-[260px] group relative aspect-[9/16] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 bg-gradient-to-br from-white via-accent to-white">
+                            <div aria-hidden="true" class="absolute inset-0">
+                                <div class="absolute -top-10 -right-10 h-44 w-44 rounded-full bg-cta/20 blur-2xl"></div>
+                                <div class="absolute -bottom-12 -left-12 h-52 w-52 rounded-full bg-primary/15 blur-2xl"></div>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-primary/55 via-primary/10 to-transparent"></div>
+                            <div class="relative h-full p-5 flex flex-col justify-end">
+                                <h3 class="text-lg sm:text-xl font-extrabold text-white">Wedding</h3>
+                                <p class="text-white/85 mt-2 text-sm sm:text-base">Elegant invites, schedule, RSVP.</p>
+                            </div>
+                        </a>
 
-                    <a href="/events/baby" class="group relative aspect-[9/16] w-full rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 bg-gradient-to-br from-white via-accent to-white">
-                        <div aria-hidden="true" class="absolute inset-0">
-                            <div class="absolute -top-10 -right-10 h-44 w-44 rounded-full bg-cta/20 blur-2xl"></div>
-                            <div class="absolute -bottom-12 -left-12 h-52 w-52 rounded-full bg-primary/15 blur-2xl"></div>
-                        </div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-primary/55 via-primary/10 to-transparent"></div>
-                        <div class="relative h-full p-5 flex flex-col justify-end">
-                            <h3 class="text-lg sm:text-xl font-extrabold text-white">Baby Events</h3>
-                            <p class="text-white/85 mt-2 text-sm sm:text-base">Baby shower & naming ceremony templates.</p>
-                        </div>
-                    </a>
+                        <a href="/events/birthday" class="snap-start shrink-0 w-[240px] sm:w-[260px] group relative aspect-[9/16] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 bg-gradient-to-br from-white via-accent to-white">
+                            <div aria-hidden="true" class="absolute inset-0">
+                                <div class="absolute -top-10 -right-10 h-44 w-44 rounded-full bg-cta/20 blur-2xl"></div>
+                                <div class="absolute -bottom-12 -left-12 h-52 w-52 rounded-full bg-primary/15 blur-2xl"></div>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-primary/55 via-primary/10 to-transparent"></div>
+                            <div class="relative h-full p-5 flex flex-col justify-end">
+                                <h3 class="text-lg sm:text-xl font-extrabold text-white">Birthday</h3>
+                                <p class="text-white/85 mt-2 text-sm sm:text-base">Themes + quick RSVP.</p>
+                            </div>
+                        </a>
 
-                    <a href="/events/corporate" class="group relative aspect-[9/16] w-full rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 bg-gradient-to-br from-white via-accent to-white">
-                        <div aria-hidden="true" class="absolute inset-0">
-                            <div class="absolute -top-10 -right-10 h-44 w-44 rounded-full bg-cta/20 blur-2xl"></div>
-                            <div class="absolute -bottom-12 -left-12 h-52 w-52 rounded-full bg-primary/15 blur-2xl"></div>
-                        </div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-primary/55 via-primary/10 to-transparent"></div>
-                        <div class="relative h-full p-5 flex flex-col justify-end">
-                            <h3 class="text-lg sm:text-xl font-extrabold text-white">Corporate</h3>
-                            <p class="text-white/85 mt-2 text-sm sm:text-base">Branding, agenda sections, and attendee fields.</p>
-                        </div>
-                    </a>
+                        <a href="/events/kids-birthday" class="snap-start shrink-0 w-[240px] sm:w-[260px] group relative aspect-[9/16] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 bg-gradient-to-br from-white via-accent to-white">
+                            <div aria-hidden="true" class="absolute inset-0">
+                                <div class="absolute -top-10 -right-10 h-44 w-44 rounded-full bg-cta/20 blur-2xl"></div>
+                                <div class="absolute -bottom-12 -left-12 h-52 w-52 rounded-full bg-primary/15 blur-2xl"></div>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-primary/55 via-primary/10 to-transparent"></div>
+                            <div class="relative h-full p-5 flex flex-col justify-end">
+                                <h3 class="text-lg sm:text-xl font-extrabold text-white">Kids' Birthday</h3>
+                                <p class="text-white/85 mt-2 text-sm sm:text-base">Fun & colorful invites.</p>
+                            </div>
+                        </a>
+
+                        <a href="/events/adult-birthday" class="snap-start shrink-0 w-[240px] sm:w-[260px] group relative aspect-[9/16] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 bg-gradient-to-br from-white via-accent to-white">
+                            <div aria-hidden="true" class="absolute inset-0">
+                                <div class="absolute -top-10 -right-10 h-44 w-44 rounded-full bg-cta/20 blur-2xl"></div>
+                                <div class="absolute -bottom-12 -left-12 h-52 w-52 rounded-full bg-primary/15 blur-2xl"></div>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-primary/55 via-primary/10 to-transparent"></div>
+                            <div class="relative h-full p-5 flex flex-col justify-end">
+                                <h3 class="text-lg sm:text-xl font-extrabold text-white">Adult Birthday</h3>
+                                <p class="text-white/85 mt-2 text-sm sm:text-base">Minimal, premium style.</p>
+                            </div>
+                        </a>
+
+                        <a href="/events/baby" class="snap-start shrink-0 w-[240px] sm:w-[260px] group relative aspect-[9/16] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 bg-gradient-to-br from-white via-accent to-white">
+                            <div aria-hidden="true" class="absolute inset-0">
+                                <div class="absolute -top-10 -right-10 h-44 w-44 rounded-full bg-cta/20 blur-2xl"></div>
+                                <div class="absolute -bottom-12 -left-12 h-52 w-52 rounded-full bg-primary/15 blur-2xl"></div>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-primary/55 via-primary/10 to-transparent"></div>
+                            <div class="relative h-full p-5 flex flex-col justify-end">
+                                <h3 class="text-lg sm:text-xl font-extrabold text-white">Baby</h3>
+                                <p class="text-white/85 mt-2 text-sm sm:text-base">Baby shower & naming.</p>
+                            </div>
+                        </a>
+
+                        <a href="/events/corporate" class="snap-start shrink-0 w-[240px] sm:w-[260px] group relative aspect-[9/16] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 bg-gradient-to-br from-white via-accent to-white">
+                            <div aria-hidden="true" class="absolute inset-0">
+                                <div class="absolute -top-10 -right-10 h-44 w-44 rounded-full bg-cta/20 blur-2xl"></div>
+                                <div class="absolute -bottom-12 -left-12 h-52 w-52 rounded-full bg-primary/15 blur-2xl"></div>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-primary/55 via-primary/10 to-transparent"></div>
+                            <div class="relative h-full p-5 flex flex-col justify-end">
+                                <h3 class="text-lg sm:text-xl font-extrabold text-white">Corporate</h3>
+                                <p class="text-white/85 mt-2 text-sm sm:text-base">Agenda, RSVP fields, ROI.</p>
+                            </div>
+                        </a>
+
+                        <a href="/events/business" class="snap-start shrink-0 w-[240px] sm:w-[260px] group relative aspect-[9/16] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 bg-gradient-to-br from-white via-accent to-white">
+                            <div aria-hidden="true" class="absolute inset-0">
+                                <div class="absolute -top-10 -right-10 h-44 w-44 rounded-full bg-cta/20 blur-2xl"></div>
+                                <div class="absolute -bottom-12 -left-12 h-52 w-52 rounded-full bg-primary/15 blur-2xl"></div>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-primary/55 via-primary/10 to-transparent"></div>
+                            <div class="relative h-full p-5 flex flex-col justify-end">
+                                <h3 class="text-lg sm:text-xl font-extrabold text-white">Business</h3>
+                                <p class="text-white/85 mt-2 text-sm sm:text-base">Branded invite pages.</p>
+                            </div>
+                        </a>
+
+                        <a href="/events/parties" class="snap-start shrink-0 w-[240px] sm:w-[260px] group relative aspect-[9/16] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 bg-gradient-to-br from-white via-accent to-white">
+                            <div aria-hidden="true" class="absolute inset-0">
+                                <div class="absolute -top-10 -right-10 h-44 w-44 rounded-full bg-cta/20 blur-2xl"></div>
+                                <div class="absolute -bottom-12 -left-12 h-52 w-52 rounded-full bg-primary/15 blur-2xl"></div>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-primary/55 via-primary/10 to-transparent"></div>
+                            <div class="relative h-full p-5 flex flex-col justify-end">
+                                <h3 class="text-lg sm:text-xl font-extrabold text-white">Parties</h3>
+                                <p class="text-white/85 mt-2 text-sm sm:text-base">Dinner, brunch, cocktails.</p>
+                            </div>
+                        </a>
+
+                        <a href="/events/valentines" class="snap-start shrink-0 w-[240px] sm:w-[260px] group relative aspect-[9/16] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 bg-gradient-to-br from-white via-accent to-white">
+                            <div aria-hidden="true" class="absolute inset-0">
+                                <div class="absolute -top-10 -right-10 h-44 w-44 rounded-full bg-cta/20 blur-2xl"></div>
+                                <div class="absolute -bottom-12 -left-12 h-52 w-52 rounded-full bg-primary/15 blur-2xl"></div>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-primary/55 via-primary/10 to-transparent"></div>
+                            <div class="relative h-full p-5 flex flex-col justify-end">
+                                <h3 class="text-lg sm:text-xl font-extrabold text-white">Valentine's Day</h3>
+                                <p class="text-white/85 mt-2 text-sm sm:text-base">Romantic invites & cards.</p>
+                            </div>
+                        </a>
+
+                        <a href="/events/galentines-day" class="snap-start shrink-0 w-[240px] sm:w-[260px] group relative aspect-[9/16] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 bg-gradient-to-br from-white via-accent to-white">
+                            <div aria-hidden="true" class="absolute inset-0">
+                                <div class="absolute -top-10 -right-10 h-44 w-44 rounded-full bg-cta/20 blur-2xl"></div>
+                                <div class="absolute -bottom-12 -left-12 h-52 w-52 rounded-full bg-primary/15 blur-2xl"></div>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-primary/55 via-primary/10 to-transparent"></div>
+                            <div class="relative h-full p-5 flex flex-col justify-end">
+                                <h3 class="text-lg sm:text-xl font-extrabold text-white">Galentine's Day</h3>
+                                <p class="text-white/85 mt-2 text-sm sm:text-base">Celebrate friendship.</p>
+                            </div>
+                        </a>
+
+                        <a href="/events/new-years-cards" class="snap-start shrink-0 w-[240px] sm:w-[260px] group relative aspect-[9/16] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 bg-gradient-to-br from-white via-accent to-white">
+                            <div aria-hidden="true" class="absolute inset-0">
+                                <div class="absolute -top-10 -right-10 h-44 w-44 rounded-full bg-cta/20 blur-2xl"></div>
+                                <div class="absolute -bottom-12 -left-12 h-52 w-52 rounded-full bg-primary/15 blur-2xl"></div>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-primary/55 via-primary/10 to-transparent"></div>
+                            <div class="relative h-full p-5 flex flex-col justify-end">
+                                <h3 class="text-lg sm:text-xl font-extrabold text-white">New Year's Cards</h3>
+                                <p class="text-white/85 mt-2 text-sm sm:text-base">New Year wishes.</p>
+                            </div>
+                        </a>
+
+                        <a href="/events/greeting-cards" class="snap-start shrink-0 w-[240px] sm:w-[260px] group relative aspect-[9/16] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 bg-gradient-to-br from-white via-accent to-white">
+                            <div aria-hidden="true" class="absolute inset-0">
+                                <div class="absolute -top-10 -right-10 h-44 w-44 rounded-full bg-cta/20 blur-2xl"></div>
+                                <div class="absolute -bottom-12 -left-12 h-52 w-52 rounded-full bg-primary/15 blur-2xl"></div>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-primary/55 via-primary/10 to-transparent"></div>
+                            <div class="relative h-full p-5 flex flex-col justify-end">
+                                <h3 class="text-lg sm:text-xl font-extrabold text-white">Greeting Cards</h3>
+                                <p class="text-white/85 mt-2 text-sm sm:text-base">Festival & wishes.</p>
+                            </div>
+                        </a>
+
+                        <a href="/events/custom-website-creation" class="snap-start shrink-0 w-[240px] sm:w-[260px] group relative aspect-[9/16] rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 border border-gray-100 bg-gradient-to-br from-white via-accent to-white">
+                            <div aria-hidden="true" class="absolute inset-0">
+                                <div class="absolute -top-10 -right-10 h-44 w-44 rounded-full bg-cta/20 blur-2xl"></div>
+                                <div class="absolute -bottom-12 -left-12 h-52 w-52 rounded-full bg-primary/15 blur-2xl"></div>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-primary/55 via-primary/10 to-transparent"></div>
+                            <div class="relative h-full p-5 flex flex-col justify-end">
+                                <h3 class="text-lg sm:text-xl font-extrabold text-white">Custom Website</h3>
+                                <p class="text-white/85 mt-2 text-sm sm:text-base">Mobile-first, SEO ready.</p>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
