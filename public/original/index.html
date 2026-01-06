@@ -12,6 +12,43 @@
     <link rel="stylesheet" href="./assets/css/owl.carousel.min.css">
     <link rel="stylesheet" href="./assets/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="./assets/css/main.css">
+
+    <style>
+        @keyframes heroFloat {
+            0% { transform: translate3d(0, 0, 0) scale(1); }
+            50% { transform: translate3d(10px, -12px, 0) scale(1.03); }
+            100% { transform: translate3d(0, 0, 0) scale(1); }
+        }
+
+        @keyframes heroFloatReverse {
+            0% { transform: translate3d(0, 0, 0) scale(1); }
+            50% { transform: translate3d(-12px, 14px, 0) scale(1.02); }
+            100% { transform: translate3d(0, 0, 0) scale(1); }
+        }
+
+        @keyframes heroFadeUp {
+            0% { opacity: 0; transform: translate3d(0, 10px, 0); }
+            100% { opacity: 1; transform: translate3d(0, 0, 0); }
+        }
+
+        .hero-float-1 { animation: heroFloat 12s ease-in-out infinite; }
+        .hero-float-2 { animation: heroFloatReverse 14s ease-in-out infinite; }
+        .hero-float-3 { animation: heroFloat 16s ease-in-out infinite; }
+
+        .hero-fade-1 { opacity: 0; animation: heroFadeUp 700ms ease-out 80ms forwards; }
+        .hero-fade-2 { opacity: 0; animation: heroFadeUp 700ms ease-out 150ms forwards; }
+        .hero-fade-3 { opacity: 0; animation: heroFadeUp 700ms ease-out 220ms forwards; }
+        .hero-fade-4 { opacity: 0; animation: heroFadeUp 700ms ease-out 290ms forwards; }
+        .hero-fade-5 { opacity: 0; animation: heroFadeUp 700ms ease-out 360ms forwards; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero-float-1, .hero-float-2, .hero-float-3, .hero-fade-1, .hero-fade-2, .hero-fade-3, .hero-fade-4, .hero-fade-5 {
+                animation: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
+    </style>
 </head>
 <body class="text-gray-800">
 
@@ -19,26 +56,26 @@
         <!-- 2. Hero Section -->
         <section class="relative overflow-hidden bg-gradient-to-br from-white via-white to-gray-50 w-full">
             <div aria-hidden="true" class="pointer-events-none absolute inset-0">
-                <div class="absolute -top-28 -left-28 h-80 w-80 rounded-full bg-primary/10 blur-3xl"></div>
-                <div class="absolute top-8 -right-28 h-96 w-96 rounded-full bg-cta/10 blur-3xl"></div>
-                <div class="absolute bottom-0 left-1/2 -translate-x-1/2 h-72 w-[36rem] rounded-full bg-accent/20 blur-3xl"></div>
+                <div class="absolute -top-28 -left-28 h-80 w-80 rounded-full bg-primary/10 blur-3xl hero-float-1"></div>
+                <div class="absolute top-8 -right-28 h-96 w-96 rounded-full bg-cta/10 blur-3xl hero-float-2"></div>
+                <div class="absolute bottom-0 left-1/2 -translate-x-1/2 h-72 w-[36rem] rounded-full bg-accent/20 blur-3xl hero-float-3"></div>
             </div>
 
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20 sm:pt-20 sm:pb-24 md:pt-24 md:pb-28">
                 <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-10 lg:gap-14">
                     <div class="md:col-span-7 lg:col-span-6 z-10 text-center md:text-left">
-                        <p class="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-sm font-semibold text-primary shadow-sm ring-1 ring-gray-100">
-                            Digital Invitations + RSVP Tracking
+                        <p class="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-sm font-semibold text-primary shadow-sm ring-1 ring-gray-100 hero-fade-1">
+                            Digital invitations + RSVP tracking
                         </p>
-                        <h1 class="mt-6 text-4xl sm:text-5xl lg:text-6xl font-extrabold text-primary leading-[1.05] tracking-tight">
+                        <h1 class="mt-6 text-4xl sm:text-5xl lg:text-6xl font-extrabold text-primary leading-[1.05] tracking-tight hero-fade-2">
                             Invite smart.
                             <span class="block">Host better.</span>
                         </h1>
-                        <p class="mt-6 text-gray-700 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto md:mx-0">
-                            Create beautiful digital invitations, share instantly on WhatsApp, and track RSVPs in real time—so you can focus on the celebration.
+                        <p class="mt-6 text-gray-700 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto md:mx-0 hero-fade-3">
+                            Beautiful digital invitations with WhatsApp sharing and real-time RSVPs—built to look premium and keep planning effortless.
                         </p>
 
-                        <div class="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
+                        <div class="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start hero-fade-4">
                             <a href="https://wa.me/918882816805" target="_blank" rel="noopener noreferrer" class="px-8 py-4 bg-cta text-white font-bold text-base rounded-full shadow-xl hover:bg-cta/90 transition duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-cta/50 text-center">
                                 Contact Us
                             </a>
@@ -47,74 +84,142 @@
                             </a>
                         </div>
 
-                        <div class="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl mx-auto md:mx-0">
-                            <div class="rounded-2xl bg-white/80 backdrop-blur border border-gray-100 p-4 shadow-sm">
-                                <p class="text-sm font-semibold text-gray-500">Share</p>
-                                <p class="mt-1 text-base font-bold text-primary">WhatsApp Ready</p>
+                        <div class="mt-10 flex flex-wrap items-center justify-center md:justify-start gap-x-8 gap-y-3 max-w-2xl mx-auto md:mx-0 text-sm font-semibold text-gray-700 hero-fade-5">
+                            <div class="inline-flex items-center gap-2">
+                                <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-cta/10 text-cta ring-1 ring-cta/20">
+                                    <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M20 6 9 17l-5-5" />
+                                    </svg>
+                                </span>
+                                WhatsApp ready
                             </div>
-                            <div class="rounded-2xl bg-white/80 backdrop-blur border border-gray-100 p-4 shadow-sm">
-                                <p class="text-sm font-semibold text-gray-500">Track</p>
-                                <p class="mt-1 text-base font-bold text-primary">Live RSVPs</p>
+                            <div class="inline-flex items-center gap-2">
+                                <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-primary/10 text-primary ring-1 ring-primary/10">
+                                    <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M12 8v4l3 3" />
+                                        <circle cx="12" cy="12" r="9" />
+                                    </svg>
+                                </span>
+                                Live RSVP tracking
                             </div>
-                            <div class="rounded-2xl bg-white/80 backdrop-blur border border-gray-100 p-4 shadow-sm">
-                                <p class="text-sm font-semibold text-gray-500">Manage</p>
-                                <p class="mt-1 text-base font-bold text-primary">Guest Lists</p>
+                            <div class="inline-flex items-center gap-2">
+                                <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-cta/10 text-cta ring-1 ring-cta/20">
+                                    <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                                        <circle cx="9" cy="7" r="4" />
+                                        <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                                    </svg>
+                                </span>
+                                Guest list management
+                            </div>
+                            <div class="inline-flex items-center gap-2">
+                                <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-primary/10 text-primary ring-1 ring-primary/10">
+                                    <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M21 15a4 4 0 0 1-4 4H7l-4 3V7a4 4 0 0 1 4-4h8" />
+                                        <path d="M18 2v6" />
+                                        <path d="M15 5h6" />
+                                    </svg>
+                                </span>
+                                No app needed
                             </div>
                         </div>
                     </div>
 
                     <div class="md:col-span-5 lg:col-span-6 z-10">
-                        <div class="relative max-w-md mx-auto md:ml-auto">
+                        <div class="relative w-full max-w-none mx-auto md:ml-auto">
                             <div class="absolute -inset-6 rounded-[2rem] bg-gradient-to-tr from-primary/10 via-white to-cta/10 blur-2xl"></div>
                             <div class="relative rounded-[2rem] bg-white/90 backdrop-blur border border-gray-100 shadow-2xl overflow-hidden">
-                                <div class="p-6 sm:p-7">
-                                    <div class="flex items-center justify-between">
-                                        <div>
-                                            <p class="text-xs font-semibold text-gray-500">Preview</p>
-                                            <p class="mt-1 text-lg font-extrabold text-primary">Your Event Invite</p>
-                                        </div>
-                                        <span class="inline-flex items-center rounded-full bg-cta/10 px-3 py-1 text-xs font-bold text-cta">RSVP</span>
-                                    </div>
-
-                                    <div class="mt-6 rounded-2xl bg-gradient-to-br from-primary/5 via-white to-cta/5 border border-gray-100 p-5">
-                                        <p class="text-sm font-semibold text-gray-500">Event</p>
-                                        <p class="mt-1 text-xl font-extrabold text-primary">Celebration Night</p>
-                                        <div class="mt-4 grid grid-cols-2 gap-3">
-                                            <div class="rounded-xl bg-white border border-gray-100 p-3">
-                                                <p class="text-xs font-semibold text-gray-500">Date</p>
-                                                <p class="mt-1 text-sm font-bold text-gray-800">Sat, 7:00 PM</p>
+                                <div class="relative">
+                                    <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-br from-primary/20 via-cta/10 to-accent/20"></div>
+                                    <div class="relative p-6 sm:p-7">
+                                        <div class="flex items-start justify-between gap-4">
+                                            <div>
+                                                <p class="text-xs font-semibold text-gray-600">Preview</p>
+                                                <p class="mt-1 text-lg font-extrabold text-primary">Your Event Invite</p>
+                                                <p class="mt-1 text-sm text-gray-600">Link-based invite page with RSVP</p>
                                             </div>
-                                            <div class="rounded-xl bg-white border border-gray-100 p-3">
-                                                <p class="text-xs font-semibold text-gray-500">Location</p>
-                                                <p class="mt-1 text-sm font-bold text-gray-800">View Map</p>
+                                            <span class="shrink-0 inline-flex items-center rounded-full bg-white/80 px-3 py-1 text-xs font-bold text-primary ring-1 ring-gray-100">RSVP</span>
+                                        </div>
+
+                                        <div class="mt-5 grid grid-cols-1 sm:grid-cols-12 gap-4 items-start">
+                                            <div class="sm:col-span-5">
+                                                <div class="relative aspect-[9/16] rounded-2xl overflow-hidden shadow-lg border border-white/60 bg-white">
+                                                    <img src="/assets/img/Engagement Invitation.jpg" alt="Invitation preview" class="absolute inset-0 h-full w-full object-cover" />
+                                                    <div class="absolute inset-0 ring-1 ring-black/5"></div>
+                                                    <div class="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/60 via-black/10 to-transparent">
+                                                        <p class="text-xs font-bold text-white">Invitation preview</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="sm:col-span-7">
+                                                <div class="rounded-2xl bg-white/85 backdrop-blur border border-white/70 p-5 shadow-sm">
+                                                    <div class="flex items-start justify-between gap-3">
+                                                        <div>
+                                                            <p class="text-sm font-semibold text-gray-600">Event</p>
+                                                            <p class="mt-1 text-xl font-extrabold text-primary">Celebration Night</p>
+                                                        </div>
+                                                        <span class="inline-flex items-center rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold px-3 py-1 ring-1 ring-emerald-100">Live</span>
+                                                    </div>
+
+                                                    <div class="mt-4 grid grid-cols-2 gap-3">
+                                                        <div class="rounded-xl bg-white border border-gray-100 p-3">
+                                                            <p class="text-xs font-semibold text-gray-500">Date</p>
+                                                            <p class="mt-1 text-sm font-bold text-gray-800">Sat, 7:00 PM</p>
+                                                        </div>
+                                                        <div class="rounded-xl bg-white border border-gray-100 p-3">
+                                                            <p class="text-xs font-semibold text-gray-500">Location</p>
+                                                            <p class="mt-1 text-sm font-bold text-gray-800">View Map</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="mt-5 flex items-center gap-2">
-                                            <span class="inline-flex h-2 w-2 rounded-full bg-green-500"></span>
-                                            <p class="text-sm font-semibold text-gray-700">Live RSVP tracking</p>
+
+                                        <div class="mt-5 w-full">
+                                            <div class="grid w-full grid-cols-3 sm:grid-cols-6 gap-2">
+                                                <div class="min-w-0 rounded-xl bg-white border border-gray-100 px-2 py-2 text-center">
+                                                    <p class="truncate text-[11px] font-semibold text-gray-500 leading-none">Going</p>
+                                                    <p class="mt-1 text-base sm:text-lg font-extrabold text-primary leading-none">128</p>
+                                                </div>
+                                                <div class="min-w-0 rounded-xl bg-white border border-gray-100 px-2 py-2 text-center">
+                                                    <p class="truncate text-[11px] font-semibold text-gray-500 leading-none">Maybe</p>
+                                                    <p class="mt-1 text-base sm:text-lg font-extrabold text-primary leading-none">24</p>
+                                                </div>
+                                                <div class="min-w-0 rounded-xl bg-white border border-gray-100 px-2 py-2 text-center">
+                                                    <p class="truncate text-[11px] font-semibold text-gray-500 leading-none">Not Going</p>
+                                                    <p class="mt-1 text-base sm:text-lg font-extrabold text-primary leading-none">9</p>
+                                                </div>
+                                                <div class="min-w-0 rounded-xl bg-white border border-gray-100 px-2 py-2 text-center">
+                                                    <p class="truncate text-[11px] font-semibold text-gray-500 leading-none">Invited</p>
+                                                    <p class="mt-1 text-base sm:text-lg font-extrabold text-primary leading-none">220</p>
+                                                </div>
+                                                <div class="min-w-0 rounded-xl bg-white border border-gray-100 px-2 py-2 text-center">
+                                                    <p class="truncate text-[11px] font-semibold text-gray-500 leading-none">Viewed</p>
+                                                    <p class="mt-1 text-base sm:text-lg font-extrabold text-primary leading-none">186</p>
+                                                </div>
+                                                <div class="min-w-0 rounded-xl bg-white border border-gray-100 px-2 py-2 text-center">
+                                                    <p class="truncate text-[11px] font-semibold text-gray-500 leading-none">Messages</p>
+                                                    <p class="mt-1 text-base sm:text-lg font-extrabold text-primary leading-none">54</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="mt-3 rounded-2xl bg-white/85 backdrop-blur border border-white/70 px-4 py-3 shadow-sm">
+                                                <div class="flex items-center gap-2">
+                                                    <span class="inline-flex h-2 w-2 rounded-full bg-green-500"></span>
+                                                    <p class="text-sm font-semibold text-gray-700">Live RSVP tracking</p>
+                                                </div>
+                                                <p class="mt-1 text-xs text-gray-600">Track responses in real time and manage your guest list.</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="px-6 sm:px-7 pb-7">
+                                            <a href="https://wa.me/918882816805" target="_blank" rel="noopener noreferrer" class="w-full inline-flex justify-center px-6 py-3 bg-cta text-white font-bold rounded-xl shadow-lg hover:bg-cta/90 transition duration-150">
+                                                Contact Us
+                                            </a>
                                         </div>
                                     </div>
-
-                                    <div class="mt-6 grid grid-cols-3 gap-3">
-                                        <div class="rounded-xl bg-white border border-gray-100 p-3 text-center">
-                                            <p class="text-xs font-semibold text-gray-500">Going</p>
-                                            <p class="mt-1 text-lg font-extrabold text-primary">128</p>
-                                        </div>
-                                        <div class="rounded-xl bg-white border border-gray-100 p-3 text-center">
-                                            <p class="text-xs font-semibold text-gray-500">Maybe</p>
-                                            <p class="mt-1 text-lg font-extrabold text-primary">24</p>
-                                        </div>
-                                        <div class="rounded-xl bg-white border border-gray-100 p-3 text-center">
-                                            <p class="text-xs font-semibold text-gray-500">Not Going</p>
-                                            <p class="mt-1 text-lg font-extrabold text-primary">9</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="px-6 sm:px-7 pb-7">
-                                    <a href="https://wa.me/918882816805" target="_blank" rel="noopener noreferrer" class="w-full inline-flex justify-center px-6 py-3 bg-cta text-white font-bold rounded-xl shadow-lg hover:bg-cta/90 transition duration-150">
-                                        Contact Us
-                                    </a>
                                 </div>
                             </div>
                         </div>
