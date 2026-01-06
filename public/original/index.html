@@ -877,75 +877,119 @@
                             <span class="mt-3 inline-flex items-center justify-center w-full rounded-full bg-white/90 text-primary font-bold text-sm py-2 shadow group-hover:bg-white transition">Shop on Amazon</span>
                         </div>
                     </a>
-
                 </div>
             </div>
         </section>
 
         <!-- 9. Testimonials Slider/Section (Using a flexible scrollable layout for simplicity) -->
-        <section class="py-16 md:py-24">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl font-bold text-center text-primary mb-12">Customer Love</h2>
-
-                <div class="flex overflow-x-auto pb-4 space-x-6 md:grid md:grid-cols-3 md:gap-6">
-                    <!-- Review Card 1 -->
-                    <div class="flex-shrink-0 w-80 md:w-full bg-white p-6 rounded-xl shadow-lg border-t-4 border-cta/70">
-                        <div class="flex items-center mb-4">
-                            <span class="text-yellow-500 text-xl mr-2">★★★★★</span>
-                            <p class="text-sm font-semibold text-gray-700">A life-saver!</p>
+        <section class="relative py-16 md:py-24 overflow-hidden bg-gradient-to-b from-white via-accent/40 to-white">
+            <div aria-hidden="true" class="pointer-events-none absolute inset-0">
+                <div class="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-primary/10 blur-3xl"></div>
+                <div class="absolute top-10 -right-24 h-80 w-80 rounded-full bg-cta/10 blur-3xl"></div>
+                <div class="absolute bottom-0 left-1/2 -translate-x-1/2 h-64 w-[34rem] rounded-full bg-accent/20 blur-3xl"></div>
+            </div>
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+                <div class="max-w-3xl mx-auto text-center">
+                    <p class="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-sm font-semibold text-primary shadow-sm ring-1 ring-gray-100">
+                        Testimonials
+                    </p>
+                    <h2 class="mt-6 text-3xl sm:text-4xl font-extrabold text-primary tracking-tight">Customer Love</h2>
+                    <p class="text-gray-600 mt-4 text-base sm:text-lg">Real feedback from people who used Digntag for their events.</p>
+                    <div class="mt-6 inline-flex items-center gap-3 rounded-2xl bg-white/85 backdrop-blur border border-white/70 px-5 py-3 shadow-sm">
+                        <div class="flex items-center gap-1 text-amber-400" aria-label="5 out of 5 stars">
+                            <span class="text-lg">★★★★★</span>
                         </div>
-                        <p class="text-gray-600 italic line-clamp-3">
-                            "The design process was incredibly smooth. They captured my vision perfectly and the final print quality for the invitations was stunning. Highly recommended for any special event."
-                        </p>
-                        <p class="mt-4 text-sm font-bold text-primary">- Sarah K.</p>
+                        <div class="h-5 w-px bg-gray-200"></div>
+                        <p class="text-sm font-semibold text-gray-700">Rated 5.0 by customers</p>
                     </div>
+                </div>
 
-                    <!-- Review Card 2 -->
-                    <div class="flex-shrink-0 w-80 md:w-full bg-white p-6 rounded-xl shadow-lg border-t-4 border-cta/70">
-                        <div class="flex items-center mb-4">
-                            <span class="text-yellow-500 text-xl mr-2">★★★★★</span>
-                            <p class="text-sm font-semibold text-gray-700">Excellent Service</p>
+                <div class="mt-10">
+                    <div class="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scroll-smooth">
+                        <div class="snap-start shrink-0 w-[320px] group">
+                            <div class="h-full rounded-2xl bg-white/90 backdrop-blur border border-gray-100 p-6 shadow-lg hover:shadow-xl transition duration-300">
+                                <div class="flex items-start justify-between gap-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="h-11 w-11 rounded-2xl bg-gradient-to-br from-primary/15 via-cta/10 to-accent/15 ring-1 ring-gray-100 flex items-center justify-center">
+                                            <span class="text-sm font-extrabold text-primary">AP</span>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm font-extrabold text-primary">Aarav Patel</p>
+                                            <p class="text-xs text-gray-500">Wedding Invite</p>
+                                        </div>
+                                    </div>
+                                    <div class="text-amber-400 text-sm">★★★★★</div>
+                                </div>
+                                <p class="mt-4 text-gray-700 leading-relaxed">“Premium look and the RSVP tracking was super helpful. Guests replied fast on WhatsApp.”</p>
+                                <div class="mt-5 flex items-center justify-between">
+                                    <span class="text-xs font-semibold text-gray-500">Delivered on WhatsApp</span>
+                                    <span class="text-xs font-bold text-primary">Verified</span>
+                                </div>
+                            </div>
                         </div>
-                        <p class="text-gray-600 italic line-clamp-3">
-                            "I used Dignlay for all my wedding stationery and the gift packaging. Everything was cohesive, high-quality, and arrived ahead of schedule. Truly a professional experience."
-                        </p>
-                        <p class="mt-4 text-sm font-bold text-primary">- Michael A.</p>
-                    </div>
 
-                    <!-- Review Card 3 -->
-                    <div class="flex-shrink-0 w-80 md:w-full bg-white p-6 rounded-xl shadow-lg border-t-4 border-cta/70">
-                        <div class="flex items-center mb-4">
-                            <span class="text-yellow-500 text-xl mr-2">★★★★★</span>
-                            <p class="text-sm font-semibold text-gray-700">Best Quality Prints</p>
+                        <div class="snap-start shrink-0 w-[320px] group">
+                            <div class="h-full rounded-2xl bg-white/90 backdrop-blur border border-gray-100 p-6 shadow-lg hover:shadow-xl transition duration-300">
+                                <div class="flex items-start justify-between gap-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="h-11 w-11 rounded-2xl bg-gradient-to-br from-cta/15 via-white to-primary/10 ring-1 ring-gray-100 flex items-center justify-center">
+                                            <span class="text-sm font-extrabold text-primary">SK</span>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm font-extrabold text-primary">Shreya Kapoor</p>
+                                            <p class="text-xs text-gray-500">Engagement</p>
+                                        </div>
+                                    </div>
+                                    <div class="text-amber-400 text-sm">★★★★★</div>
+                                </div>
+                                <p class="mt-4 text-gray-700 leading-relaxed">“The invite page looked classy and worked perfectly on mobile. Loved the clean design.”</p>
+                                <div class="mt-5 flex items-center justify-between">
+                                    <span class="text-xs font-semibold text-gray-500">Mobile-friendly</span>
+                                    <span class="text-xs font-bold text-primary">Verified</span>
+                                </div>
+                            </div>
                         </div>
-                        <p class="text-gray-600 italic line-clamp-3">
-                            "The colors on the digital invitations were vibrant and the paper stock for the complement cards felt luxurious. Their attention to detail sets them apart."
-                        </p>
-                        <p class="mt-4 text-sm font-bold text-primary">- Jennifer L.</p>
-                    </div>
 
-                    <!-- Review Card 3 -->
-                    <div class="flex-shrink-0 w-80 md:w-full bg-white p-6 rounded-xl shadow-lg border-t-4 border-cta/70">
-                        <div class="flex items-center mb-4">
-                            <span class="text-yellow-500 text-xl mr-2">★★★★★</span>
-                            <p class="text-sm font-semibold text-gray-700">Best Quality Prints</p>
+                        <div class="snap-start shrink-0 w-[320px] group">
+                            <div class="h-full rounded-2xl bg-white/90 backdrop-blur border border-gray-100 p-6 shadow-lg hover:shadow-xl transition duration-300">
+                                <div class="flex items-start justify-between gap-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="h-11 w-11 rounded-2xl bg-gradient-to-br from-accent/25 via-white to-cta/10 ring-1 ring-gray-100 flex items-center justify-center">
+                                            <span class="text-sm font-extrabold text-primary">RG</span>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm font-extrabold text-primary">Rohan Gupta</p>
+                                            <p class="text-xs text-gray-500">Birthday</p>
+                                        </div>
+                                    </div>
+                                    <div class="text-amber-400 text-sm">★★★★★</div>
+                                </div>
+                                <p class="mt-4 text-gray-700 leading-relaxed">“Guest list export made planning easy. Everyone loved the invite page!”</p>
+                                <div class="mt-5 flex items-center justify-between">
+                                    <span class="text-xs font-semibold text-gray-500">Guest management</span>
+                                    <span class="text-xs font-bold text-primary">Verified</span>
+                                </div>
+                            </div>
                         </div>
-                        <p class="text-gray-600 italic line-clamp-3">
-                            "The colors on the digital invitations were vibrant and the paper stock for the complement cards felt luxurious. Their attention to detail sets them apart."
-                        </p>
-                        <p class="mt-4 text-sm font-bold text-primary">- Jennifer L.</p>
-                    </div>
 
-                    <!-- Review Card 3 -->
-                    <div class="flex-shrink-0 w-80 md:w-full bg-white p-6 rounded-xl shadow-lg border-t-4 border-cta/70">
-                        <div class="flex items-center mb-4">
-                            <span class="text-yellow-500 text-xl mr-2">★★★★★</span>
-                            <p class="text-sm font-semibold text-gray-700">Best Quality Prints</p>
-                        </div>
-                        <p class="text-gray-600 italic line-clamp-3">
-                            "The colors on the digital invitations were vibrant and the paper stock for the complement cards felt luxurious. Their attention to detail sets them apart."
-                        </p>
-                        <p class="mt-4 text-sm font-bold text-primary">- Jennifer L.</p>
+                        <div class="snap-start shrink-0 w-[320px] group"><div class="h-full rounded-2xl bg-white/90 backdrop-blur border border-gray-100 p-6 shadow-lg hover:shadow-xl transition duration-300"><div class="flex items-start justify-between gap-4"><div class="flex items-center gap-3"><div class="h-11 w-11 rounded-2xl bg-gradient-to-br from-primary/15 via-cta/10 to-accent/15 ring-1 ring-gray-100 flex items-center justify-center"><span class="text-sm font-extrabold text-primary">NP</span></div><div><p class="text-sm font-extrabold text-primary">Neha Puri</p><p class="text-xs text-gray-500">Baby Shower</p></div></div><div class="text-amber-400 text-sm">★★★★★</div></div><p class="mt-4 text-gray-700 leading-relaxed">“Beautiful template and quick edits. RSVP responses came in real time.”</p><div class="mt-5 flex items-center justify-between"><span class="text-xs font-semibold text-gray-500">Live tracking</span><span class="text-xs font-bold text-primary">Verified</span></div></div></div>
+                        <div class="snap-start shrink-0 w-[320px] group"><div class="h-full rounded-2xl bg-white/90 backdrop-blur border border-gray-100 p-6 shadow-lg hover:shadow-xl transition duration-300"><div class="flex items-start justify-between gap-4"><div class="flex items-center gap-3"><div class="h-11 w-11 rounded-2xl bg-gradient-to-br from-cta/15 via-white to-primary/10 ring-1 ring-gray-100 flex items-center justify-center"><span class="text-sm font-extrabold text-primary">VS</span></div><div><p class="text-sm font-extrabold text-primary">Vikram Singh</p><p class="text-xs text-gray-500">Corporate</p></div></div><div class="text-amber-400 text-sm">★★★★★</div></div><p class="mt-4 text-gray-700 leading-relaxed">“Clean branding and great support. Sharing links with clients was effortless.”</p><div class="mt-5 flex items-center justify-between"><span class="text-xs font-semibold text-gray-500">Branding</span><span class="text-xs font-bold text-primary">Verified</span></div></div></div>
+                        <div class="snap-start shrink-0 w-[320px] group"><div class="h-full rounded-2xl bg-white/90 backdrop-blur border border-gray-100 p-6 shadow-lg hover:shadow-xl transition duration-300"><div class="flex items-start justify-between gap-4"><div class="flex items-center gap-3"><div class="h-11 w-11 rounded-2xl bg-gradient-to-br from-accent/25 via-white to-cta/10 ring-1 ring-gray-100 flex items-center justify-center"><span class="text-sm font-extrabold text-primary">AD</span></div><div><p class="text-sm font-extrabold text-primary">Ananya Desai</p><p class="text-xs text-gray-500">Anniversary</p></div></div><div class="text-amber-400 text-sm">★★★★★</div></div><p class="mt-4 text-gray-700 leading-relaxed">“The invite looked luxurious and everyone could open it without any app.”</p><div class="mt-5 flex items-center justify-between"><span class="text-xs font-semibold text-gray-500">No app needed</span><span class="text-xs font-bold text-primary">Verified</span></div></div></div>
+                        <div class="snap-start shrink-0 w-[320px] group"><div class="h-full rounded-2xl bg-white/90 backdrop-blur border border-gray-100 p-6 shadow-lg hover:shadow-xl transition duration-300"><div class="flex items-start justify-between gap-4"><div class="flex items-center gap-3"><div class="h-11 w-11 rounded-2xl bg-gradient-to-br from-primary/15 via-cta/10 to-accent/15 ring-1 ring-gray-100 flex items-center justify-center"><span class="text-sm font-extrabold text-primary">PM</span></div><div><p class="text-sm font-extrabold text-primary">Priya Menon</p><p class="text-xs text-gray-500">Pooja</p></div></div><div class="text-amber-400 text-sm">★★★★★</div></div><p class="mt-4 text-gray-700 leading-relaxed">“Simple, elegant and on-time delivery. The map link was very useful.”</p><div class="mt-5 flex items-center justify-between"><span class="text-xs font-semibold text-gray-500">Maps</span><span class="text-xs font-bold text-primary">Verified</span></div></div></div>
+                        <div class="snap-start shrink-0 w-[320px] group"><div class="h-full rounded-2xl bg-white/90 backdrop-blur border border-gray-100 p-6 shadow-lg hover:shadow-xl transition duration-300"><div class="flex items-start justify-between gap-4"><div class="flex items-center gap-3"><div class="h-11 w-11 rounded-2xl bg-gradient-to-br from-cta/15 via-white to-primary/10 ring-1 ring-gray-100 flex items-center justify-center"><span class="text-sm font-extrabold text-primary">AK</span></div><div><p class="text-sm font-extrabold text-primary">Arjun Khanna</p><p class="text-xs text-gray-500">Wedding</p></div></div><div class="text-amber-400 text-sm">★★★★★</div></div><p class="mt-4 text-gray-700 leading-relaxed">“Fast response and premium templates. Our guests loved the experience.”</p><div class="mt-5 flex items-center justify-between"><span class="text-xs font-semibold text-gray-500">Templates</span><span class="text-xs font-bold text-primary">Verified</span></div></div></div>
+                        <div class="snap-start shrink-0 w-[320px] group"><div class="h-full rounded-2xl bg-white/90 backdrop-blur border border-gray-100 p-6 shadow-lg hover:shadow-xl transition duration-300"><div class="flex items-start justify-between gap-4"><div class="flex items-center gap-3"><div class="h-11 w-11 rounded-2xl bg-gradient-to-br from-accent/25 via-white to-cta/10 ring-1 ring-gray-100 flex items-center justify-center"><span class="text-sm font-extrabold text-primary">RS</span></div><div><p class="text-sm font-extrabold text-primary">Ritika Sharma</p><p class="text-xs text-gray-500">Birthday</p></div></div><div class="text-amber-400 text-sm">★★★★★</div></div><p class="mt-4 text-gray-700 leading-relaxed">“Loved the colors and layout. Sharing on WhatsApp was one click.”</p><div class="mt-5 flex items-center justify-between"><span class="text-xs font-semibold text-gray-500">WhatsApp ready</span><span class="text-xs font-bold text-primary">Verified</span></div></div></div>
+                        <div class="snap-start shrink-0 w-[320px] group"><div class="h-full rounded-2xl bg-white/90 backdrop-blur border border-gray-100 p-6 shadow-lg hover:shadow-xl transition duration-300"><div class="flex items-start justify-between gap-4"><div class="flex items-center gap-3"><div class="h-11 w-11 rounded-2xl bg-gradient-to-br from-primary/15 via-cta/10 to-accent/15 ring-1 ring-gray-100 flex items-center justify-center"><span class="text-sm font-extrabold text-primary">HM</span></div><div><p class="text-sm font-extrabold text-primary">Harsh Mehta</p><p class="text-xs text-gray-500">Corporate</p></div></div><div class="text-amber-400 text-sm">★★★★★</div></div><p class="mt-4 text-gray-700 leading-relaxed">“Professional and clean. Great for corporate events and guest handling.”</p><div class="mt-5 flex items-center justify-between"><span class="text-xs font-semibold text-gray-500">Export list</span><span class="text-xs font-bold text-primary">Verified</span></div></div></div>
+                        <div class="snap-start shrink-0 w-[320px] group"><div class="h-full rounded-2xl bg-white/90 backdrop-blur border border-gray-100 p-6 shadow-lg hover:shadow-xl transition duration-300"><div class="flex items-start justify-between gap-4"><div class="flex items-center gap-3"><div class="h-11 w-11 rounded-2xl bg-gradient-to-br from-cta/15 via-white to-primary/10 ring-1 ring-gray-100 flex items-center justify-center"><span class="text-sm font-extrabold text-primary">KB</span></div><div><p class="text-sm font-extrabold text-primary">Kavya Bansal</p><p class="text-xs text-gray-500">Engagement</p></div></div><div class="text-amber-400 text-sm">★★★★★</div></div><p class="mt-4 text-gray-700 leading-relaxed">“Easy customization and super support. Final output looked premium.”</p><div class="mt-5 flex items-center justify-between"><span class="text-xs font-semibold text-gray-500">Support</span><span class="text-xs font-bold text-primary">Verified</span></div></div></div>
+                        <div class="snap-start shrink-0 w-[320px] group"><div class="h-full rounded-2xl bg-white/90 backdrop-blur border border-gray-100 p-6 shadow-lg hover:shadow-xl transition duration-300"><div class="flex items-start justify-between gap-4"><div class="flex items-center gap-3"><div class="h-11 w-11 rounded-2xl bg-gradient-to-br from-accent/25 via-white to-cta/10 ring-1 ring-gray-100 flex items-center justify-center"><span class="text-sm font-extrabold text-primary">SS</span></div><div><p class="text-sm font-extrabold text-primary">Siddharth Saini</p><p class="text-xs text-gray-500">Wedding</p></div></div><div class="text-amber-400 text-sm">★★★★★</div></div><p class="mt-4 text-gray-700 leading-relaxed">“RSVP status was clear and real-time. Great overall experience.”</p><div class="mt-5 flex items-center justify-between"><span class="text-xs font-semibold text-gray-500">RSVP</span><span class="text-xs font-bold text-primary">Verified</span></div></div></div>
+                        <div class="snap-start shrink-0 w-[320px] group"><div class="h-full rounded-2xl bg-white/90 backdrop-blur border border-gray-100 p-6 shadow-lg hover:shadow-xl transition duration-300"><div class="flex items-start justify-between gap-4"><div class="flex items-center gap-3"><div class="h-11 w-11 rounded-2xl bg-gradient-to-br from-primary/15 via-cta/10 to-accent/15 ring-1 ring-gray-100 flex items-center justify-center"><span class="text-sm font-extrabold text-primary">MG</span></div><div><p class="text-sm font-extrabold text-primary">Meera Goswami</p><p class="text-xs text-gray-500">Baby Shower</p></div></div><div class="text-amber-400 text-sm">★★★★★</div></div><p class="mt-4 text-gray-700 leading-relaxed">“Very cute templates and smooth guest management. Loved it!”</p><div class="mt-5 flex items-center justify-between"><span class="text-xs font-semibold text-gray-500">Templates</span><span class="text-xs font-bold text-primary">Verified</span></div></div></div>
+                        <div class="snap-start shrink-0 w-[320px] group"><div class="h-full rounded-2xl bg-white/90 backdrop-blur border border-gray-100 p-6 shadow-lg hover:shadow-xl transition duration-300"><div class="flex items-start justify-between gap-4"><div class="flex items-center gap-3"><div class="h-11 w-11 rounded-2xl bg-gradient-to-br from-cta/15 via-white to-primary/10 ring-1 ring-gray-100 flex items-center justify-center"><span class="text-sm font-extrabold text-primary">JD</span></div><div><p class="text-sm font-extrabold text-primary">Jaydeep Dutta</p><p class="text-xs text-gray-500">Corporate</p></div></div><div class="text-amber-400 text-sm">★★★★★</div></div><p class="mt-4 text-gray-700 leading-relaxed">“Clean design and fast delivery. Perfect for our office event.”</p><div class="mt-5 flex items-center justify-between"><span class="text-xs font-semibold text-gray-500">Fast delivery</span><span class="text-xs font-bold text-primary">Verified</span></div></div></div>
+                        <div class="snap-start shrink-0 w-[320px] group"><div class="h-full rounded-2xl bg-white/90 backdrop-blur border border-gray-100 p-6 shadow-lg hover:shadow-xl transition duration-300"><div class="flex items-start justify-between gap-4"><div class="flex items-center gap-3"><div class="h-11 w-11 rounded-2xl bg-gradient-to-br from-accent/25 via-white to-cta/10 ring-1 ring-gray-100 flex items-center justify-center"><span class="text-sm font-extrabold text-primary">PN</span></div><div><p class="text-sm font-extrabold text-primary">Pooja Nair</p><p class="text-xs text-gray-500">Anniversary</p></div></div><div class="text-amber-400 text-sm">★★★★★</div></div><p class="mt-4 text-gray-700 leading-relaxed">“Invite page looked elegant and everyone responded quickly.”</p><div class="mt-5 flex items-center justify-between"><span class="text-xs font-semibold text-gray-500">RSVP</span><span class="text-xs font-bold text-primary">Verified</span></div></div></div>
+                        <div class="snap-start shrink-0 w-[320px] group"><div class="h-full rounded-2xl bg-white/90 backdrop-blur border border-gray-100 p-6 shadow-lg hover:shadow-xl transition duration-300"><div class="flex items-start justify-between gap-4"><div class="flex items-center gap-3"><div class="h-11 w-11 rounded-2xl bg-gradient-to-br from-primary/15 via-cta/10 to-accent/15 ring-1 ring-gray-100 flex items-center justify-center"><span class="text-sm font-extrabold text-primary">RT</span></div><div><p class="text-sm font-extrabold text-primary">Rahul Trivedi</p><p class="text-xs text-gray-500">Wedding</p></div></div><div class="text-amber-400 text-sm">★★★★★</div></div><p class="mt-4 text-gray-700 leading-relaxed">“Premium feel and very easy to share. Great work by the team.”</p><div class="mt-5 flex items-center justify-between"><span class="text-xs font-semibold text-gray-500">Shareable link</span><span class="text-xs font-bold text-primary">Verified</span></div></div></div>
+                        <div class="snap-start shrink-0 w-[320px] group"><div class="h-full rounded-2xl bg-white/90 backdrop-blur border border-gray-100 p-6 shadow-lg hover:shadow-xl transition duration-300"><div class="flex items-start justify-between gap-4"><div class="flex items-center gap-3"><div class="h-11 w-11 rounded-2xl bg-gradient-to-br from-accent/25 via-white to-cta/10 ring-1 ring-gray-100 flex items-center justify-center"><span class="text-sm font-extrabold text-primary">TS</span></div><div><p class="text-sm font-extrabold text-primary">Tanvi Shetty</p><p class="text-xs text-gray-500">Birthday</p></div></div><div class="text-amber-400 text-sm">★★★★★</div></div><p class="mt-4 text-gray-700 leading-relaxed">“So easy to use and the invite looked amazing.”</p><div class="mt-5 flex items-center justify-between"><span class="text-xs font-semibold text-gray-500">Easy to use</span><span class="text-xs font-bold text-primary">Verified</span></div></div></div>
+
+                        <div class="snap-start shrink-0 w-[320px] group"><div class="h-full rounded-2xl bg-white/90 backdrop-blur border border-gray-100 p-6 shadow-lg hover:shadow-xl transition duration-300"><div class="flex items-start justify-between gap-4"><div class="flex items-center gap-3"><div class="h-11 w-11 rounded-2xl bg-gradient-to-br from-primary/15 via-cta/10 to-accent/15 ring-1 ring-gray-100 flex items-center justify-center"><span class="text-sm font-extrabold text-primary">IM</span></div><div><p class="text-sm font-extrabold text-primary">Ishaan Mukherjee</p><p class="text-xs text-gray-500">Engagement</p></div></div><div class="text-amber-400 text-sm">★★★★★</div></div><p class="mt-4 text-gray-700 leading-relaxed">“Great design and quick turnaround. Highly recommended.”</p><div class="mt-5 flex items-center justify-between"><span class="text-xs font-semibold text-gray-500">Fast turnaround</span><span class="text-xs font-bold text-primary">Verified</span></div></div></div>
+                        <div class="snap-start shrink-0 w-[320px] group"><div class="h-full rounded-2xl bg-white/90 backdrop-blur border border-gray-100 p-6 shadow-lg hover:shadow-xl transition duration-300"><div class="flex items-start justify-between gap-4"><div class="flex items-center gap-3"><div class="h-11 w-11 rounded-2xl bg-gradient-to-br from-cta/15 via-white to-primary/10 ring-1 ring-gray-100 flex items-center justify-center"><span class="text-sm font-extrabold text-primary">DM</span></div><div><p class="text-sm font-extrabold text-primary">Divya Malhotra</p><p class="text-xs text-gray-500">Pooja</p></div></div><div class="text-amber-400 text-sm">★★★★★</div></div><p class="mt-4 text-gray-700 leading-relaxed">“Loved the simple layout and the map link feature.”</p><div class="mt-5 flex items-center justify-between"><span class="text-xs font-semibold text-gray-500">Maps</span><span class="text-xs font-bold text-primary">Verified</span></div></div></div>
+                        <div class="snap-start shrink-0 w-[320px] group"><div class="h-full rounded-2xl bg-white/90 backdrop-blur border border-gray-100 p-6 shadow-lg hover:shadow-xl transition duration-300"><div class="flex items-start justify-between gap-4"><div class="flex items-center gap-3"><div class="h-11 w-11 rounded-2xl bg-gradient-to-br from-accent/25 via-white to-cta/10 ring-1 ring-gray-100 flex items-center justify-center"><span class="text-sm font-extrabold text-primary">AS</span></div><div><p class="text-sm font-extrabold text-primary">Aditi Saxena</p><p class="text-xs text-gray-500">Wedding</p></div></div><div class="text-amber-400 text-sm">★★★★★</div></div><p class="mt-4 text-gray-700 leading-relaxed">“The invite page looked modern and premium. Guests loved it.”</p><div class="mt-5 flex items-center justify-between"><span class="text-xs font-semibold text-gray-500">Design</span><span class="text-xs font-bold text-primary">Verified</span></div></div></div>
                     </div>
                 </div>
             </div>
