@@ -25,6 +25,11 @@ function AdminGuestsRedirect() {
 const routes = [
   { path: '/', file: 'index.html' },
   { path: '/services', file: 'services.html' },
+  { path: '/designer', file: 'designer.html' },
+  { path: '/business-partner', file: 'business-partner.html' },
+  { path: '/privacy-policy', file: 'privacy-policy.html' },
+  { path: '/terms-of-service', file: 'terms-of-service.html' },
+  { path: '/refund-policy', file: 'refund-policy.html' },
   { path: '/events', file: 'events.html' },
   { path: '/events/wedding', file: 'events-wedding.html' },
   { path: '/events/birthday', file: 'events-birthday.html' },

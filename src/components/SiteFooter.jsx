@@ -95,7 +95,7 @@ export default function SiteFooter() {
           </div>
 
           <div className="lg:col-span-2">
-            <h5 className="text-lg font-bold mb-4">Support</h5>
+            <h5 className="text-lg font-bold mb-4">Important</h5>
             <ul className="space-y-2 text-sm text-white/80">
               <li>
                 <a
@@ -110,6 +110,31 @@ export default function SiteFooter() {
               <li>
                 <a href="/pricing" className="hover:text-cta transition duration-150">
                   Plans
+                </a>
+              </li>
+              <li>
+                <a href="/designer" className="hover:text-cta transition duration-150">
+                  Designers
+                </a>
+              </li>
+              <li>
+                <a href="/business-partner" className="hover:text-cta transition duration-150">
+                  Business Partner
+                </a>
+              </li>
+              <li>
+                <a href="/privacy-policy" className="hover:text-cta transition duration-150">
+                  Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a href="/terms-of-service" className="hover:text-cta transition duration-150">
+                  Terms of Service
+                </a>
+              </li>
+              <li>
+                <a href="/refund-policy" className="hover:text-cta transition duration-150">
+                  Refund Policy
                 </a>
               </li>
             </ul>
