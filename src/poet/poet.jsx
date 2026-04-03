@@ -167,7 +167,7 @@ const PoetPage = () => {
 
     setIsGenerating(true)
     try {
-      const response = await axios.post('http://localhost:3001/api/generate-poem', {
+      const response = await axios.post('/api/generate-poem', {
         recipient,
         messageType,
         language,
@@ -203,7 +203,7 @@ const PoetPage = () => {
         }
       } else if (error.request) {
         // Network error - server not responding
-        setError('Cannot connect to poetry server. Please make sure the backend is running.')
+        setError('Cannot connect to poetry server. Please try again later.')
       } else {
         // Other error
         setError('An unexpected error occurred. Please try again.')
