@@ -46,6 +46,11 @@ export default function SiteFooter() {
                 </a>
               </li>
               <li>
+                <a href="/poet" className="hover:text-cta transition duration-150">
+                  AI Poet
+                </a>
+              </li>
+              <li>
                 <a href="/how-it-works" className="hover:text-cta transition duration-150">
                   How It Works
                 </a>

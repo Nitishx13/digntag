@@ -221,6 +221,7 @@ export default function SiteHeader() {
             </a>
             <div className="absolute left-0 top-full pt-3 w-64 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition duration-200">
               <div className="rounded-xl bg-white shadow-xl border border-gray-100 py-2">
+                <a href="/home" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Home</a>
                 <a href="/services" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">All Services</a>
                 <a href="/digital-growth-services" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                   Digital Growth Services
@@ -244,6 +245,7 @@ export default function SiteHeader() {
               <div className="rounded-xl bg-white shadow-xl border border-gray-100 py-2">
                 <a href="/tools/caricature-maker" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Caricature Maker</a>
                 <a href="/gift-finder" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Gift Finder</a>
+                <a href="/poet" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">AI Poet</a>
               </div>
             </div>
           </div>
@@ -446,6 +448,13 @@ export default function SiteHeader() {
               </button>
               <div className={`px-4 pb-3 transition-all duration-200 ${mobileSections.features ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
                 <a
+                  href="/home"
+                  className="block rounded-xl px-3 py-2 text-sm font-semibold text-gray-800 hover:bg-gray-50"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Home
+                </a>
+                <a
                   href="/services"
                   className="block rounded-xl px-3 py-2 text-sm font-semibold text-gray-800 hover:bg-gray-50"
                   onClick={() => setIsMobileMenuOpen(false)}
@@ -545,6 +554,9 @@ export default function SiteHeader() {
                 </a>
                 <a href="/gift-finder" className="block rounded-xl px-3 py-2 text-sm font-semibold text-gray-800 hover:bg-gray-50" onClick={() => setIsMobileMenuOpen(false)}>
                   Gift Finder
+                </a>
+                <a href="/poet" className="block rounded-xl px-3 py-2 text-sm font-semibold text-gray-800 hover:bg-gray-50" onClick={() => setIsMobileMenuOpen(false)}>
+                  AI Poet
                 </a>
               </div>
 

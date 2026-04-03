@@ -11,6 +11,7 @@ import AdminWhatsappToolPage from './admin/AdminWhatsappToolPage.jsx'
 import AdminIntegrationsPage from './admin/AdminIntegrationsPage.jsx'
 import TrackPage from './admin/TrackPage.jsx'
 import RsvpPage from './admin/RsvpPage.jsx'
+import PoetPage from './poet/poet.jsx'
 
 function AdminShareRedirect() {
   const { id } = useParams()
@@ -83,6 +84,9 @@ function App() {
       </Route>
       <Route path="/track/:id" element={<TrackPage />} />
       <Route path="/rsvp/:id" element={<RsvpPage />} />
+      <Route path="/poet" element={<PoetPage />} />
+      <Route path="/home" element={<HtmlPage file="index.html" />} />
+      <Route path="/" element={<PoetPage />} />
       {routes.map((r) => (
         <Route key={r.path} path={r.path} element={<HtmlPage file={r.file} />} />
       ))}
