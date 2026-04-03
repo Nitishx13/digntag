@@ -19,6 +19,8 @@ const PoetPage = () => {
   const [lineCount, setLineCount] = useState('')
   const [story, setStory] = useState('')
   const [charCount, setCharCount] = useState(0)
+  const [error, setError] = useState('')
+  const [success, setSuccess] = useState('')
 
   // Message type options based on recipient
   const getMessageOptions = () => {
@@ -143,8 +145,23 @@ const PoetPage = () => {
   ]
 
   const generatePoem = async () => {
-    if (!recipient || !language || !lineCount) {
-      alert('Please fill in all required fields')
+    // Clear previous messages
+    setError('')
+    setSuccess('')
+    
+    // Validate required fields
+    if (!recipient) {
+      setError('Please select who this poem is for')
+      return
+    }
+    
+    if (!language) {
+      setError('Please select a language for the poem')
+      return
+    }
+    
+    if (!lineCount) {
+      setError('Please select how many lines you want')
       return
     }
 
@@ -164,11 +181,33 @@ const PoetPage = () => {
       })
 
       setGeneratedPoem(response.data.poem)
+      setSuccess('Poetry generated successfully!')
+      
+      // Clear success message after 3 seconds
+      setTimeout(() => setSuccess(''), 3000)
+      
     } catch (error) {
       console.error('Error generating poem:', error)
-      // Fallback to mock response for demo
-      const mockPoem = `In realms where words like rivers flow,\nYour feelings dance and gently glow.\nA tapestry of thought and soul,\nWhere poetry takes its precious toll.\n\n${language} poetry for ${recipient},\n${lineCount} lines of heartfelt grace.`
-      setGeneratedPoem(mockPoem)
+      
+      // Handle different types of errors
+      if (error.response) {
+        // Server responded with error status
+        if (error.response.status === 429) {
+          setError('OpenAI API quota exceeded. Please check your billing or try again later.')
+        } else if (error.response.status === 400) {
+          setError('Please fill in all required fields correctly')
+        } else if (error.response.data && error.response.data.error) {
+          setError(error.response.data.error)
+        } else {
+          setError('Server error. Please try again later.')
+        }
+      } else if (error.request) {
+        // Network error - server not responding
+        setError('Cannot connect to poetry server. Please make sure the backend is running.')
+      } else {
+        // Other error
+        setError('An unexpected error occurred. Please try again.')
+      }
     } finally {
       setIsGenerating(false)
     }
@@ -550,6 +589,29 @@ const PoetPage = () => {
             <span className="mr-2 text-xl" role="img" aria-label="quill">✒️</span>
             {isGenerating ? 'Creating...' : 'Create my lines'}
           </button>
+
+          {/* Error and Success Messages */}
+          {error && (
+            <div className="mt-4 p-3 rounded-lg border"
+              style={{ backgroundColor: '#FEE2E2', borderColor: '#F87171', color: '#DC2626' }}
+            >
+              <div className="flex items-center">
+                <span className="mr-2" role="img" aria-label="error">⚠️</span>
+                <p className="text-sm font-medium">{error}</p>
+              </div>
+            </div>
+          )}
+          
+          {success && (
+            <div className="mt-4 p-3 rounded-lg border"
+              style={{ backgroundColor: '#D1FAE5', borderColor: '#34D399', color: '#059669' }}
+            >
+              <div className="flex items-center">
+                <span className="mr-2" role="img" aria-label="success">✅</span>
+                <p className="text-sm font-medium">{success}</p>
+              </div>
+            </div>
+          )}
 
           <p className="text-center mt-4 text-sm" style={{ color: '#34161E' }}>
             Please complete all required fields above

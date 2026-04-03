@@ -1,10 +1,16 @@
-const express = require('express')
-const cors = require('cors')
-const path = require('path')
-const { OpenAI } = require('openai')
+import express from 'express'
+import cors from 'cors'
+import path from 'path'
+import { fileURLToPath } from 'url'
+import { OpenAI } from 'openai'
+import dotenv from 'dotenv'
+
+// Get current directory
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 // Load environment variables from root directory
-require('dotenv').config({ path: path.join(__dirname, '../../.env') })
+dotenv.config({ path: path.join(__dirname, '../../.env') })
 
 const app = express()
 const port = process.env.PORT || 3001
@@ -62,8 +68,11 @@ app.post('/api/generate-poem', async (req, res) => {
   } catch (error) {
     console.error('Error generating poem:', error)
     
+    // Extract request data for fallback
+    const { recipient, language, lineCount } = req.body || {}
+    
     // Fallback response if OpenAI fails
-    const fallbackPoem = `In realms where words like rivers flow,\nYour feelings dance and gently glow.\nA tapestry of thought and soul,\nWhere poetry takes its precious toll.\n\n${language} poetry for ${recipient},\n${lineCount} lines of heartfelt grace.`
+    const fallbackPoem = `In realms where words like rivers flow,\nYour feelings dance and gently glow.\nA tapestry of thought and soul,\nWhere poetry takes its precious toll.\n\n${language || 'English'} poetry for ${recipient || 'someone'},\n${lineCount || 'beautiful'} lines of heartfelt grace.`
     
     res.json({ poem: fallbackPoem })
   }
