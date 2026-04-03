@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "server": "node src/poet/server.js",
+    "server": "node api-server.js",
     "start-all": "concurrently \"npm run server\" \"npm run dev\""
   },
   "dependencies": {
