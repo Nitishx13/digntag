@@ -242,7 +242,8 @@ const PoetPage = () => {
         story: story ? story.substring(0, 100) + '...' : 'none',
         style: lineCount
       })
-        
+      
+      // Enhanced axios configuration for CORS
       const response = await axios.post(apiUrl, {
         recipient,
         messageType,
@@ -253,7 +254,11 @@ const PoetPage = () => {
       }, {
         headers: {
           'Content-Type': 'application/json',
-        }
+        },
+        // Add timeout and CORS handling
+        timeout: 10000,
+        withCredentials: false,
+        crossDomain: true
       })
 
       setGeneratedPoem(response.data.poem)
