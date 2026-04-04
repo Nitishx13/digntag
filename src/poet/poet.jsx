@@ -210,9 +210,21 @@ const PoetPage = () => {
     setIsGenerating(true)
     try {
       // Use different API URLs for development vs production
-      const apiUrl = window.location.hostname === 'localhost' 
-        ? 'http://localhost:3001/api/generate-poem'
-        : '/api/generate-poem'
+      // Enhanced API configuration with better error handling
+      const getApiUrl = () => {
+        // Check if we're on Vercel
+        if (window.location.hostname.includes('vercel.app')) {
+          return '/api/generate-poem'
+        }
+        // Check if we're on localhost
+        if (window.location.hostname === 'localhost') {
+          return 'http://localhost:3001/api/generate-poem'
+        }
+        // Default to relative path for other deployments
+        return '/api/generate-poem'
+      }
+      
+      const apiUrl = getApiUrl()
         
       const response = await axios.post(apiUrl, {
         recipient,
@@ -758,10 +770,22 @@ const PoetPage = () => {
       setGeneratedImage(imageUrl)
       
     } catch (error) {
-      console.error('Error generating image:', error)
-      setError('Failed to generate image. Please try again.')
+      console.error('Error generating poem:', error)
+      
+      // Enhanced error handling with specific messages
+      if (error.code === 'ECONNREFUSED' || error.message.includes('Network Error')) {
+        setError('🔴 Cannot connect to poetry server. Please make sure the backend is running. If you\'re on Vercel, check your environment variables.')
+      } else if (error.response?.status === 429) {
+        setError('🟡 OpenAI API quota exceeded. Please try again later.')
+      } else if (error.response?.status === 401) {
+        setError('🔴 Invalid OpenAI API key. Please check your environment variables.')
+      } else if (error.response?.status === 500) {
+        setError('🔴 Server error. Please try again later.')
+      } else {
+        setError(`🔴 Error: ${error.message || 'Failed to generate poem. Please try again.'}`)
+      }
     } finally {
-      setIsGeneratingImage(false)
+      setIsGenerating(false)
     }
   }
 
