@@ -215,16 +215,18 @@ const PoetPage = () => {
         const hostname = window.location.hostname
         console.log('Current hostname:', hostname)
         
-        // Check if we're on Vercel (including custom domains)
+        // Force Vercel API for your domain - no fallback to localhost
         if (hostname.includes('vercel.app') || hostname === 'www.digntag.in' || hostname === 'digntag.in') {
           console.log('Detected Vercel environment, using relative API path')
           return '/api/generate-poem'
         }
-        // Check if we're on localhost
+        
+        // Only use localhost if explicitly on localhost
         if (hostname === 'localhost') {
           console.log('Detected localhost environment, using local server')
           return 'http://localhost:3001/api/generate-poem'
         }
+        
         // Default to relative path for other deployments
         console.log('Using default API path')
         return '/api/generate-poem'
@@ -870,9 +872,11 @@ const PoetPage = () => {
     if (!generatedImage) return
     
     const link = document.createElement('a')
-    link.download = `poetry-${selectedImageTemplate}-${Date.now()}.png`
-    link.href = generatedImage
-    link.click()
+    if (link) {  // Null check to prevent JavaScript error
+      link.download = `poetry-${selectedImageTemplate}-${Date.now()}.png`
+      link.href = generatedImage
+      link.click()
+    }
   }
 
   return (
