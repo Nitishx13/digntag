@@ -3,14 +3,28 @@ import cors from 'cors'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import { OpenAI } from 'openai'
-import dotenv from 'dotenv'
+import { readFileSync } from 'fs'
 
 // Get current directory
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-// Load environment variables with explicit path
-dotenv.config({ path: 'C:\\Users\\riddh\\OneDrive\\Documents\\GitHub\\digntag\\.env' })
+// Read .env file directly
+const envPath = path.join(__dirname, '.env')
+let OPENAI_API_KEY = ''
+
+try {
+  const envContent = readFileSync(envPath, 'utf8')
+  const lines = envContent.split('\n')
+  for (const line of lines) {
+    if (line.startsWith('OPENAI_API_KEY=')) {
+      OPENAI_API_KEY = line.split('=')[1].trim()
+      break
+    }
+  }
+} catch (error) {
+  console.error('Error reading .env file:', error)
+}
 
 const app = express()
 const port = process.env.PORT || 3001
@@ -21,7 +35,7 @@ app.use(express.json())
 
 // Initialize OpenAI
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: OPENAI_API_KEY,
 })
 
 // Poetry generation endpoint
@@ -51,7 +65,7 @@ app.post('/api/generate-poem', async (req, res) => {
       messages: [
         {
           role: "system",
-          content: "You are a master poet who can create beautiful, emotionally resonant poetry in multiple languages and styles. Your poems should be creative, well-structured, and capture the essence of the given theme and relationship."
+          content: "You are a master poet who can create beautiful, emotionally resonant poetry in multiple languages and styles. Your poems should be creative, well-structured, and capture the essence of given theme and relationship."
         },
         {
           role: "user",
@@ -90,4 +104,5 @@ app.get('/api/health', (req, res) => {
 
 app.listen(port, () => {
   console.log(`Poet API server running on port ${port}`)
+  console.log(`API Key loaded: ${OPENAI_API_KEY ? 'YES' : 'NO'}`)
 })
