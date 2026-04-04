@@ -25,7 +25,7 @@ https://www.digntag.in/api/generate-poem
 
 #### B. Check Environment Variables
 1. In Vercel dashboard → Settings → Environment Variables
-2. Verify `OPENAI_API_KEY` exists and is set for Production
+2. Verify `OPENAI_API_KEY` exists and iset for Production
 3. If not, add it:
    - Name: `OPENAI_API_KEY`
    - Value: `sk-your-actual-openai-key`
