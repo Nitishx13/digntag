@@ -232,6 +232,16 @@ const PoetPage = () => {
       
       const apiUrl = getApiUrl()
       console.log('Attempting to connect to:', apiUrl)
+      
+      // Add more detailed error logging
+      console.log('Request data:', {
+        recipient,
+        messageType,
+        language,
+        lineCount,
+        story: story ? story.substring(0, 100) + '...' : 'none',
+        style: lineCount
+      })
         
       const response = await axios.post(apiUrl, {
         recipient,
@@ -824,19 +834,27 @@ const PoetPage = () => {
       setGeneratedImage(imageUrl)
       
     } catch (error) {
-      console.error('Error generating poem:', error)
+      console.error('Full error details:', error)
+      console.error('Error code:', error.code)
+      console.error('Error message:', error.message)
+      console.error('Error response:', error.response)
+      console.error('Error request:', error.request)
       
       // Enhanced error handling with specific messages
       if (error.code === 'ECONNREFUSED' || error.message.includes('Network Error')) {
-        setError('🔴 Cannot connect to poetry server. Please make sure the backend is running. If you\'re on Vercel, check your environment variables.')
+        setError('🔴 Cannot connect to poetry server. Please make sure the backend is running. If you\'re on Vercel, check your environment variables and API deployment.')
       } else if (error.response?.status === 429) {
         setError('🟡 OpenAI API quota exceeded. Please try again later.')
       } else if (error.response?.status === 401) {
-        setError('🔴 Invalid OpenAI API key. Please check your environment variables.')
+        setError('🔴 Invalid OpenAI API key. Please check your environment variables in Vercel dashboard.')
+      } else if (error.response?.status === 404) {
+        setError('🔴 API endpoint not found. Check your vercel.json configuration and API function deployment.')
       } else if (error.response?.status === 500) {
-        setError('🔴 Server error. Please try again later.')
+        setError('🔴 Server error. Check Vercel logs for details.')
+      } else if (error.response?.status === 405) {
+        setError('🔴 Method not allowed. This is unexpected - please check the API function.')
       } else {
-        setError(`🔴 Error: ${error.message || 'Failed to generate poem. Please try again.'}`)
+        setError(`🔴 Error: ${error.message || 'Failed to generate poem. Please check browser console (F12) for details.'}`)
       }
     } finally {
       setIsGenerating(false)
