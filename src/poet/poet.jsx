@@ -210,21 +210,28 @@ const PoetPage = () => {
     setIsGenerating(true)
     try {
       // Use different API URLs for development vs production
-      // Enhanced API configuration with better error handling
+      // Enhanced API configuration with better error handling and debugging
       const getApiUrl = () => {
-        // Check if we're on Vercel
-        if (window.location.hostname.includes('vercel.app')) {
+        const hostname = window.location.hostname
+        console.log('Current hostname:', hostname)
+        
+        // Check if we're on Vercel (including custom domains)
+        if (hostname.includes('vercel.app') || hostname === 'www.digntag.in' || hostname === 'digntag.in') {
+          console.log('Detected Vercel environment, using relative API path')
           return '/api/generate-poem'
         }
         // Check if we're on localhost
-        if (window.location.hostname === 'localhost') {
+        if (hostname === 'localhost') {
+          console.log('Detected localhost environment, using local server')
           return 'http://localhost:3001/api/generate-poem'
         }
         // Default to relative path for other deployments
+        console.log('Using default API path')
         return '/api/generate-poem'
       }
       
       const apiUrl = getApiUrl()
+      console.log('Attempting to connect to:', apiUrl)
         
       const response = await axios.post(apiUrl, {
         recipient,
@@ -304,6 +311,53 @@ const PoetPage = () => {
       '#000000': 0     // Black
     }
     return colors[color.toLowerCase()] || 0
+  }
+
+  // Test API connection function
+  const testApiConnection = async () => {
+    const getApiUrl = () => {
+      const hostname = window.location.hostname
+      // Check if we're on Vercel (including custom domains)
+      if (hostname.includes('vercel.app') || hostname === 'www.digntag.in' || hostname === 'digntag.in') {
+        return '/api/generate-poem'
+      }
+      if (hostname === 'localhost') {
+        return 'http://localhost:3001/api/generate-poem'
+      }
+      return '/api/generate-poem'
+    }
+    
+    const apiUrl = getApiUrl()
+    console.log('Testing API connection to:', apiUrl)
+    
+    try {
+      // Test with a simple GET request first
+      const response = await fetch(apiUrl, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      })
+      
+      console.log('API Response status:', response.status)
+      console.log('API Response headers:', response.headers)
+      
+      if (response.status === 405) {
+        // Method not allowed is expected - means the API exists
+        alert('✅ API endpoint is accessible! (405 Method Not Allowed is expected for GET request)')
+        return true
+      } else if (response.status === 404) {
+        alert('❌ API endpoint not found (404). Check your vercel.json configuration.')
+        return false
+      } else {
+        alert(`✅ API responded with status: ${response.status}`)
+        return true
+      }
+    } catch (error) {
+      console.error('API connection test failed:', error)
+      alert(`❌ API connection failed: ${error.message}`)
+      return false
+    }
   }
 
   // Handle custom background image upload
@@ -958,7 +1012,26 @@ const PoetPage = () => {
         </div>
       </section>
 
-      {/* Poetry Generator Form Section - Exact Match */}
+      {/* Debug Panel */}
+      <div className="mb-4 p-3 rounded-lg" style={{ backgroundColor: '#FFF4F7', border: '1px solid #F5668D' }}>
+        <div className="flex items-center justify-between">
+          <span className="text-sm font-medium" style={{ color: '#34161E' }}>
+            🔍 API Connection Debug
+          </span>
+          <button
+            onClick={testApiConnection}
+            className="px-3 py-1 rounded text-sm"
+            style={{ backgroundColor: '#F5668D', color: 'white' }}
+          >
+            Test Connection
+          </button>
+        </div>
+        <div className="mt-2 text-xs" style={{ color: '#666' }}>
+          Open browser console (F12) to see detailed connection logs
+        </div>
+      </div>
+
+      {/* Poetry Generation Form Section - Exact Match */}
       <section id="generator" className="py-16 px-4" style={{ backgroundColor: '#fdf8f8' }}>
         <div className="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-lg"
           style={{ backgroundColor: '#fffcfc', borderColor: '#F5668D', borderWidth: '1px' }}
