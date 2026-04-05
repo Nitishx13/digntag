@@ -208,27 +208,9 @@ export default function SiteHeader() {
         </a>
 
         <nav className="hidden md:flex items-center gap-6 lg:gap-8">
-          <div className="relative group">
-            <a href="/services" className="inline-flex items-center gap-1 text-gray-600 hover:text-primary transition duration-150 font-medium">
-              <span>Services</span>
-              <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path
-                  fillRule="evenodd"
-                  d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </a>
-            <div className="absolute left-0 top-full pt-3 w-64 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition duration-200">
-              <div className="rounded-xl bg-white shadow-xl border border-gray-100 py-2">
-                <a href="/home" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">Home</a>
-                <a href="/services" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">All Services</a>
-                <a href="/digital-growth-services" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
-                  Digital Growth Services
-                </a>
-              </div>
-            </div>
-          </div>
+          <a href="/services" className="inline-flex items-center gap-1 text-gray-600 hover:text-primary transition duration-150 font-medium">
+            <span>Services</span>
+          </a>
 
           <div className="relative group">
             <a href="/tools/caricature-maker" className="inline-flex items-center gap-1 text-gray-600 hover:text-primary transition duration-150 font-medium">
