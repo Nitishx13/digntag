@@ -120,6 +120,35 @@ const PoetPage = () => {
     <div className="min-h-screen" style={{ backgroundColor: '#fdf8f8' }}>
       <SiteHeader />
       
+      {/* Hero Section with CTA */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-white via-white to-gray-50 w-full py-16">
+        <div className="container mx-auto px-4">
+          <div className="text-center">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-primary leading-[1.05] tracking-tight mb-6">
+              Create Beautiful Poetry in Seconds
+            </h1>
+            <p className="text-lg sm:text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
+              Transform your emotions into heartfelt poetry with our AI-powered generator. 
+              Support multiple languages and create personalized poems for your loved ones.
+            </p>
+            <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+              <a 
+                href="#generator" 
+                className="px-8 py-4 bg-cta text-white font-bold text-base rounded-full shadow-xl hover:bg-cta/90 transition duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-cta/50 text-center"
+              >
+                Start Creating Poetry
+              </a>
+              <a 
+                href="/services" 
+                className="px-8 py-4 bg-white text-primary font-bold text-base rounded-full shadow-xl hover:bg-gray-50 transition duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-white/50 text-center ring-1 ring-gray-100"
+              >
+                Explore All Features
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <main className="container mx-auto px-4 py-8">
         <div className="max-w-3xl mx-auto">
           {/* Header */}
