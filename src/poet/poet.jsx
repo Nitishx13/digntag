@@ -1046,25 +1046,6 @@ const PoetPage = () => {
         </div>
       </section>
 
-      {/* Debug Panel */}
-      <div className="mb-4 p-3 rounded-lg" style={{ backgroundColor: '#FFF4F7', border: '1px solid #F5668D' }}>
-        <div className="flex items-center justify-between">
-          <span className="text-sm font-medium" style={{ color: '#34161E' }}>
-            🔍 API Connection Debug
-          </span>
-          <button
-            onClick={testApiConnection}
-            className="px-3 py-1 rounded text-sm"
-            style={{ backgroundColor: '#F5668D', color: 'white' }}
-          >
-            Test Connection
-          </button>
-        </div>
-        <div className="mt-2 text-xs" style={{ color: '#666' }}>
-          Open browser console (F12) to see detailed connection logs
-        </div>
-      </div>
-
       {/* Poetry Generation Form Section - Exact Match */}
       <section id="generator" className="py-16 px-4" style={{ backgroundColor: '#fdf8f8' }}>
         <div className="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-lg"
