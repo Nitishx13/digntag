@@ -213,7 +213,13 @@ const PoetPage = () => {
       // Enhanced API configuration with better error handling and debugging
       const getApiUrl = () => {
         const hostname = window.location.hostname
-        console.log('Current hostname:', hostname)
+        const port = window.location.port
+        const protocol = window.location.protocol
+        console.log('=== API URL DEBUG ===')
+        console.log('Hostname:', hostname)
+        console.log('Port:', port)
+        console.log('Protocol:', protocol)
+        console.log('Full location:', window.location.href)
         
         // Force Vercel API for your domain - no fallback to localhost
         if (hostname.includes('vercel.app') || hostname === 'www.digntag.in' || hostname === 'digntag.in') {
@@ -222,7 +228,7 @@ const PoetPage = () => {
         }
         
         // Only use localhost if explicitly on localhost
-        if (hostname === 'localhost') {
+        if (hostname === 'localhost' || hostname === '127.0.0.1') {
           console.log('Detected localhost environment, using local server')
           return 'http://localhost:3001/api/generate-poem'
         }
@@ -233,7 +239,8 @@ const PoetPage = () => {
       }
       
       const apiUrl = getApiUrl()
-      console.log('Attempting to connect to:', apiUrl)
+      console.log('Final API URL:', apiUrl)
+      console.log('=== END DEBUG ===')
       
       // Add more detailed error logging
       console.log('Request data:', {
