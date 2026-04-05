@@ -64,10 +64,21 @@ app.post('/api/generate-poem', async (req, res) => {
     }
 
     // Create a comprehensive prompt based on form data
-    let prompt = `Write a ${lineCount} poem in ${language} for ${recipient}`
+    let prompt = `Write a poem in ${language} for ${recipient}`
+    
+    // Add specific line count instruction
+    if (lineCount === '2') {
+      prompt += `. The poem must have exactly 2 lines.`
+    } else if (lineCount === '4') {
+      prompt += `. The poem must have exactly 4 lines.`
+    } else if (lineCount === '8') {
+      prompt += `. The poem must have exactly 8-10 lines.`
+    } else {
+      prompt += `. The poem must have exactly ${lineCount} lines.`
+    }
     
     if (story) {
-      prompt += `. Context: ${story}`
+      prompt += ` Context: ${story}`
     }
     
     if (messageType) {
