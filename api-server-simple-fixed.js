@@ -38,7 +38,7 @@ if (!geminiApiKey) {
 
 // Fallback to hardcoded key if still not found
 if (!geminiApiKey) {
-  geminiApiKey = 'AIzaSyCKgWCw0Bz_9JZBiX3KUXrhcY8lSw5SNcM'
+  geminiApiKey = 'YOUR_NEW_API_KEY_HERE' // Replace with your new key
 }
 
 console.log('API Key loaded:', geminiApiKey ? 'YES' : 'NO')
@@ -177,56 +177,34 @@ app.get('/api/test-key', async (req, res) => {
     
     console.log('Testing API key with simple request...')
     
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-goog-api-key': geminiApiKey
-      },
-      body: JSON.stringify({
-        contents: [
-          {
-            role: "user",
-            parts: [
-              {
-                text: "Test message - just say 'API key is working' in English"
-              }
-            ]
-          }
-        ],
-        generationConfig: {
-          maxOutputTokens: 50,
-          temperature: 0.1,
-        }
-      })
-    })
-
-    if (!response.ok) {
-      const errorData = await response.json()
-      console.error('API key test failed:', errorData)
-      return res.status(response.status).json({ 
-        error: 'API key test failed: ' + errorData.error.message,
-        details: errorData.error.message
-      })
+    // Try v1 API with different model names
+    const v1Models = ['gemini-1.5-flash', 'gemini-1.5-pro', 'gemini-pro', 'gemini-1.0-pro']
+    let v1ModelInitialized = false
+    
+    for (const modelName of v1Models) {
+      try {
+        console.log(`Trying v1 model: ${modelName}`)
+        const v1Model = genAI.getGenerativeModel({ model: modelName })
+        console.log(`✅ V1 Model ${modelName} initialized successfully`)
+        model = v1Model
+        v1ModelInitialized = true
+        break
+      } catch (modelError) {
+        console.log(`❌ V1 Model ${modelName} failed:`, modelError.message)
+      }
     }
-
-    const result = await response.json()
-    const testResponse = result.candidates?.[0]?.content?.parts?.[0]?.text || 'Test failed'
     
-    console.log('API key test result:', testResponse)
+    if (!v1ModelInitialized) {
+      throw new Error('No Gemini model could be initialized')
+    }
     
-    res.json({ 
-      status: 'OK',
-      message: 'API key test completed',
-      result: testResponse,
-      success: testResponse.includes('API key is working')
-    })
+    console.log('=== GEMINI INITIALIZATION COMPLETE ===')
+    console.log(`Using model: ${model ? model.modelName || 'unknown'}`)
   } catch (error) {
-    console.error('API key test failed:', error.message)
-    res.status(500).json({ 
-      error: 'API key test failed: ' + error.message,
-      details: error.message
-    })
+    console.error('=== GEMINI INITIALIZATION FAILED ===')
+    console.error('Error:', error.message)
+    console.error('Stack:', error.stack)
+    console.log('=== FALLBACK MODE ENABLED ===')
   }
 })
 

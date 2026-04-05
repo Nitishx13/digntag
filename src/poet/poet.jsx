@@ -858,7 +858,7 @@ const PoetPage = () => {
       if (error.code === 'ECONNREFUSED' || error.message.includes('Network Error')) {
         setError('🔴 Cannot connect to poetry server. Please make sure the backend is running. If you\'re on Vercel, check your environment variables and API deployment.')
       } else if (error.response?.status === 429) {
-        setError('🟡 Gemini API quota exceeded. Please try again later.')
+        setError('🟡 Gemini AI quota exceeded. Please try again later.')
       } else if (error.response?.status === 401) {
         setError('🔴 Invalid Gemini API key. Please check your environment variables in Vercel dashboard.')
       } else if (error.response?.status === 404) {

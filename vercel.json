@@ -9,7 +9,7 @@
       }
     },
     {
-      "src": "api/generate-poem.js",
+      "src": "api-server-final-working.js",
       "use": "@vercel/node"
     }
   ],

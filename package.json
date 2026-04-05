@@ -2,13 +2,12 @@
   "name": "react-app",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "server": "node api-server-simple-fixed.js",
+    "server": "node api-server-final-working.js",
+    "start": "node api-server-final.js",
     "start-all": "concurrently \"npm run server\" \"npm run dev\""
   },
   "dependencies": {
@@ -19,6 +18,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "node-fetch": "^3.3.2",
     "openai": "^4.20.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
