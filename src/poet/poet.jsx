@@ -228,19 +228,19 @@ const PoetPage = () => {
               </p>
             </div>
 
-            {/* How many paragraphs do you want? */}
+            {/* How many lines do you want? */}
             <div className="mb-8">
               <div className="flex items-center mb-4">
                 <span className="flex items-center justify-center w-6 h-6 rounded-full text-white mr-3"
                   style={{ backgroundColor: '#F5668D', fontSize: '0.8rem' }}
                 >4</span>
-                <h3 className="text-xl font-semibold" style={{ color: '#34161E' }}>How many paragraphs do you want?</h3>
+                <h3 className="text-xl font-semibold" style={{ color: '#34161E' }}>How many lines do you want?</h3>
               </div>
               <div className="flex flex-wrap gap-3 mb-4">
                 {[
-                  { value: '2', label: '2 paragraphs', desc: 'Short and sweet' },
-                  { value: '4', label: '4 paragraphs', desc: 'A perfect little verse' },
-                  { value: '8', label: '8-10 paragraphs', desc: 'More detailed and heartfelt' }
+                  { value: '2', label: '2 lines', desc: 'Short and sweet' },
+                  { value: '4', label: '4 lines', desc: 'A perfect little verse' },
+                  { value: '8', label: '8-10 lines', desc: 'More detailed and heartfelt' }
                 ].map((option, index) => (
                   <button 
                     key={index} 
