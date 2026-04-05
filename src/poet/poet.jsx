@@ -319,6 +319,73 @@ const PoetPage = () => {
               </div>
             </div>
           )}
+
+          {/* Section 3: Additional Features */}
+          <div className="mt-16 bg-white p-8 rounded-xl shadow-lg" style={{ backgroundColor: '#fffcfc', borderColor: '#F5668D', borderWidth: '1px' }}>
+            <div className="text-center mb-8">
+              <span className="flex items-center justify-center w-6 h-6 rounded-full text-white mr-3"
+                style={{ backgroundColor: '#F5668D', fontSize: '0.8rem' }}
+              >3</span>
+              <h3 className="text-xl font-semibold" style={{ color: '#34161E' }}>Advanced Features</h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="text-center p-6 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg">
+                <div className="text-4xl font-bold mb-2" style={{ color: '#34161E' }}>🎨</div>
+                <h4 className="text-lg font-semibold mb-2" style={{ color: '#34161E' }}>Poetry Styles</h4>
+                <p className="text-gray-700">Choose from various poetry styles and themes</p>
+              </div>
+              <div className="text-center p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg">
+                <div className="text-4xl font-bold mb-2" style={{ color: '#34161E' }}>📝</div>
+                <h4 className="text-lg font-semibold mb-2" style={{ color: '#34161E' }}>Writing Templates</h4>
+                <p className="text-gray-700">Professional templates for different occasions</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Section 4: Testimonials */}
+          <div className="mt-16 bg-white p-8 rounded-xl shadow-lg" style={{ backgroundColor: '#fffcfc', borderColor: '#F5668D', borderWidth: '1px' }}>
+            <div className="text-center mb-8">
+              <span className="flex items-center justify-center w-6 h-6 rounded-full text-white mr-3"
+                style={{ backgroundColor: '#F5668D', fontSize: '0.8rem' }}
+              >4</span>
+              <h3 className="text-xl font-semibold" style={{ color: '#34161E' }}>User Testimonials</h3>
+            </div>
+            <div className="space-y-6">
+              <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-r from-pink-400 to-purple-400 flex items-center justify-center text-white font-bold text-xl">
+                    ★★★★★
+                  </div>
+                  <div className="ml-4">
+                    <h4 className="text-lg font-semibold" style={{ color: '#34161E' }}>Sarah M.</h4>
+                    <p className="text-gray-600 italic">"This poetry generator helped me create the most beautiful birthday poem for my mother. The AI understands emotions perfectly!"</p>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-400 to-indigo-400 flex items-center justify-center text-white font-bold text-xl">
+                    ★★★★★
+                  </div>
+                  <div className="ml-4">
+                    <h4 className="text-lg font-semibold" style={{ color: '#34161E' }}>Rahul K.</h4>
+                    <p className="text-gray-600 italic">"Amazing Hindi poetry generation! The language support is incredible and the poems are so heartfelt."</p>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-r from-green-400 to-teal-400 flex items-center justify-center text-white font-bold text-xl">
+                    ★★★★★
+                  </div>
+                  <div className="ml-4">
+                    <h4 className="text-lg font-semibold" style={{ color: '#34161E' }}>Priya S.</h4>
+                    <p className="text-gray-600 italic">"I love how I can generate poetry in multiple languages. The paragraph feature is exactly what I needed!"</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </main>
 
