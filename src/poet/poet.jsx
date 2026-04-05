@@ -110,10 +110,109 @@ const PoetPage = () => {
       setGeneratedPoem(response.data.poem)
     } catch (err) {
       console.error('Error generating poetry:', err)
-      setError('Server error. Please try again later.')
+      
+      // Handle specific API quota exceeded error
+      if (err.response?.status === 429 || err.message?.includes('quota exceeded')) {
+        setGeneratedPoem(getDefaultPoetry())
+        setError('AI quota exceeded. Showing you a beautiful default poem instead!')
+      } else {
+        setError('Server error. Please try again later.')
+      }
     } finally {
       setIsGenerating(false)
     }
+  }
+
+  // Default beautiful poetry function
+  const getDefaultPoetry = () => {
+    const defaultPoems = {
+      'Hindi': {
+        '2': `तेरी यादें मेरे दिल में बसी हैं,
+हर पल तेरा ही खयाल आता है।
+
+तुम मेरे दिल की धड़कन हो,
+तेरे बिना ये जीवन अधूरा है।`,
+        '4': `तेरी यादें मेरे दिल में बसी हैं,
+हर पल तेरा ही खयाल आता है।
+
+तुम मेरे दिल की धड़कन हो,
+तेरे बिना ये जीवन अधूरा है।
+
+तेरी मुस्कान मेरी दुनिया है,
+तेरे चेहरे पर आता है नूर।
+
+तुमसे मिलकर मैं खुश हूँ,
+तेरी हर बात मुझे प्यारी है।`,
+        '8': `तेरी यादें मेरे दिल में बसी हैं,
+हर पल तेरा ही खयाल आता है।
+
+तुम मेरे दिल की धड़कन हो,
+तेरे बिना ये जीवन अधूरा है।
+
+तेरी मुस्कान मेरी दुनिया है,
+तेरे चेहरे पर आता है नूर।
+
+तुमसे मिलकर मैं खुश हूँ,
+तेरी हर बात मुझे प्यारी है।
+
+तेरी आँखों में समां है गहरा,
+वहाँ मैं खो जाता हूँ।
+
+तेरी बाहों में पनाह है,
+वहाँ मैं पाता हूँ सुकून।
+
+तेरे साथ हर लम्हा है खास,
+तेरे बिना सब कुछ वीरान है।
+
+तुम मेरी जिंदगी का हिस्सा हो,
+तेरे साथ ही गुजारना है।`
+      },
+      'English': {
+        '2': `Your memories reside in my heart,
+Every moment brings thoughts of you.
+
+You are the heartbeat of my soul,
+Without you, life feels incomplete.`,
+        '4': `Your memories reside in my heart,
+Every moment brings thoughts of you.
+
+You are the heartbeat of my soul,
+Without you, life feels incomplete.
+
+Your smile lights up my world,
+Your face radiates pure light.
+
+With you, I find true happiness,
+Every word you speak is precious.`,
+        '8': `Your memories reside in my heart,
+Every moment brings thoughts of you.
+
+You are the heartbeat of my soul,
+Without you, life feels incomplete.
+
+Your smile lights up my world,
+Your face radiates pure light.
+
+With you, I find true happiness,
+Every word you speak is precious.
+
+Your eyes hold depths of wonder,
+Where I lose myself completely.
+
+Your arms offer me shelter,
+There I find my peace and comfort.
+
+Every moment with you is special,
+Without you, everything feels empty.
+
+You are a part of my life's journey,
+With you is how I want to live.`
+      }
+    }
+
+    // Get default poem based on language and line count
+    const langPoems = defaultPoems[language] || defaultPoems['English']
+    return langPoems[lineCount] || langPoems['4']
   }
 
   return (
