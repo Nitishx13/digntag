@@ -4,7 +4,7 @@ const fs = require('fs')
 const path = require('path')
 
 const app = express()
-const port = process.env.PORT || 3001
+const port = process.env.PORT || 3005
 
 // Middleware
 app.use(cors())
@@ -64,33 +64,34 @@ app.post('/api/generate-poem', async (req, res) => {
     }
 
     // Create a comprehensive prompt based on form data
-    let prompt = `Write a poem in ${language} for ${recipient}`
+    let prompt = `You are a master poet. Write a poem in ${language} for ${recipient}.`
     
-    // Add specific paragraph count instruction with explicit formatting
+    // Add very specific paragraph count instruction with exact format
     if (lineCount === '2') {
-      prompt += `. The poem must have exactly 2 paragraphs. Format the poem with each paragraph separated by a blank line.`
+      prompt += `\n\nREQUIREMENTS:\n- Write EXACTLY 2 paragraphs\n- Each paragraph should be 3-5 sentences long\n- Separate paragraphs with a blank line\n- Do not write more or less than 2 paragraphs\n- Format: Paragraph 1\n\nParagraph 2`
     } else if (lineCount === '4') {
-      prompt += `. The poem must have exactly 4 paragraphs. Format the poem with each paragraph separated by a blank line.`
+      prompt += `\n\nREQUIREMENTS:\n- Write EXACTLY 4 paragraphs\n- Each paragraph should be 3-5 sentences long\n- Separate paragraphs with a blank line\n- Do not write more or less than 4 paragraphs\n- Format: Paragraph 1\n\nParagraph 2\n\nParagraph 3\n\nParagraph 4`
     } else if (lineCount === '8') {
-      prompt += `. The poem must have exactly 8-10 paragraphs. Format the poem with each paragraph separated by a blank line.`
+      prompt += `\n\nREQUIREMENTS:\n- Write EXACTLY 8-10 paragraphs\n- Each paragraph should be 3-5 sentences long\n- Separate paragraphs with a blank line\n- Do not write more or less than 8-10 paragraphs\n- Format: Paragraph 1\n\nParagraph 2\n\n... (continue to 8-10)`
     } else {
-      prompt += `. The poem must have exactly ${lineCount} paragraphs. Format the poem with each paragraph separated by a blank line.`
+      prompt += `\n\nREQUIREMENTS:\n- Write EXACTLY ${lineCount} paragraphs\n- Each paragraph should be 3-5 sentences long\n- Separate paragraphs with a blank line\n- Do not write more or less than ${lineCount} paragraphs`
     }
     
     if (story) {
-      prompt += ` Context: ${story}`
+      prompt += `\n\nCONTEXT: ${story}`
     }
     
     if (messageType) {
-      prompt += `. Tone: ${messageType}`
+      prompt += `\n\nTONE: ${messageType}`
     }
     
     // Add specific language instruction
     if (language && language.toLowerCase() !== 'english') {
-      prompt += `. IMPORTANT: Write this poem ENTIRELY in ${language}. Do not mix languages. The response must be 100% in ${language}.`
+      prompt += `\n\nLANGUAGE: Write ENTIRELY in ${language}. No English words allowed.`
     }
     
-    prompt += `. Make it heartfelt and personal. Ensure each paragraph is separated by a blank line.`
+    prompt += `\n\nSTYLE: Make it heartfelt and personal.`
+    prompt += `\n\nCRITICAL: Follow the paragraph count EXACTLY as specified above.`
 
     console.log('Generated prompt:', prompt)
 
