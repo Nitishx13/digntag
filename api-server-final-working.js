@@ -68,13 +68,13 @@ app.post('/api/generate-poem', async (req, res) => {
     
     // Add very specific paragraph count instruction with exact format
     if (lineCount === '2') {
-      prompt += `\n\nREQUIREMENTS:\n- Write EXACTLY 2 paragraphs\n- Each paragraph should be 3-5 sentences long\n- Separate paragraphs with a blank line\n- Do not write more or less than 2 paragraphs\n- Format: Paragraph 1\n\nParagraph 2`
+      prompt += `\n\nCRITICAL REQUIREMENTS:\n- Write EXACTLY 2 paragraphs\n- Each paragraph must be 3-5 sentences\n- Separate paragraphs with a double blank line\n- Do NOT write more than 2 paragraphs\n- Do NOT write less than 2 paragraphs\n- Format: Paragraph 1\n\nParagraph 2\n\nMUST BE EXACTLY 2 PARAGRAPHS - NO EXCEPTIONS`
     } else if (lineCount === '4') {
-      prompt += `\n\nREQUIREMENTS:\n- Write EXACTLY 4 paragraphs\n- Each paragraph should be 3-5 sentences long\n- Separate paragraphs with a blank line\n- Do not write more or less than 4 paragraphs\n- Format: Paragraph 1\n\nParagraph 2\n\nParagraph 3\n\nParagraph 4`
+      prompt += `\n\nCRITICAL REQUIREMENTS:\n- Write EXACTLY 4 paragraphs\n- Each paragraph must be 3-5 sentences\n- Separate paragraphs with a double blank line\n- Do NOT write more than 4 paragraphs\n- Do NOT write less than 4 paragraphs\n- Format: Paragraph 1\n\nParagraph 2\n\nParagraph 3\n\nParagraph 4\n\nMUST BE EXACTLY 4 PARAGRAPHS - NO EXCEPTIONS`
     } else if (lineCount === '8') {
-      prompt += `\n\nREQUIREMENTS:\n- Write EXACTLY 8-10 paragraphs\n- Each paragraph should be 3-5 sentences long\n- Separate paragraphs with a blank line\n- Do not write more or less than 8-10 paragraphs\n- Format: Paragraph 1\n\nParagraph 2\n\n... (continue to 8-10)`
+      prompt += `\n\nCRITICAL REQUIREMENTS:\n- Write EXACTLY 8-10 paragraphs\n- Each paragraph must be 3-5 sentences\n- Separate paragraphs with a double blank line\n- Do NOT write more than 10 paragraphs\n- Do NOT write less than 8 paragraphs\n- Format: Paragraph 1\n\nParagraph 2\n\n... (continue to 8-10)\n\nMUST BE EXACTLY 8-10 PARAGRAPHS - NO EXCEPTIONS`
     } else {
-      prompt += `\n\nREQUIREMENTS:\n- Write EXACTLY ${lineCount} paragraphs\n- Each paragraph should be 3-5 sentences long\n- Separate paragraphs with a blank line\n- Do not write more or less than ${lineCount} paragraphs`
+      prompt += `\n\nCRITICAL REQUIREMENTS:\n- Write EXACTLY ${lineCount} paragraphs\n- Each paragraph must be 3-5 sentences\n- Separate paragraphs with a double blank line\n- Do NOT write more or less than ${lineCount} paragraphs\n\nMUST BE EXACTLY ${lineCount} PARAGRAPHS - NO EXCEPTIONS`
     }
     
     if (story) {
@@ -91,7 +91,7 @@ app.post('/api/generate-poem', async (req, res) => {
     }
     
     prompt += `\n\nSTYLE: Make it heartfelt and personal.`
-    prompt += `\n\nCRITICAL: Follow the paragraph count EXACTLY as specified above.`
+    prompt += `\n\nFINAL INSTRUCTION: YOU MUST GENERATE EXACTLY THE NUMBER OF PARAGRAPHS SPECIFIED ABOVE. THIS IS NOT OPTIONAL. IF YOU GENERATE A DIFFERENT NUMBER OF PARAGRAPHS, THE RESPONSE IS WRONG.`
 
     console.log('Generated prompt:', prompt)
 
