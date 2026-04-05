@@ -66,15 +66,15 @@ app.post('/api/generate-poem', async (req, res) => {
     // Create a comprehensive prompt based on form data
     let prompt = `Write a poem in ${language} for ${recipient}`
     
-    // Add specific line count instruction
+    // Add specific line count instruction with explicit formatting
     if (lineCount === '2') {
-      prompt += `. The poem must have exactly 2 lines.`
+      prompt += `. The poem must have exactly 2 lines. Format the poem with each line on a separate line.`
     } else if (lineCount === '4') {
-      prompt += `. The poem must have exactly 4 lines.`
+      prompt += `. The poem must have exactly 4 lines. Format the poem with each line on a separate line.`
     } else if (lineCount === '8') {
-      prompt += `. The poem must have exactly 8-10 lines.`
+      prompt += `. The poem must have exactly 8-10 lines. Format the poem with each line on a separate line.`
     } else {
-      prompt += `. The poem must have exactly ${lineCount} lines.`
+      prompt += `. The poem must have exactly ${lineCount} lines. Format the poem with each line on a separate line.`
     }
     
     if (story) {
@@ -90,7 +90,7 @@ app.post('/api/generate-poem', async (req, res) => {
       prompt += `. IMPORTANT: Write this poem ENTIRELY in ${language}. Do not mix languages. The response must be 100% in ${language}.`
     }
     
-    prompt += `. Make it heartfelt and personal.`
+    prompt += `. Make it heartfelt and personal. Ensure each line is separated by a newline character.`
 
     console.log('Generated prompt:', prompt)
 
