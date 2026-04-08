@@ -42,5 +42,5 @@ process.on('SIGINT', () => {
 console.log('📝 Backend server starting on http://localhost:3001');
 console.log('🌐 Frontend server starting on http://localhost:5173');
 console.log('🎯 Access AI Poet at: http://localhost:5173/poet');
-console.log('\n⚠️  Make sure to set your OPENAI_API_KEY in src/poet/.env');
+console.log('\nMake sure to set your GEMINI_API_KEY in config.env');
 console.log('💡 Press Ctrl+C to stop both servers\n');

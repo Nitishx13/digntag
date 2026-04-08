@@ -2,14 +2,14 @@
 
 ## 🔧 Environment Variable Setup
 
-### 1. Set OpenAI API Key in Vercel Dashboard
+### 1. Set Gemini API Key in Vercel Dashboard
 
 Go to your Vercel project dashboard:
 1. Navigate to your project
 2. Go to **Settings** → **Environment Variables**
 3. Add the following environment variable:
-   - **Name**: `OPENAI_API_KEY`
-   - **Value**: Your actual OpenAI API key
+   - **Name**: `GEMINI_API_KEY`
+   - **Value**: Your actual Gemini API key
    - **Environments**: Production, Preview, Development
 
 ### 2. Verify Your vercel.json Configuration
@@ -43,7 +43,7 @@ Your `vercel.json` should look like this:
     }
   ],
   "env": {
-    "OPENAI_API_KEY": "@openai_api_key"
+    "GEMINI_API_KEY": "@gemini_api_key"
   }
 }
 ```
@@ -66,7 +66,7 @@ const apiUrl = window.location.hostname === 'localhost'
 
 1. **Push your code to GitHub**
 2. **Connect your repository to Vercel**
-3. **Set the OPENAI_API_KEY environment variable**
+3. **Set the GEMINI_API_KEY environment variable**
 4. **Deploy your application**
 
 ## 🔍 Troubleshooting
@@ -78,7 +78,7 @@ const apiUrl = window.location.hostname === 'localhost'
    - Look for any error messages in the `/api/generate-poem` function
 
 2. **Verify Environment Variable**:
-   - Make sure the OPENAI_API_KEY is set correctly
+   - Make sure the GEMINI_API_KEY is set correctly
    - Check that it's available in all environments
 
 3. **Test the API directly**:
@@ -106,7 +106,7 @@ If you need an immediate solution, you can:
    const apiUrl = 'https://your-app-name.vercel.app/api/generate-poem'
    ```
 
-2. **Make sure your OpenAI API key is set** in Vercel environment variables
+2. **Make sure your Gemini API key is set** in Vercel environment variables
 
 3. **Redeploy** your application
 

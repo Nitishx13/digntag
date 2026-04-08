@@ -19,8 +19,8 @@ if [ ! -f ".env" ]; then
     echo "⚠️  Warning: .env file not found"
     echo "📝 Creating .env file from template..."
     cp .env.example .env
-    echo "✅ Created .env file - please add your OPENAI_API_KEY"
-    echo "🔑 Get your API key from: https://platform.openai.com/api-keys"
+    echo "✅ Created .env file - please add your GEMINI_API_KEY"
+    echo "🔑 Get your API key from: https://aistudio.google.com/app/apikey"
 else
     echo "✅ .env file exists"
 fi
@@ -46,9 +46,9 @@ echo "🎉 Deployment steps completed!"
 echo ""
 echo "📋 Next Steps:"
 echo "1. Go to your Vercel dashboard"
-echo "2. Set OPENAI_API_KEY environment variable:"
-echo "   Name: OPENAI_API_KEY"
-echo "   Value: sk-your-actual-openai-api-key"
+echo "2. Set GEMINI_API_KEY environment variable:"
+echo "   Name: GEMINI_API_KEY"
+echo "   Value: your-actual-gemini-api-key"
 echo "   Environments: Production, Preview, Development"
 echo "3. Trigger new deployment or wait for auto-deploy"
 echo "4. Test at: https://www.digntag.in"

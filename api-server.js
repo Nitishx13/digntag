@@ -2,7 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import path from 'path'
 import { fileURLToPath } from 'url'
-import { OpenAI } from 'openai'
+import { GoogleGenerativeAI } from '@google/generative-ai'
 import dotenv from 'dotenv'
 
 // Get current directory
@@ -19,10 +19,9 @@ const port = process.env.PORT || 3001
 app.use(cors())
 app.use(express.json())
 
-// Initialize OpenAI
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-})
+// Initialize Gemini AI
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
+const model = genAI.getGenerativeModel({ model: 'gemini-pro' })
 
 // Poetry generation endpoint
 app.post('/api/generate-poem', async (req, res) => {
@@ -46,23 +45,8 @@ app.post('/api/generate-poem', async (req, res) => {
     
     prompt += `. Make it heartfelt and personal.`
 
-    const completion = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
-      messages: [
-        {
-          role: "system",
-          content: "You are a master poet who can create beautiful, emotionally resonant poetry in multiple languages and styles. Your poems should be creative, well-structured, and capture the essence of the given theme and relationship."
-        },
-        {
-          role: "user",
-          content: prompt
-        }
-      ],
-      max_tokens: 300,
-      temperature: 0.8,
-    })
-
-    const poem = completion.choices[0].message.content.trim()
+    const result = await model.generateContent(prompt)
+    const poem = result.response.text().trim()
 
     res.json({ poem })
   } catch (error) {
@@ -70,11 +54,11 @@ app.post('/api/generate-poem', async (req, res) => {
     
     // Handle different types of errors
     if (error.response?.status === 429) {
-      return res.status(429).json({ error: 'OpenAI API quota exceeded. Please check your billing or try again later.' })
+      return res.status(429).json({ error: 'Gemini API quota exceeded. Please try again later.' })
     } else if (error.response?.status === 401) {
-      return res.status(401).json({ error: 'Invalid OpenAI API key.' })
+      return res.status(401).json({ error: 'Invalid Gemini API key.' })
     } else {
-      // Fallback response if OpenAI fails
+      // Fallback response if Gemini fails
       const { recipient, language, lineCount } = req.body || {}
       const fallbackPoem = `In realms where words like rivers flow,\nYour feelings dance and gently glow.\nA tapestry of thought and soul,\nWhere poetry takes its precious toll.\n\n${language || 'English'} poetry for ${recipient || 'someone'},\n${lineCount || 'beautiful'} lines of heartfelt grace.`
       

@@ -103,23 +103,76 @@ module.exports = async (req, res) => {
 
     console.log('Generated prompt:', prompt)
 
-    // Use Gemini AI only - no fallback
-    if (!geminiApiKey || geminiApiKey === 'YOUR_NEW_API_KEY_HERE') {
-      return res.status(500).json({ error: 'Gemini AI model not available. Please check server configuration.' })
+    // First, try to find exact match in database
+    try {
+      const fs = require('fs')
+      const path = require('path')
+      
+      // Load Hindi shayari database
+      const hindiShayariPath = path.join(__dirname, '../hindi-shayari.json')
+      let hindiShayariData = []
+      if (fs.existsSync(hindiShayariPath)) {
+        const hindiContent = fs.readFileSync(hindiShayariPath, 'utf8')
+        hindiShayariData = JSON.parse(hindiContent)
+      }
+
+      // Load English shayari database (if exists)
+      const englishShayariPath = path.join(__dirname, '../english-shayari.json')
+      let englishShayariData = []
+      if (fs.existsSync(englishShayariPath)) {
+        const englishContent = fs.readFileSync(englishShayariPath, 'utf8')
+        englishShayariData = JSON.parse(englishContent)
+      }
+
+      // Combine all shayari data
+      const allShayari = [...hindiShayariData, ...englishShayariData]
+      
+      console.log(`Searching through ${allShayari.length} shayari entries...`)
+
+      // Find exact match
+      const exactMatch = allShayari.find(shayari => {
+        return shayari.language === language &&
+               shayari.lineCount === lineCount &&
+               shayari.recipient === recipient &&
+               (messageType ? shayari.messageType === messageType : true)
+      })
+
+      if (exactMatch) {
+        console.log('Found exact match in database:', exactMatch.text.substring(0, 50) + '...')
+        return res.json({ poem: exactMatch.text })
+      }
+
+      // No exact match found - return "Not Available" message
+      console.log('No exact match found in database, returning Not Available message')
+      
+      const notAvailableMessage = `# Shayari Not Available
+
+Sorry, no shayari available for:
+- **Recipient**: ${recipient || 'Not specified'}
+- **Language**: ${language || 'Not specified'}
+- **Lines**: ${lineCount || 'Not specified'}
+- **Message Type**: ${messageType || 'Not specified'}
+
+Please try different combinations or check back later for more shayari options.`
+
+      return res.json({ poem: notAvailableMessage })
+      
+    } catch (dbError) {
+      console.log('Database search failed:', dbError.message)
+      
+      // If database fails, also return Not Available
+      const notAvailableMessage = `# Shayari Not Available
+
+Sorry, unable to search shayari database right now for:
+- **Recipient**: ${recipient || 'Not specified'}
+- **Language**: ${language || 'Not specified'}
+- **Lines**: ${lineCount || 'Not specified'}
+- **Message Type**: ${messageType || 'Not specified'}
+
+Please try again later or contact support.`
+
+      return res.json({ poem: notAvailableMessage })
     }
-
-    // Import Google Generative AI
-    const { GoogleGenerativeAI } = require('@google/generative-ai')
-    const genAI = new GoogleGenerativeAI(geminiApiKey)
-    const model = genAI.getGenerativeModel({ model: 'gemini-pro' })
-
-    const result = await model.generateContent(prompt)
-    const poem = result.response.text()
-
-    console.log('Generated poem length:', poem.length)
-    console.log('Generated poem preview:', poem.substring(0, 200) + '...')
-
-    res.json({ poem })
   } catch (error) {
     console.error('Error generating poem:', error)
     
@@ -129,11 +182,20 @@ module.exports = async (req, res) => {
     } else if (error.response?.status === 401) {
       return res.status(401).json({ error: 'Invalid API key.' })
     } else {
-      // Fallback response if AI fails
-      const { recipient, language, lineCount } = req.body || {}
-      const fallbackPoem = `In realms where words like rivers flow,\nYour feelings dance and gently glow.\nA tapestry of thought and soul,\nWhere poetry takes its precious toll.\n\n${language || 'English'} poetry for ${recipient || 'someone'},\n${lineCount || 'beautiful'} lines of heartfelt grace.`
+      // When AI fails or no match found, return "Not Available" message
+      const { recipient, language, lineCount, messageType } = req.body || {}
       
-      res.json({ poem: fallbackPoem })
+      const notAvailableMessage = `# Shayari Not Available
+
+Sorry, no shayari available for:
+- **Recipient**: ${recipient || 'Not specified'}
+- **Language**: ${language || 'Not specified'}
+- **Lines**: ${lineCount || 'Not specified'}
+- **Message Type**: ${messageType || 'Not specified'}
+
+Please try different combinations or check back later for more shayari options.`
+
+      res.json({ poem: notAvailableMessage })
     }
   }
 }
