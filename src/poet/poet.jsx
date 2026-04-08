@@ -84,6 +84,14 @@ const PoetPage = () => {
 
   // Generate poetry
   const generatePoetry = async () => {
+    console.log('=== FORM DATA BEFORE SUBMISSION ===')
+    console.log('Recipient:', recipient)
+    console.log('Message Type:', messageType)
+    console.log('Language:', language)
+    console.log('Line Count:', lineCount)
+    console.log('Story:', story)
+    console.log('====================================')
+
     if (!recipient || !language || !lineCount) {
       setError('Please fill in all required fields')
       return
@@ -280,7 +288,10 @@ With you is how I want to live.`
                       backgroundColor: recipient === relation ? '#F5668D' : 'transparent',
                       color: recipient === relation ? 'white' : '#34161E'
                     }}
-                    onClick={() => setRecipient(relation)}
+                    onClick={() => {
+                      console.log('Recipient selected:', relation)
+                      setRecipient(relation)
+                    }}
                   >
                     {relation}
                   </button>
@@ -311,7 +322,10 @@ With you is how I want to live.`
                       backgroundColor: messageType === option ? '#F5668D' : 'transparent',
                       color: messageType === option ? 'white' : '#34161E'
                     }}
-                    onClick={() => setMessageType(option)}
+                    onClick={() => {
+                      console.log('Message type selected:', option)
+                      setMessageType(option)
+                    }}
                   >
                     {option}
                   </button>
@@ -342,7 +356,10 @@ With you is how I want to live.`
                       backgroundColor: language === lang ? '#F5668D' : 'transparent',
                       color: language === lang ? 'white' : '#34161E'
                     }}
-                    onClick={() => setLanguage(lang)}
+                    onClick={() => {
+                      console.log('Language selected:', lang)
+                      setLanguage(lang)
+                    }}
                   >
                     {lang}
                   </button>
@@ -377,7 +394,10 @@ With you is how I want to live.`
                       backgroundColor: lineCount === option.value ? '#F5668D' : 'transparent',
                       color: lineCount === option.value ? 'white' : '#34161E'
                     }}
-                    onClick={() => setLineCount(option.value)}
+                    onClick={() => {
+                      console.log('Line count selected:', option.value)
+                      setLineCount(option.value)
+                    }}
                   >
                     {option.label}
                   </button>
