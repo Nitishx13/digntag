@@ -57,10 +57,12 @@ export default function AdminLayout() {
           <div className="grid grid-cols-1 md:grid-cols-[240px_1fr] gap-10">
             <aside className="hidden md:block md:sticky md:top-10 h-fit">
               <nav className="space-y-1">
-                <SidebarLink to="/admin/settings">Settings</SidebarLink>
                 <SidebarLink to="/admin/events">My events</SidebarLink>
+                <SidebarLink to="/admin/shayari">Shayari Management</SidebarLink>
                 <SidebarLink to="/admin/whatsapp">WhatsApp notify</SidebarLink>
                 <SidebarLink to="/admin/integrations">Integrations</SidebarLink>
+                <SidebarLink to="/admin/settings">Settings</SidebarLink>
+                <SidebarLink to="/admin/blog">Blog</SidebarLink>
                 <button
                   type="button"
                   onClick={onLogout}
@@ -108,10 +110,11 @@ export default function AdminLayout() {
 
                 <div className="px-4">
                   <nav className="space-y-1">
-                    <SidebarLink to="/admin/settings">Settings</SidebarLink>
                     <SidebarLink to="/admin/events">My events</SidebarLink>
+                    <SidebarLink to="/admin/shayari">Shayari Management</SidebarLink>
                     <SidebarLink to="/admin/whatsapp">WhatsApp notify</SidebarLink>
                     <SidebarLink to="/admin/integrations">Integrations</SidebarLink>
+                    <SidebarLink to="/admin/settings">Settings</SidebarLink>
                     <button
                       type="button"
                       onClick={onLogout}

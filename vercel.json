@@ -1,29 +1,14 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "api-server-final-working.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
-    }
-  ],
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
   "rewrites": [
     {
-      "source": "/api/(.*)",
-      "destination": "/api-server-final-working.js"
+      "source": "/api/generate-poem",
+      "destination": "/api-server.js"
     },
     {
       "source": "/(.*)",
       "destination": "/index.html"
     }
-  ],
-  "env": {
-    "GEMINI_API_KEY": "AIzaSyAJ5AlIJRBozmXDvDA9OoOBOtUtXZHS5Kk"
-  }
+  ]
 }

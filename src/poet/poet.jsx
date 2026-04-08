@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import SiteHeader from '../components/SiteHeader.jsx'
@@ -16,6 +16,15 @@ const PoetPage = () => {
   const [lineCount, setLineCount] = useState('')
   const [story, setStory] = useState('')
   const [error, setError] = useState('')
+
+  // API origin - moved to top level
+  const origin = useMemo(() => {
+    const hostname = window.location.hostname
+    if (hostname === 'localhost' || hostname === '127.0.0.1') {
+      return 'http://localhost:3005'
+    }
+    return 'https://www.digntag.in'
+  }, [])
 
   // Message type options based on recipient
   const getMessageOptions = () => {
@@ -85,20 +94,7 @@ const PoetPage = () => {
     setGeneratedPoem('')
 
     try {
-      const getApiUrl = () => {
-        const hostname = window.location.hostname
-        if (hostname.includes('vercel.app') || hostname === 'www.digntag.in' || hostname === 'digntag.in') {
-          return '/api/generate-poem'
-        }
-        if (hostname === 'localhost') {
-          return 'http://localhost:3001/api/generate-poem'
-        }
-        return '/api/generate-poem'
-      }
-
-      const apiUrl = getApiUrl()
-      console.log('API URL:', apiUrl)
-
+      const apiUrl = `${origin}/api/generate-poem`
       const response = await axios.post(apiUrl, {
         recipient,
         messageType,
@@ -107,16 +103,40 @@ const PoetPage = () => {
         story
       })
 
-      setGeneratedPoem(response.data.poem)
+      const poem = response.data.poem
+      setGeneratedPoem(poem)
+      // Save generated shayari to localStorage for templates with proper encoding
+      localStorage.setItem('generatedShayari', poem)
+      console.log('Generated poem:', poem)
     } catch (err) {
       console.error('Error generating poetry:', err)
+      console.error('Error response:', err.response)
+      console.error('Error status:', err.response?.status)
+      console.error('Error data:', err.response?.data)
       
       // Handle specific API quota exceeded error
       if (err.response?.status === 429 || err.message?.includes('quota exceeded')) {
-        setGeneratedPoem(getDefaultPoetry())
+        const defaultPoem = getDefaultPoetry()
+        setGeneratedPoem(defaultPoem)
+        // Save default poetry to localStorage for templates
+        localStorage.setItem('generatedShayari', defaultPoem)
+        console.log('Using default poem:', defaultPoem)
         setError('AI quota exceeded. Showing you a beautiful default poem instead!')
+      } else if (err.response?.status === 404) {
+        const errorData = err.response?.data
+        if (errorData?.error === 'DATABASE_IS_EMPTY') {
+          setError('📚 DATABASE IS EMPTY! Please add shayari to the database first using the admin panel.')
+        } else if (errorData?.error === 'NO_MATCH') {
+          setError(`🔍 NO MATCH FOUND! No shayari available for ${language} with ${lineCount} lines. Please add shayari for this combination.`)
+        } else {
+          setError(errorData?.message || 'No matching shayari found in database.')
+        }
+      } else if (err.response?.status === 400) {
+        setError('Please fill in all required fields.')
+      } else if (err.code === 'ECONNREFUSED' || err.message?.includes('Network Error')) {
+        setError('Cannot connect to poetry server. Please make sure the server is running.')
       } else {
-        setError('Server error. Please try again later.')
+        setError(`Server error: ${err.response?.data?.error || err.message || 'Please try again later.'}`)
       }
     } finally {
       setIsGenerating(false)
@@ -216,52 +236,29 @@ With you is how I want to live.`
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#fdf8f8' }}>
+    <>
       <SiteHeader />
-      
-      {/* Hero Section with CTA */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-white via-white to-gray-50 w-full py-16">
-        <div className="container mx-auto px-4">
-          <div className="text-center">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-primary leading-[1.05] tracking-tight mb-6">
-              Create Beautiful Poetry in Seconds
-            </h1>
-            <p className="text-lg sm:text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
-              Transform your emotions into heartfelt poetry with our AI-powered generator. 
-              Support multiple languages and create personalized poems for your loved ones.
-            </p>
-            <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-              <a 
-                href="#generator" 
-                className="px-8 py-4 bg-cta text-white font-bold text-base rounded-full shadow-xl hover:bg-cta/90 transition duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-cta/50 text-center"
-              >
-                Start Creating Poetry
-              </a>
-              <a 
-                href="/services" 
-                className="px-8 py-4 bg-white text-primary font-bold text-base rounded-full shadow-xl hover:bg-gray-50 transition duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-white/50 text-center ring-1 ring-gray-100"
-              >
-                Explore All Features
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <main className="container mx-auto px-4 py-8">
-        <div className="max-w-3xl mx-auto">
+      <main className="min-h-screen bg-gradient-to-br from-pink-50 to-purple-50">
+        <div className="container mx-auto px-4 py-4 sm:py-8">
           {/* Header */}
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold mb-4" style={{ color: '#34161E' }}>
-              Personalized Poetry Generator
-            </h1>
-            <p className="text-lg" style={{ color: '#666' }}>
-              Create beautiful, heartfelt poetry for your loved ones
-            </p>
+          <div className="text-center mb-6 sm:mb-8">
+            <h1 className="text-2xl sm:text-4xl font-bold text-purple-800 mb-2 sm:mb-4">Line Generator</h1>
+            <p className="text-sm sm:text-lg text-gray-600 mb-4">Create beautiful shayari and poetry lines instantly with AI-powered technology</p>
+            <p className="text-sm text-gray-500">Generate heartfelt romantic lines, friendship quotes, birthday wishes, anniversary messages, and more in Hindi, English, and multiple languages. Perfect for social media posts, greeting cards, and special occasions.</p>
+          </div>
+
+          {/* Google AdSense Banner */}
+          <div className="mb-8">
+            <div className="bg-gray-50 rounded-lg p-4 text-center">
+              <div className="text-xs text-gray-500 mb-2">Advertisement</div>
+              <div className="bg-gray-200 rounded h-20 flex items-center justify-center">
+                <span className="text-gray-400 text-sm">AdSense Banner Ad Space</span>
+              </div>
+            </div>
           </div>
 
           {/* Poetry Generation Form */}
-          <div id="generator" className="bg-white p-8 rounded-xl shadow-lg" style={{ backgroundColor: '#fffcfc', borderColor: '#F5668D', borderWidth: '1px' }}>
+          <div id="generator" className="bg-white p-4 sm:p-8 rounded-xl shadow-lg" style={{ backgroundColor: '#fffcfc', borderColor: '#F5668D', borderWidth: '1px' }}>
             
             {/* Who is this for? */}
             <div className="mb-8">
@@ -334,7 +331,7 @@ With you is how I want to live.`
                 <h3 className="text-xl font-semibold" style={{ color: '#34161E' }}>In which language?</h3>
               </div>
               <div className="flex flex-wrap gap-3 mb-4">
-                {['Hindi', 'Hinglish', 'Marathi', 'Gujarati', 'English', 'Urdu'].map((lang, index) => (
+                {['Hindi', 'English'].map((lang, index) => (
                   <button 
                     key={index} 
                     className={`px-4 py-2 rounded-full border transition hover:opacity-80 ${
@@ -436,14 +433,36 @@ With you is how I want to live.`
 
           {/* Generated Poem */}
           {generatedPoem && (
-            <div className="mt-8 bg-white p-8 rounded-xl shadow-lg" style={{ backgroundColor: '#fffcfc', borderColor: '#F5668D', borderWidth: '1px' }}>
-              <h3 className="text-xl font-semibold mb-4 text-center" style={{ color: '#34161E' }}>
-                Your Personalized Poetry
-              </h3>
-              <div className="text-center">
-                <pre className="whitespace-pre-wrap font-serif text-lg leading-relaxed" style={{ color: '#34161E' }}>
-                  {generatedPoem}
-                </pre>
+            <div className="mt-8 p-6 bg-gray-50 rounded-xl">
+              <h3 className="text-lg font-semibold mb-4" style={{ color: '#34161E' }}>Your Generated Poetry</h3>
+              <div className="whitespace-pre-line text-lg leading-relaxed" style={{ color: '#34161E' }}>
+                {generatedPoem}
+              </div>
+              <div className="mt-6 grid grid-cols-2 gap-3 sm:flex sm:gap-4">
+                <button
+                  onClick={() => navigator.clipboard.writeText(generatedPoem)}
+                  className="px-4 py-3 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition text-sm sm:px-6 sm:py-2"
+                >
+                  📋 Copy Poetry
+                </button>
+                <button
+                  onClick={() => setGeneratedPoem('')}
+                  className="px-4 py-3 bg-gray-200 text-gray-700 font-semibold rounded-full hover:bg-gray-300 transition text-sm sm:px-6 sm:py-2"
+                >
+                  🔄 Generate New
+                </button>
+                <a
+                  href="/templates"
+                  className="px-4 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-full hover:from-purple-600 hover:to-pink-600 transition text-sm sm:px-6 sm:py-2 text-center"
+                >
+                  🎨 Create Template
+                </a>
+                <a
+                  href="/shayari"
+                  className="px-4 py-3 bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-semibold rounded-full hover:from-blue-600 hover:to-indigo-600 transition text-sm sm:px-6 sm:py-2 text-center"
+                >
+                  📖 View All Shayari
+                </a>
               </div>
             </div>
           )}
@@ -518,7 +537,7 @@ With you is how I want to live.`
       </main>
 
       <SiteFooter />
-    </div>
+    </>
   )
 }
 

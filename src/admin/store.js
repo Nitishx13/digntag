@@ -1,6 +1,7 @@
 const EVENTS_KEY = 'digntag_events'
 const SESSION_KEY = 'digntag_admin_session'
 const PASSWORD_KEY = 'digntag_admin_password'
+const SHAYARI_KEY = 'digntag_shayari_database'
 
 const SESSION_TTL_MS = 1000 * 60 * 60 * 12
 
@@ -139,4 +140,80 @@ export function addRsvp(publicId, { name, phone, status }) {
 
   upsertEvent(next)
   return next
+}
+
+// Shayari Management Functions
+export function loadShayariDatabase() {
+  const raw = localStorage.getItem(SHAYARI_KEY)
+  if (!raw) {
+    // Initialize with default database
+    const defaultDatabase = {
+      "Hindi": {
+        "2": [
+          "तेरे अज़ीज़ दोस्त, तेरे दिल में आती है।\n\nतुम मेरे दिल की धड़कन हो, तेरे बिना मेरे लिए जाते हो।"
+        ],
+        "4": [
+          "तेरे आने से ज़िंदगी में एक नई रोशनी आई है।\n\nतेरी मुस्कान से हर पल तुम्हारा लगता है।\n\nतेरे हर खुशी मुस्कान में मेरा दिल बसता है।\n\nतेरे साथ हर लम्हा अधूर हो जाता है।"
+        ],
+        "8": [
+          "तेरे आने से ज़िंदगी में एक नई सुबहा चमक आई है।\n\nतेरे अज़ बोट से हर पल तुम्हारा लगता है।\n\nतेरी मुस्कान से हर पल तुम्हारा लगता है।\n\nतेरे हर खुशी मुस्कान में मेरा दिल बसता है।\n\nतेरे साथ हर लम्हा अधूर हो जाता है।\n\nतेरे वज़ से मुझे को देखने का अहसास है।\n\nतेरे साथ हर लम्हा अधूर हो जाता है।"
+        ]
+      },
+      "English": {
+        "2": [
+          "In quiet moments, thoughts of you arise,\nA gentle presence that lights up my skies."
+        ],
+        "4": [
+          "Through changing tides, your hand I've known,\nA steady light, a comfort shown.\n\nWith every laugh, a spirit bright,\nYou make my world a better sight."
+        ],
+        "8": [
+          "Through every season, calm or storm,\nYour steadfast presence lights my way.\n\nIn darkest hours, your love's warm embrace,\nA beacon shining through time and space.\n\nWhen shadows fall and doubts appear,\nYour whispered words dissolve all fear.\n\nThrough joy and sorrow, side by side,\nOur journey continues, hand in hand.\n\nIn morning light and evening's soft glow,\nYour love remains a constant, steady flame.\n\nAcross the years, our bond grows stronger still,\nA timeless treasure, beyond all measure."
+        ]
+      }
+    }
+    localStorage.setItem(SHAYARI_KEY, JSON.stringify(defaultDatabase))
+    return defaultDatabase
+  }
+  try {
+    return JSON.parse(raw)
+  } catch {
+    return {}
+  }
+}
+
+export function saveShayariDatabase(database) {
+  localStorage.setItem(SHAYARI_KEY, JSON.stringify(database))
+}
+
+export function addShayari(language, lineCount, shayariText) {
+  const database = loadShayariDatabase()
+  const count = lineCount === '8' ? '8' : lineCount
+  
+  if (!database[language]) {
+    database[language] = {}
+  }
+  
+  if (!database[language][count]) {
+    database[language][count] = []
+  }
+  
+  const newShayari = {
+    id: crypto.randomUUID(),
+    text: shayariText.trim(),
+    createdAt: Date.now()
+  }
+  
+  database[language][count].push(newShayari.text)
+  saveShayariDatabase(database)
+  return newShayari
+}
+
+export function deleteShayari(language, lineCount, index) {
+  const database = loadShayariDatabase()
+  const count = lineCount === '8' ? '8' : lineCount
+  
+  if (database[language] && database[language][count]) {
+    database[language][count].splice(index, 1)
+    saveShayariDatabase(database)
+  }
 }

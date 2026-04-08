@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Add Shayari</title>
+</head>
+<body>
+    <h1>Add Shayari</h1>
+    <form id="shayariForm">
+        <input type="text" id="language" value="Hindi" readonly><br><br>
+        <input type="text" id="lineCount" value="2" readonly><br><br>
+        <textarea id="text" rows="3" cols="50">तेरी यादें मेरे दिल में,
+हर पल तेरा ही खयाल रहता है।</textarea><br><br>
+        <input type="text" id="recipient" value="Partner" readonly><br><br>
+        <input type="text" id="messageType" value="Love and Romance" readonly><br><br>
+        <input type="text" id="story" value="Romantic moments together" readonly><br><br>
+        <button type="submit">Add Shayari</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('shayariForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const data = {
+                language: document.getElementById('language').value,
+                lineCount: document.getElementById('lineCount').value,
+                text: document.getElementById('text').value,
+                recipient: document.getElementById('recipient').value,
+                messageType: document.getElementById('messageType').value,
+                story: document.getElementById('story').value
+            };
+            
+            try {
+                const response = await fetch('https://www.digntag.in/api/admin-shayari-manage', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                document.getElementById('result').innerHTML = 
+                    '<h3>' + (result.success ? 'SUCCESS' : 'ERROR') + '</h3><pre>' + JSON.stringify(result, null, 2) + '</pre>';
+            } catch (error) {
+                document.getElementById('result').innerHTML = '<h3>ERROR</h3><pre>' + error.message + '</pre>';
+            }
+        });
+    </script>
+</body>
+</html>

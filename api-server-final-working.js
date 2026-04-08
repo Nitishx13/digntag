@@ -14,25 +14,25 @@ app.use(express.json())
 console.log('=== LOADING API KEY ===')
 let geminiApiKey = process.env.GEMINI_API_KEY
 
-// Try to load from .env file if not found
+// Try to load from config.env file if not found
 if (!geminiApiKey) {
   try {
-    const envPath = path.join(__dirname, '.env')
-    console.log('Checking .env at:', envPath)
+    const envPath = path.join(__dirname, 'config.env')
+    console.log('Checking config.env at:', envPath)
     if (fs.existsSync(envPath)) {
       const envContent = fs.readFileSync(envPath, 'utf8')
-      console.log('.env content length:', envContent.length)
+      console.log('config.env content length:', envContent.length)
       const envLines = envContent.split('\n')
       for (const line of envLines) {
         if (line.startsWith('GEMINI_API_KEY=')) {
           geminiApiKey = line.split('=')[1].trim()
-          console.log('✅ API Key loaded from .env')
+          console.log('✅ API Key loaded from config.env')
           break
         }
       }
     }
   } catch (error) {
-    console.log('Could not read .env file:', error.message)
+    console.log('Could not read config.env file:', error.message)
   }
 }
 

@@ -2,6 +2,8 @@ import { Navigate, Route, Routes, useParams } from 'react-router-dom'
 import HtmlPage from './HtmlPage.jsx'
 import AdminLogin from './admin/AdminLogin.jsx'
 import AdminLayout from './admin/AdminLayout.jsx'
+import AdminDashboard from './admin/AdminDashboard.jsx'
+import ShayariManagement from './admin/ShayariManagement.jsx'
 import AdminEventsPage from './admin/AdminEventsPage.jsx'
 import AdminSettingsPage from './admin/AdminSettingsPage.jsx'
 import AdminEventNewPage from './admin/AdminEventNewPage.jsx'
@@ -11,7 +13,11 @@ import AdminWhatsappToolPage from './admin/AdminWhatsappToolPage.jsx'
 import AdminIntegrationsPage from './admin/AdminIntegrationsPage.jsx'
 import TrackPage from './admin/TrackPage.jsx'
 import RsvpPage from './admin/RsvpPage.jsx'
+import AdminBlogPage from './admin/AdminBlogPage.jsx'
+import HomePage from './HomePage.jsx'
 import PoetPage from './poet/poet.jsx'
+import ShayariTemplates from './shayari-templates/ShayariTemplates.jsx'
+import ShayariDisplay from './shayari-display/ShayariDisplay.jsx'
 
 function AdminShareRedirect() {
   const { id } = useParams()
@@ -75,18 +81,22 @@ function App() {
       <Route path="/admin" element={<AdminLayout />}>
         <Route path="events" element={<AdminEventsPage />} />
         <Route path="events/new" element={<AdminEventNewPage />} />
-        <Route path="events/:id/guests" element={<AdminGuestsRedirect />} />
+        <Route path="events/:id/guests" element={<AdminEventGuestsPage />} />
         <Route path="events/:id/share" element={<AdminShareRedirect />} />
+        <Route path="shayari" element={<ShayariManagement />} />
         <Route path="whatsapp" element={<AdminWhatsappToolPage />} />
         <Route path="integrations" element={<AdminIntegrationsPage />} />
         <Route path="settings" element={<AdminSettingsPage />} />
+        <Route path="blog" element={<AdminBlogPage />} />
         <Route index element={<Navigate to="/admin/events" replace />} />
       </Route>
       <Route path="/track/:id" element={<TrackPage />} />
       <Route path="/rsvp/:id" element={<RsvpPage />} />
       <Route path="/poet" element={<PoetPage />} />
+      <Route path="/templates" element={<ShayariTemplates />} />
+      <Route path="/shayari" element={<ShayariDisplay />} />
       <Route path="/home" element={<HtmlPage file="index.html" />} />
-      <Route path="/" element={<PoetPage />} />
+      <Route path="/" element={<HomePage />} />
       {routes.map((r) => (
         <Route key={r.path} path={r.path} element={<HtmlPage file={r.file} />} />
       ))}
