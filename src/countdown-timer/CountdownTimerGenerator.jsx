@@ -55,6 +55,20 @@ const CountdownTimerGenerator = () => {
     setTotalFrames(duration * frameRate)
   }, [duration, frameRate])
 
+  // Calculate estimated rendering time
+  const getEstimatedRenderTime = () => {
+    // Rough estimate: ~50ms per frame for canvas rendering
+    const msPerFrame = 50
+    const totalMs = totalFrames * msPerFrame
+    const seconds = Math.ceil(totalMs / 1000)
+    
+    if (seconds < 10) return `${seconds} seconds`
+    if (seconds < 60) return `${seconds} seconds`
+    const minutes = Math.floor(seconds / 60)
+    const remainingSeconds = seconds % 60
+    return `${minutes}m ${remainingSeconds}s`
+  }
+
   // Precise timer calculation based on frame number
   const getTimerDisplay = (currentFrame) => {
     // Calculate remaining time: remaining_time = total_duration - (current_frame / fps)
@@ -660,13 +674,23 @@ const CountdownTimerGenerator = () => {
                 </div>
 
                 {/* Generate Button */}
-                <button
-                  onClick={generateVideo}
-                  disabled={isGenerating || (!isFree && true)}
-                  className="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {isGenerating ? 'Generating...' : 'Generate Timer'}
-                </button>
+                <div className="space-y-2">
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                    <p className="text-blue-800 text-sm">
+                      <strong>Estimated render time:</strong> {getEstimatedRenderTime()}
+                    </p>
+                    <p className="text-blue-600 text-xs mt-1">
+                      Processing {totalFrames} frames at {frameRate} FPS
+                    </p>
+                  </div>
+                  <button
+                    onClick={generateVideo}
+                    disabled={isGenerating || (!isFree && true)}
+                    className="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isGenerating ? 'Generating...' : 'Generate Timer'}
+                  </button>
+                </div>
 
                 {/* Progress */}
                 {isGenerating && (
@@ -677,9 +701,17 @@ const CountdownTimerGenerator = () => {
                         style={{ width: `${generationProgress}%` }}
                       />
                     </div>
-                    <p className="text-sm text-gray-600 text-center">
-                      Generating video... {Math.round(generationProgress)}%
-                    </p>
+                    <div className="text-center">
+                      <p className="text-sm text-gray-600">
+                        Generating video... {Math.round(generationProgress)}%
+                      </p>
+                      <p className="text-xs text-gray-500">
+                        Processing frame {Math.round(generationProgress * totalFrames / 100)} of {totalFrames}
+                      </p>
+                      <p className="text-xs text-gray-500">
+                        Estimated time remaining: {getEstimatedRenderTime()}
+                      </p>
+                    </div>
                   </div>
                 )}
 
