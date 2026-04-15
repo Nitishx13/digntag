@@ -345,21 +345,7 @@ const CountdownTimerGenerator = () => {
                   </p>
                 </div>
 
-                {/* Current Time Display */}
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Current Real-Time
-                  </label>
-                  <div className="bg-gray-100 rounded-lg p-4 text-center">
-                    <div className="text-2xl font-bold text-gray-800">
-                      {currentTime.toLocaleTimeString()}
-                    </div>
-                    <div className="text-sm text-gray-600">
-                      {currentTime.toLocaleDateString()}
-                    </div>
-                  </div>
-                </div>
-
+                
                 {/* Resolution */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
