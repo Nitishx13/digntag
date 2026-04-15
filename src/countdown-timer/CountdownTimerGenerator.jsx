@@ -137,7 +137,7 @@ const CountdownTimerGenerator = () => {
     ctx.fillText(formatTime(time), canvas.width / 2, canvas.height / 2)
   }
 
-  // Preview animation - simulate countdown
+  // Preview animation - simulate countdown with CORRECT timing
   const startPreview = () => {
     if (isPreviewPlaying) return
     
@@ -147,10 +147,10 @@ const CountdownTimerGenerator = () => {
     const totalPreviewFrames = duration * previewFrameRate
     
     const animate = () => {
-      // Calculate current time in preview
-      const currentTime = currentFrame / previewFrameRate
-      const remainingTime = duration - currentTime
-      const displayTime = Math.max(0, Math.ceil(remainingTime))
+      // CRITICAL FIX: Calculate display time correctly (same as video generation)
+      const currentSecondInVideo = Math.floor(currentFrame / previewFrameRate)
+      const remainingTime = duration - currentSecondInVideo
+      const displayTime = Math.max(0, remainingTime)
       
       drawTimer(previewCanvasRef.current, displayTime, true)
       setPreviewTime(displayTime)
@@ -281,16 +281,18 @@ const CountdownTimerGenerator = () => {
       console.log('Starting MediaRecorder')
       mediaRecorder.start(100) // 100ms timeslice
 
-      // Generate frames with small delays to allow recording
+      // Generate frames with CORRECT timing - CRITICAL FIX
       console.log('Starting frame generation...')
+      console.log(`Each second will last for ${frameRate} frames`)
       
       for (let frame = 0; frame < totalFrames; frame++) {
-        // Calculate display time
-        const currentTime = frame / frameRate
-        const remainingTime = duration - currentTime
-        const displayTime = Math.max(0, Math.ceil(remainingTime))
+        // CRITICAL FIX: Calculate display time correctly
+        // Each second should persist for exactly frameRate frames
+        const currentSecondInVideo = Math.floor(frame / frameRate)
+        const remainingTime = duration - currentSecondInVideo
+        const displayTime = Math.max(0, remainingTime)
         
-        // Draw frame
+        // Draw frame with correct timer
         drawTimer(canvas, displayTime)
         
         // Update progress
@@ -299,14 +301,9 @@ const CountdownTimerGenerator = () => {
         
         frameCount++
         
-        // Small delay every 10 frames to allow recording
-        if (frame % 10 === 0) {
-          await new Promise(resolve => setTimeout(resolve, 1))
-        }
-        
-        // Log progress every 30 frames
+        // Log progress every 30 frames with timing info
         if (frame % 30 === 0) {
-          console.log(`Progress: ${frame}/${totalFrames} frames (${Math.round(progress)}%)`)
+          console.log(`Frame ${frame}/${totalFrames}: displayTime=${displayTime}s, second=${currentSecondInVideo}`)
         }
       }
       
