@@ -20,10 +20,6 @@ const CountdownTimerGenerator = () => {
   const [isPreviewPlaying, setIsPreviewPlaying] = useState(false)
   const [videosGenerated, setVideosGenerated] = useState(2772)
   const [currentTime, setCurrentTime] = useState(new Date())
-  const [timeZone, setTimeZone] = useState('local')
-  const [showRealTime, setShowRealTime] = useState(false)
-  const [targetTime, setTargetTime] = useState('')
-  const [countdownMode, setCountdownMode] = useState('duration') // 'duration' or 'specific-time'
   
   const canvasRef = useRef(null)
   const previewCanvasRef = useRef(null)
@@ -45,17 +41,6 @@ const CountdownTimerGenerator = () => {
     'Courier New', 'Verdana', 'Impact', 'Comic Sans MS', 'Trebuchet MS'
   ]
 
-  // Time zones
-  const timeZones = [
-    { label: 'Local Time', value: 'local' },
-    { label: 'UTC', value: 'UTC' },
-    { label: 'EST', value: 'America/New_York' },
-    { label: 'PST', value: 'America/Los_Angeles' },
-    { label: 'IST', value: 'Asia/Kolkata' },
-    { label: 'CET', value: 'Europe/Paris' },
-    { label: 'JST', value: 'Asia/Tokyo' }
-  ]
-
   // Update current time every second
   useEffect(() => {
     const timer = setInterval(() => {
@@ -64,36 +49,10 @@ const CountdownTimerGenerator = () => {
     return () => clearInterval(timer)
   }, [])
 
-  // Get current time in specific timezone
-  const getTimeInTimeZone = (date, tz) => {
-    if (tz === 'local') return date
-    if (tz === 'UTC') return new Date(date.toUTCString())
-    
-    try {
-      return new Date(date.toLocaleString("en-US", { timeZone: tz }))
-    } catch (e) {
-      return date
-    }
-  }
-
-  // Calculate time until specific target time
-  const getTimeUntilTarget = () => {
-    if (!targetTime) return 0
-    
-    const now = getTimeInTimeZone(new Date(), timeZone)
-    const target = new Date(targetTime)
-    const targetInTz = getTimeInTimeZone(target, timeZone)
-    
-    const diff = targetInTz - now
-    return Math.max(0, Math.floor(diff / 1000))
-  }
-
-  // Get display time based on mode
-  const getDisplayTime = () => {
-    if (countdownMode === 'specific-time') {
-      return getTimeUntilTarget()
-    }
-    return previewTime
+  // Get current real-time seconds
+  const getCurrentSeconds = () => {
+    const now = new Date()
+    return now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds()
   }
 
   // Format time display
@@ -150,30 +109,18 @@ const CountdownTimerGenerator = () => {
     ctx.fillText(formatTime(time), canvas.width / 2, canvas.height / 2)
   }
 
-  // Preview animation - sync with real-time
+  // Preview animation - show real-time seconds
   const startPreview = () => {
     if (isPreviewPlaying) return
     
     setIsPreviewPlaying(true)
     
     const animate = () => {
-      const now = getTimeInTimeZone(new Date(), timeZone)
-      const currentSeconds = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds()
+      const currentSeconds = getCurrentSeconds()
+      const displaySeconds = currentSeconds % (duration || 60)
       
-      if (countdownMode === 'specific-time') {
-        const timeRemaining = getTimeUntilTarget()
-        if (timeRemaining <= 0) {
-          setIsPreviewPlaying(false)
-          return
-        }
-        drawTimer(previewCanvasRef.current, timeRemaining, true)
-        setPreviewTime(timeRemaining)
-      } else {
-        // Show real-time seconds
-        const displaySeconds = currentSeconds % (duration || 60)
-        drawTimer(previewCanvasRef.current, displaySeconds, true)
-        setPreviewTime(displaySeconds)
-      }
+      drawTimer(previewCanvasRef.current, displaySeconds, true)
+      setPreviewTime(displaySeconds)
       
       animationRef.current = requestAnimationFrame(animate)
     }
@@ -191,7 +138,7 @@ const CountdownTimerGenerator = () => {
     drawTimer(previewCanvasRef.current, duration, true)
   }
 
-  // Generate countdown video - with real-time sync
+  // Generate countdown video - real-time seconds only
   const generateVideo = async () => {
     setIsGenerating(true)
     setGenerationProgress(0)
@@ -231,21 +178,14 @@ const CountdownTimerGenerator = () => {
 
       mediaRecorder.start()
 
-      // Generate frames - sync with real-time
+      // Generate frames - use real-time seconds
       for (let frame = 0; frame < totalFrames; frame++) {
-        let displayTime
+        // Get current real-time seconds
+        const currentSeconds = getCurrentSeconds()
+        const displaySeconds = currentSeconds % (duration || 60)
         
-        if (countdownMode === 'specific-time') {
-          displayTime = getTimeUntilTarget()
-        } else {
-          // Sync with real-time seconds
-          const now = getTimeInTimeZone(new Date(), timeZone)
-          const currentSeconds = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds()
-          displayTime = currentSeconds % duration
-        }
-        
-        // Draw frame
-        drawTimer(canvas, displayTime)
+        // Draw frame with real-time seconds
+        drawTimer(canvas, displaySeconds)
         
         // Update progress
         const progress = (frame / totalFrames) * 100
@@ -357,86 +297,35 @@ const CountdownTimerGenerator = () => {
                   </div>
                 </div>
 
-                {/* Countdown Mode */}
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Countdown Mode
-                  </label>
-                  <div className="flex gap-2">
-                    <button
-                      onClick={() => setCountdownMode('duration')}
-                      className={`px-4 py-2 rounded-lg font-medium ${
-                        countdownMode === 'duration'
-                          ? 'bg-blue-600 text-white'
-                          : 'bg-gray-200 text-gray-700'
-                      }`}
-                    >
-                      Duration
-                    </button>
-                    <button
-                      onClick={() => setCountdownMode('specific-time')}
-                      className={`px-4 py-2 rounded-lg font-medium ${
-                        countdownMode === 'specific-time'
-                          ? 'bg-blue-600 text-white'
-                          : 'bg-gray-200 text-gray-700'
-                      }`}
-                    >
-                      Real Time
-                    </button>
-                  </div>
-                </div>
-
                 {/* Duration */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    {countdownMode === 'specific-time' ? 'Target Time' : 'Duration (seconds)'}
+                    Duration (seconds)
                   </label>
-                  {countdownMode === 'specific-time' ? (
-                    <input
-                      type="datetime-local"
-                      value={targetTime}
-                      onChange={(e) => setTargetTime(e.target.value)}
-                      className="w-full border border-gray-300 rounded-lg px-4 py-2"
-                    />
-                  ) : (
-                    <input
-                      type="number"
-                      min="1"
-                      max="300"
-                      value={duration}
-                      onChange={(e) => setDuration(parseInt(e.target.value) || 10)}
-                      className="w-full border border-gray-300 rounded-lg px-4 py-2"
-                    />
-                  )}
-                </div>
-
-                {/* Time Zone */}
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Time Zone
-                  </label>
-                  <select
-                    value={timeZone}
-                    onChange={(e) => setTimeZone(e.target.value)}
+                  <input
+                    type="number"
+                    min="1"
+                    max="60"
+                    value={duration}
+                    onChange={(e) => setDuration(parseInt(e.target.value) || 10)}
                     className="w-full border border-gray-300 rounded-lg px-4 py-2"
-                  >
-                    {timeZones.map(tz => (
-                      <option key={tz.value} value={tz.value}>{tz.label}</option>
-                    ))}
-                  </select>
+                  />
+                  <p className="text-xs text-gray-500 mt-1">
+                    Video will show real-time seconds (0-59)
+                  </p>
                 </div>
 
                 {/* Current Time Display */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Current Time ({timeZones.find(tz => tz.value === timeZone)?.label})
+                    Current Real-Time
                   </label>
                   <div className="bg-gray-100 rounded-lg p-4 text-center">
                     <div className="text-2xl font-bold text-gray-800">
-                      {getTimeInTimeZone(currentTime, timeZone).toLocaleTimeString()}
+                      {currentTime.toLocaleTimeString()}
                     </div>
                     <div className="text-sm text-gray-600">
-                      {getTimeInTimeZone(currentTime, timeZone).toLocaleDateString()}
+                      {currentTime.toLocaleDateString()}
                     </div>
                   </div>
                 </div>
