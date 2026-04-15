@@ -181,17 +181,17 @@ const CountdownTimerGenerator = () => {
     drawTimer(previewCanvasRef.current, duration, true)
   }
 
-  // Generate countdown video - REMOTION PROFESSIONAL VERSION
+  // Generate countdown video - BULLETPROOF Node.js + FFmpeg PIPELINE
   const generateVideo = async () => {
     setIsGenerating(true)
     setGenerationProgress(0)
     setGeneratedVideo(null)
 
     try {
-      console.log('=== REMOTION VIDEO GENERATION START ===')
+      console.log('=== BULLETPROOF VIDEO GENERATION START ===')
       console.log(`Duration: ${duration}s, FPS: ${frameRate}, Resolution: ${resolution}`)
 
-      // Configuration for Remotion
+      // Configuration for bulletproof pipeline
       const config = {
         duration: duration,
         backgroundColor: backgroundColor,
@@ -203,10 +203,59 @@ const CountdownTimerGenerator = () => {
         resolution: resolution
       }
 
-      console.log('Remotion config:', config)
+      console.log('Bulletproof config:', config)
 
-      // Use canvas-based rendering for now (Remotion integration will be added)
-      // This is a hybrid approach that fixes timing issues
+      // Call bulletproof Node.js + FFmpeg pipeline
+      console.log('Calling bulletproof video generation API...')
+      
+      const response = await fetch('http://localhost:3007/api/generate-video', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(config)
+      })
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+
+      console.log('Bulletproof pipeline response received')
+
+      // Get video blob from response
+      const blob = await response.blob()
+      console.log(`Received video blob: ${blob.size} bytes, type: ${blob.type}`)
+
+      if (blob.size === 0) {
+        throw new Error('Empty video blob received')
+      }
+
+      // Create video URL
+      const url = URL.createObjectURL(blob)
+      console.log('Created video URL:', url.substring(0, 50) + '...')
+
+      // Set the video URL - this will trigger download button
+      setGeneratedVideo(url)
+      setVideosGenerated(prev => prev + 1)
+      setIsGenerating(false)
+      setGenerationProgress(100)
+
+      console.log('=== BULLETPROOF VIDEO GENERATION COMPLETE ===')
+
+    } catch (error) {
+      console.error('Bulletproof video generation error:', error)
+      
+      // Fallback to canvas-based method if bulletproof pipeline fails
+      console.log('Falling back to canvas-based generation...')
+      await generateVideoFallback()
+    }
+  }
+
+  // Fallback video generation (canvas-based)
+  const generateVideoFallback = async () => {
+    try {
+      console.log('=== FALLBACK VIDEO GENERATION START ===')
+
       const currentResolution = resolutions.find(r => r.value === resolution)
       const canvas = canvasRef.current
       const ctx = canvas.getContext('2d')
@@ -218,27 +267,21 @@ const CountdownTimerGenerator = () => {
       canvas.width = currentResolution.width
       canvas.height = currentResolution.height
 
-      console.log(`Canvas set to: ${canvas.width}x${canvas.height}`)
-
-      // Create video using improved MediaRecorder with better timing
       const chunks = []
       let frameCount = 0
       
-      // Create stream with exact frame rate
       const stream = canvas.captureStream(frameRate)
       const mediaRecorder = new MediaRecorder(stream, {
         mimeType: 'video/webm;codecs=vp9',
-        videoBitsPerSecond: 8000000 // Higher bitrate for better quality
+        videoBitsPerSecond: 8000000
       })
 
-      // Data handler
       mediaRecorder.ondataavailable = (e) => {
         if (e.data && e.data.size > 0) {
           chunks.push(e.data)
         }
       }
 
-      // Stop handler with proper cleanup
       mediaRecorder.onstop = () => {
         try {
           if (chunks.length === 0) {
@@ -253,66 +296,48 @@ const CountdownTimerGenerator = () => {
           
           const url = URL.createObjectURL(blob)
           
-          // Set the video URL
           setGeneratedVideo(url)
           setVideosGenerated(prev => prev + 1)
           setIsGenerating(false)
           setGenerationProgress(100)
           
-          console.log('=== VIDEO GENERATION COMPLETED ===')
+          console.log('=== FALLBACK VIDEO GENERATION COMPLETE ===')
           
         } catch (error) {
-          console.error('Error in mediaRecorder.onstop:', error)
+          console.error('Error in fallback generation:', error)
           setIsGenerating(false)
           setGenerationProgress(0)
         }
       }
 
-      // Error handler
       mediaRecorder.onerror = (event) => {
-        console.error('MediaRecorder error:', event)
+        console.error('Fallback MediaRecorder error:', event)
         setIsGenerating(false)
         setGenerationProgress(0)
       }
 
-      // Start recording
-      console.log('Starting MediaRecorder with improved timing')
       mediaRecorder.start(100)
 
-      // Generate frames with PERFECT timing
-      console.log('Starting frame generation with exact timing...')
-      
       for (let frame = 0; frame < totalFrames; frame++) {
-        // PERFECT TIMING: Each second lasts exactly frameRate frames
         const currentSecondInVideo = Math.floor(frame / frameRate)
         const remainingTime = duration - currentSecondInVideo
         const displayTime = Math.max(0, remainingTime)
         
-        // Draw frame with correct timer
         drawTimer(canvas, displayTime)
         
-        // Update progress
         const progress = (frame / totalFrames) * 100
         setGenerationProgress(progress)
         
         frameCount++
         
-        // Progress logging
         if (frame % 60 === 0) {
-          console.log(`Progress: ${frame}/${totalFrames} frames (${Math.round(progress)}%) - Timer: ${displayTime}s`)
+          console.log(`Fallback progress: ${frame}/${totalFrames} frames (${Math.round(progress)}%)`)
         }
       }
       
-      console.log(`Frame generation complete: ${frameCount} frames rendered`)
-
-      // Wait before stopping
       await new Promise(resolve => setTimeout(resolve, 200))
-
-      // Stop recording
-      console.log('Stopping MediaRecorder')
       mediaRecorder.stop()
 
-      // Wait for completion
       await new Promise(resolve => {
         const checkComplete = () => {
           if (mediaRecorder.state === 'inactive') {
@@ -325,7 +350,7 @@ const CountdownTimerGenerator = () => {
       })
 
     } catch (error) {
-      console.error('Error in generateVideo:', error)
+      console.error('Fallback generation error:', error)
       setIsGenerating(false)
       setGenerationProgress(0)
     }
@@ -373,7 +398,7 @@ const CountdownTimerGenerator = () => {
     })
   }
 
-  // Download generated video - WORKING version
+  // Download generated video - BULLETPROOF MP4 version
   const downloadVideo = async () => {
     if (!generatedVideo) {
       console.error('No video available for download')
@@ -381,12 +406,16 @@ const CountdownTimerGenerator = () => {
     }
     
     try {
-      console.log('Starting video download...')
+      console.log('Starting bulletproof video download...')
+      
+      // Check if it's MP4 or WebM
+      const isMP4 = generatedVideo.includes('.mp4') || generatedVideo.includes('video/mp4')
+      const fileExtension = isMP4 ? 'mp4' : 'webm'
       
       // Create download link
       const a = document.createElement('a')
       a.href = generatedVideo
-      a.download = `countdown-${duration}seconds-${resolution}-${new Date().getTime()}.webm`
+      a.download = `countdown-${duration}seconds-${resolution}-${new Date().getTime()}.${fileExtension}`
       
       // Add to document and click
       document.body.appendChild(a)
@@ -395,13 +424,13 @@ const CountdownTimerGenerator = () => {
       // Clean up
       document.body.removeChild(a)
       
-      console.log('Video download initiated successfully!')
+      console.log(`Bulletproof video download initiated successfully! (${fileExtension.toUpperCase()})`)
       
-      // Optional: Show success message
-      alert('Video download started! Check your downloads folder.')
+      // Show success message with file format info
+      alert(`Video download started! Check your downloads folder for the ${fileExtension.toUpperCase()} file.`)
       
     } catch (error) {
-      console.error('Error during video download:', error)
+      console.error('Error during bulletproof video download:', error)
       alert('Error downloading video. Please try again.')
     }
   }
