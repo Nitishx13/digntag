@@ -19,6 +19,11 @@ const CountdownTimerGenerator = () => {
   const [previewTime, setPreviewTime] = useState(duration)
   const [isPreviewPlaying, setIsPreviewPlaying] = useState(false)
   const [videosGenerated, setVideosGenerated] = useState(2772)
+  const [currentTime, setCurrentTime] = useState(new Date())
+  const [timeZone, setTimeZone] = useState('local')
+  const [showRealTime, setShowRealTime] = useState(false)
+  const [targetTime, setTargetTime] = useState('')
+  const [countdownMode, setCountdownMode] = useState('duration') // 'duration' or 'specific-time'
   
   const canvasRef = useRef(null)
   const previewCanvasRef = useRef(null)
@@ -39,6 +44,57 @@ const CountdownTimerGenerator = () => {
     'Roboto', 'Arial', 'Helvetica', 'Times New Roman', 'Georgia', 
     'Courier New', 'Verdana', 'Impact', 'Comic Sans MS', 'Trebuchet MS'
   ]
+
+  // Time zones
+  const timeZones = [
+    { label: 'Local Time', value: 'local' },
+    { label: 'UTC', value: 'UTC' },
+    { label: 'EST', value: 'America/New_York' },
+    { label: 'PST', value: 'America/Los_Angeles' },
+    { label: 'IST', value: 'Asia/Kolkata' },
+    { label: 'CET', value: 'Europe/Paris' },
+    { label: 'JST', value: 'Asia/Tokyo' }
+  ]
+
+  // Update current time every second
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date())
+    }, 1000)
+    return () => clearInterval(timer)
+  }, [])
+
+  // Get current time in specific timezone
+  const getTimeInTimeZone = (date, tz) => {
+    if (tz === 'local') return date
+    if (tz === 'UTC') return new Date(date.toUTCString())
+    
+    try {
+      return new Date(date.toLocaleString("en-US", { timeZone: tz }))
+    } catch (e) {
+      return date
+    }
+  }
+
+  // Calculate time until specific target time
+  const getTimeUntilTarget = () => {
+    if (!targetTime) return 0
+    
+    const now = getTimeInTimeZone(new Date(), timeZone)
+    const target = new Date(targetTime)
+    const targetInTz = getTimeInTimeZone(target, timeZone)
+    
+    const diff = targetInTz - now
+    return Math.max(0, Math.floor(diff / 1000))
+  }
+
+  // Get display time based on mode
+  const getDisplayTime = () => {
+    if (countdownMode === 'specific-time') {
+      return getTimeUntilTarget()
+    }
+    return previewTime
+  }
 
   // Format time display
   const formatTime = (seconds) => {

@@ -14,7 +14,10 @@
         }        
         
         // Set the current year for the copyright
-        document.getElementById('current-year').textContent = new Date().getFullYear();
+        const currentYearElement = document.getElementById('current-year');
+        if (currentYearElement) {
+            currentYearElement.textContent = new Date().getFullYear();
+        }
 
         /**
          * Toggles the visibility of the mobile menu.
@@ -31,7 +34,10 @@
         }
 
  // Set the current year for the copyright
-        document.getElementById('current-year').textContent = new Date().getFullYear();
+        const currentYearElement = document.getElementById('current-year');
+        if (currentYearElement) {
+            currentYearElement.textContent = new Date().getFullYear();
+        }
 
         /**
          * Toggles the visibility of the mobile menu.
