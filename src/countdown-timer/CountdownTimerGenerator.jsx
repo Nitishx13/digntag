@@ -3,10 +3,9 @@ import SiteHeader from '../components/SiteHeader.jsx'
 import SiteFooter from '../components/SiteFooter.jsx'
 
 const CountdownTimerGenerator = () => {
-  const [duration, setDuration] = useState(10)
-  const [timerType, setTimerType] = useState('countdown')
+  const [duration, setDuration] = useState(60)
   const [resolution, setResolution] = useState('720p')
-  const [text, setText] = useState('00:10')
+  const [text, setText] = useState('01:00')
   const [backgroundColor, setBackgroundColor] = useState('#1a1a1a')
   const [textColor, setTextColor] = useState('#ffffff')
   const [fontSize, setFontSize] = useState(100)
@@ -20,6 +19,8 @@ const CountdownTimerGenerator = () => {
   const [isPreviewPlaying, setIsPreviewPlaying] = useState(false)
   const [videosGenerated, setVideosGenerated] = useState(2772)
   const [currentTime, setCurrentTime] = useState(new Date())
+  const [frameRate, setFrameRate] = useState(30) // 30 or 60 FPS
+  const [totalFrames, setTotalFrames] = useState(1800) // 60 seconds * 30 FPS
   
   const canvasRef = useRef(null)
   const previewCanvasRef = useRef(null)
@@ -49,10 +50,23 @@ const CountdownTimerGenerator = () => {
     return () => clearInterval(timer)
   }, [])
 
-  // Get current real-time seconds
-  const getCurrentSeconds = () => {
-    const now = new Date()
-    return now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds()
+  // Update total frames when duration or frame rate changes
+  useEffect(() => {
+    setTotalFrames(duration * frameRate)
+  }, [duration, frameRate])
+
+  // Precise timer calculation based on frame number
+  const getTimerDisplay = (currentFrame) => {
+    // Calculate remaining time: remaining_time = total_duration - (current_frame / fps)
+    const remainingTime = duration - (currentFrame / frameRate)
+    
+    // Ensure we don't go below 0
+    const displayTime = Math.max(0, remainingTime)
+    
+    // Use ceil to ensure proper second display
+    const displaySeconds = Math.ceil(displayTime)
+    
+    return displaySeconds
   }
 
   // Format time display
@@ -138,7 +152,7 @@ const CountdownTimerGenerator = () => {
     drawTimer(previewCanvasRef.current, duration, true)
   }
 
-  // Generate countdown video - real-time seconds only
+  // Generate countdown video - precise frame-based rendering
   const generateVideo = async () => {
     setIsGenerating(true)
     setGenerationProgress(0)
@@ -152,11 +166,10 @@ const CountdownTimerGenerator = () => {
       canvas.width = currentResolution.width
       canvas.height = currentResolution.height
 
-      const fps = 30
-      const totalFrames = duration * fps
       const chunks = []
       
-      const stream = canvas.captureStream(fps)
+      // Use exact frame rate for precise timing
+      const stream = canvas.captureStream(frameRate)
       const mediaRecorder = new MediaRecorder(stream, {
         mimeType: 'video/webm;codecs=vp9'
       })
@@ -178,21 +191,20 @@ const CountdownTimerGenerator = () => {
 
       mediaRecorder.start()
 
-      // Generate frames - use real-time seconds
+      // Generate frames with precise timing
       for (let frame = 0; frame < totalFrames; frame++) {
-        // Get current real-time seconds
-        const currentSeconds = getCurrentSeconds()
-        const displaySeconds = currentSeconds % (duration || 60)
+        // Calculate timer display based on current frame
+        const displaySeconds = getTimerDisplay(frame)
         
-        // Draw frame with real-time seconds
+        // Draw frame with precise timer
         drawTimer(canvas, displaySeconds)
         
         // Update progress
         const progress = (frame / totalFrames) * 100
         setGenerationProgress(progress)
         
-        // Small delay to prevent blocking
-        if (frame % 10 === 0) {
+        // Small delay to prevent blocking (but maintain frame accuracy)
+        if (frame % 30 === 0) {
           await new Promise(resolve => setTimeout(resolve, 1))
         }
       }
@@ -305,13 +317,31 @@ const CountdownTimerGenerator = () => {
                   <input
                     type="number"
                     min="1"
-                    max="60"
+                    max="300"
                     value={duration}
-                    onChange={(e) => setDuration(parseInt(e.target.value) || 10)}
+                    onChange={(e) => setDuration(parseInt(e.target.value) || 60)}
                     className="w-full border border-gray-300 rounded-lg px-4 py-2"
                   />
                   <p className="text-xs text-gray-500 mt-1">
-                    Video will show real-time seconds (0-59)
+                    Exact video duration: {duration}.00 seconds
+                  </p>
+                </div>
+
+                {/* Frame Rate */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Frame Rate
+                  </label>
+                  <select
+                    value={frameRate}
+                    onChange={(e) => setFrameRate(parseInt(e.target.value))}
+                    className="w-full border border-gray-300 rounded-lg px-4 py-2"
+                  >
+                    <option value={30}>30 FPS ({totalFrames} frames)</option>
+                    <option value={60}>60 FPS ({totalFrames * 2} frames)</option>
+                  </select>
+                  <p className="text-xs text-gray-500 mt-1">
+                    Each second persists for exactly {frameRate} frames
                   </p>
                 </div>
 
@@ -327,33 +357,6 @@ const CountdownTimerGenerator = () => {
                     <div className="text-sm text-gray-600">
                       {currentTime.toLocaleDateString()}
                     </div>
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Timer Type
-                  </label>
-                  <div className="flex gap-2">
-                    <button
-                      onClick={() => setTimerType('countdown')}
-                      className={`px-4 py-2 rounded-lg font-medium ${
-                        timerType === 'countdown'
-                          ? 'bg-blue-600 text-white'
-                          : 'bg-gray-200 text-gray-700'
-                      }`}
-                    >
-                      Countdown
-                    </button>
-                    <button
-                      onClick={() => setTimerType('stopwatch')}
-                      className={`px-4 py-2 rounded-lg font-medium ${
-                        timerType === 'stopwatch'
-                          ? 'bg-blue-600 text-white'
-                          : 'bg-gray-200 text-gray-700'
-                      }`}
-                    >
-                      Stopwatch
-                    </button>
                   </div>
                 </div>
 
