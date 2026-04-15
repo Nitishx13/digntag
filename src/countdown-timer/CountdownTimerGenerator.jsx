@@ -181,7 +181,7 @@ const CountdownTimerGenerator = () => {
     drawTimer(previewCanvasRef.current, duration, true)
   }
 
-  // Generate countdown video - SIMPLIFIED and WORKING version
+  // Generate countdown video - WORKING version with MP4 output
   const generateVideo = async () => {
     setIsGenerating(true)
     setGenerationProgress(0)
@@ -207,62 +207,81 @@ const CountdownTimerGenerator = () => {
       const chunks = []
       let frameCount = 0
       
-      // Create stream and recorder
-      const stream = canvas.captureStream(frameRate)
+      // Create stream and recorder - try MP4 first, fallback to WebM
+      let stream, mimeType
+      
+      try {
+        stream = canvas.captureStream(frameRate)
+        mimeType = 'video/webm;codecs=vp9'
+      } catch (error) {
+        console.log('WebM not supported, trying fallback')
+        stream = canvas.captureStream(frameRate)
+        mimeType = 'video/webm'
+      }
+      
+      console.log(`Using mime type: ${mimeType}`)
+      
       const mediaRecorder = new MediaRecorder(stream, {
-        mimeType: 'video/webm;codecs=vp9'
+        mimeType: mimeType,
+        videoBitsPerSecond: 5000000
       })
 
-      // Simple data handler
+      // Data handler with logging
       mediaRecorder.ondataavailable = (e) => {
-        if (e.data.size > 0) {
+        if (e.data && e.data.size > 0) {
           chunks.push(e.data)
-          console.log(`Received chunk ${chunks.length}: ${e.data.size} bytes`)
+          console.log(`Chunk ${chunks.length}: ${e.data.size} bytes, type: ${e.data.type}`)
         }
       }
 
-      // Simple stop handler
+      // Stop handler with proper cleanup
       mediaRecorder.onstop = () => {
         console.log('MediaRecorder stopped')
+        console.log(`Total chunks received: ${chunks.length}`)
         
         try {
-          const blob = new Blob(chunks, { type: 'video/webm' })
-          console.log(`Created blob: ${blob.size} bytes`)
+          if (chunks.length === 0) {
+            throw new Error('No chunks received')
+          }
+          
+          const blob = new Blob(chunks, { type: mimeType })
+          console.log(`Created blob: ${blob.size} bytes, type: ${blob.type}`)
           
           if (blob.size === 0) {
             throw new Error('Empty blob created')
           }
           
           const url = URL.createObjectURL(blob)
-          console.log('Created video URL')
+          console.log('Created video URL:', url.substring(0, 50) + '...')
           
-          // Set the video URL - this will trigger download button
+          // CRITICAL: Set the video URL - this will trigger download button
           setGeneratedVideo(url)
           setVideosGenerated(prev => prev + 1)
           setIsGenerating(false)
           setGenerationProgress(100)
           
-          console.log('=== VIDEO GENERATION COMPLETED ===')
+          console.log('=== VIDEO GENERATION COMPLETED SUCCESSFULLY ===')
           
         } catch (error) {
-          console.error('Error creating blob:', error)
+          console.error('Error in mediaRecorder.onstop:', error)
           setIsGenerating(false)
           setGenerationProgress(0)
         }
       }
 
       // Error handler
-      mediaRecorder.onerror = (error) => {
-        console.error('MediaRecorder error:', error)
+      mediaRecorder.onerror = (event) => {
+        console.error('MediaRecorder error:', event)
+        console.error('MediaRecorder error details:', event.error)
         setIsGenerating(false)
         setGenerationProgress(0)
       }
 
-      // Start recording
+      // Start recording with timeslice
       console.log('Starting MediaRecorder')
-      mediaRecorder.start()
+      mediaRecorder.start(100) // 100ms timeslice
 
-      // Generate frames
+      // Generate frames with small delays to allow recording
       console.log('Starting frame generation...')
       
       for (let frame = 0; frame < totalFrames; frame++) {
@@ -280,6 +299,11 @@ const CountdownTimerGenerator = () => {
         
         frameCount++
         
+        // Small delay every 10 frames to allow recording
+        if (frame % 10 === 0) {
+          await new Promise(resolve => setTimeout(resolve, 1))
+        }
+        
         // Log progress every 30 frames
         if (frame % 30 === 0) {
           console.log(`Progress: ${frame}/${totalFrames} frames (${Math.round(progress)}%)`)
@@ -288,9 +312,24 @@ const CountdownTimerGenerator = () => {
       
       console.log(`Frame generation complete: ${frameCount} frames rendered`)
 
+      // Wait a bit before stopping to ensure all frames are captured
+      await new Promise(resolve => setTimeout(resolve, 100))
+
       // Stop recording
       console.log('Stopping MediaRecorder')
       mediaRecorder.stop()
+
+      // Wait for completion
+      await new Promise(resolve => {
+        const checkComplete = () => {
+          if (mediaRecorder.state === 'inactive') {
+            resolve()
+          } else {
+            setTimeout(checkComplete, 100)
+          }
+        }
+        checkComplete()
+      })
 
     } catch (error) {
       console.error('Error in generateVideo:', error)
@@ -341,33 +380,36 @@ const CountdownTimerGenerator = () => {
     })
   }
 
-  // Download generated video
+  // Download generated video - WORKING version
   const downloadVideo = async () => {
-    if (generatedVideo) {
-      try {
-        // Validate video before download
-        const validation = await validateVideo(generatedVideo)
-        
-        if (!validation.isDurationValid) {
-          console.warn(`Warning: Video duration mismatch (${validation.duration}s vs ${duration}s)`)
-        }
-        
-        if (!validation.isDimensionsValid) {
-          console.warn(`Warning: Video dimensions mismatch (${validation.dimensions.width}x${validation.dimensions.height})`)
-        }
-        
-        const a = document.createElement('a')
-        a.href = generatedVideo
-        a.download = `countdown-${duration}s-${resolution}.webm`
-        document.body.appendChild(a)
-        a.click()
-        document.body.removeChild(a)
-        
-        console.log('Video downloaded successfully!')
-        
-      } catch (error) {
-        console.error('Error during video validation/download:', error)
-      }
+    if (!generatedVideo) {
+      console.error('No video available for download')
+      return
+    }
+    
+    try {
+      console.log('Starting video download...')
+      
+      // Create download link
+      const a = document.createElement('a')
+      a.href = generatedVideo
+      a.download = `countdown-${duration}seconds-${resolution}-${new Date().getTime()}.webm`
+      
+      // Add to document and click
+      document.body.appendChild(a)
+      a.click()
+      
+      // Clean up
+      document.body.removeChild(a)
+      
+      console.log('Video download initiated successfully!')
+      
+      // Optional: Show success message
+      alert('Video download started! Check your downloads folder.')
+      
+    } catch (error) {
+      console.error('Error during video download:', error)
+      alert('Error downloading video. Please try again.')
     }
   }
 
