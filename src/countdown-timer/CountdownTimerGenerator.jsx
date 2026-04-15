@@ -123,20 +123,35 @@ const CountdownTimerGenerator = () => {
     ctx.fillText(formatTime(time), canvas.width / 2, canvas.height / 2)
   }
 
-  // Preview animation - show real-time seconds
+  // Preview animation - simulate countdown
   const startPreview = () => {
     if (isPreviewPlaying) return
     
     setIsPreviewPlaying(true)
+    let currentFrame = 0
+    const previewFrameRate = 30 // Use 30 FPS for preview
+    const totalPreviewFrames = duration * previewFrameRate
     
     const animate = () => {
-      const currentSeconds = getCurrentSeconds()
-      const displaySeconds = currentSeconds % (duration || 60)
+      // Calculate current time in preview
+      const currentTime = currentFrame / previewFrameRate
+      const remainingTime = duration - currentTime
+      const displayTime = Math.max(0, Math.ceil(remainingTime))
       
-      drawTimer(previewCanvasRef.current, displaySeconds, true)
-      setPreviewTime(displaySeconds)
+      drawTimer(previewCanvasRef.current, displayTime, true)
+      setPreviewTime(displayTime)
       
-      animationRef.current = requestAnimationFrame(animate)
+      currentFrame++
+      
+      // Continue animation until countdown reaches 0
+      if (currentFrame < totalPreviewFrames) {
+        animationRef.current = requestAnimationFrame(animate)
+      } else {
+        // Animation complete, show 00:00 for a moment then stop
+        setTimeout(() => {
+          setIsPreviewPlaying(false)
+        }, 1000)
+      }
     }
     
     animate()
