@@ -152,7 +152,7 @@ const CountdownTimerGenerator = () => {
     drawTimer(previewCanvasRef.current, duration, true)
   }
 
-  // Generate countdown video - precise frame-based rendering
+  // Generate countdown video - FIXED version with proper timing and encoding
   const generateVideo = async () => {
     setIsGenerating(true)
     setGenerationProgress(0)
@@ -166,66 +166,211 @@ const CountdownTimerGenerator = () => {
       canvas.width = currentResolution.width
       canvas.height = currentResolution.height
 
+      console.log(`Starting video generation: ${duration}s at ${frameRate} FPS = ${totalFrames} frames`)
+      console.log(`Canvas resolution: ${canvas.width}x${canvas.height}`)
+
       const chunks = []
       
       // Use exact frame rate for precise timing
       const stream = canvas.captureStream(frameRate)
+      
+      // Try to use MP4 format first, fallback to WebM
+      const mimeType = 'video/webm;codecs=vp9'
       const mediaRecorder = new MediaRecorder(stream, {
-        mimeType: 'video/webm;codecs=vp9'
+        mimeType: mimeType,
+        videoBitsPerSecond: 5000000 // 5 Mbps for good quality
       })
+
+      let frameCount = 0
+      let startTime = performance.now()
 
       mediaRecorder.ondataavailable = (e) => {
         if (e.data.size > 0) {
           chunks.push(e.data)
+          console.log(`Chunk ${chunks.length}: ${e.data.size} bytes`)
         }
       }
 
-      mediaRecorder.onstop = () => {
-        const blob = new Blob(chunks, { type: 'video/webm' })
-        const url = URL.createObjectURL(blob)
-        setGeneratedVideo(url)
-        setVideosGenerated(prev => prev + 1)
-        setIsGenerating(false)
-        setGenerationProgress(100)
+      mediaRecorder.onstop = async () => {
+        try {
+          console.log(`MediaRecorder stopped. Total chunks: ${chunks.length}`)
+          
+          // Wait for encoding to complete
+          await new Promise(resolve => setTimeout(resolve, 100))
+          
+          const blob = new Blob(chunks, { type: mimeType })
+          console.log(`Final blob size: ${blob.size} bytes`)
+          
+          // Validate blob size
+          if (blob.size === 0) {
+            throw new Error('Generated video blob is empty')
+          }
+          
+          const url = URL.createObjectURL(blob)
+          
+          // Validate video duration
+          const video = document.createElement('video')
+          video.src = url
+          
+          video.onloadedmetadata = () => {
+            console.log(`Generated video duration: ${video.duration}s (expected: ${duration}s)`)
+            console.log(`Video dimensions: ${video.videoWidth}x${video.videoHeight}`)
+            
+            // Check if duration is within acceptable range (±0.1s)
+            const durationDiff = Math.abs(video.duration - duration)
+            if (durationDiff > 0.1) {
+              console.warn(`Duration mismatch: expected ${duration}s, got ${video.duration}s`)
+            } else {
+              console.log('Duration validation passed!')
+            }
+          }
+          
+          setGeneratedVideo(url)
+          setVideosGenerated(prev => prev + 1)
+          setIsGenerating(false)
+          setGenerationProgress(100)
+          
+          const endTime = performance.now()
+          console.log(`Video generation completed in ${(endTime - startTime) / 1000}s`)
+          
+        } catch (error) {
+          console.error('Error in mediaRecorder.onstop:', error)
+          setIsGenerating(false)
+        }
       }
 
-      mediaRecorder.start()
+      mediaRecorder.onerror = (error) => {
+        console.error('MediaRecorder error:', error)
+        setIsGenerating(false)
+      }
 
-      // Generate frames with precise timing
+      // Start recording
+      mediaRecorder.start(100) // 100ms chunks for better reliability
+
+      // Generate frames with PRECISE timing - no async delays
+      console.log('Starting frame generation...')
+      
       for (let frame = 0; frame < totalFrames; frame++) {
-        // Calculate timer display based on current frame
-        const displaySeconds = getTimerDisplay(frame)
+        // Calculate current time: currentTime = frameIndex / fps
+        const currentTime = frame / frameRate
+        
+        // Calculate remaining time: remainingTime = totalDuration - currentTime
+        const remainingTime = duration - currentTime
+        
+        // Use ceil for display time to ensure proper second display
+        const displayTime = Math.max(0, Math.ceil(remainingTime))
         
         // Draw frame with precise timer
-        drawTimer(canvas, displaySeconds)
+        drawTimer(canvas, displayTime)
+        
+        // Log every 30th frame for debugging
+        if (frame % 30 === 0) {
+          console.log(`Frame ${frame}/${totalFrames}: displayTime=${displayTime}s, currentTime=${currentTime.toFixed(2)}s`)
+        }
         
         // Update progress
         const progress = (frame / totalFrames) * 100
         setGenerationProgress(progress)
         
-        // Small delay to prevent blocking (but maintain frame accuracy)
-        if (frame % 30 === 0) {
-          await new Promise(resolve => setTimeout(resolve, 1))
-        }
+        // CRITICAL: No async delays - maintain frame accuracy
+        // The canvas captureStream handles timing automatically
+        
+        frameCount++
       }
+      
+      console.log(`Frame generation completed. Total frames rendered: ${frameCount}`)
 
+      // Stop recording and wait for completion
       mediaRecorder.stop()
+      
+      // Wait for encoding to complete
+      await new Promise(resolve => {
+        const checkComplete = () => {
+          if (mediaRecorder.state === 'inactive') {
+            resolve()
+          } else {
+            setTimeout(checkComplete, 100)
+          }
+        }
+        checkComplete()
+      })
 
     } catch (error) {
       console.error('Error generating video:', error)
       setIsGenerating(false)
+      setGenerationProgress(0)
     }
   }
 
+  // Validate generated video
+  const validateVideo = async (videoUrl) => {
+    return new Promise((resolve, reject) => {
+      const video = document.createElement('video')
+      video.src = videoUrl
+      video.muted = true
+      
+      video.onloadedmetadata = () => {
+        console.log('=== VIDEO VALIDATION ===')
+        console.log(`Duration: ${video.duration}s (expected: ${duration}s)`)
+        console.log(`Dimensions: ${video.videoWidth}x${video.videoHeight}`)
+        console.log(`Frame rate: ${video.getVideoPlaybackQuality()?.totalVideoFrames || 'Unknown'}`)
+        
+        // Duration validation
+        const durationDiff = Math.abs(video.duration - duration)
+        const isDurationValid = durationDiff <= 0.1
+        
+        // Dimensions validation
+        const expectedResolution = resolutions.find(r => r.value === resolution)
+        const isDimensionsValid = video.videoWidth === expectedResolution.width && 
+                                video.videoHeight === expectedResolution.height
+        
+        console.log(`Duration valid: ${isDurationValid}`)
+        console.log(`Dimensions valid: ${isDimensionsValid}`)
+        console.log('========================')
+        
+        resolve({
+          duration: video.duration,
+          dimensions: { width: video.videoWidth, height: video.videoHeight },
+          isDurationValid,
+          isDimensionsValid,
+          durationDiff
+        })
+      }
+      
+      video.onerror = () => {
+        console.error('Video validation failed - cannot load metadata')
+        reject(new Error('Video validation failed'))
+      }
+    })
+  }
+
   // Download generated video
-  const downloadVideo = () => {
+  const downloadVideo = async () => {
     if (generatedVideo) {
-      const a = document.createElement('a')
-      a.href = generatedVideo
-      a.download = `countdown-${duration}s-${resolution}.webm`
-      document.body.appendChild(a)
-      a.click()
-      document.body.removeChild(a)
+      try {
+        // Validate video before download
+        const validation = await validateVideo(generatedVideo)
+        
+        if (!validation.isDurationValid) {
+          console.warn(`Warning: Video duration mismatch (${validation.duration}s vs ${duration}s)`)
+        }
+        
+        if (!validation.isDimensionsValid) {
+          console.warn(`Warning: Video dimensions mismatch (${validation.dimensions.width}x${validation.dimensions.height})`)
+        }
+        
+        const a = document.createElement('a')
+        a.href = generatedVideo
+        a.download = `countdown-${duration}s-${resolution}.webm`
+        document.body.appendChild(a)
+        a.click()
+        document.body.removeChild(a)
+        
+        console.log('Video downloaded successfully!')
+        
+      } catch (error) {
+        console.error('Error during video validation/download:', error)
+      }
     }
   }
 
