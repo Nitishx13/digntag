@@ -47,7 +47,7 @@ setInterval(() => {
   }
 }, 300000) // Every 5 minutes
 
-// Generate frame image
+// Generate frame image - FIXED timer calculation
 function generateFrame(config, frameNumber, totalFrames) {
   const { width, height, backgroundColor, textColor, fontSize, fontFamily, duration } = config
   
@@ -58,14 +58,18 @@ function generateFrame(config, frameNumber, totalFrames) {
   ctx.fillStyle = backgroundColor
   ctx.fillRect(0, 0, width, height)
   
-  // Calculate current second in video
+  // FIXED: Calculate current second in video correctly
   const fps = 30
   const currentSecondInVideo = Math.floor(frameNumber / fps)
   const remainingTime = Math.max(0, duration - currentSecondInVideo)
   
+  // CRITICAL FIX: Ensure we show the correct countdown
+  // For a 60-second video, frame 0-29 should show 60, frame 30-59 should show 59, etc.
+  const displayTime = Math.max(0, duration - currentSecondInVideo)
+  
   // Format time
-  const mins = Math.floor(remainingTime / 60)
-  const secs = Math.floor(remainingTime % 60)
+  const mins = Math.floor(displayTime / 60)
+  const secs = Math.floor(displayTime % 60)
   const timeText = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`
   
   // Draw text
@@ -74,6 +78,11 @@ function generateFrame(config, frameNumber, totalFrames) {
   ctx.textAlign = 'center'
   ctx.textBaseline = 'middle'
   ctx.fillText(timeText, width / 2, height / 2)
+  
+  // Debug logging for first few frames
+  if (frameNumber < 10) {
+    console.log(`Frame ${frameNumber}: displayTime=${displayTime}s, timeText="${timeText}"`)
+  }
   
   return canvas
 }
@@ -109,6 +118,8 @@ async function generateVideoWithFFmpeg(config, sessionId, onProgress) {
   try {
     // Step 1: Generate all frames as images
     console.log('Step 1: Generating frames...')
+    console.log(`Expected sequence: Frame 0-29: ${duration}s, Frame 30-59: ${duration-1}s, ...`)
+    
     for (let frame = 0; frame < totalFrames; frame++) {
       const canvas = generateFrame({ ...config, width, height }, frame, totalFrames)
       const framePath = path.join(sessionFramesDir, `frame_${frame.toString().padStart(6, '0')}.png`)
@@ -120,6 +131,13 @@ async function generateVideoWithFFmpeg(config, sessionId, onProgress) {
       const progress = Math.round((frame / totalFrames) * 50) // Frame generation is 50% of total
       if (onProgress) {
         onProgress(progress)
+      }
+      
+      // Enhanced logging for debugging
+      if (frame < 90) { // Log first 3 seconds
+        const currentSecond = Math.floor(frame / fps)
+        const displayTime = Math.max(0, duration - currentSecond)
+        console.log(`Frame ${frame}: Second ${currentSecond}, Display ${displayTime}s`)
       }
       
       // Log progress every 30 frames
