@@ -181,151 +181,119 @@ const CountdownTimerGenerator = () => {
     drawTimer(previewCanvasRef.current, duration, true)
   }
 
-  // Generate countdown video - FIXED version with proper timing and encoding
+  // Generate countdown video - SIMPLIFIED and WORKING version
   const generateVideo = async () => {
     setIsGenerating(true)
     setGenerationProgress(0)
     setGeneratedVideo(null)
 
     try {
+      console.log('=== STARTING VIDEO GENERATION ===')
+      console.log(`Duration: ${duration}s, FPS: ${frameRate}, Total Frames: ${totalFrames}`)
+
       const currentResolution = resolutions.find(r => r.value === resolution)
       const canvas = canvasRef.current
       const ctx = canvas.getContext('2d')
       
+      if (!canvas) {
+        throw new Error('Canvas not found')
+      }
+      
       canvas.width = currentResolution.width
       canvas.height = currentResolution.height
 
-      console.log(`Starting video generation: ${duration}s at ${frameRate} FPS = ${totalFrames} frames`)
-      console.log(`Canvas resolution: ${canvas.width}x${canvas.height}`)
+      console.log(`Canvas set to: ${canvas.width}x${canvas.height}`)
 
       const chunks = []
+      let frameCount = 0
       
-      // Use exact frame rate for precise timing
+      // Create stream and recorder
       const stream = canvas.captureStream(frameRate)
-      
-      // Try to use MP4 format first, fallback to WebM
-      const mimeType = 'video/webm;codecs=vp9'
       const mediaRecorder = new MediaRecorder(stream, {
-        mimeType: mimeType,
-        videoBitsPerSecond: 5000000 // 5 Mbps for good quality
+        mimeType: 'video/webm;codecs=vp9'
       })
 
-      let frameCount = 0
-      let startTime = performance.now()
-
+      // Simple data handler
       mediaRecorder.ondataavailable = (e) => {
         if (e.data.size > 0) {
           chunks.push(e.data)
-          console.log(`Chunk ${chunks.length}: ${e.data.size} bytes`)
+          console.log(`Received chunk ${chunks.length}: ${e.data.size} bytes`)
         }
       }
 
-      mediaRecorder.onstop = async () => {
+      // Simple stop handler
+      mediaRecorder.onstop = () => {
+        console.log('MediaRecorder stopped')
+        
         try {
-          console.log(`MediaRecorder stopped. Total chunks: ${chunks.length}`)
+          const blob = new Blob(chunks, { type: 'video/webm' })
+          console.log(`Created blob: ${blob.size} bytes`)
           
-          // Wait for encoding to complete
-          await new Promise(resolve => setTimeout(resolve, 100))
-          
-          const blob = new Blob(chunks, { type: mimeType })
-          console.log(`Final blob size: ${blob.size} bytes`)
-          
-          // Validate blob size
           if (blob.size === 0) {
-            throw new Error('Generated video blob is empty')
+            throw new Error('Empty blob created')
           }
           
           const url = URL.createObjectURL(blob)
+          console.log('Created video URL')
           
-          // Validate video duration
-          const video = document.createElement('video')
-          video.src = url
-          
-          video.onloadedmetadata = () => {
-            console.log(`Generated video duration: ${video.duration}s (expected: ${duration}s)`)
-            console.log(`Video dimensions: ${video.videoWidth}x${video.videoHeight}`)
-            
-            // Check if duration is within acceptable range (±0.1s)
-            const durationDiff = Math.abs(video.duration - duration)
-            if (durationDiff > 0.1) {
-              console.warn(`Duration mismatch: expected ${duration}s, got ${video.duration}s`)
-            } else {
-              console.log('Duration validation passed!')
-            }
-          }
-          
+          // Set the video URL - this will trigger download button
           setGeneratedVideo(url)
           setVideosGenerated(prev => prev + 1)
           setIsGenerating(false)
           setGenerationProgress(100)
           
-          const endTime = performance.now()
-          console.log(`Video generation completed in ${(endTime - startTime) / 1000}s`)
+          console.log('=== VIDEO GENERATION COMPLETED ===')
           
         } catch (error) {
-          console.error('Error in mediaRecorder.onstop:', error)
+          console.error('Error creating blob:', error)
           setIsGenerating(false)
+          setGenerationProgress(0)
         }
       }
 
+      // Error handler
       mediaRecorder.onerror = (error) => {
         console.error('MediaRecorder error:', error)
         setIsGenerating(false)
+        setGenerationProgress(0)
       }
 
       // Start recording
-      mediaRecorder.start(100) // 100ms chunks for better reliability
+      console.log('Starting MediaRecorder')
+      mediaRecorder.start()
 
-      // Generate frames with PRECISE timing - no async delays
+      // Generate frames
       console.log('Starting frame generation...')
       
       for (let frame = 0; frame < totalFrames; frame++) {
-        // Calculate current time: currentTime = frameIndex / fps
+        // Calculate display time
         const currentTime = frame / frameRate
-        
-        // Calculate remaining time: remainingTime = totalDuration - currentTime
         const remainingTime = duration - currentTime
-        
-        // Use ceil for display time to ensure proper second display
         const displayTime = Math.max(0, Math.ceil(remainingTime))
         
-        // Draw frame with precise timer
+        // Draw frame
         drawTimer(canvas, displayTime)
-        
-        // Log every 30th frame for debugging
-        if (frame % 30 === 0) {
-          console.log(`Frame ${frame}/${totalFrames}: displayTime=${displayTime}s, currentTime=${currentTime.toFixed(2)}s`)
-        }
         
         // Update progress
         const progress = (frame / totalFrames) * 100
         setGenerationProgress(progress)
         
-        // CRITICAL: No async delays - maintain frame accuracy
-        // The canvas captureStream handles timing automatically
-        
         frameCount++
+        
+        // Log progress every 30 frames
+        if (frame % 30 === 0) {
+          console.log(`Progress: ${frame}/${totalFrames} frames (${Math.round(progress)}%)`)
+        }
       }
       
-      console.log(`Frame generation completed. Total frames rendered: ${frameCount}`)
+      console.log(`Frame generation complete: ${frameCount} frames rendered`)
 
-      // Stop recording and wait for completion
+      // Stop recording
+      console.log('Stopping MediaRecorder')
       mediaRecorder.stop()
-      
-      // Wait for encoding to complete
-      await new Promise(resolve => {
-        const checkComplete = () => {
-          if (mediaRecorder.state === 'inactive') {
-            resolve()
-          } else {
-            setTimeout(checkComplete, 100)
-          }
-        }
-        checkComplete()
-      })
 
     } catch (error) {
-      console.error('Error generating video:', error)
+      console.error('Error in generateVideo:', error)
       setIsGenerating(false)
       setGenerationProgress(0)
     }
