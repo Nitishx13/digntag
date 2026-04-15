@@ -18,6 +18,7 @@ import HomePage from './HomePage.jsx'
 import PoetPage from './poet/poet.jsx'
 import ShayariTemplates from './shayari-templates/ShayariTemplates.jsx'
 import ShayariDisplay from './shayari-display/ShayariDisplay.jsx'
+import YouTubeShortsCreator from './youtube-shorts/YouTubeShortsCreator.jsx'
 
 function AdminShareRedirect() {
   const { id } = useParams()
@@ -95,6 +96,7 @@ function App() {
       <Route path="/poet" element={<PoetPage />} />
       <Route path="/templates" element={<ShayariTemplates />} />
       <Route path="/shayari" element={<ShayariDisplay />} />
+      <Route path="/youtube-shorts" element={<YouTubeShortsCreator />} />
       <Route path="/home" element={<HtmlPage file="index.html" />} />
       <Route path="/" element={<HomePage />} />
       {routes.map((r) => (
