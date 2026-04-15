@@ -87,7 +87,7 @@ function generateFrame(config, frameNumber, totalFrames) {
   return canvas
 }
 
-// Generate video using FFmpeg
+// Generate video using FFmpeg - COMPLETE FIX
 async function generateVideoWithFFmpeg(config, sessionId, onProgress) {
   const { duration, resolution } = config
   const resolutions = {
@@ -110,15 +110,17 @@ async function generateVideoWithFFmpeg(config, sessionId, onProgress) {
     fs.mkdirSync(sessionFramesDir, { recursive: true })
   }
   
-  console.log(`=== BULLETPROOF VIDEO GENERATION START ===`)
+  console.log(`=== COMPLETE VIDEO GENERATION FIX ===`)
   console.log(`Session: ${sessionId}`)
   console.log(`Duration: ${duration}s, FPS: ${fps}, Total Frames: ${totalFrames}`)
   console.log(`Resolution: ${width}x${height}`)
   
   try {
-    // Step 1: Generate all frames as images
-    console.log('Step 1: Generating frames...')
-    console.log(`Expected sequence: Frame 0-29: ${duration}s, Frame 30-59: ${duration-1}s, ...`)
+    // Step 1: Generate ALL frames as images
+    console.log('Step 1: Generating ALL frames...')
+    console.log(`Will generate exactly ${totalFrames} frames`)
+    
+    let framesGenerated = 0
     
     for (let frame = 0; frame < totalFrames; frame++) {
       const canvas = generateFrame({ ...config, width, height }, frame, totalFrames)
@@ -126,6 +128,7 @@ async function generateVideoWithFFmpeg(config, sessionId, onProgress) {
       
       const buffer = canvas.toBuffer('image/png')
       fs.writeFileSync(framePath, buffer)
+      framesGenerated++
       
       // Update progress
       const progress = Math.round((frame / totalFrames) * 50) // Frame generation is 50% of total
@@ -146,26 +149,38 @@ async function generateVideoWithFFmpeg(config, sessionId, onProgress) {
       }
     }
     
-    console.log(`Frame generation complete: ${totalFrames} frames`)
+    console.log(`Frame generation COMPLETE: ${framesGenerated} frames generated out of ${totalFrames}`)
     
-    // Step 2: Use FFmpeg to create MP4
-    console.log('Step 2: Creating MP4 with FFmpeg...')
+    // CRITICAL: Verify all frames were generated
+    const generatedFrameFiles = fs.readdirSync(sessionFramesDir)
+    console.log(`Generated frame files count: ${generatedFrameFiles.length}`)
+    
+    if (generatedFrameFiles.length !== totalFrames) {
+      throw new Error(`Frame count mismatch: expected ${totalFrames}, got ${generatedFrameFiles.length}`)
+    }
+    
+    // Step 2: Use FFmpeg to create COMPLETE MP4
+    console.log('Step 2: Creating COMPLETE MP4 with FFmpeg...')
     
     const ffmpegCommand = [
       'ffmpeg',
       '-y', // Overwrite output file
       '-framerate', fps.toString(),
+      '-start_number', '0',
       '-i', path.join(sessionFramesDir, 'frame_%06d.png'),
+      '-frames:v', totalFrames.toString(), // CRITICAL: Include ALL frames
       '-c:v', 'libx264',
       '-pix_fmt', 'yuv420p',
       '-preset', 'medium',
       '-crf', '23',
       '-movflags', '+faststart',
       '-r', fps.toString(),
+      '-t', duration.toString(), // CRITICAL: Set exact duration
       outputFile
     ].join(' ')
     
     console.log('FFmpeg command:', ffmpegCommand)
+    console.log(`Processing ${totalFrames} frames for ${duration} seconds video`)
     
     const { stdout, stderr } = await execAsync(ffmpegCommand)
     
@@ -180,22 +195,45 @@ async function generateVideoWithFFmpeg(config, sessionId, onProgress) {
     const stats = fs.statSync(outputFile)
     console.log(`Video created: ${outputFile} (${stats.size} bytes)`)
     
+    // Step 4: Verify video duration
+    try {
+      const ffprobeCommand = [
+        'ffprobe',
+        '-v', 'error',
+        '-show_entries', 'format=duration',
+        '-of', 'default=noprint_wrappers=1:nokey=1',
+        outputFile
+      ].join(' ')
+      
+      const { stdout: durationOutput } = await execAsync(ffprobeCommand)
+      const videoDuration = parseFloat(durationOutput)
+      
+      console.log(`Video duration: ${videoDuration}s (expected: ${duration}s)`)
+      
+      if (Math.abs(videoDuration - duration) > 0.5) {
+        console.warn(`Duration mismatch: expected ${duration}s, got ${videoDuration}s`)
+      }
+    } catch (probeError) {
+      console.log('Could not verify video duration:', probeError.message)
+    }
+    
     // Update progress to 100%
     if (onProgress) {
       onProgress(100)
     }
     
-    console.log('=== BULLETPROOF VIDEO GENERATION COMPLETE ===')
+    console.log('=== COMPLETE VIDEO GENERATION SUCCESS ===')
     
     return {
       success: true,
       filePath: outputFile,
       fileName: `${sessionId}.mp4`,
-      fileSize: stats.size
+      fileSize: stats.size,
+      framesProcessed: framesGenerated
     }
     
   } catch (error) {
-    console.error('Bulletproof video generation error:', error)
+    console.error('Complete video generation error:', error)
     throw error
   } finally {
     // Clean up frames directory
